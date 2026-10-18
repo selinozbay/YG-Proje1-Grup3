@@ -1,0 +1,23 @@
+[
+  {
+    "id": "yazilim-gelistirme",
+    "code": "YG",
+    "title": "Yazılım Geliştirme",
+    "instructor": "Öğretim Elemanı",
+    "description": "Ekip temelli kısa projelerle ihtiyaç analizinden teslime kadar yazılım geliştirme yaşam döngüsü."
+  },
+  {
+    "id": "web-programlama",
+    "code": "WP",
+    "title": "Web Programlama",
+    "instructor": "Öğretim Elemanı",
+    "description": "HTML, CSS ve JavaScript ile erişilebilir ve duyarlı web arayüzleri geliştirme."
+  },
+  {
+    "id": "veri-tabani",
+    "code": "VT",
+    "title": "Veri Tabanı Yönetim Sistemleri",
+    "instructor": "Öğretim Elemanı",
+    "description": "İlişkisel veri modeli, SQL sorguları ve veri bütünlüğü."
+  }
+]

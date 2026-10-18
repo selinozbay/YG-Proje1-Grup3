@@ -1,0 +1,104 @@
+[
+  {
+    "id": "yg-w1",
+    "courseId": "yazilim-gelistirme",
+    "weekNo": 1,
+    "title": "İhtiyaç Analizi ve Planlama",
+    "description": "Problemi ve kullanıcıları tanımlayıp işi görevlere bölüyoruz.",
+    "learningGoals": [
+      "Hedef kullanıcıları ve ihtiyaçlarını belirlemek",
+      "Kullanıcı hikâyesi ve kabul kriteri yazmak",
+      "Görevleri görev panosunda planlamak"
+    ]
+  },
+  {
+    "id": "yg-w2",
+    "courseId": "yazilim-gelistirme",
+    "weekNo": 2,
+    "title": "Arayüz ve Teknik Tasarım",
+    "description": "Sayfa yapısını, bileşenleri ve veri modelini tasarlayıp çalışan bir iskelet kuruyoruz.",
+    "learningGoals": [
+      "Sayfaları ve bileşenleri belirlemek",
+      "Veri modelini tasarlamak",
+      "Çalışan bir proje iskeleti oluşturmak"
+    ]
+  },
+  {
+    "id": "yg-w3",
+    "courseId": "yazilim-gelistirme",
+    "weekNo": 3,
+    "title": "Geliştirme ve Test",
+    "description": "Ana işlevleri tamamlıyor, test ediyor ve hataları düzeltiyoruz.",
+    "learningGoals": [
+      "Ana işlevleri tamamlamak",
+      "Test senaryoları yazmak",
+      "Hataları kaydedip düzeltmek"
+    ]
+  },
+  {
+    "id": "wp-w1",
+    "courseId": "web-programlama",
+    "weekNo": 1,
+    "title": "HTML ve Anlamsal Yapı",
+    "description": "Sayfaları anlamlı etiketlerle ve erişilebilir biçimde kurmak.",
+    "learningGoals": [
+      "Anlamsal HTML etiketlerini doğru kullanmak",
+      "Etiketli ve erişilebilir formlar oluşturmak"
+    ]
+  },
+  {
+    "id": "wp-w2",
+    "courseId": "web-programlama",
+    "weekNo": 2,
+    "title": "CSS ile Duyarlı Tasarım",
+    "description": "Flexbox, Grid ve medya sorgularıyla her ekrana uyan sayfalar.",
+    "learningGoals": [
+      "Flexbox ve Grid ile yerleşim yapmak",
+      "Mobil öncelikli tasarım uygulamak",
+      "Medya sorgularını kullanmak"
+    ]
+  },
+  {
+    "id": "wp-w3",
+    "courseId": "web-programlama",
+    "weekNo": 3,
+    "title": "JavaScript ve DOM",
+    "description": "Kullanıcı etkileşimine göre sayfayı güncellemek ve veriyi tarayıcıda saklamak.",
+    "learningGoals": [
+      "Olay dinleyicileri yazmak",
+      "DOM'u güncellemek",
+      "localStorage ile veri saklamak"
+    ]
+  },
+  {
+    "id": "vt-w1",
+    "courseId": "veri-tabani",
+    "weekNo": 1,
+    "title": "İlişkisel Model",
+    "description": "Varlıkları, ilişkileri ve anahtarları belirleyerek veri modelini çizmek.",
+    "learningGoals": [
+      "Varlık ve ilişkileri belirlemek",
+      "ER diyagramı çizmek",
+      "Birincil ve yabancı anahtarları tanımlamak"
+    ]
+  },
+  {
+    "id": "vt-w2",
+    "courseId": "veri-tabani",
+    "weekNo": 2,
+    "title": "Temel SQL",
+    "description": "Veri sorgulama ve değiştirme komutları.",
+    "learningGoals": [
+      "SELECT, WHERE ve ORDER BY kullanmak",
+      "INSERT, UPDATE ve DELETE ile veri değiştirmek"
+    ]
+  },
+  {
+    "id": "vt-w3",
+    "courseId": "veri-tabani",
+    "weekNo": 3,
+    "title": "Birleştirme ve Gruplama",
+    "description": "Birden çok tabloyu birleştirmek ve özet raporlar üretmek.",
+    "learningGoals": ["JOIN türlerini ayırt etmek", "GROUP BY ve HAVING ile özet çıkarmak"]
+  }
+]

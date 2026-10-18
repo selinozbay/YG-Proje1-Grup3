@@ -1,0 +1,12 @@
+rules_version = '2';
+
+// Her kullanıcı yalnızca kendi belgesini (users/{uid}) okuyup yazabilir.
+// Ders kataloğu Firestore'da değil, uygulamanın içinde (src/data) durur.
+// Burada eşleşmeyen her yol varsayılan olarak kapalıdır.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

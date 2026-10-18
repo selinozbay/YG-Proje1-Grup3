@@ -1,0 +1,156 @@
+[
+  {
+    "id": "yg-w1-t1",
+    "courseId": "yazilim-gelistirme",
+    "weekNo": 1,
+    "title": "Kullanıcı hikâyelerini yaz",
+    "description": "En az beş kullanıcı hikâyesi ve her biri için kabul kriterleri hazırlayın.",
+    "dueDate": "2026-10-09",
+    "tags": ["analiz"]
+  },
+  {
+    "id": "yg-w1-t2",
+    "courseId": "yazilim-gelistirme",
+    "weekNo": 1,
+    "title": "Repository ve görev panosunu kur",
+    "description": "GitHub repository'sini açın, görevleri panoya girip ekip üyelerine atayın.",
+    "dueDate": "2026-10-09",
+    "tags": ["github", "jira"]
+  },
+  {
+    "id": "yg-w2-t1",
+    "courseId": "yazilim-gelistirme",
+    "weekNo": 2,
+    "title": "Sayfa taslaklarını çiz",
+    "description": "Her sayfa için masaüstü ve mobil wireframe hazırlayın.",
+    "dueDate": "2026-10-16",
+    "tags": ["tasarım"]
+  },
+  {
+    "id": "yg-w2-t2",
+    "courseId": "yazilim-gelistirme",
+    "weekNo": 2,
+    "title": "Veri modelini belgeye ekle",
+    "description": "Ders, hafta ve görev alanlarını proje raporuna tablo olarak ekleyin.",
+    "tags": ["analiz", "dokümantasyon"]
+  },
+  {
+    "id": "yg-w3-t1",
+    "courseId": "yazilim-gelistirme",
+    "weekNo": 3,
+    "title": "Test senaryolarını yaz",
+    "description": "Ana kullanıcı senaryoları için adım adım test senaryoları hazırlayın.",
+    "dueDate": "2026-10-23",
+    "tags": ["test"]
+  },
+  {
+    "id": "yg-w3-t2",
+    "courseId": "yazilim-gelistirme",
+    "weekNo": 3,
+    "title": "Hata kayıtlarını düzenle",
+    "description": "Bulunan hataları görev panosuna kaydedip önceliklendirin.",
+    "tags": ["test", "jira"]
+  },
+  {
+    "id": "wp-w1-t1",
+    "courseId": "web-programlama",
+    "weekNo": 1,
+    "title": "Anlamsal bir profil sayfası hazırla",
+    "description": "header, main, section ve footer etiketlerini kullanarak bir profil sayfası oluşturun.",
+    "dueDate": "2026-10-10",
+    "tags": ["html"]
+  },
+  {
+    "id": "wp-w1-t2",
+    "courseId": "web-programlama",
+    "weekNo": 1,
+    "title": "Erişilebilir iletişim formu oluştur",
+    "description": "Her alanın etiketi olan ve klavyeyle kullanılabilen bir form hazırlayın.",
+    "tags": ["html", "erişilebilirlik"]
+  },
+  {
+    "id": "wp-w2-t1",
+    "courseId": "web-programlama",
+    "weekNo": 2,
+    "title": "Kart ızgarasını Grid ile kur",
+    "description": "Ekran genişliğine göre 1, 2 veya 3 sütuna geçen bir kart ızgarası yapın.",
+    "dueDate": "2026-10-17",
+    "tags": ["css", "responsive"]
+  },
+  {
+    "id": "wp-w2-t2",
+    "courseId": "web-programlama",
+    "weekNo": 2,
+    "title": "Mobil menüyü tasarla",
+    "description": "Küçük ekranlarda açılıp kapanan bir gezinme menüsü hazırlayın.",
+    "tags": ["css", "responsive"]
+  },
+  {
+    "id": "wp-w3-t1",
+    "courseId": "web-programlama",
+    "weekNo": 3,
+    "title": "Arama kutusuyla listeyi filtrele",
+    "description": "Yazılan kelimeye göre listeyi anında süzen bir arama kutusu yapın.",
+    "dueDate": "2026-10-24",
+    "tags": ["javascript"]
+  },
+  {
+    "id": "wp-w3-t2",
+    "courseId": "web-programlama",
+    "weekNo": 3,
+    "title": "Tema tercihini sakla",
+    "description": "Seçilen karanlık/aydınlık temayı localStorage'da tutup sayfa açılışında uygulayın.",
+    "tags": ["javascript"]
+  },
+  {
+    "id": "vt-w1-t1",
+    "courseId": "veri-tabani",
+    "weekNo": 1,
+    "title": "Kütüphane senaryosu için ER diyagramı çiz",
+    "description": "Üye, kitap ve ödünç alma varlıkları ile aralarındaki ilişkileri gösterin.",
+    "dueDate": "2026-10-08",
+    "tags": ["modelleme"]
+  },
+  {
+    "id": "vt-w1-t2",
+    "courseId": "veri-tabani",
+    "weekNo": 1,
+    "title": "Anahtarları belirle",
+    "description": "Her tablo için birincil ve yabancı anahtarları yazın.",
+    "tags": ["modelleme"]
+  },
+  {
+    "id": "vt-w2-t1",
+    "courseId": "veri-tabani",
+    "weekNo": 2,
+    "title": "Temel SELECT sorgularını yaz",
+    "description": "Filtreleme ve sıralama içeren on sorgu yazın.",
+    "dueDate": "2026-10-15",
+    "tags": ["sql"]
+  },
+  {
+    "id": "vt-w2-t2",
+    "courseId": "veri-tabani",
+    "weekNo": 2,
+    "title": "Örnek veri ekleme betiği hazırla",
+    "description": "Her tabloya en az beş kayıt ekleyen bir INSERT betiği yazın.",
+    "tags": ["sql"]
+  },
+  {
+    "id": "vt-w3-t1",
+    "courseId": "veri-tabani",
+    "weekNo": 3,
+    "title": "JOIN alıştırmalarını çöz",
+    "description": "INNER, LEFT ve RIGHT JOIN ile verilen soruları yanıtlayın.",
+    "dueDate": "2026-10-22",
+    "tags": ["sql"]
+  },
+  {
+    "id": "vt-w3-t2",
+    "courseId": "veri-tabani",
+    "weekNo": 3,
+    "title": "Raporlama sorgusu yaz",
+    "description": "Ay bazında en çok ödünç alınan kitapları listeleyen bir sorgu yazın.",
+    "tags": ["sql", "rapor"]
+  }
+]

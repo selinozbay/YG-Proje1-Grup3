@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Haftalık ders içeriklerini, görevleri ve öğrenme ilerlemesini takip etmek için etkileşimli ders panosu."
+    />
+    <title>Ders Panosu</title>
+    <script>
+      // Tema, sayfa çizilmeden önce uygulanır; böylece karanlık modda beyaz ekran yanıp sönmez.
+      // Anahtar adı src/config.ts içindeki STORAGE_KEYS.theme ile aynı olmalı.
+      ;(function () {
+        try {
+          var theme = localStorage.getItem('ders-panosu:theme')
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+          var dark = theme === 'dark' || ((!theme || theme === 'system') && prefersDark)
+          document.documentElement.classList.toggle('dark', dark)
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
