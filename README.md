@@ -5,7 +5,7 @@
 Öğrencilerin aldıkları dersleri, haftalık ders içeriklerini, öğrenme hedeflerini, görevlerini ve
 kendi ilerlemelerini tek bir yerden, etkileşimli bir web arayüzüyle takip edebildiği uygulama.
 
-- **Canlı demo:** https://ders-ogrenci-bilgi-ekip.web.app _(ilk yayından sonra açılır)_
+- **Canlı demo:** https://ders-ogrenci-bilgi-ekip.web.app
 - **Görev panosu (Jira):** https://ders-ogrenci-bilgi-ekip.atlassian.net — proje anahtarı `KAN`
 
 ## İçindekiler
@@ -521,7 +521,7 @@ Ekran görüntüleri sayfalar tamamlandıkça `docs/screenshots/` klasörüne ek
 - Ana Sayfa, Derslerim, Görevlerim ve Profil sayfaları iskelet halindedir. Her sayfadaki
   "Geliştirilecek" kutusu yapılacakları listeler; bu maddeler Jira'da görev olarak takip edilir.
 - Gizlilik sayfasındaki iletişim e-postası henüz eklenmedi (`src/config.ts` → `CONTACT_EMAIL`).
-- Canlı demo henüz yayınlanmadı.
+- Canlı demo iskelet sürümünü gösterir; sayfalar tamamlandıkça yeniden yayınlanacaktır.
 - Demo modunda şifre kontrol edilmez; bu mod yalnızca denemek içindir.
 
 ## Teslim dosyaları

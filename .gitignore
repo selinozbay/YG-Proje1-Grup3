@@ -41,3 +41,6 @@ __screenshots__/
 
 # Claude Code yerel ayarları
 .claude/
+
+# Firebase CLI önbelleği (yayınlama sırasında oluşur)
+.firebase/
