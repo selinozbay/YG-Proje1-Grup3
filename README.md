@@ -68,7 +68,7 @@ Tüm ekip üyeleri aynı zamanda geliştiricidir.
 | E-posta ve şifreyle kayıt, giriş, şifre sıfırlama              | Giriş / Kayıt            | Hazır          |
 | Giriş yapmayan kullanıcının uygulamaya girememesi              | Tüm sayfalar             | Hazır          |
 | Karanlık / aydınlık tema (seçim hatırlanır, açılışta aydınlık) | Üst menü                 | Hazır          |
-| Mobilde alt menü, masaüstünde yan menü                         | Tüm sayfalar             | Hazır          |
+| Masaüstünde sabit sol menü, mobilde soldan açılan menü         | Tüm sayfalar             | Hazır          |
 | Gizlilik ve KVKK aydınlatma metni                              | Gizlilik                 | Hazır          |
 | Hesabı ve tüm verileri silme                                   | Profil                   | Hazır          |
 | Demo modu (Firebase olmadan çalışma)                           | Tüm sayfalar             | Hazır          |
@@ -224,7 +224,7 @@ YG-Proje1-Grup3/
 │   │   ├── layout/     Menü, üst bar, alt bilgi, tema düğmesi
 │   │   ├── lessons/    Ders ve hafta kartları (geliştirilecek)
 │   │   └── tasks/      Görev kartı, filtre, arama (geliştirilecek)
-│   ├── composables/    Tekrar kullanılan mantık (geliştirilecek)
+│   ├── composables/    Tekrar kullanılan mantık (useMediaQuery)
 │   ├── data/           Ders kataloğu (JSON)
 │   ├── firebase/       Firebase bağlantısı
 │   ├── layouts/        Sayfa çerçeveleri
@@ -266,8 +266,8 @@ YG-Proje1-Grup3/
 | Dosya             | Ne işe yarar                                                                                                   |
 | ----------------- | -------------------------------------------------------------------------------------------------------------- |
 | `main.ts`         | Uygulamayı başlatır: Pinia'yı kurar, oturumu dinlemeye başlar, router'ı ekler; ilk sayfa hazır olunca gösterir |
-| `App.vue`         | Kök bileşen. Sayfanın türüne göre çerçeveyi seçer ve demo modu uyarısını gösterir                              |
-| `config.ts`       | Uygulama adı, Jira anahtarı (`KAN`), iletişim e-postası, `localStorage` anahtar adları                         |
+| `App.vue`         | Kök bileşen. Sayfanın türüne göre çerçeveyi seçer (`AppLayout` ya da `PublicLayout`)                           |
+| `config.ts`       | Uygulama adı, iletişim e-postası, `localStorage` anahtar adları                                                |
 | `assets/main.css` | Tailwind'in yüklendiği yer, karanlık tema ayarı, genel arka plan ve klavye odağı stili                         |
 
 ### `src/router/` — sayfa adresleri
@@ -278,28 +278,36 @@ YG-Proje1-Grup3/
 
 ### `src/layouts/` — sayfa çerçeveleri
 
-| Dosya              | Ne işe yarar                                                                         |
-| ------------------ | ------------------------------------------------------------------------------------ |
-| `AppLayout.vue`    | Giriş yapmış kullanıcının çerçevesi: yan menü (mobilde alt menü), üst bar, alt bilgi |
-| `PublicLayout.vue` | Giriş, kayıt, gizlilik ve 404 sayfalarının sade çerçevesi                            |
+| Dosya              | Ne işe yarar                                                                                                                                                     |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `AppLayout.vue`    | Giriş yapmış kullanıcının çerçevesi: solda kenar çubuğu, sağda sayfa içeriği. Mobil menünün açılıp kapanmasını yönetir (Esc, arka plana tıklama, sayfa değişimi) |
+| `PublicLayout.vue` | Giriş, kayıt, gizlilik ve 404 sayfalarının sade çerçevesi                                                                                                        |
 
 ### `src/components/` — bileşenler
 
-| Dosya                        | Ne işe yarar                                                                         |
-| ---------------------------- | ------------------------------------------------------------------------------------ |
-| `layout/AppNav.vue`          | Ana menü (Ana Sayfa, Derslerim, Görevlerim, Profil); bulunulan sayfayı işaretler     |
-| `layout/AppHeader.vue`       | Üst bar: kullanıcı adı, tema düğmesi, çıkış                                          |
-| `layout/AppFooter.vue`       | Alt bilgi ve Gizlilik/KVKK bağlantısı                                                |
-| `layout/ThemeToggle.vue`     | Karanlık/aydınlık tema düğmesi                                                       |
-| `layout/DemoBanner.vue`      | Demo modundayken üstte çıkan uyarı                                                   |
-| `layout/SkipLink.vue`        | Klavye kullanıcıları için "İçeriğe geç" bağlantısı                                   |
-| `common/PageHeader.vue`      | Sayfa başlığı ve açıklaması                                                          |
-| `common/TextField.vue`       | Etiketli metin kutusu (formlarda kullanılır)                                         |
-| `common/PagePlaceholder.vue` | **Geçici.** Sayfalarda "Geliştirilecek" listesini gösterir; sayfalar bitince silinir |
-| `auth/AuthCard.vue`          | Giriş, kayıt ve şifre sıfırlama formlarının ortak kartı; hata mesajını gösterir      |
-| `auth/SubmitButton.vue`      | Form gönderme düğmesi; işlem sürerken pasifleşir                                     |
-| `lessons/`                   | Ders ve hafta kartları buraya eklenecek                                              |
-| `tasks/`                     | Görev kartı, filtre ve arama bileşenleri buraya eklenecek                            |
+| Dosya                        | Ne işe yarar                                                                                                                                   |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `layout/AppSidebar.vue`      | Sol kenar çubuğu: logo, ikonlu ana menü (seçili sayfa vurgulu), kullanıcı kartı, tema düğmesi, çıkış. Masaüstünde sabit, mobilde soldan açılır |
+| `layout/AppHeader.vue`       | Yalnızca mobilde görünen üst bar: menü düğmesi, logo, tema düğmesi                                                                             |
+| `layout/AppLogo.vue`         | Logo ve uygulama adı; kenar çubuğunda, mobil üst barda ve giriş sayfalarında                                                                   |
+| `layout/AppFooter.vue`       | Alt bilgi ve Gizlilik/KVKK bağlantısı                                                                                                          |
+| `layout/ThemeToggle.vue`     | Karanlık/aydınlık tema düğmesi                                                                                                                 |
+| `layout/DemoBanner.vue`      | Demo modundayken üstte çıkan uyarı                                                                                                             |
+| `layout/SkipLink.vue`        | Klavye kullanıcıları için "İçeriğe geç" bağlantısı                                                                                             |
+| `common/AppIcon.vue`         | Uygulamadaki tüm ikonlar tek yerde (`<AppIcon name="home" class="size-5" />`)                                                                  |
+| `common/PageHeader.vue`      | Sayfa başlığı ve açıklaması                                                                                                                    |
+| `common/TextField.vue`       | Etiketli metin kutusu (formlarda kullanılır)                                                                                                   |
+| `common/PagePlaceholder.vue` | **Geçici.** Sayfalarda "Geliştirilecek" listesini gösterir; sayfalar bitince silinir                                                           |
+| `auth/AuthCard.vue`          | Giriş, kayıt ve şifre sıfırlama formlarının ortak kartı; hata mesajını gösterir                                                                |
+| `auth/SubmitButton.vue`      | Form gönderme düğmesi; işlem sürerken pasifleşir                                                                                               |
+| `lessons/`                   | Ders ve hafta kartları buraya eklenecek                                                                                                        |
+| `tasks/`                     | Görev kartı, filtre ve arama bileşenleri buraya eklenecek                                                                                      |
+
+### `src/composables/` — tekrar kullanılan mantık
+
+| Dosya              | Ne işe yarar                                                                                                                                   |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `useMediaQuery.ts` | Bir ekran koşulunun (ör. masaüstü genişliği, sistemin karanlık teması) o an geçerli olup olmadığını verir; değişince kendiliğinden güncellenir |
 
 ### `src/views/` — sayfalar
 
@@ -413,20 +421,74 @@ haftanın numarasıyla aynı olmalı.
    git switch -c feature/KAN-12-gorev-filtreleme
    ```
 
-3. Küçük ve anlamlı commitler atın. Mesaj görev numarasıyla başlasın:
-
-   ```bash
-   git commit -m "KAN-12 add task status filter"
-   ```
-
+3. Küçük ve anlamlı commitler atın; mesajı aşağıdaki
+   [commit mesajı kurallarına](#commit-mesajı-nasıl-yazılır) göre yazın.
 4. Dalı GitHub'a gönderin ve PR açın. PR başlığı da numarayla başlasın
    (`KAN-12 Görev filtreleme`); açılan şablonu doldurun.
-5. En az bir ekip arkadaşı inceledikten sonra PR `main`'e birleştirilir; Jira'da görev
-   "Tamamlandı"ya taşınır.
+5. En az bir ekip arkadaşı inceledikten sonra PR `main`'e **"Create a merge commit"** ile
+   birleştirilir; böylece her commit geçmişte ayrı ayrı görünür. Jira'da görev "Tamamlandı"ya
+   taşınır.
 
 Jira, "GitHub for Jira" uygulamasıyla GitHub'a bağlandığında, mesajında `KAN-12` geçen commit,
 dal ve PR'lar Jira'daki görevin içinde görünür. Bu, kimin hangi görevi hangi kodla yaptığının
 kanıtıdır.
+
+### Commit mesajı nasıl yazılır?
+
+Hoca bireysel katkıyı commit geçmişinden değerlendirir; her commit **ne yapıldığını ve nedenini**
+anlatmalı. Biçim:
+
+```text
+KAN-<görev no> <tür>: <ne yapıldı — kısa, emir kipinde>
+
+<Bir cümleyle neden yapıldığı.>
+
+- <Değişiklik 1>
+- <Değişiklik 2>
+```
+
+| Tür        | Ne zaman                                        |
+| ---------- | ----------------------------------------------- |
+| `feat`     | Yeni özellik                                    |
+| `fix`      | Hata düzeltme                                   |
+| `style`    | Görünüm ve tasarım değişikliği                  |
+| `refactor` | Davranışı değiştirmeden kodu düzenleme          |
+| `docs`     | README, rapor, kod içi açıklamalar              |
+| `test`     | Test ekleme veya düzeltme                       |
+| `chore`    | Ayar, paket, klasör düzeni gibi ürün dışı işler |
+
+Örnek:
+
+```text
+KAN-12 feat: görevlere durum filtresi ekle
+
+Öğrenci yalnızca devam eden görevlerini görebilsin diye.
+
+- Görevlerim sayfasına Yapılacak / Devam ediyor / Tamamlandı filtresi eklendi
+- Seçilen filtre sayfa yenilenince korunuyor (localStorage)
+- Sonuç yoksa "Bu durumda görev yok" mesajı gösteriliyor
+```
+
+- Başlık en fazla ~72 karakter olsun ve nokta ile bitmesin.
+- `update`, `final`, `son hali` gibi açıklamasız mesajlar kullanılmaz.
+- Çok satırlı mesaj için VS Code'da Kaynak Denetimi kutusuna başlık, bir boş satır ve açıklama
+  yazın. Terminalde her `-m` ayrı bir paragraf olur:
+
+  ```bash
+  git commit -m "KAN-12 feat: görevlere durum filtresi ekle" -m "- Görevlerim sayfasına durum filtresi eklendi"
+  ```
+
+### Commitlere nereden bakılır?
+
+- **GitHub'da tüm commitler:** Repo ana sayfasında dosya listesinin sağ üstündeki
+  **"Commits"** bağlantısı ya da
+  https://github.com/selinozbay/YG-Proje1-Grup3/commits/main. Bir commit'e tıklayınca hangi
+  dosyada neyin değiştiği görünür.
+- **Kişi bazında katkı:** **Insights → Contributors**
+  (https://github.com/selinozbay/YG-Proje1-Grup3/graphs/contributors). Burada yalnızca `main`
+  dalına giren ve git e-postası GitHub hesabıyla eşleşen commitler sayılır.
+- **Bilgisayarda:** `git log --oneline` (kısa liste), `git log --stat` (değişen dosyalarla). VS
+  Code'da Kaynak Denetimi panelindeki **Graph** bölümü.
 
 ### Kurallar
 

@@ -1,0 +1,23 @@
+<script setup lang="ts">
+import { APP_NAME } from '@/config'
+import AppIcon from '@/components/common/AppIcon.vue'
+
+defineProps<{ subtitle?: string }>()
+</script>
+
+<!-- Uygulama logosu ve adı: kenar çubuğunda, mobil üst barda ve giriş sayfalarında. -->
+<template>
+  <span class="flex min-w-0 items-center gap-3">
+    <span
+      class="grid size-9 shrink-0 place-items-center rounded-xl bg-linear-to-br from-indigo-500 to-violet-600 text-white shadow-sm shadow-indigo-500/30"
+    >
+      <AppIcon name="logo" class="size-5" />
+    </span>
+    <span class="min-w-0">
+      <span class="block truncate leading-tight font-semibold">{{ APP_NAME }}</span>
+      <span v-if="subtitle" class="block truncate text-xs text-slate-500 dark:text-slate-400">
+        {{ subtitle }}
+      </span>
+    </span>
+  </span>
+</template>

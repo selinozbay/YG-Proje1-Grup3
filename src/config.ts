@@ -1,8 +1,4 @@
 export const APP_NAME = 'Ders Panosu'
-export const APP_FULL_NAME = 'Etkileşimli Ders Deneyimi Panosu'
-
-/** Jira proje anahtarı. Commit, branch ve PR adlarında görev numarasıyla kullanılır: KAN-12 */
-export const JIRA_PROJECT_KEY = 'KAN'
 
 /**
  * Gizlilik/KVKK sayfasında gösterilen başvuru adresi.

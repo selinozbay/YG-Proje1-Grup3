@@ -1,6 +1,7 @@
 import { computed, ref, watchEffect } from 'vue'
 import { defineStore } from 'pinia'
 import { STORAGE_KEYS } from '@/config'
+import { useMediaQuery } from '@/composables/useMediaQuery'
 import type { ThemePreference } from '@/types/user'
 
 /**
@@ -11,9 +12,7 @@ import type { ThemePreference } from '@/types/user'
 export const usePreferencesStore = defineStore('preferences', () => {
   const theme = ref<ThemePreference>(readTheme())
 
-  const media = window.matchMedia('(prefers-color-scheme: dark)')
-  const systemPrefersDark = ref(media.matches)
-  media.addEventListener('change', (event) => (systemPrefersDark.value = event.matches))
+  const systemPrefersDark = useMediaQuery('(prefers-color-scheme: dark)')
 
   const isDark = computed(
     () => theme.value === 'dark' || (theme.value === 'system' && systemPrefersDark.value),
