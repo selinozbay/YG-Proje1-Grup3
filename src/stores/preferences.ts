@@ -6,6 +6,7 @@ import type { ThemePreference } from '@/types/user'
 /**
  * Kullanıcı tercihleri (şimdilik tema). Giriş yapmadan da çalışsın diye
  * Firestore'a değil, localStorage'a kaydedilir.
+ * Varsayılan tema aydınlıktır; 'system' seçilirse işletim sisteminin teması izlenir.
  */
 export const usePreferencesStore = defineStore('preferences', () => {
   const theme = ref<ThemePreference>(readTheme())
@@ -38,7 +39,7 @@ function readTheme(): ThemePreference {
     const saved = localStorage.getItem(STORAGE_KEYS.theme)
     if (saved === 'light' || saved === 'dark' || saved === 'system') return saved
   } catch {
-    // Depolama kapalıysa sistem teması kullanılır.
+    // Depolama kapalıysa varsayılan tema kullanılır.
   }
-  return 'system'
+  return 'light'
 }

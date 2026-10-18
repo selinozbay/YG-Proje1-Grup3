@@ -11,12 +11,13 @@
     <title>Ders Panosu</title>
     <script>
       // Tema, sayfa çizilmeden önce uygulanır; böylece karanlık modda beyaz ekran yanıp sönmez.
+      // Kayıtlı tercih yoksa aydınlık tema açılır. Kurallar stores/preferences.ts ile aynı olmalı.
       // Anahtar adı src/config.ts içindeki STORAGE_KEYS.theme ile aynı olmalı.
       ;(function () {
         try {
           var theme = localStorage.getItem('ders-panosu:theme')
           var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-          var dark = theme === 'dark' || ((!theme || theme === 'system') && prefersDark)
+          var dark = theme === 'dark' || (theme === 'system' && prefersDark)
           document.documentElement.classList.toggle('dark', dark)
         } catch (e) {}
       })()
