@@ -423,8 +423,14 @@ görev, dal, commit ve PR aynı yerde durur, GitHub'a ayrıca bir araç bağlama
   PR'lar aynı sayacı paylaştığı için numaralar arada atlayabilir.
 - Panoya doğrudan eklenen **taslak** (draft) kartların numarası yoktur. İşe başlamadan önce kartın
   menüsünden **Convert to issue** ile issue'ya çevirin.
+- **Öncelik:** her kartın **Öncelik** alanı vardır: En yüksek, Yüksek, Orta, Düşük.
+- **Alt görevler:** büyük işler (ör. bir sayfanın tamamı) ana issue olarak açılır; parçaları issue
+  sayfasındaki **Create sub-issue** ile alt görev olarak eklenir. Ana issue'da kaç alt görevin
+  bittiği görünür.
 - **Etiketler (Labels):** yeni özellik için `enhancement`, hata için `bug`, doküman için
   `documentation`.
+- Eski Jira görevleri (`KAN-…`) GitHub'a aktarıldı. Her issue'nun altında Jira anahtarı ve görevi
+  açan kişi yazar.
 
 ### Görev akışı
 
