@@ -44,3 +44,9 @@ __screenshots__/
 
 # Firebase CLI önbelleği (yayınlama sırasında oluşur)
 .firebase/
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/

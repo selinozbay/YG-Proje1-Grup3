@@ -185,6 +185,10 @@ Hazır bir test hesabı yoktur.
 | `npm run dev:demo`   | Firebase değerleri olsa bile uygulamayı demo modunda başlatır                      |
 | `npm run build`      | Tip kontrolü yapar ve yayına hazır dosyaları `dist/` klasörüne üretir              |
 | `npm run preview`    | `dist/` klasöründeki derlenmiş uygulamayı yerelde açar                             |
+| `npm test`           | Vitest ile birim ve bileşen testlerini çalıştırır                                  |
+| `npm run test:unit`  | Vitest'i izleme (watch) modunda başlatır                                           |
+| `npm run test:e2e`   | Playwright ile uçtan uca (E2E) tarayıcı testlerini koşturur                        |
+| `npm run test:rules` | Firestore güvenlik kurallarını (rules) test eder                                   |
 | `npm run lint`       | Oxlint ve ESLint ile kodu denetler, düzeltebildiklerini düzeltir                   |
 | `npm run type-check` | Yalnızca TypeScript tip kontrolü yapar                                             |
 | `npm run format`     | `src/` klasöründeki kodu Prettier ile biçimlendirir                                |
