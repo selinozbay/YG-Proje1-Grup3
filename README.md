@@ -127,8 +127,8 @@ Tüm ekip üyeleri aynı zamanda geliştiricidir.
   [nodejs.org](https://nodejs.org/) adresinden indirebilirsiniz.
 - **npm** (Node.js ile birlikte gelir)
 - **Git**
-- Yalnızca yayınlamak ve kural testleri için: **Firebase CLI** (`npm install -g firebase-tools`)
-- Yalnızca kural testleri için: **Java 21 veya üstü** (Firestore emülatörü Java ile çalışır)
+- Yalnızca yayınlamak ve Firebase testleri için: **Firebase CLI** (`npm install -g firebase-tools`)
+- Yalnızca Firebase testleri için: **Java 21 veya üstü** (Firebase emülatörleri Java ile çalışır)
 
 ### Adımlar
 
@@ -187,20 +187,20 @@ Hazır bir test hesabı yoktur.
 
 ## Komutlar
 
-| Komut                | Ne yapar                                                                                |
-| -------------------- | --------------------------------------------------------------------------------------- |
-| `npm run dev`        | Geliştirme sunucusunu başlatır (http://localhost:5173). Kaydedince sayfa yenilenir      |
-| `npm run dev:demo`   | Firebase değerleri olsa bile uygulamayı demo modunda başlatır                           |
-| `npm run build`      | Tip kontrolü yapar ve yayına hazır dosyaları `dist/` klasörüne üretir                   |
-| `npm run preview`    | `dist/` klasöründeki derlenmiş uygulamayı yerelde açar                                  |
-| `npm test`           | Vitest ile birim ve bileşen testlerini çalıştırır                                       |
-| `npm run test:unit`  | Vitest'i izleme (watch) modunda başlatır                                                |
-| `npm run test:e2e`   | Playwright ile uçtan uca (E2E) tarayıcı testlerini koşturur                             |
-| `npm run test:rules` | Firestore güvenlik kurallarını test eder; emülatörle çalıştırılır ([Testler](#testler)) |
-| `npm run lint`       | Oxlint ve ESLint ile kodu denetler, düzeltebildiklerini düzeltir                        |
-| `npm run type-check` | Yalnızca TypeScript tip kontrolü yapar                                                  |
-| `npm run format`     | `src/` klasöründeki kodu Prettier ile biçimlendirir                                     |
-| `npm run deploy`     | Derler ve Firebase'e yayınlar (Hosting + Firestore kuralları)                           |
+| Komut                   | Ne yapar                                                                                    |
+| ----------------------- | ------------------------------------------------------------------------------------------- |
+| `npm run dev`           | Geliştirme sunucusunu başlatır (http://localhost:5173). Kaydedince sayfa yenilenir          |
+| `npm run dev:demo`      | Firebase değerleri olsa bile uygulamayı demo modunda başlatır                               |
+| `npm run build`         | Tip kontrolü yapar ve yayına hazır dosyaları `dist/` klasörüne üretir                       |
+| `npm run preview`       | `dist/` klasöründeki derlenmiş uygulamayı yerelde açar                                      |
+| `npm test`              | Vitest ile birim ve bileşen testlerini çalıştırır                                           |
+| `npm run test:unit`     | Vitest'i izleme (watch) modunda başlatır                                                    |
+| `npm run test:e2e`      | Playwright ile uçtan uca (E2E) tarayıcı testlerini koşturur                                 |
+| `npm run test:firebase` | Firebase emülatörlerini açıp kural, giriş ve veri testlerini koşturur ([Testler](#testler)) |
+| `npm run lint`          | Oxlint ve ESLint ile kodu denetler, düzeltebildiklerini düzeltir                            |
+| `npm run type-check`    | Yalnızca TypeScript tip kontrolü yapar                                                      |
+| `npm run format`        | `src/` klasöründeki kodu Prettier ile biçimlendirir                                         |
+| `npm run deploy`        | Derler ve Firebase'e yayınlar (Hosting + Firestore kuralları)                               |
 
 Commit atmadan önce `npm run lint`, `npm run type-check` ve `npm test` komutlarının hatasız
 bittiğinden emin olun.
@@ -208,24 +208,32 @@ bittiğinden emin olun.
 ### Testler
 
 - **Birim ve bileşen testleri** (`src/**/__tests__/`): ders kataloğu ve ilerleme store'larının
-  hesapları, `AppIcon` bileşeni. Çalıştırma: `npm test`. Testler her zaman demo modunda çalışır;
-  `.env.local` dolu olsa bile gerçek Firebase'e bağlanmaz.
-- **Uçtan uca (E2E) testler** (`e2e/`): giriş yapmayanın giriş sayfasına yönlenmesi, demo modunda
-  giriş ve menüden sayfa geçişleri. Playwright uygulamayı `npm run dev:demo` ile kendisi açar.
+  hesapları, kayıt başarısız olunca durumun geri alınması, bir görevin durumu değişince farklı
+  sayfaların birlikte güncellenmesi, `AppIcon` bileşeni. Çalıştırma: `npm test`. Testler her zaman
+  demo modunda çalışır; `.env.local` dolu olsa bile gerçek Firebase'e bağlanmaz.
+- **Uçtan uca (E2E) testler** (`e2e/`): kayıt (KVKK onayı zorunlu), giriş, hatalı şifre uyarısı,
+  şifremi unuttum, çıkış, giriş yapmayanın giriş sayfasına yönlenmesi ve girişten sonra istediği
+  sayfaya dönmesi, menüden sayfa geçişleri. Playwright uygulamayı `npm run dev:demo` ile kendisi
+  açar.
   - İlk seferde tarayıcıyı kurun: `npx playwright install chromium`
   - Çalıştırmadan önce açık bir `npm run dev` varsa kapatın. Kapatmazsanız Playwright onu
     kullanır ve Firebase modunda açık olduğu için demo girişi yapan testler başarısız olur.
   - Çalıştırma: `npm run test:e2e`
-- **Firestore kural testleri** (`test/`): giriş yapmayanın hiçbir belgeye, giriş yapanın yalnızca
-  kendi belgesine erişebildiğini kontrol eder. Testler gerçek veritabanına değil, bilgisayarda
-  açılan Firestore emülatörüne bağlanır (Java 21+ ve Firebase CLI gerekir):
-
-  ```bash
-  firebase emulators:exec --only firestore "npm run test:rules"
-  ```
+- **Firebase testleri** (`test/`): gerçek Firebase yolunu, canlı projeye dokunmadan bilgisayarda
+  açılan Auth ve Firestore emülatörlerine karşı dener (Java 21+ ve Firebase CLI gerekir).
+  - Güvenlik kuralları: giriş yapmayan hiçbir belgeye, giriş yapan yalnızca kendi belgesine
+    erişebilir.
+  - Giriş ve kayıt: kayıt, aynı e-postayla ikinci kayıt, kısa şifre, doğru ve yanlış şifreyle giriş,
+    oturum değişikliği; hata mesajlarının Türkçe olması.
+  - Şifremi unuttum: sıfırlama e-postasının gönderilmesi, kayıtlı olmayan e-postada hesabın
+    varlığının belli edilmemesi.
+  - Görev durumları: kaydedilmesi, başka kullanıcının verisinin okunamaması, hesap silinince
+    verinin ve hesabın silinmesi (KVKK).
+  - Çalıştırma: `npm run test:firebase` (emülatörleri açar, testleri koşar, kapatır)
 
 **Otomatik kontrol (CI):** `main`'e her push'ta ve `main`'e açılan her PR'da GitHub Actions dört
-kontrol çalıştırır: lint + tip kontrolü + derleme, birim testleri, E2E testleri ve kural testleri.
+kontrol çalıştırır: lint + tip kontrolü + derleme, birim testleri, E2E testleri ve Firebase
+testleri.
 Sonuç PR sayfasında ve repodaki **Actions** sekmesinde görünür. Kontrollerden biri kırmızıysa PR
 birleştirilmeden önce düzeltilir.
 
@@ -291,6 +299,7 @@ Birim testleri, test ettikleri dosyanın yanındaki `__tests__/` klasöründe du
 | `tsconfig.json`, `tsconfig.app.json`, `tsconfig.node.json`, `tsconfig.vitest.json` | TypeScript ayarları (uygulama kodu, ayar dosyaları ve testler için ayrı ayrı)                                     |
 | `vitest.config.ts`                                                                 | Birim testi ayarları: tarayıcı benzeri ortam (jsdom), testlerde her zaman demo modu                               |
 | `vitest.rules.config.ts`                                                           | Firestore kural testlerinin ayrı ayarı (Node ortamı)                                                              |
+| `vitest.emulator.config.ts`                                                        | Firebase giriş ve veri testlerinin ayarı: uygulamayı canlı proje yerine emülatörlere bağlar                       |
 | `playwright.config.ts`                                                             | E2E test ayarları: Chromium, uygulamayı demo modunda kendisi başlatır                                             |
 | `env.d.ts`                                                                         | `.env` değişkenlerinin TypeScript tipleri                                                                         |
 | `eslint.config.ts`, `.oxlintrc.json`                                               | Kod denetim kuralları                                                                                             |
@@ -589,6 +598,9 @@ feat: görevlere durum filtresi ekle (#12)
 - Son gün toplu commit yerine düzenli ve küçük commitler atılır.
 - Commit öncesi `npm run lint`, `npm run type-check` ve `npm test` hatasız olmalı; PR'daki GitHub
   Actions kontrolleri yeşil olmalı.
+- **Test edilmeyen iş bitmiş sayılmaz.** Bir issue, davranışını kapsayan test (birim, E2E ya da
+  Firebase testi) eklenmeden ve CI yeşil olmadan kapatılmaz. "Kodda zaten var" denen işler de önce
+  test edilir. Kart **Yapıldı**'ya geçmeden önce **Test** sütunundan geçer.
 - Kod içindeki adlar (değişken, fonksiyon, bileşen) İngilizce; ekranda görünen metinler Türkçedir.
 
 ## Gizlilik ve KVKK

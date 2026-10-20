@@ -11,6 +11,7 @@ Closes #
 
 ## Kontrol listesi
 
+- [ ] Değişikliği kapsayan test eklendi ya da güncellendi
 - [ ] `npm run lint`, `npm run type-check` ve `npm test` hatasız
 - [ ] GitHub Actions kontrolleri yeşil
 - [ ] Mobil görünüm kontrol edildi
