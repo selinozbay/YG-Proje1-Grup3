@@ -16,7 +16,7 @@
     "format": "prettier --write --experimental-cli src/",
     "test": "vitest run",
     "test:unit": "vitest",
-    "test:rules": "vitest run test/firestore.rules.spec.ts",
+    "test:rules": "vitest run --config vitest.rules.config.ts",
     "test:e2e": "playwright test",
     "deploy": "npm run build && firebase deploy"
   },
