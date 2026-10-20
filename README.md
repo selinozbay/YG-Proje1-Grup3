@@ -54,12 +54,12 @@ responsive tasarım ve kullanıcı deneyimidir.
 
 Tüm ekip üyeleri aynı zamanda geliştiricidir.
 
-| Üye            | Rol                                 |
-| -------------- | ----------------------------------- |
-| Selin Özbay    | Lider + Geliştirici                 |
+| Üye          | Rol                                 |
+| ------------ | ----------------------------------- |
+| Selin Özbay  | Lider + Geliştirici                 |
 | Cihan Bayram | Analist + Geliştirici               |
-| Tahir Taş      | Test / Kalite + Geliştirici         |
-| Ali Tekçe      | Dokümantasyon / Sunum + Geliştirici |
+| Tahir Taş    | Test / Kalite + Geliştirici         |
+| Ali Tekçe    | Dokümantasyon / Sunum + Geliştirici |
 
 ## Özellikler
 
@@ -97,20 +97,25 @@ Tüm ekip üyeleri aynı zamanda geliştiricidir.
 
 ## Kullanılan teknolojiler
 
-| Teknoloji                                                        | Sürüm | Projede ne için kullanılıyor                                        |
-| ---------------------------------------------------------------- | ----- | ------------------------------------------------------------------- |
-| [Vue](https://vuejs.org/)                                        | 3.5   | Arayüzü bileşenlere bölerek oluşturmak (HTML + CSS + TypeScript)    |
-| [TypeScript](https://www.typescriptlang.org/)                    | 6.0   | JavaScript'e tip denetimi eklemek; hataları çalıştırmadan yakalamak |
-| [Vite](https://vite.dev/)                                        | 8.3   | Geliştirme sunucusu ve yayın için derleme                           |
-| [Vue Router](https://router.vuejs.org/)                          | 5.4   | Sayfalar arası geçiş, giriş yapılmadan sayfaların açılmasını önleme |
-| [Pinia](https://pinia.vuejs.org/)                                | 4.1   | Sayfaların ortak kullandığı veri: oturum, ilerleme, tema            |
-| [Tailwind CSS](https://tailwindcss.com/)                         | 4.3   | Stil, responsive tasarım ve karanlık tema                           |
-| [Firebase Authentication](https://firebase.google.com/docs/auth) | 13.0  | E-posta ve şifreyle kayıt, giriş, şifre sıfırlama                   |
-| [Cloud Firestore](https://firebase.google.com/docs/firestore)    | 13.0  | Kullanıcının görev durumlarını saklamak                             |
-| [Firebase Hosting](https://firebase.google.com/docs/hosting)     | —     | Uygulamayı internette yayınlamak                                    |
-| ESLint, Oxlint, Prettier                                         | —     | Kod hatalarını yakalamak ve herkesin aynı biçimde kod yazması       |
-| GitHub Projects                                                  | —     | Görev takibi ve iş bölümü (issue'lar ve pano)                       |
-| Git ve GitHub                                                    | —     | Sürüm kontrolü ve bireysel katkının kaydı                           |
+| Teknoloji                                                            | Sürüm | Projede ne için kullanılıyor                                          |
+| -------------------------------------------------------------------- | ----- | --------------------------------------------------------------------- |
+| [Vue](https://vuejs.org/)                                            | 3.5   | Arayüzü bileşenlere bölerek oluşturmak (HTML + CSS + TypeScript)      |
+| [TypeScript](https://www.typescriptlang.org/)                        | 6.0   | JavaScript'e tip denetimi eklemek; hataları çalıştırmadan yakalamak   |
+| [Vite](https://vite.dev/)                                            | 8.3   | Geliştirme sunucusu ve yayın için derleme                             |
+| [Vue Router](https://router.vuejs.org/)                              | 5.4   | Sayfalar arası geçiş, giriş yapılmadan sayfaların açılmasını önleme   |
+| [Pinia](https://pinia.vuejs.org/)                                    | 4.1   | Sayfaların ortak kullandığı veri: oturum, ilerleme, tema              |
+| [Tailwind CSS](https://tailwindcss.com/)                             | 4.3   | Stil, responsive tasarım ve karanlık tema                             |
+| [Firebase Authentication](https://firebase.google.com/docs/auth)     | 13.0  | E-posta ve şifreyle kayıt, giriş, şifre sıfırlama                     |
+| [Cloud Firestore](https://firebase.google.com/docs/firestore)        | 13.0  | Kullanıcının görev durumlarını saklamak                               |
+| [Firebase Hosting](https://firebase.google.com/docs/hosting)         | —     | Uygulamayı internette yayınlamak                                      |
+| ESLint, Oxlint, Prettier                                             | —     | Kod hatalarını yakalamak ve herkesin aynı biçimde kod yazması         |
+| [Vitest](https://vitest.dev/)                                        | 5.0   | Birim ve bileşen testleri                                             |
+| [Vue Test Utils](https://test-utils.vuejs.org/)                      | 2.5   | Bileşenleri testte çalıştırıp çıktısını kontrol etmek                 |
+| [Playwright](https://playwright.dev/)                                | 1.64  | Gerçek tarayıcıda uçtan uca (E2E) testler                             |
+| [Firebase Emulator](https://firebase.google.com/docs/emulator-suite) | —     | Firestore kurallarını gerçek veritabanına dokunmadan test etmek       |
+| [GitHub Actions](https://docs.github.com/actions)                    | —     | Her push ve PR'da lint, tip kontrolü, derleme ve testleri çalıştırmak |
+| GitHub Projects                                                      | —     | Görev takibi ve iş bölümü (issue'lar ve pano)                         |
+| Git ve GitHub                                                        | —     | Sürüm kontrolü ve bireysel katkının kaydı                             |
 
 ## Kurulum ve çalıştırma
 
@@ -120,7 +125,8 @@ Tüm ekip üyeleri aynı zamanda geliştiricidir.
   [nodejs.org](https://nodejs.org/) adresinden indirebilirsiniz.
 - **npm** (Node.js ile birlikte gelir)
 - **Git**
-- Yalnızca yayınlamak için: **Firebase CLI** (`npm install -g firebase-tools`)
+- Yalnızca yayınlamak ve kural testleri için: **Firebase CLI** (`npm install -g firebase-tools`)
+- Yalnızca kural testleri için: **Java 21 veya üstü** (Firestore emülatörü Java ile çalışır)
 
 ### Adımlar
 
@@ -179,23 +185,47 @@ Hazır bir test hesabı yoktur.
 
 ## Komutlar
 
-| Komut                | Ne yapar                                                                           |
-| -------------------- | ---------------------------------------------------------------------------------- |
-| `npm run dev`        | Geliştirme sunucusunu başlatır (http://localhost:5173). Kaydedince sayfa yenilenir |
-| `npm run dev:demo`   | Firebase değerleri olsa bile uygulamayı demo modunda başlatır                      |
-| `npm run build`      | Tip kontrolü yapar ve yayına hazır dosyaları `dist/` klasörüne üretir              |
-| `npm run preview`    | `dist/` klasöründeki derlenmiş uygulamayı yerelde açar                             |
-| `npm test`           | Vitest ile birim ve bileşen testlerini çalıştırır                                  |
-| `npm run test:unit`  | Vitest'i izleme (watch) modunda başlatır                                           |
-| `npm run test:e2e`   | Playwright ile uçtan uca (E2E) tarayıcı testlerini koşturur                        |
-| `npm run test:rules` | Firestore güvenlik kurallarını (rules) test eder                                   |
-| `npm run lint`       | Oxlint ve ESLint ile kodu denetler, düzeltebildiklerini düzeltir                   |
-| `npm run type-check` | Yalnızca TypeScript tip kontrolü yapar                                             |
-| `npm run format`     | `src/` klasöründeki kodu Prettier ile biçimlendirir                                |
-| `npm run deploy`     | Derler ve Firebase'e yayınlar (Hosting + Firestore kuralları)                      |
+| Komut                | Ne yapar                                                                                |
+| -------------------- | --------------------------------------------------------------------------------------- |
+| `npm run dev`        | Geliştirme sunucusunu başlatır (http://localhost:5173). Kaydedince sayfa yenilenir      |
+| `npm run dev:demo`   | Firebase değerleri olsa bile uygulamayı demo modunda başlatır                           |
+| `npm run build`      | Tip kontrolü yapar ve yayına hazır dosyaları `dist/` klasörüne üretir                   |
+| `npm run preview`    | `dist/` klasöründeki derlenmiş uygulamayı yerelde açar                                  |
+| `npm test`           | Vitest ile birim ve bileşen testlerini çalıştırır                                       |
+| `npm run test:unit`  | Vitest'i izleme (watch) modunda başlatır                                                |
+| `npm run test:e2e`   | Playwright ile uçtan uca (E2E) tarayıcı testlerini koşturur                             |
+| `npm run test:rules` | Firestore güvenlik kurallarını test eder; emülatörle çalıştırılır ([Testler](#testler)) |
+| `npm run lint`       | Oxlint ve ESLint ile kodu denetler, düzeltebildiklerini düzeltir                        |
+| `npm run type-check` | Yalnızca TypeScript tip kontrolü yapar                                                  |
+| `npm run format`     | `src/` klasöründeki kodu Prettier ile biçimlendirir                                     |
+| `npm run deploy`     | Derler ve Firebase'e yayınlar (Hosting + Firestore kuralları)                           |
 
-Commit atmadan önce `npm run lint` ve `npm run type-check` komutlarının hatasız bittiğinden emin
-olun.
+Commit atmadan önce `npm run lint`, `npm run type-check` ve `npm test` komutlarının hatasız
+bittiğinden emin olun.
+
+### Testler
+
+- **Birim ve bileşen testleri** (`src/**/__tests__/`): ders kataloğu ve ilerleme store'larının
+  hesapları, `AppIcon` bileşeni. Çalıştırma: `npm test`. Testler her zaman demo modunda çalışır;
+  `.env.local` dolu olsa bile gerçek Firebase'e bağlanmaz.
+- **Uçtan uca (E2E) testler** (`e2e/`): giriş yapmayanın giriş sayfasına yönlenmesi, demo modunda
+  giriş ve menüden sayfa geçişleri. Playwright uygulamayı `npm run dev:demo` ile kendisi açar.
+  - İlk seferde tarayıcıyı kurun: `npx playwright install chromium`
+  - Çalıştırmadan önce açık bir `npm run dev` varsa kapatın. Kapatmazsanız Playwright onu
+    kullanır ve Firebase modunda açık olduğu için demo girişi yapan testler başarısız olur.
+  - Çalıştırma: `npm run test:e2e`
+- **Firestore kural testleri** (`test/`): giriş yapmayanın hiçbir belgeye, giriş yapanın yalnızca
+  kendi belgesine erişebildiğini kontrol eder. Testler gerçek veritabanına değil, bilgisayarda
+  açılan Firestore emülatörüne bağlanır (Java 21+ ve Firebase CLI gerekir):
+
+  ```bash
+  firebase emulators:exec --only firestore "npm run test:rules"
+  ```
+
+**Otomatik kontrol (CI):** `main`'e her push'ta ve `main`'e açılan her PR'da GitHub Actions dört
+kontrol çalıştırır: lint + tip kontrolü + derleme, birim testleri, E2E testleri ve kural testleri.
+Sonuç PR sayfasında ve repodaki **Actions** sekmesinde görünür. Kontrollerden biri kırmızıysa PR
+birleştirilmeden önce düzeltilir.
 
 ## Yayınlama (Firebase Hosting)
 
@@ -215,9 +245,10 @@ Site https://ders-ogrenci-bilgi-ekip.web.app adresinde yayınlanır.
 
 ```text
 YG-Proje1-Grup3/
-├── .github/            PR şablonu
+├── .github/            PR şablonu ve CI ayarı (workflows/test.yml)
 ├── .vscode/            Ortak VS Code ayarları
 ├── docs/               Proje raporu, kullanıcı dokümanı, ekran görüntüleri
+├── e2e/                Uçtan uca (Playwright) testler
 ├── presentation/       Sunum dosyası
 ├── public/             Olduğu gibi yayınlanan dosyalar (favicon)
 ├── src/                Uygulamanın kaynak kodu
@@ -240,30 +271,38 @@ YG-Proje1-Grup3/
 │   ├── App.vue         Kök bileşen
 │   ├── config.ts       Ortak sabitler
 │   └── main.ts         Uygulamanın başladığı yer
+├── test/               Firestore güvenlik kuralı testleri
 └── (kök dizindeki ayar dosyaları — aşağıda)
 ```
 
+Birim testleri, test ettikleri dosyanın yanındaki `__tests__/` klasöründe durur (ör.
+`src/stores/__tests__/progress.spec.ts`).
+
 ### Kök dizindeki dosyalar
 
-| Dosya                                                      | Ne işe yarar                                                                                        |
-| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `index.html`                                               | Uygulamanın tek HTML sayfası. Dili Türkçe ayarlar, tema yanıp sönmesin diye temayı en başta uygular |
-| `package.json`                                             | Kullanılan paketler ve `npm run ...` komutları                                                      |
-| `package-lock.json`                                        | Paketlerin tam sürümleri; herkes aynı sürümü kurar. Elle düzenlenmez                                |
-| `vite.config.ts`                                           | Vite ayarları: Vue ve Tailwind eklentileri, `@/` kısayolunun `src/` klasörünü göstermesi            |
-| `tsconfig.json`, `tsconfig.app.json`, `tsconfig.node.json` | TypeScript ayarları (uygulama kodu ve ayar dosyaları için ayrı ayrı)                                |
-| `env.d.ts`                                                 | `.env` değişkenlerinin TypeScript tipleri                                                           |
-| `eslint.config.ts`, `.oxlintrc.json`                       | Kod denetim kuralları                                                                               |
-| `.prettierrc.json`, `.editorconfig`                        | Ortak kod biçimi: 2 boşluk girinti, tek tırnak, noktalı virgül yok, en fazla 100 karakter satır     |
-| `.env.example`                                             | Firebase değişkenlerinin boş şablonu (GitHub'da)                                                    |
-| `.env.local`                                               | Gerçek Firebase değerleri. **GitHub'a gönderilmez**, herkes kendi bilgisayarında oluşturur          |
-| `firebase.json`                                            | Firebase ayarları: `dist/` klasörü yayınlanır, tüm adresler `index.html`'e yönlenir, kural dosyası  |
-| `.firebaserc`                                              | Varsayılan Firebase projesi (`ders-ogrenci-bilgi-ekip`)                                             |
-| `firestore.rules`                                          | Firestore güvenlik kuralları: herkes yalnızca kendi verisini okuyup yazabilir                       |
-| `.gitignore`                                               | Git'e gönderilmeyecek dosyalar (`node_modules`, `dist`, `.env.local` …)                             |
-| `.gitattributes`                                           | Windows ve macOS'ta satır sonlarının aynı kalması                                                   |
-| `.vscode/`                                                 | Önerilen VS Code eklentileri ve kaydederken otomatik biçimlendirme                                  |
-| `.github/pull_request_template.md`                         | GitHub'da PR açarken otomatik gelen şablon                                                          |
+| Dosya                                                                              | Ne işe yarar                                                                                                      |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `index.html`                                                                       | Uygulamanın tek HTML sayfası. Dili Türkçe ayarlar, tema yanıp sönmesin diye temayı en başta uygular               |
+| `package.json`                                                                     | Kullanılan paketler ve `npm run ...` komutları                                                                    |
+| `package-lock.json`                                                                | Paketlerin tam sürümleri; herkes aynı sürümü kurar. Elle düzenlenmez                                              |
+| `vite.config.ts`                                                                   | Vite ayarları: Vue ve Tailwind eklentileri, `@/` kısayolunun `src/` klasörünü göstermesi                          |
+| `tsconfig.json`, `tsconfig.app.json`, `tsconfig.node.json`, `tsconfig.vitest.json` | TypeScript ayarları (uygulama kodu, ayar dosyaları ve testler için ayrı ayrı)                                     |
+| `vitest.config.ts`                                                                 | Birim testi ayarları: tarayıcı benzeri ortam (jsdom), testlerde her zaman demo modu                               |
+| `vitest.rules.config.ts`                                                           | Firestore kural testlerinin ayrı ayarı (Node ortamı)                                                              |
+| `playwright.config.ts`                                                             | E2E test ayarları: Chromium, uygulamayı demo modunda kendisi başlatır                                             |
+| `env.d.ts`                                                                         | `.env` değişkenlerinin TypeScript tipleri                                                                         |
+| `eslint.config.ts`, `.oxlintrc.json`                                               | Kod denetim kuralları                                                                                             |
+| `.prettierrc.json`, `.editorconfig`                                                | Ortak kod biçimi: 2 boşluk girinti, tek tırnak, noktalı virgül yok, en fazla 100 karakter satır                   |
+| `.env.example`                                                                     | Firebase değişkenlerinin boş şablonu (GitHub'da)                                                                  |
+| `.env.local`                                                                       | Gerçek Firebase değerleri. **GitHub'a gönderilmez**, herkes kendi bilgisayarında oluşturur                        |
+| `firebase.json`                                                                    | Firebase ayarları: `dist/` yayınlanır, tüm adresler `index.html`'e yönlenir, kural dosyası, emülatör portu (8080) |
+| `.firebaserc`                                                                      | Varsayılan Firebase projesi (`ders-ogrenci-bilgi-ekip`)                                                           |
+| `firestore.rules`                                                                  | Firestore güvenlik kuralları: herkes yalnızca kendi verisini okuyup yazabilir                                     |
+| `.gitignore`                                                                       | Git'e gönderilmeyecek dosyalar (`node_modules`, `dist`, `.env.local` …)                                           |
+| `.gitattributes`                                                                   | Windows ve macOS'ta satır sonlarının aynı kalması                                                                 |
+| `.vscode/`                                                                         | Önerilen VS Code eklentileri ve kaydederken otomatik biçimlendirme                                                |
+| `.github/pull_request_template.md`                                                 | GitHub'da PR açarken otomatik gelen şablon                                                                        |
+| `.github/workflows/test.yml`                                                       | GitHub Actions: her push ve PR'da lint, tip kontrolü, derleme ve testler                                          |
 
 ### `src/` — giriş noktası ve ortak dosyalar
 
@@ -536,7 +575,8 @@ feat: görevlere durum filtresi ekle (#12)
   adresle aynı olmalı: `git config --global user.email "github-adresiniz"`
 - `.env.local` dosyası ve şifreler asla commit edilmez.
 - Son gün toplu commit yerine düzenli ve küçük commitler atılır.
-- Commit öncesi `npm run lint` ve `npm run type-check` hatasız olmalı.
+- Commit öncesi `npm run lint`, `npm run type-check` ve `npm test` hatasız olmalı; PR'daki GitHub
+  Actions kontrolleri yeşil olmalı.
 - Kod içindeki adlar (değişken, fonksiyon, bileşen) İngilizce; ekranda görünen metinler Türkçedir.
 
 ## Gizlilik ve KVKK
