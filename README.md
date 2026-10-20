@@ -6,7 +6,7 @@
 kendi ilerlemelerini tek bir yerden, etkileşimli bir web arayüzüyle takip edebildiği uygulama.
 
 - **Canlı demo:** https://ders-ogrenci-bilgi-ekip.web.app
-- **Görev panosu (Jira):** https://ders-ogrenci-bilgi-ekip.atlassian.net — proje anahtarı `KAN`
+- **Görev panosu (GitHub Projects):** https://github.com/selinozbay/YG-Proje1-Grup3/projects
 
 ## İçindekiler
 
@@ -20,7 +20,7 @@ kendi ilerlemelerini tek bir yerden, etkileşimli bir web arayüzüyle takip ede
 8. [Yayınlama (Firebase Hosting)](#yayınlama-firebase-hosting)
 9. [Proje yapısı: hangi dosya ne işe yarar?](#proje-yapısı-hangi-dosya-ne-işe-yarar)
 10. [Veri modeli ve veri akışı](#veri-modeli-ve-veri-akışı)
-11. [Çalışma düzeni: Jira ve GitHub](#çalışma-düzeni-jira-ve-github)
+11. [Çalışma düzeni: GitHub Projects](#çalışma-düzeni-github-projects)
 12. [Gizlilik ve KVKK](#gizlilik-ve-kvkk)
 13. [Ekran görüntüleri](#ekran-görüntüleri)
 14. [Bilinen eksikler](#bilinen-eksikler)
@@ -109,7 +109,7 @@ Tüm ekip üyeleri aynı zamanda geliştiricidir.
 | [Cloud Firestore](https://firebase.google.com/docs/firestore)    | 13.0  | Kullanıcının görev durumlarını saklamak                             |
 | [Firebase Hosting](https://firebase.google.com/docs/hosting)     | —     | Uygulamayı internette yayınlamak                                    |
 | ESLint, Oxlint, Prettier                                         | —     | Kod hatalarını yakalamak ve herkesin aynı biçimde kod yazması       |
-| Jira                                                             | —     | Görev takibi ve iş bölümü                                           |
+| GitHub Projects                                                  | —     | Görev takibi ve iş bölümü (issue'lar ve pano)                       |
 | Git ve GitHub                                                    | —     | Sürüm kontrolü ve bireysel katkının kaydı                           |
 
 ## Kurulum ve çalıştırma
@@ -399,39 +399,51 @@ Firestore (veya localStorage) ◄─► services/userData ◄──────�
 benzersiz olmalı; haftanın ve görevin `courseId` alanı dersin `id`'siyle, görevin `weekNo` alanı
 haftanın numarasıyla aynı olmalı.
 
-## Çalışma düzeni: Jira ve GitHub
+## Çalışma düzeni: GitHub Projects
 
-### Jira anahtarları
+Görevler GitHub Projects panosunda takip edilir. Panodaki her kart bir **GitHub issue**'sudur;
+görev, dal, commit ve PR aynı yerde durur, GitHub'a ayrıca bir araç bağlamak gerekmez.
 
-- **Proje anahtarı `KAN`'dır.** Jira panosunun adresinde görünür
-  (`.../jira/software/projects/KAN/boards/...`). Jira'da Proje ayarları → Ayrıntılar bölümünde de
-  yazar.
-- **Her görevin kendi anahtarı vardır:** `KAN-1`, `KAN-2` … Panodaki her kartın altında yazar;
-  karta tıklayınca açılan pencerenin üstünde de görünür. Yeni görev oluşturulunca Jira numarayı
-  kendisi verir.
+### Pano ve issue numaraları
+
+- **Pano:** Repo sayfasındaki **Projects** sekmesinden açılır
+  (https://github.com/selinozbay/YG-Proje1-Grup3/projects). Varsayılan sütunlar **Todo**
+  (Yapılacak), **In Progress** (Devam ediyor) ve **Done** (Tamamlandı)'dur.
+- **Her issue'nun kendi numarası vardır:** `#1`, `#2` … Numara, issue başlığının yanında ve
+  panodaki kartın altında yazar. Yeni issue açılınca GitHub numarayı kendisi verir. Issue'lar ve
+  PR'lar aynı sayacı paylaştığı için numaralar arada atlayabilir.
+- Panoya doğrudan eklenen **taslak** (draft) kartların numarası yoktur. İşe başlamadan önce kartın
+  menüsünden **Convert to issue** ile issue'ya çevirin.
+- **Etiketler (Labels):** yeni özellik için `enhancement`, hata için `bug`, doküman için
+  `documentation`.
 
 ### Görev akışı
 
-1. İşi Jira'da görev olarak açın ve kendinize atayın (ör. `KAN-12`).
-2. `main` dalından, görev numarasıyla bir dal açın:
+1. İşi issue olarak açın: repoda **Issues → New issue**, sağdaki **Projects** kutusundan panoyu
+   seçin. **Assignees** kısmından kendinize atayın ve kartı **In Progress** sütununa taşıyın
+   (ör. `#12`).
+2. `main` dalından, issue numarasıyla bir dal açın:
 
    ```bash
    git switch main
    git pull
-   git switch -c feature/KAN-12-gorev-filtreleme
+   git switch -c feature/12-gorev-filtreleme
    ```
 
 3. Küçük ve anlamlı commitler atın; mesajı aşağıdaki
    [commit mesajı kurallarına](#commit-mesajı-nasıl-yazılır) göre yazın.
-4. Dalı GitHub'a gönderin ve PR açın. PR başlığı da numarayla başlasın
-   (`KAN-12 Görev filtreleme`); açılan şablonu doldurun.
+4. Dalı GitHub'a gönderin ve PR açın. Açılan şablondaki `Closes #` satırını issue numarasıyla
+   tamamlayın (`Closes #12`); böylece PR issue'ya bağlanır.
 5. En az bir ekip arkadaşı inceledikten sonra PR `main`'e **"Create a merge commit"** ile
-   birleştirilir; böylece her commit geçmişte ayrı ayrı görünür. Jira'da görev "Tamamlandı"ya
-   taşınır.
+   birleştirilir; böylece her commit geçmişte ayrı ayrı görünür. PR birleşince issue kendiliğinden
+   kapanır ve kart **Done** sütununa geçer.
 
-Jira, "GitHub for Jira" uygulamasıyla GitHub'a bağlandığında, mesajında `KAN-12` geçen commit,
-dal ve PR'lar Jira'daki görevin içinde görünür. Bu, kimin hangi görevi hangi kodla yaptığının
-kanıtıdır.
+Mesajında `#12` geçen commit ve PR'lar issue sayfasının akışında görünür. Bu, kimin hangi görevi
+hangi kodla yaptığının kanıtıdır.
+
+Kartın kendiliğinden **Done**'a geçmesi panonun hazır otomasyonlarıyla olur: panoda **⋯ →
+Workflows** bölümünde **Item closed** ve **Pull request merged** açık olmalı (varsayılan olarak
+açıktır).
 
 ### Commit mesajı nasıl yazılır?
 
@@ -439,7 +451,7 @@ Hoca bireysel katkıyı commit geçmişinden değerlendirir; her commit **ne yap
 anlatmalı. Biçim:
 
 ```text
-KAN-<görev no> <tür>: <ne yapıldı — kısa, emir kipinde>
+<tür>: <ne yapıldı — kısa, emir kipinde> (#<issue no>)
 
 <Bir cümleyle neden yapıldığı.>
 
@@ -460,7 +472,7 @@ KAN-<görev no> <tür>: <ne yapıldı — kısa, emir kipinde>
 Örnek:
 
 ```text
-KAN-12 feat: görevlere durum filtresi ekle
+feat: görevlere durum filtresi ekle (#12)
 
 Öğrenci yalnızca devam eden görevlerini görebilsin diye.
 
@@ -470,12 +482,16 @@ KAN-12 feat: görevlere durum filtresi ekle
 ```
 
 - Başlık en fazla ~72 karakter olsun ve nokta ile bitmesin.
+- Issue numarası başlığın **sonuna** yazılır. Satırı `#` ile başlatmayın: git, düzenleyicide
+  yazılan commit mesajlarında `#` ile başlayan satırları yorum sayıp siler.
+- Issue'yu kapatan `Closes #12` satırı PR açıklamasına yazılır (şablonda hazır); commit mesajında
+  numarayı yazmak yeterlidir.
 - `update`, `final`, `son hali` gibi açıklamasız mesajlar kullanılmaz.
 - Çok satırlı mesaj için VS Code'da Kaynak Denetimi kutusuna başlık, bir boş satır ve açıklama
   yazın. Terminalde her `-m` ayrı bir paragraf olur:
 
   ```bash
-  git commit -m "KAN-12 feat: görevlere durum filtresi ekle" -m "- Görevlerim sayfasına durum filtresi eklendi"
+  git commit -m "feat: görevlere durum filtresi ekle (#12)" -m "- Görevlerim sayfasına durum filtresi eklendi"
   ```
 
 ### Commitlere nereden bakılır?
@@ -519,7 +535,8 @@ Ekran görüntüleri sayfalar tamamlandıkça `docs/screenshots/` klasörüne ek
 ## Bilinen eksikler
 
 - Ana Sayfa, Derslerim, Görevlerim ve Profil sayfaları iskelet halindedir. Her sayfadaki
-  "Geliştirilecek" kutusu yapılacakları listeler; bu maddeler Jira'da görev olarak takip edilir.
+  "Geliştirilecek" kutusu yapılacakları listeler; bu maddeler GitHub Projects panosunda issue
+  olarak takip edilir.
 - Gizlilik sayfasındaki iletişim e-postası henüz eklenmedi (`src/config.ts` → `CONTACT_EMAIL`).
 - Canlı demo iskelet sürümünü gösterir; sayfalar tamamlandıkça yeniden yayınlanacaktır.
 - Demo modunda şifre kontrol edilmez; bu mod yalnızca denemek içindir.

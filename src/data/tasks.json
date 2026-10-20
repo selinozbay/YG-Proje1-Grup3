@@ -15,7 +15,7 @@
     "title": "Repository ve görev panosunu kur",
     "description": "GitHub repository'sini açın, görevleri panoya girip ekip üyelerine atayın.",
     "dueDate": "2026-10-09",
-    "tags": ["github", "jira"]
+    "tags": ["github", "planlama"]
   },
   {
     "id": "yg-w2-t1",
@@ -49,7 +49,7 @@
     "weekNo": 3,
     "title": "Hata kayıtlarını düzenle",
     "description": "Bulunan hataları görev panosuna kaydedip önceliklendirin.",
-    "tags": ["test", "jira"]
+    "tags": ["test", "github"]
   },
   {
     "id": "wp-w1-t1",

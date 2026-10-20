@@ -1,8 +1,9 @@
-<!-- PR başlığı Jira görev numarasıyla başlasın: "KAN-12 Görev filtreleme" -->
+<!-- PR başlığı kısa ve açıklayıcı olsun: "Görev filtreleme" -->
+<!-- Aşağıdaki satırı issue numarasıyla tamamlayın (ör. "Closes #12"); PR birleşince issue kapanır. -->
 
-## Jira görevi
+## İlgili issue
 
-KAN-
+Closes #
 
 ## Ne değişti?
 
