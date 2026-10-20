@@ -459,7 +459,7 @@ görev, dal, commit ve PR aynı yerde durur, GitHub'a ayrıca bir araç bağlama
   | Yapılıyor    | Görevi üstlenen kişi üzerinde çalışıyor           |
   | İnceleme     | PR açıldı, bir ekip arkadaşı kodu inceliyor       |
   | Test         | İnceleme bitti, test ve kalite kontrolü yapılıyor |
-  | Yapıldı      | PR birleşince ya da issue kapanınca kendiliğinden |
+  | Yapıldı      | PR birleşti ya da issue kapandı (kendiliğinden)   |
 
 - **Her issue'nun kendi numarası vardır:** `#1`, `#2` … Numara, issue başlığının yanında ve
   panodaki kartın altında yazar. Yeni issue açılınca GitHub numarayı kendisi verir. Issue'lar ve
@@ -490,8 +490,9 @@ görev, dal, commit ve PR aynı yerde durur, GitHub'a ayrıca bir araç bağlama
 3. Küçük ve anlamlı commitler atın; mesajı aşağıdaki
    [commit mesajı kurallarına](#commit-mesajı-nasıl-yazılır) göre yazın.
 4. Dalı GitHub'a gönderin ve PR açın. Açılan şablondaki `Closes #` satırını issue numarasıyla
-   tamamlayın (`Closes #12`); böylece PR issue'ya bağlanır. Kartı **İnceleme** sütununa taşıyın.
-5. En az bir ekip arkadaşı inceler; sonra kart **Test** sütununa geçer ve uygulama denenir.
+   tamamlayın (`Closes #12`); böylece PR issue'ya bağlanır ve kart kendiliğinden **İnceleme**
+   sütununa geçer.
+5. En az bir ekip arkadaşı inceler; sonra kartı **Test** sütununa taşıyın ve uygulama denenir.
 6. Test de bitince PR `main`'e **"Create a merge commit"** ile birleştirilir; böylece her commit
    geçmişte ayrı ayrı görünür. PR birleşince issue kendiliğinden kapanır ve kart **Yapıldı**
    sütununa geçer.
@@ -499,14 +500,18 @@ görev, dal, commit ve PR aynı yerde durur, GitHub'a ayrıca bir araç bağlama
 Mesajında `#12` geçen commit ve PR'lar issue sayfasının akışında görünür. Bu, kimin hangi görevi
 hangi kodla yaptığının kanıtıdır.
 
-Panonun otomasyonları **⋯ → Workflows** bölümündedir ve hepsi açıktır. Önemlileri:
+Panonun otomasyonları **⋯ → Workflows** bölümündedir:
 
-- Repoda açılan issue panoya kendiliğinden eklenir (**Auto-add to project**).
-- Issue kapanınca ya da PR birleşince kart **Yapıldı**'ya geçer (**Item closed**, **Pull request
-  merged**).
-- Kart elle **Yapıldı**'ya taşınırsa issue da kapanır (**Auto-close issue**).
+| Ne olunca                               | Kart nereye geçer  | Otomasyon                        |
+| --------------------------------------- | ------------------ | -------------------------------- |
+| Repoda yeni issue açılınca              | Yapılacaklar       | Auto-add to project, Item added  |
+| Issue'ya `Closes #12` ile PR bağlanınca | İnceleme           | Pull request linked to issue     |
+| PR birleşince ya da issue kapanınca     | Yapıldı            | Pull request merged, Item closed |
+| Kapalı issue yeniden açılınca           | Yapılıyor          | Item reopened                    |
+| Kart elle Yapıldı'ya taşınınca          | (issue da kapanır) | Auto-close issue                 |
 
-**Yapılıyor**, **İnceleme** ve **Test** sütunları arasında kartı elle taşıyın.
+**Yapılıyor** ve **Test** sütunlarına kartı elle taşıyın. Otomasyonlar yalnızca **Yapıldı**
+sütunuyla issue'yu kapatır; diğer sütunlar issue'yu açık bırakır.
 
 ### Commit mesajı nasıl yazılır?
 
