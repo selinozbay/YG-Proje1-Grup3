@@ -6,7 +6,7 @@
 kendi ilerlemelerini tek bir yerden, etkileşimli bir web arayüzüyle takip edebildiği uygulama.
 
 - **Canlı demo:** https://ders-ogrenci-bilgi-ekip.web.app
-- **Görev panosu (GitHub Projects):** https://github.com/selinozbay/YG-Proje1-Grup3/projects
+- **Görev panosu (GitHub Projects):** https://github.com/users/selinozbay/projects/1
 
 ## İçindekiler
 
@@ -406,9 +406,18 @@ görev, dal, commit ve PR aynı yerde durur, GitHub'a ayrıca bir araç bağlama
 
 ### Pano ve issue numaraları
 
-- **Pano:** Repo sayfasındaki **Projects** sekmesinden açılır
-  (https://github.com/selinozbay/YG-Proje1-Grup3/projects). Varsayılan sütunlar **Todo**
-  (Yapılacak), **In Progress** (Devam ediyor) ve **Done** (Tamamlandı)'dur.
+- **Pano:** https://github.com/users/selinozbay/projects/1 (repo sayfasındaki **Projects**
+  sekmesinden de açılır). Pano gizlidir; yalnızca ekip üyeleri görür.
+- **Sütunlar (Status):** kart, görevin hangi aşamada olduğunu gösterir.
+
+  | Sütun        | Anlamı                                            |
+  | ------------ | ------------------------------------------------- |
+  | Yapılacaklar | Görev açıldı, henüz başlanmadı                    |
+  | Yapılıyor    | Görevi üstlenen kişi üzerinde çalışıyor           |
+  | İnceleme     | PR açıldı, bir ekip arkadaşı kodu inceliyor       |
+  | Test         | İnceleme bitti, test ve kalite kontrolü yapılıyor |
+  | Yapıldı      | PR birleşince ya da issue kapanınca kendiliğinden |
+
 - **Her issue'nun kendi numarası vardır:** `#1`, `#2` … Numara, issue başlığının yanında ve
   panodaki kartın altında yazar. Yeni issue açılınca GitHub numarayı kendisi verir. Issue'lar ve
   PR'lar aynı sayacı paylaştığı için numaralar arada atlayabilir.
@@ -419,9 +428,8 @@ görev, dal, commit ve PR aynı yerde durur, GitHub'a ayrıca bir araç bağlama
 
 ### Görev akışı
 
-1. İşi issue olarak açın: repoda **Issues → New issue**, sağdaki **Projects** kutusundan panoyu
-   seçin. **Assignees** kısmından kendinize atayın ve kartı **In Progress** sütununa taşıyın
-   (ör. `#12`).
+1. İşi issue olarak açın: repoda **Issues → New issue** (ör. `#12`). Issue panoya kendiliğinden
+   eklenir. **Assignees** kısmından kendinize atayın ve kartı **Yapılıyor** sütununa taşıyın.
 2. `main` dalından, issue numarasıyla bir dal açın:
 
    ```bash
@@ -433,17 +441,23 @@ görev, dal, commit ve PR aynı yerde durur, GitHub'a ayrıca bir araç bağlama
 3. Küçük ve anlamlı commitler atın; mesajı aşağıdaki
    [commit mesajı kurallarına](#commit-mesajı-nasıl-yazılır) göre yazın.
 4. Dalı GitHub'a gönderin ve PR açın. Açılan şablondaki `Closes #` satırını issue numarasıyla
-   tamamlayın (`Closes #12`); böylece PR issue'ya bağlanır.
-5. En az bir ekip arkadaşı inceledikten sonra PR `main`'e **"Create a merge commit"** ile
-   birleştirilir; böylece her commit geçmişte ayrı ayrı görünür. PR birleşince issue kendiliğinden
-   kapanır ve kart **Done** sütununa geçer.
+   tamamlayın (`Closes #12`); böylece PR issue'ya bağlanır. Kartı **İnceleme** sütununa taşıyın.
+5. En az bir ekip arkadaşı inceler; sonra kart **Test** sütununa geçer ve uygulama denenir.
+6. Test de bitince PR `main`'e **"Create a merge commit"** ile birleştirilir; böylece her commit
+   geçmişte ayrı ayrı görünür. PR birleşince issue kendiliğinden kapanır ve kart **Yapıldı**
+   sütununa geçer.
 
 Mesajında `#12` geçen commit ve PR'lar issue sayfasının akışında görünür. Bu, kimin hangi görevi
 hangi kodla yaptığının kanıtıdır.
 
-Kartın kendiliğinden **Done**'a geçmesi panonun hazır otomasyonlarıyla olur: panoda **⋯ →
-Workflows** bölümünde **Item closed** ve **Pull request merged** açık olmalı (varsayılan olarak
-açıktır).
+Panonun otomasyonları **⋯ → Workflows** bölümündedir ve hepsi açıktır. Önemlileri:
+
+- Repoda açılan issue panoya kendiliğinden eklenir (**Auto-add to project**).
+- Issue kapanınca ya da PR birleşince kart **Yapıldı**'ya geçer (**Item closed**, **Pull request
+  merged**).
+- Kart elle **Yapıldı**'ya taşınırsa issue da kapanır (**Auto-close issue**).
+
+**Yapılıyor**, **İnceleme** ve **Test** sütunları arasında kartı elle taşıyın.
 
 ### Commit mesajı nasıl yazılır?
 
