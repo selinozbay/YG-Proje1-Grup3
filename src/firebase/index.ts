@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth, type Auth } from 'firebase/auth'
-import { getFirestore, type Firestore } from 'firebase/firestore'
+import { connectAuthEmulator, getAuth, type Auth } from 'firebase/auth'
+import { connectFirestoreEmulator, getFirestore, type Firestore } from 'firebase/firestore'
 
 // Değerler .env.local dosyasından gelir; anahtarlar repoya yazılmaz (bkz. .env.example).
 const firebaseConfig = {
@@ -22,6 +22,12 @@ export const isFirebaseEnabled =
   import.meta.env.MODE !== 'demo' &&
   Boolean(firebaseConfig.apiKey && firebaseConfig.projectId && firebaseConfig.appId)
 
+/**
+ * Testlerde gerçek proje yerine bilgisayardaki Firebase emülatörleri kullanılır
+ * (bkz. vitest.emulator.config.ts). Uygulamanın kendisi bu ayarı hiç kullanmaz.
+ */
+const useEmulators = import.meta.env.VITE_FIREBASE_EMULATORS === 'true'
+
 let services: { auth: Auth; db: Firestore } | null = null
 
 /** Firebase'i ilk kullanımda başlatır; sonraki çağrılarda aynı örneği döndürür. */
@@ -33,7 +39,12 @@ export function getFirebase() {
     const app = initializeApp(firebaseConfig)
     const auth = getAuth(app)
     auth.languageCode = 'tr' // şifre sıfırlama e-postaları Türkçe gönderilsin
-    services = { auth, db: getFirestore(app) }
+    const db = getFirestore(app)
+    if (useEmulators) {
+      connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true })
+      connectFirestoreEmulator(db, '127.0.0.1', 8080)
+    }
+    services = { auth, db }
   }
   return services
 }
