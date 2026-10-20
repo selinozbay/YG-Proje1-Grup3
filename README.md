@@ -57,7 +57,7 @@ Tüm ekip üyeleri aynı zamanda geliştiricidir.
 | Üye            | Rol                                 |
 | -------------- | ----------------------------------- |
 | Selin Özbay    | Lider + Geliştirici                 |
-| Yusuf Veisoğlu | Analist + Geliştirici               |
+| Cihan Bayram | Analist + Geliştirici               |
 | Tahir Taş      | Test / Kalite + Geliştirici         |
 | Ali Tekçe      | Dokümantasyon / Sunum + Geliştirici |
 
