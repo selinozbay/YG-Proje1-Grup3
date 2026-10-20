@@ -7,6 +7,8 @@ kendi ilerlemelerini tek bir yerden, etkileşimli bir web arayüzüyle takip ede
 
 - **Canlı demo:** https://ders-ogrenci-bilgi-ekip.web.app
 - **Görev panosu (GitHub Projects):** https://github.com/users/selinozbay/projects/1
+- **Teslim tarihi:** 4 Kasım 2026
+  ([Teslim milestone'u](https://github.com/selinozbay/YG-Proje1-Grup3/milestone/1))
 
 ## İçindekiler
 
@@ -447,6 +449,11 @@ haftanın numarasıyla aynı olmalı.
 Görevler GitHub Projects panosunda takip edilir. Panodaki her kart bir **GitHub issue**'sudur;
 görev, dal, commit ve PR aynı yerde durur, GitHub'a ayrıca bir araç bağlamak gerekmez.
 
+Teslime kadar yapılacak bütün işler **Teslim (4 Kasım 2026)** milestone'una bağlıdır. Kaç işin
+bittiği **Issues → Milestones** sayfasında yüzde olarak görünür. Yeni açılan iş teslime
+yetişmesi gerekiyorsa bu milestone'a eklenir. Her issue'da neyin "bitti" sayılacağı **Kabul
+kriterleri** başlığı altında yazar.
+
 ### Pano ve issue numaraları
 
 - **Pano:** https://github.com/users/selinozbay/projects/1 (repo sayfasındaki **Projects**
@@ -599,21 +606,24 @@ feat: görevlere durum filtresi ekle (#12)
 
 ## Ekran görüntüleri
 
-Ekran görüntüleri sayfalar tamamlandıkça `docs/screenshots/` klasörüne eklenecektir.
+Ekran görüntüleri sayfalar tamamlandıkça `docs/screenshots/` klasörüne eklenecektir
+([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57)).
 
 ## Bilinen eksikler
 
 - Ana Sayfa, Derslerim, Görevlerim ve Profil sayfaları iskelet halindedir. Her sayfadaki
   "Geliştirilecek" kutusu yapılacakları listeler; bu maddeler GitHub Projects panosunda issue
   olarak takip edilir.
-- Gizlilik sayfasındaki iletişim e-postası henüz eklenmedi (`src/config.ts` → `CONTACT_EMAIL`).
-- Canlı demo iskelet sürümünü gösterir; sayfalar tamamlandıkça yeniden yayınlanacaktır.
+- Gizlilik sayfasındaki iletişim e-postası henüz eklenmedi (`src/config.ts` → `CONTACT_EMAIL`,
+  [#58](https://github.com/selinozbay/YG-Proje1-Grup3/issues/58)).
+- Canlı demo iskelet sürümünü gösterir; sayfalar tamamlandıkça yeniden yayınlanacaktır
+  ([#59](https://github.com/selinozbay/YG-Proje1-Grup3/issues/59)).
 - Demo modunda şifre kontrol edilmez; bu mod yalnızca denemek içindir.
 
 ## Teslim dosyaları
 
-| Dosya                         | İçerik             |
-| ----------------------------- | ------------------ |
-| `docs/proje-raporu.pdf`       | Proje raporu       |
-| `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı |
-| `presentation/`               | Sunum dosyası      |
+| Dosya                         | İçerik                                                                              |
+| ----------------------------- | ----------------------------------------------------------------------------------- |
+| `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))       |
+| `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55)) |
+| `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))      |
