@@ -67,12 +67,12 @@ Tüm ekip üyeleri aynı zamanda geliştiricidir.
 
 | Özellik                                                        | Nerede                   | Durum          |
 | -------------------------------------------------------------- | ------------------------ | -------------- |
-| E-posta ve şifreyle kayıt, giriş, şifre sıfırlama              | Giriş / Kayıt            | Hazır          |
+| E-posta ve şifreyle kayıt, giriş, şifre sıfırlama              | Giriş / Kayıt            | Geliştiriliyor |
 | Giriş yapmayan kullanıcının uygulamaya girememesi              | Tüm sayfalar             | Hazır          |
 | Karanlık / aydınlık tema (seçim hatırlanır, açılışta aydınlık) | Üst menü                 | Hazır          |
 | Masaüstünde sabit sol menü, mobilde soldan açılan menü         | Tüm sayfalar             | Hazır          |
 | Gizlilik ve KVKK aydınlatma metni                              | Gizlilik                 | Hazır          |
-| Hesabı ve tüm verileri silme                                   | Profil                   | Hazır          |
+| Hesabı ve tüm verileri silme                                   | Profil                   | Geliştiriliyor |
 | Demo modu (Firebase olmadan çalışma)                           | Tüm sayfalar             | Hazır          |
 | Klavyeyle kullanım, "İçeriğe geç" bağlantısı                   | Tüm sayfalar             | Hazır          |
 | Birden fazla ders, ders kartları                               | Derslerim                | Geliştiriliyor |
