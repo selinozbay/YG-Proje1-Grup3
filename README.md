@@ -7,7 +7,7 @@ kendi ilerlemelerini tek bir yerden, etkileşimli bir web arayüzüyle takip ede
 
 - **Canlı demo:** https://ders-ogrenci-bilgi-ekip.web.app
 - **Görev panosu (GitHub Projects):** https://github.com/users/selinozbay/projects/1
-- **Teslim tarihi:** 4 Kasım 2026
+- **Teslim tarihi:** 11 Kasım 2026
   ([Teslim milestone'u](https://github.com/selinozbay/YG-Proje1-Grup3/milestone/1))
 
 ## İçindekiler
@@ -449,7 +449,7 @@ haftanın numarasıyla aynı olmalı.
 Görevler GitHub Projects panosunda takip edilir. Panodaki her kart bir **GitHub issue**'sudur;
 görev, dal, commit ve PR aynı yerde durur, GitHub'a ayrıca bir araç bağlamak gerekmez.
 
-Teslime kadar yapılacak bütün işler **Teslim (4 Kasım 2026)** milestone'una bağlıdır. Kaç işin
+Teslime kadar yapılacak bütün işler **Teslim (11 Kasım 2026)** milestone'una bağlıdır. Kaç işin
 bittiği **Issues → Milestones** sayfasında yüzde olarak görünür. Yeni açılan iş teslime
 yetişmesi gerekiyorsa bu milestone'a eklenir. Her issue'da neyin "bitti" sayılacağı **Kabul
 kriterleri** başlığı altında yazar.
