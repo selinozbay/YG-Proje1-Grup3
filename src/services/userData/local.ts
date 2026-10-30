@@ -8,9 +8,9 @@ function read(uid: string): UserData {
   try {
     const raw = localStorage.getItem(STORAGE_KEYS.userData(uid))
     const data = raw ? (JSON.parse(raw) as Partial<UserData>) : {}
-    return { taskStatuses: data.taskStatuses ?? {} }
+    return { taskStatuses: data.taskStatuses ?? {}, customTasks: data.customTasks ?? {} }
   } catch {
-    return { taskStatuses: {} }
+    return { taskStatuses: {}, customTasks: {} }
   }
 }
 
@@ -30,6 +30,19 @@ export const localUserDataService: UserDataService = {
   async setTaskStatus(uid, taskId, status) {
     const data = read(uid)
     data.taskStatuses[taskId] = status
+    write(uid, data)
+  },
+
+  async saveCustomTask(uid, task) {
+    const data = read(uid)
+    data.customTasks[task.id] = task
+    write(uid, data)
+  },
+
+  async deleteCustomTask(uid, taskId) {
+    const data = read(uid)
+    delete data.customTasks[taskId]
+    delete data.taskStatuses[taskId]
     write(uid, data)
   },
 

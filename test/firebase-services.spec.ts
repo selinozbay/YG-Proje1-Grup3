@@ -7,6 +7,7 @@ import { getFirebase } from '@/firebase'
 import { getAuthErrorMessage } from '@/services/auth/errors'
 import { firebaseAuthService as auth } from '@/services/auth/firebase'
 import { firestoreUserDataService as userData } from '@/services/userData/firestore'
+import type { CustomTask } from '@/types/task'
 import type { AppUser } from '@/types/user'
 
 const PROJECT_ID = 'demo-yg-proje1'
@@ -149,5 +150,48 @@ describe('Görev durumlarının saklanması (Cloud Firestore)', () => {
     await auth.deleteAccount()
 
     expect(await messageOf(auth.login(email, PASSWORD))).toBe('E-posta veya şifre hatalı.')
+  })
+})
+
+describe('Kendi eklenen görevlerin saklanması (Cloud Firestore) — #23', () => {
+  const customTask = (id: string, title: string): CustomTask => ({
+    id,
+    title,
+    description: '',
+    courseId: '',
+    dueDate: '',
+    createdAt: '2026-10-30T10:00:00.000Z',
+  })
+
+  it('kendi görevi eklenir, güncellenir ve silinir; silinen görevin durumu da silinir', async () => {
+    const { uid } = await auth.register(newEmail(), PASSWORD, 'Deneme Öğrenci')
+
+    await userData.saveCustomTask(uid, customTask('custom-1', 'Sunum'))
+    await userData.saveCustomTask(uid, {
+      ...customTask('custom-2', 'Rapor'),
+      dueDate: '2026-11-10',
+    })
+    await userData.setTaskStatus(uid, 'custom-1', 'done')
+    await userData.setTaskStatus(uid, 'yg-w1-t1', 'in-progress')
+
+    // Düzenlemede kaldırılan son tarih eski haliyle kalmamalı (alan baştan yazılır).
+    await userData.saveCustomTask(uid, customTask('custom-2', 'Rapor taslağı'))
+    let data = await userData.load(uid)
+    expect(Object.keys(data.customTasks).sort()).toEqual(['custom-1', 'custom-2'])
+    expect(data.customTasks['custom-2']).toEqual(customTask('custom-2', 'Rapor taslağı'))
+
+    await userData.deleteCustomTask(uid, 'custom-1')
+    data = await userData.load(uid)
+    expect(Object.keys(data.customTasks)).toEqual(['custom-2'])
+    expect(data.taskStatuses).toEqual({ 'yg-w1-t1': 'in-progress' })
+  })
+
+  it('hesap verisi silinince kendi görevleri de silinir (KVKK)', async () => {
+    const { uid } = await auth.register(newEmail(), PASSWORD, 'Deneme Öğrenci')
+    await userData.saveCustomTask(uid, customTask('custom-1', 'Sunum'))
+
+    await userData.remove(uid)
+
+    expect((await userData.load(uid)).customTasks).toEqual({})
   })
 })
