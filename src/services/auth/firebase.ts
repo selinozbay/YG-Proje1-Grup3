@@ -39,7 +39,12 @@ export const firebaseAuthService: AuthService = {
   },
 
   async resetPassword(email) {
-    await sendPasswordResetEmail(getFirebase().auth, email)
+    try {
+      await sendPasswordResetEmail(getFirebase().auth, email)
+    } catch (error) {
+      // Kayıtlı olmayan e-posta için de "gönderildi" denir; hesabın var olup olmadığı söylenmez.
+      if ((error as { code?: string }).code !== 'auth/user-not-found') throw error
+    }
   },
 
   async deleteAccount() {
