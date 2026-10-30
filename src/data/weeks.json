@@ -36,6 +36,18 @@
     ]
   },
   {
+    "id": "yg-w4",
+    "courseId": "yazilim-gelistirme",
+    "weekNo": 4,
+    "title": "Doğrulama, Dokümantasyon ve Teslim",
+    "description": "Gereksinimleri testlerle doğruluyor, belgeleri tamamlıyor ve projeyi teslim ediyoruz.",
+    "learningGoals": [
+      "Kabul kriterlerini uçtan uca test etmek",
+      "README ve kullanıcı kılavuzu hazırlamak",
+      "Demoyu sunup projeyi teslim etmek"
+    ]
+  },
+  {
     "id": "wp-w1",
     "courseId": "web-programlama",
     "weekNo": 1,
@@ -71,6 +83,18 @@
     ]
   },
   {
+    "id": "wp-w4",
+    "courseId": "web-programlama",
+    "weekNo": 4,
+    "title": "Erişilebilirlik ve Yayınlama",
+    "description": "Sayfayı klavyeyle ve ekran okuyucuyla deneyip internette yayınlamak.",
+    "learningGoals": [
+      "Klavyeyle gezinmeyi ve odak sırasını test etmek",
+      "Renk karşıtlığını kontrol etmek",
+      "Siteyi bir barındırma hizmetinde yayınlamak"
+    ]
+  },
+  {
     "id": "vt-w1",
     "courseId": "veri-tabani",
     "weekNo": 1,
@@ -100,5 +124,16 @@
     "title": "Birleştirme ve Gruplama",
     "description": "Birden çok tabloyu birleştirmek ve özet raporlar üretmek.",
     "learningGoals": ["JOIN türlerini ayırt etmek", "GROUP BY ve HAVING ile özet çıkarmak"]
+  },
+  {
+    "id": "vt-w4",
+    "courseId": "veri-tabani",
+    "weekNo": 4,
+    "title": "Normalizasyon ve İndeksler",
+    "description": "Tekrar eden veriyi azaltmak ve sorguları hızlandırmak.",
+    "learningGoals": [
+      "Tabloları üçüncü normal forma getirmek",
+      "Sık kullanılan sorgular için indeks oluşturmak"
+    ]
   }
 ]
