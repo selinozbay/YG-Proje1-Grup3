@@ -71,7 +71,7 @@ jobs:
         run: npm run test:e2e
 
   rules-tests:
-    name: Firestore Güvenlik Kuralları Testi (Emulator)
+    name: Firebase Emülatör Testleri (kurallar, giriş, kullanıcı verisi)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -94,5 +94,5 @@ jobs:
       - name: Firebase CLI Kurulumu
         run: npm install -g firebase-tools
 
-      - name: Firestore Emulator ile Güvenlik Kurallarını Test Et
-        run: npx firebase-tools emulators:exec --only firestore "npm run test:rules"
+      - name: Auth ve Firestore Emülatörleriyle Kural, Giriş ve Veri Testleri
+        run: npm run test:firebase
