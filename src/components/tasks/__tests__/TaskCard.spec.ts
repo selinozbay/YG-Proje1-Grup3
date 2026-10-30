@@ -44,4 +44,21 @@ describe('TaskCard', () => {
   ] as const)('"%s" durumunu "%s" olarak gösterir', (status, label) => {
     expect(mountCard({ status }).find('[data-test="status"]').text()).toBe(label)
   })
+
+  it('düzenlenebilir kartta rozet yerine durum seçici gösterir ve değişikliği bildirir', async () => {
+    const wrapper = mount(TaskCard, {
+      props: {
+        task: { ...task, status: 'in-progress' },
+        courseTitle: 'Yazılım Geliştirme',
+        editable: true,
+      },
+    })
+    expect(wrapper.find('[data-test="status"]').exists()).toBe(false)
+
+    const select = wrapper.find('[data-test="status-select"]')
+    expect((select.element as HTMLSelectElement).value).toBe('in-progress')
+
+    await select.setValue('done')
+    expect(wrapper.emitted('status-change')).toEqual([['done']])
+  })
 })
