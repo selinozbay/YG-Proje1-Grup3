@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import PageHeader from '@/components/common/PageHeader.vue'
+import CustomTaskForm from '@/components/tasks/CustomTaskForm.vue'
 import TaskCard from '@/components/tasks/TaskCard.vue'
 import TaskFilterBar from '@/components/tasks/TaskFilterBar.vue'
 import { useTaskFilters } from '@/composables/useTaskFilters'
 import { useTaskStatusChange } from '@/composables/useTaskStatusChange'
 import { useCatalogStore } from '@/stores/catalog'
 import { useProgressStore } from '@/stores/progress'
+import type { CustomTaskInput } from '@/types/task'
 
 const catalog = useCatalogStore()
 const progress = useProgressStore()
@@ -32,14 +34,93 @@ watch(weekNos, (available) => {
 const courseTitle = (courseId: string) => catalog.getCourse(courseId)?.title ?? ''
 
 const { saveError, changeStatus } = useTaskStatusChange()
+
+// --- Kendi görevini ekleme, düzenleme, silme (#23) ---
+
+/** Form kapalıysa null; yeni görev için 'new'; düzenlenen görevin id'si. */
+const formTarget = ref<'new' | string | null>(null)
+const formSaving = ref(false)
+const formError = ref('')
+/** Ekran okuyucuya duyurulan kısa bilgi: "Görev eklendi." gibi. */
+const announcement = ref('')
+
+const editingInitial = computed<CustomTaskInput | undefined>(() => {
+  if (!formTarget.value || formTarget.value === 'new') return undefined
+  const task = progress.customTasks[formTarget.value]
+  return task && { ...task }
+})
+
+function openForm(target: 'new' | string) {
+  formTarget.value = target
+  formError.value = ''
+  announcement.value = ''
+}
+
+function closeForm() {
+  formTarget.value = null
+  formError.value = ''
+}
+
+async function submitCustomTask(input: CustomTaskInput) {
+  const editingId = formTarget.value === 'new' ? undefined : (formTarget.value ?? undefined)
+  formSaving.value = true
+  formError.value = ''
+  try {
+    await progress.saveCustomTask(input, editingId)
+    closeForm()
+    // Yeni görev bir filtre yüzünden gizli kalmasın.
+    if (!editingId) resetFilters()
+    announcement.value = editingId ? 'Görev güncellendi.' : 'Görev eklendi.'
+  } catch {
+    formError.value = 'Görev kaydedilemedi. Bağlantını kontrol edip tekrar dene.'
+  } finally {
+    formSaving.value = false
+  }
+}
+
+async function deleteCustomTask(taskId: string) {
+  saveError.value = ''
+  try {
+    await progress.deleteCustomTask(taskId)
+    if (formTarget.value === taskId) closeForm()
+    announcement.value = 'Görev silindi.'
+  } catch {
+    saveError.value = 'Görev silinemedi. Bağlantını kontrol edip tekrar dene.'
+  }
+}
 </script>
 
 <template>
   <PageHeader title="Görevlerim" description="Tüm derslerindeki görevler tek listede." />
 
-  <p class="mb-4 text-sm text-slate-600 dark:text-slate-400" data-test="summary">
-    {{ summary.done }} / {{ summary.total }} görev tamamlandı
-  </p>
+  <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+    <p class="text-sm text-slate-600 dark:text-slate-400" data-test="summary">
+      {{ summary.done }} / {{ summary.total }} görev tamamlandı
+    </p>
+    <button
+      v-if="formTarget !== 'new'"
+      type="button"
+      class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none dark:bg-indigo-500 dark:hover:bg-indigo-400"
+      data-test="add-task"
+      @click="openForm('new')"
+    >
+      + Görev ekle
+    </button>
+  </div>
+
+  <p class="sr-only" role="status" aria-live="polite">{{ announcement }}</p>
+
+  <CustomTaskForm
+    v-if="formTarget"
+    :key="formTarget"
+    :mode="formTarget === 'new' ? 'create' : 'edit'"
+    :initial="editingInitial"
+    :courses="courses"
+    :saving="formSaving"
+    :error="formError"
+    @submit="submitCustomTask"
+    @cancel="closeForm"
+  />
 
   <TaskFilterBar
     v-model:query="filters.query"
@@ -84,6 +165,8 @@ const { saveError, changeStatus } = useTaskStatusChange()
         :course-title="courseTitle(task.courseId)"
         editable
         @status-change="changeStatus(task.id, $event)"
+        @edit="openForm(task.id)"
+        @delete="deleteCustomTask(task.id)"
       />
     </li>
   </ul>

@@ -26,6 +26,41 @@ describe('TaskCard', () => {
     expect(wrapper.findAll('li').map((li) => li.text())).toEqual(['#analiz', '#planlama'])
   })
 
+  it('kendi görevinde "Kendi görevim" etiketi gösterir, hafta yazmaz', () => {
+    const wrapper = mountCard({ custom: true, weekNo: 0, tags: [] })
+    expect(wrapper.find('[data-test="custom-badge"]').text()).toBe('Kendi görevim')
+    expect(wrapper.text()).toContain('Yazılım Geliştirme')
+    expect(wrapper.text()).not.toContain('hafta')
+  })
+
+  it('ders görevinde Düzenle / Sil yoktur; kendi görevinde düzenlenebilir modda vardır', () => {
+    const editable = (custom: boolean) =>
+      mount(TaskCard, {
+        props: { task: { ...task, custom }, courseTitle: 'Yazılım Geliştirme', editable: true },
+      })
+    expect(editable(false).find('[data-test="edit-task"]').exists()).toBe(false)
+    expect(editable(true).find('[data-test="edit-task"]').exists()).toBe(true)
+    expect(mountCard({ custom: true }).find('[data-test="edit-task"]').exists()).toBe(false)
+  })
+
+  it('Sil önce onay ister; Vazgeç silmez, Evet, sil silme isteği gönderir', async () => {
+    const wrapper = mount(TaskCard, {
+      props: { task: { ...task, custom: true }, courseTitle: '', editable: true },
+    })
+
+    await wrapper.find('[data-test="edit-task"]').trigger('click')
+    expect(wrapper.emitted('edit')).toHaveLength(1)
+
+    await wrapper.find('[data-test="delete-task"]').trigger('click')
+    expect(wrapper.text()).toContain('Bu görev silinsin mi?')
+    await wrapper.find('[data-test="cancel-delete"]').trigger('click')
+    expect(wrapper.emitted('delete')).toBeUndefined()
+
+    await wrapper.find('[data-test="delete-task"]').trigger('click')
+    await wrapper.find('[data-test="confirm-delete"]').trigger('click')
+    expect(wrapper.emitted('delete')).toHaveLength(1)
+  })
+
   it('istenirse başlığı h3 olarak verir', () => {
     const wrapper = mount(TaskCard, {
       props: { task, courseTitle: 'Yazılım Geliştirme', headingLevel: 3 },
