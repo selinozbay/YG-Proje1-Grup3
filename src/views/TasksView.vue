@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, watch } from 'vue'
 import PageHeader from '@/components/common/PageHeader.vue'
 import TaskCard from '@/components/tasks/TaskCard.vue'
 import TaskFilterBar from '@/components/tasks/TaskFilterBar.vue'
 import { useTaskFilters } from '@/composables/useTaskFilters'
+import { useTaskStatusChange } from '@/composables/useTaskStatusChange'
 import { useCatalogStore } from '@/stores/catalog'
 import { useProgressStore } from '@/stores/progress'
-import type { TaskStatus } from '@/types/task'
 
 const catalog = useCatalogStore()
 const progress = useProgressStore()
@@ -31,17 +31,7 @@ watch(weekNos, (available) => {
 
 const courseTitle = (courseId: string) => catalog.getCourse(courseId)?.title ?? ''
 
-const saveError = ref('')
-
-async function changeStatus(taskId: string, status: TaskStatus) {
-  saveError.value = ''
-  try {
-    await progress.setStatus(taskId, status)
-  } catch {
-    // Store eski durumu geri yükler; kullanıcıya neden değişmediğini söyleriz.
-    saveError.value = 'Görevin durumu kaydedilemedi. Bağlantını kontrol edip tekrar dene.'
-  }
-}
+const { saveError, changeStatus } = useTaskStatusChange()
 </script>
 
 <template>

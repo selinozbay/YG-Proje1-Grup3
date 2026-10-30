@@ -10,8 +10,10 @@ const props = withDefaults(
     courseTitle: string
     /** true ise durum rozeti yerine durumu değiştiren seçici gösterilir. */
     editable?: boolean
+    /** Başlık seviyesi: kartlar bir h2 bölümünün içindeyse 3 verin. */
+    headingLevel?: 2 | 3
   }>(),
-  { editable: false },
+  { editable: false, headingLevel: 2 },
 )
 
 const emit = defineEmits<{ 'status-change': [status: TaskStatus] }>()
@@ -34,7 +36,9 @@ const dueDateText = computed(() =>
     class="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900"
   >
     <div class="flex items-start justify-between gap-3">
-      <h2 class="leading-snug font-semibold">{{ task.title }}</h2>
+      <component :is="`h${headingLevel}`" class="leading-snug font-semibold">
+        {{ task.title }}
+      </component>
       <TaskStatusSelect
         v-if="editable"
         class="shrink-0"
