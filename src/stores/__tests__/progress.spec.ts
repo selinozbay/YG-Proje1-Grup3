@@ -1,5 +1,6 @@
 import { setActivePinia, createPinia } from 'pinia'
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { userDataService } from '@/services/userData'
 import { useProgressStore } from '../progress'
 import type { TaskWithStatus } from '@/types/task'
 
@@ -76,5 +77,17 @@ describe('useProgressStore', () => {
 
     await progress.setStatus('yg-w1-t1', 'in-progress')
     expect(progress.statusOf('yg-w1-t1')).toBe('in-progress')
+  })
+
+  it('kayıt başarısız olursa durum eski haline döner ve hata iletilir', async () => {
+    const progress = useProgressStore()
+    await progress.load('test-user-2')
+    const spy = vi
+      .spyOn(userDataService, 'setTaskStatus')
+      .mockRejectedValueOnce(new Error('bağlantı yok'))
+
+    await expect(progress.setStatus('yg-w1-t1', 'done')).rejects.toThrow('bağlantı yok')
+    expect(progress.statusOf('yg-w1-t1')).toBe('todo')
+    spy.mockRestore()
   })
 })

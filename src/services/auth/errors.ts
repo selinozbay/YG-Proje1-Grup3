@@ -1,6 +1,10 @@
 // Firebase hata kodlarının Türkçe karşılıkları. Demo modu da aynı kodları kullanır.
 const MESSAGES: Record<string, string> = {
   'auth/invalid-credential': 'E-posta veya şifre hatalı.',
+  // E-posta koruması kapalı projelerde Firebase bu iki kodu döndürür. Hangisinin yanlış
+  // olduğu söylenmez; böylece kayıtlı e-postalar tahmin edilemez.
+  'auth/wrong-password': 'E-posta veya şifre hatalı.',
+  'auth/user-not-found': 'E-posta veya şifre hatalı.',
   'auth/invalid-email': 'Geçerli bir e-posta adresi girin.',
   'auth/email-already-in-use': 'Bu e-posta adresiyle zaten bir hesap var.',
   'auth/weak-password': 'Şifre en az 6 karakter olmalı.',
