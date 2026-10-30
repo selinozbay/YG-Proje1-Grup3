@@ -5,7 +5,7 @@
     "weekNo": 1,
     "title": "Kullanıcı hikâyelerini yaz",
     "description": "En az beş kullanıcı hikâyesi ve her biri için kabul kriterleri hazırlayın.",
-    "dueDate": "2026-10-09",
+    "dueDate": "2026-10-21",
     "tags": ["analiz"]
   },
   {
@@ -14,7 +14,7 @@
     "weekNo": 1,
     "title": "Repository ve görev panosunu kur",
     "description": "GitHub repository'sini açın, görevleri panoya girip ekip üyelerine atayın.",
-    "dueDate": "2026-10-09",
+    "dueDate": "2026-10-21",
     "tags": ["github", "planlama"]
   },
   {
@@ -23,7 +23,7 @@
     "weekNo": 2,
     "title": "Sayfa taslaklarını çiz",
     "description": "Her sayfa için masaüstü ve mobil wireframe hazırlayın.",
-    "dueDate": "2026-10-16",
+    "dueDate": "2026-10-28",
     "tags": ["tasarım"]
   },
   {
@@ -40,7 +40,7 @@
     "weekNo": 3,
     "title": "Test senaryolarını yaz",
     "description": "Ana kullanıcı senaryoları için adım adım test senaryoları hazırlayın.",
-    "dueDate": "2026-10-23",
+    "dueDate": "2026-11-04",
     "tags": ["test"]
   },
   {
@@ -52,12 +52,29 @@
     "tags": ["test", "github"]
   },
   {
+    "id": "yg-w4-t1",
+    "courseId": "yazilim-gelistirme",
+    "weekNo": 4,
+    "title": "Kabul testlerini çalıştır",
+    "description": "Her kullanıcı hikâyesinin kabul kriterini deneyip beklenen ve gerçek sonucu kaydedin.",
+    "dueDate": "2026-11-11",
+    "tags": ["test"]
+  },
+  {
+    "id": "yg-w4-t2",
+    "courseId": "yazilim-gelistirme",
+    "weekNo": 4,
+    "title": "Kullanıcı kılavuzunu ve sunumu hazırla",
+    "description": "Kurulum adımlarını, ekran görüntülü kullanım kılavuzunu ve demo akışını hazırlayın.",
+    "tags": ["dokümantasyon", "sunum"]
+  },
+  {
     "id": "wp-w1-t1",
     "courseId": "web-programlama",
     "weekNo": 1,
     "title": "Anlamsal bir profil sayfası hazırla",
     "description": "header, main, section ve footer etiketlerini kullanarak bir profil sayfası oluşturun.",
-    "dueDate": "2026-10-10",
+    "dueDate": "2026-10-20",
     "tags": ["html"]
   },
   {
@@ -74,7 +91,7 @@
     "weekNo": 2,
     "title": "Kart ızgarasını Grid ile kur",
     "description": "Ekran genişliğine göre 1, 2 veya 3 sütuna geçen bir kart ızgarası yapın.",
-    "dueDate": "2026-10-17",
+    "dueDate": "2026-10-27",
     "tags": ["css", "responsive"]
   },
   {
@@ -91,7 +108,7 @@
     "weekNo": 3,
     "title": "Arama kutusuyla listeyi filtrele",
     "description": "Yazılan kelimeye göre listeyi anında süzen bir arama kutusu yapın.",
-    "dueDate": "2026-10-24",
+    "dueDate": "2026-11-03",
     "tags": ["javascript"]
   },
   {
@@ -103,12 +120,29 @@
     "tags": ["javascript"]
   },
   {
+    "id": "wp-w4-t1",
+    "courseId": "web-programlama",
+    "weekNo": 4,
+    "title": "Klavyeyle erişilebilirlik testi yap",
+    "description": "Bütün bağlantı ve düğmelere yalnızca klavyeyle ulaşılabildiğini ve odağın göründüğünü kontrol edin.",
+    "dueDate": "2026-11-10",
+    "tags": ["erişilebilirlik", "test"]
+  },
+  {
+    "id": "wp-w4-t2",
+    "courseId": "web-programlama",
+    "weekNo": 4,
+    "title": "Siteyi yayınla",
+    "description": "Projeyi bir barındırma hizmetine yükleyip bağlantısını paylaşın.",
+    "tags": ["yayınlama"]
+  },
+  {
     "id": "vt-w1-t1",
     "courseId": "veri-tabani",
     "weekNo": 1,
     "title": "Kütüphane senaryosu için ER diyagramı çiz",
     "description": "Üye, kitap ve ödünç alma varlıkları ile aralarındaki ilişkileri gösterin.",
-    "dueDate": "2026-10-08",
+    "dueDate": "2026-10-19",
     "tags": ["modelleme"]
   },
   {
@@ -124,8 +158,8 @@
     "courseId": "veri-tabani",
     "weekNo": 2,
     "title": "Temel SELECT sorgularını yaz",
-    "description": "Filtreleme ve sıralama içeren on sorgu yazın.",
-    "dueDate": "2026-10-15",
+    "description": "Filtreleme ve sıralama içeren on SQL sorgusu yazın.",
+    "dueDate": "2026-10-26",
     "tags": ["sql"]
   },
   {
@@ -133,7 +167,7 @@
     "courseId": "veri-tabani",
     "weekNo": 2,
     "title": "Örnek veri ekleme betiği hazırla",
-    "description": "Her tabloya en az beş kayıt ekleyen bir INSERT betiği yazın.",
+    "description": "Her tabloya en az beş kayıt ekleyen bir SQL INSERT betiği yazın.",
     "tags": ["sql"]
   },
   {
@@ -141,8 +175,8 @@
     "courseId": "veri-tabani",
     "weekNo": 3,
     "title": "JOIN alıştırmalarını çöz",
-    "description": "INNER, LEFT ve RIGHT JOIN ile verilen soruları yanıtlayın.",
-    "dueDate": "2026-10-22",
+    "description": "INNER, LEFT ve RIGHT JOIN ile verilen soruları SQL ile yanıtlayın.",
+    "dueDate": "2026-11-02",
     "tags": ["sql"]
   },
   {
@@ -150,7 +184,24 @@
     "courseId": "veri-tabani",
     "weekNo": 3,
     "title": "Raporlama sorgusu yaz",
-    "description": "Ay bazında en çok ödünç alınan kitapları listeleyen bir sorgu yazın.",
+    "description": "Ay bazında en çok ödünç alınan kitapları listeleyen bir SQL sorgusu yazın.",
     "tags": ["sql", "rapor"]
+  },
+  {
+    "id": "vt-w4-t1",
+    "courseId": "veri-tabani",
+    "weekNo": 4,
+    "title": "Tabloları 3NF'ye getir",
+    "description": "Kütüphane şemasındaki tekrar eden alanları ayrı tablolara taşıyın.",
+    "dueDate": "2026-11-09",
+    "tags": ["modelleme"]
+  },
+  {
+    "id": "vt-w4-t2",
+    "courseId": "veri-tabani",
+    "weekNo": 4,
+    "title": "Yavaş bir sorguyu indeksle hızlandır",
+    "description": "Bir SQL sorgusunun süresini indeks eklemeden önce ve sonra ölçüp karşılaştırın.",
+    "tags": ["sql", "performans"]
   }
 ]
