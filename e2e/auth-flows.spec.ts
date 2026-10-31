@@ -60,24 +60,28 @@ test.describe('E2E: Kayıt ol (#4)', () => {
     })
   }
 
-  test('şifre gücü yazdıkça değişir, zayıf şifreyle kayıt olunmaz (#7)', async ({ page }) => {
+  test('şifre gücü yazdıkça değişir, zayıf ve orta şifreyle kayıt olunmaz (#7)', async ({
+    page,
+  }) => {
     await fillRegisterForm(page)
     const password = page.getByLabel('Şifre', { exact: true })
 
     await password.fill('parola')
     await expect(page.getByText('Şifre gücü: Zayıf')).toBeVisible()
-    await expect(page.getByText('En az 8 karakter kullanın.')).toBeVisible()
+    await expect(page.getByText('En az 10 karakter kullanın.')).toBeVisible()
     await password.fill('parola123')
     await expect(page.getByText('Şifre gücü: Orta')).toBeVisible()
     await password.fill('Parola-2026')
     await expect(page.getByText('Şifre gücü: Güçlü')).toBeVisible()
 
-    await password.fill('parolaparola')
     await page.getByRole('checkbox').check()
-    await page.getByRole('button', { name: 'Kayıt ol' }).click()
+    for (const weakOrMedium of ['parolaparola', 'parola123']) {
+      await password.fill(weakOrMedium)
+      await page.getByRole('button', { name: 'Kayıt ol' }).click()
 
-    await expect(page.getByRole('alert')).toContainText('Şifre çok zayıf.')
-    await expect(page).toHaveURL(/\/kayit$/)
+      await expect(page.getByRole('alert')).toContainText('Şifre yeterince güçlü değil.')
+      await expect(page).toHaveURL(/\/kayit$/)
+    }
   })
 })
 

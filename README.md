@@ -169,7 +169,7 @@ Tüm ekip üyeleri aynı zamanda geliştiricidir.
 Firebase değerleri yoksa (ya da `npm run dev:demo` ile başlatıldıysa) uygulama Firebase'e hiç
 bağlanmadan çalışır. Ekranın üstünde sarı bir **"Demo modu"** uyarısı görünür.
 
-- Kayıtta öğrenci e-postası (`123456@ogr.ktu.edu.tr`) ve zayıf olmayan bir şifre istenir (kayıt
+- Kayıtta öğrenci e-postası (`123456@ogr.ktu.edu.tr`) ve güçlü bir şifre istenir (kayıt
   formu kuralları demo modunda da geçerlidir). Girişte ise herhangi bir e-posta ve en az 6
   karakterlik herhangi bir şifre yeterlidir. Şifre saklanmaz ve kontrol edilmez.
 - Görev durumları yalnızca o tarayıcıda (`localStorage`) tutulur.
@@ -180,9 +180,9 @@ bağlanmadan çalışır. Ekranın üstünde sarı bir **"Demo modu"** uyarısı
 Hazır bir test hesabı yoktur.
 
 - **Kayıt kuralları:** Kayıt yalnızca KTÜ öğrenci e-postasıyla (öğrenci numarası +
-  `@ogr.ktu.edu.tr`) yapılabilir. Şifre en az 8 karakter olmalı ve harf, rakam, simgeden en az
-  ikisini içermelidir; formdaki gösterge "Zayıf" iken kayıt olunmaz. Giriş ve şifre sıfırlamada
-  bu kurallar yoktur.
+  `@ogr.ktu.edu.tr`) yapılabilir. Şifre güçlü olmalıdır: en az 10 karakter ve küçük harf, büyük
+  harf, rakam, simgeden en az üçü. Formdaki gösterge "Güçlü" olmadan kayıt olunmaz. Giriş ve şifre
+  sıfırlamada bu kurallar yoktur.
 - **Firebase modunda:** "Kayıt ol" sayfasından öğrenci e-postanızla hesap açın. Şifre olarak
   e-posta hesabınızın şifresini değil, **bu uygulamaya özel yeni bir şifre** belirleyin. Gerçek
   e-posta kullanırsanız "Şifremi unuttum" e-postası da size ulaşır.

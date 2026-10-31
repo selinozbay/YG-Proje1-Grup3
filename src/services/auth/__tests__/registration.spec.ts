@@ -57,7 +57,7 @@ describe('checkPasswordStrength (#7)', () => {
 
   it('eksik olan her şey için Türkçe ipucu verir', () => {
     expect(checkPasswordStrength('parola').hints).toEqual([
-      'En az 8 karakter kullanın.',
+      'En az 10 karakter kullanın.',
       'Büyük harf ekleyin.',
       'Rakam ekleyin.',
       'Simge ekleyin (ör. ! ? - #).',

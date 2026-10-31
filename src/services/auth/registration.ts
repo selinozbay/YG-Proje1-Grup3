@@ -17,8 +17,8 @@ export const PASSWORD_STRENGTH_LABELS: Record<PasswordStrength, string> = {
 
 /**
  * Şifre gücü (#7). Karakter türleri: küçük harf, büyük harf, rakam, simge.
- * - Zayıf: 8 karakterden kısa ya da tek tür. Zayıf şifreyle kayıt olunmaz.
- * - Güçlü: en az 10 karakter ve en az üç tür.
+ * - Zayıf: 8 karakterden kısa ya da tek tür.
+ * - Güçlü: en az 10 karakter ve en az üç tür. Kayıt yalnızca güçlü şifreyle yapılır.
  * - Orta: ikisinin arası.
  */
 export function checkPasswordStrength(password: string): {
@@ -35,7 +35,7 @@ export function checkPasswordStrength(password: string): {
   const kindCount = Object.values(kinds).filter(Boolean).length
 
   const hints: string[] = []
-  if (password.length < 8) hints.push('En az 8 karakter kullanın.')
+  if (password.length < 10) hints.push('En az 10 karakter kullanın.')
   if (!kinds.lower) hints.push('Küçük harf ekleyin.')
   if (!kinds.upper) hints.push('Büyük harf ekleyin.')
   if (!kinds.digit) hints.push('Rakam ekleyin.')

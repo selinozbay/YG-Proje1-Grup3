@@ -32,9 +32,10 @@ async function submit() {
     error.value = 'Öğrenci e-postanızı girin (ör. 123456@ogr.ktu.edu.tr).'
     return
   }
-  if (checkPasswordStrength(password.value).level === 'weak') {
+  // Yalnızca güçlü şifreyle kayıt olunur; zayıf ve orta şifreler reddedilir (#7).
+  if (checkPasswordStrength(password.value).level !== 'strong') {
     error.value =
-      'Şifre çok zayıf. En az 8 karakter kullanın ve harf, rakam ya da simgeden en az ikisini karıştırın.'
+      'Şifre yeterince güçlü değil. En az 10 karakter kullanın ve küçük harf, büyük harf, rakam ve simgeden en az üçünü karıştırın.'
     return
   }
   if (!acceptedPrivacy.value) {
@@ -71,7 +72,7 @@ async function submit() {
         label="Şifre"
         type="password"
         autocomplete="new-password"
-        hint="En az 8 karakter; harf, rakam ve simgeyi karıştırın."
+        hint="En az 10 karakter; küçük-büyük harf, rakam ve simgeden en az üçü."
         :describedby="strengthId"
         required
       />
