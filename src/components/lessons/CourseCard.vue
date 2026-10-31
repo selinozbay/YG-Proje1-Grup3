@@ -10,17 +10,16 @@ import { courseColor } from './courseColors'
 import { COURSE_STATUS_CLASSES } from './courseStatusStyles'
 
 /**
- * Ders kartı (#14, #16, #17). Derslerim'de tam hâliyle, Ana Sayfa'da `compact` olarak
- * (açıklama ve görev listesi olmadan) kullanılır; iki sayfada da aynı görünür.
+ * Derslerim'deki ders kartı (#14, #16, #17): kod, ad, öğretim elemanı, açıklama, ilerleme,
+ * ders durumu, sıradaki görev ve açılır görev listesi.
  */
 const props = withDefaults(
   defineProps<{
     item: CourseProgress
-    compact?: boolean
     /** Başlık seviyesi: kartlar bir h2 bölümünün içindeyse 3 verin. */
     headingLevel?: 2 | 3
   }>(),
-  { compact: false, headingLevel: 2 },
+  { headingLevel: 2 },
 )
 
 const course = computed(() => props.item.course)
@@ -69,7 +68,7 @@ const nextTask = computed(
     <p class="mt-0.5 text-sm text-slate-600 dark:text-slate-400" data-test="course-instructor">
       {{ course.instructor }}
     </p>
-    <p v-if="!compact" class="mt-3 text-sm text-slate-700 dark:text-slate-300">
+    <p class="mt-3 text-sm text-slate-700 dark:text-slate-300">
       {{ course.description }}
     </p>
 
@@ -91,7 +90,7 @@ const nextTask = computed(
     </div>
 
     <details
-      v-if="!compact && item.tasks.length"
+      v-if="item.tasks.length"
       class="group mt-4 border-t border-slate-200 pt-3 dark:border-slate-800"
       data-test="course-tasks"
     >

@@ -2,14 +2,15 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { flushPromises, mount, RouterLinkStub } from '@vue/test-utils'
 import { createPinia, setActivePinia, type Pinia } from 'pinia'
 import HomeView from '../HomeView.vue'
-import OverallProgressCard from '@/components/home/OverallProgressCard.vue'
+import TermOverview from '@/components/home/TermOverview.vue'
 import { userDataService } from '@/services/userData'
 import { useProgressStore } from '@/stores/progress'
 
 let pinia: Pinia
 
 beforeEach(async () => {
-  // Bugün 31 Ekim 2026 kabul edilir; "bu hafta" ve "yaklaşan görevler" tarihe bağlı.
+  // Bugün 31 Ekim 2026 kabul edilir; dönem çizelgesi ve yaklaşan görevler tarihe bağlı.
+  // Örnek verideki haftalar: 15–21 Ekim, 22–28 Ekim, 29 Ekim–4 Kasım, 5–11 Kasım.
   vi.useFakeTimers({ toFake: ['Date'] })
   vi.setSystemTime(new Date('2026-10-31T10:00:00'))
   localStorage.clear()
@@ -26,31 +27,51 @@ afterEach(() => {
 const mountPage = () =>
   mount(HomeView, { global: { plugins: [pinia], stubs: { RouterLink: RouterLinkStub } } })
 
+const text = (wrapper: ReturnType<typeof mountPage>, test: string) =>
+  wrapper.find(`[data-test="${test}"]`).text()
+
 describe('Ana Sayfa', () => {
-  it('genel ilerlemeyi gösterir, "Geliştirilecek" kutusu yok (#9)', () => {
+  it('selamlamayı, tarihi ve genel ilerlemeyi gösterir, "Geliştirilecek" kutusu yok (#9)', () => {
     const wrapper = mountPage()
-    expect(wrapper.find('[data-test="overall-percent"]').text()).toBe('%0')
-    expect(wrapper.find('[data-test="overall-summary"]').text()).toBe('0 / 24 görev tamamlandı')
-    expect(
-      wrapper.find('[data-test="overall-progress"] [role="img"]').attributes('aria-label'),
-    ).toBe('Bütün görevlerin durumu: 0 tamamlandı, 0 devam ediyor, 24 yapılacak')
+    expect(wrapper.find('h1').text()).toBe('Merhaba')
+    expect(wrapper.text()).toContain('31 Ekim Cumartesi')
+    expect(text(wrapper, 'overall-percent')).toBe('%0')
+    expect(text(wrapper, 'overall-summary')).toBe('0 / 24 görev')
     expect(wrapper.text()).not.toContain('Geliştirilecek')
   })
 
-  it('yaklaşan görevleri son tarihe göre sıralar, geçmişleri ayrıca sayar (#13)', () => {
+  it('dönem çizelgesinde haftaları, bu haftayı, gecikenleri ve geçen süreyi gösterir (#11)', () => {
+    const wrapper = mountPage()
+    const weeks = wrapper.findAll('[data-test="term-week"]')
+
+    expect(weeks).toHaveLength(4)
+    expect(weeks[0]!.text()).toContain('15 – 21 Ekim')
+    expect(weeks[2]!.text()).toContain('29 Ekim – 4 Kasım')
+    expect(weeks[2]!.attributes('aria-current')).toBe('step')
+    expect(weeks[2]!.text()).toContain('Bu hafta')
+    // 1. haftanın tarihli 4 görevi bitmemiş ve süresi geçmiş.
+    expect(weeks[0]!.find('[data-test="week-overdue"]').text()).toBe('4 gecikti')
+    expect(weeks[3]!.find('[data-test="week-overdue"]').exists()).toBe(false)
+    // 15 Ekim–11 Kasım arası 28 gün; 31 Ekim dahil 17 gün geçti.
+    expect(text(wrapper, 'elapsed')).toBe('%61')
+  })
+
+  it('yaklaşan görevleri güne göre gruplar, geçmişleri ayrıca sayar (#13)', () => {
     const wrapper = mountPage()
     const rows = wrapper.findAll('[data-test="upcoming-task"]')
 
-    expect(rows).toHaveLength(5)
-    const dates = rows.map((row) => row.find('time').attributes('datetime')!)
+    expect(rows).toHaveLength(6)
+    const days = wrapper.findAll('[data-test="upcoming-tasks"] h3 time')
+    const dates = days.map((day) => day.attributes('datetime')!)
     expect(dates).toEqual([...dates].sort())
-    expect(dates[0]).toBe('2026-11-02')
-    expect(rows[0]!.find('[data-test="days-left"]').text()).toBe('2 gün kaldı')
-    // 1. ve 2. haftaların 7 tarihli görevi (YG'nin 1. haftasında iki tane) 31 Ekim'de geçmiş.
-    expect(wrapper.find('[data-test="overdue"]').text()).toContain('7 görevin son tarihi geçti')
+    expect(days[0]!.text()).toBe('2 Kasım Pazartesi')
+    expect(wrapper.find('[data-test="days-left"]').text()).toBe('2 gün kaldı')
+    expect(rows[0]!.text()).toContain('Veri Tabanı Yönetim Sistemleri, 3. hafta')
+    // 1. ve 2. haftaların tarihli 7 görevi 31 Ekim'de geçmiş.
+    expect(text(wrapper, 'overdue')).toContain('7 görevin son tarihi geçti')
   })
 
-  it('yaklaşan görev buradan tamamlanınca listeden çıkar ve genel ilerleme artar (#13)', async () => {
+  it('yaklaşan görev buradan tamamlanınca listeden çıkar, ilerleme ve hafta güncellenir (#13)', async () => {
     const wrapper = mountPage()
     const first = wrapper.find('[data-test="upcoming-task"]')
     const title = first.find('p').text()
@@ -58,11 +79,11 @@ describe('Ana Sayfa', () => {
     await first.find('[data-test="status-select"]').setValue('done')
     await flushPromises()
 
-    expect(wrapper.find('[data-test="overall-summary"]').text()).toBe('1 / 24 görev tamamlandı')
-    expect(wrapper.find('[data-test="overall-percent"]').text()).toBe('%4')
-    expect(
-      wrapper.findAll('[data-test="upcoming-task"]').map((row) => row.find('p').text()),
-    ).not.toContain(title)
+    expect(text(wrapper, 'overall-summary')).toBe('1 / 24 görev')
+    expect(text(wrapper, 'overall-percent')).toBe('%4')
+    expect(wrapper.findAll('[data-test="term-week"]')[2]!.text()).toContain('1 / 6 görev')
+    const titles = wrapper.findAll('[data-test="upcoming-task"]').map((row) => row.find('p').text())
+    expect(titles).not.toContain(title)
   })
 
   it('kayıt başarısız olursa durum geri gelir ve hata mesajı görünür', async () => {
@@ -72,40 +93,40 @@ describe('Ana Sayfa', () => {
     await wrapper.find('[data-test="upcoming-task"] [data-test="status-select"]').setValue('done')
     await flushPromises()
 
-    expect(wrapper.find('[data-test="overall-summary"]').text()).toBe('0 / 24 görev tamamlandı')
+    expect(text(wrapper, 'overall-summary')).toBe('0 / 24 görev')
     expect(wrapper.find('[role="alert"]').text()).toContain('kaydedilemedi')
   })
 
-  it('bu haftanın derslerini öğrenme hedefleri ve hafta bağlantısıyla gösterir (#48)', () => {
-    const wrapper = mountPage()
-    const items = wrapper.findAll('[data-test="this-week-item"]')
-
-    expect(items).toHaveLength(3)
-    expect(items[0]!.text()).toContain('YG · 3. hafta')
-    expect(items[0]!.findAll('ul li').length).toBeGreaterThan(0)
-    const link = items[0]!.findComponent(RouterLinkStub)
-    expect(link.props('to')).toBe('/derslerim/yazilim-gelistirme/hafta/3')
-  })
-
-  it('derslerim bölümünde her ders kısa kart olarak ilerlemesiyle görünür (#12)', async () => {
+  it('derslerin ilerlemesini ve bu haftanın konusunu hedefleriyle gösterir (#12, #48)', async () => {
     const progress = useProgressStore()
     await progress.setStatus(progress.tasks.find((t) => t.courseId === 'veri-tabani')!.id, 'done')
     const wrapper = mountPage()
 
-    const cards = wrapper.findAll('[data-test="course-card"]')
-    expect(cards).toHaveLength(3)
-    expect(cards.every((card) => !card.find('[data-test="course-tasks"]').exists())).toBe(true)
-    const vt = cards.find((card) => card.text().includes('Veri Tabanı'))!
-    expect(vt.find('[data-test="course-summary"]').text()).toBe('1 / 8 görev tamamlandı')
+    const courses = wrapper.findAll('[data-test="home-course"]')
+    expect(courses).toHaveLength(3)
+    const vt = courses.find((row) => row.text().includes('Veri Tabanı'))!
+    expect(vt.find('[data-test="course-summary"]').text()).toBe('1 / 8')
+
+    const weeks = wrapper.findAll('[data-test="this-week-item"]')
+    expect(weeks).toHaveLength(3)
+    expect(weeks[0]!.text()).toContain('3. hafta:')
+    expect(weeks[0]!.findAll('li').length).toBeGreaterThan(0)
+    const link = weeks[0]!.findComponent(RouterLinkStub)
+    expect(link.props('to')).toBe('/derslerim/yazilim-gelistirme/hafta/3')
   })
 })
 
-describe('Genel ilerleme kartı', () => {
+describe('Dönem çizelgesi', () => {
   it('hiç görev yokken %0 gösterir, hata vermez (P1-12)', () => {
-    const wrapper = mount(OverallProgressCard, {
-      props: { counts: { done: 0, inProgress: 0, todo: 0, total: 0, percent: 0 } },
+    const wrapper = mount(TermOverview, {
+      props: {
+        weeks: [],
+        elapsedPercent: 0,
+        counts: { done: 0, inProgress: 0, todo: 0, total: 0, percent: 0 },
+      },
     })
     expect(wrapper.find('[data-test="overall-percent"]').text()).toBe('%0')
-    expect(wrapper.find('[data-test="overall-summary"]').text()).toBe('0 / 0 görev tamamlandı')
+    expect(wrapper.find('[data-test="overall-summary"]').text()).toBe('0 / 0 görev')
+    expect(wrapper.findAll('[data-test="term-week"]')).toHaveLength(0)
   })
 })

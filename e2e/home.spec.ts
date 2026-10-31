@@ -16,27 +16,20 @@ test.describe('E2E: Ana Sayfa', () => {
   test('yaklaşan görev tamamlanınca genel ilerleme ve ders kartı güncellenir', async ({ page }) => {
     await login(page)
 
-    await expect(page.locator('[data-test="overall-summary"]')).toHaveText(
-      '0 / 24 görev tamamlandı',
-    )
+    await expect(page.locator('[data-test="overall-summary"]')).toHaveText('0 / 24 görev')
     const first = page.locator('[data-test="upcoming-task"]').first()
-    await expect(first).toContainText('Veri Tabanı Yönetim Sistemleri · 3. hafta')
+    await expect(first).toContainText('Veri Tabanı Yönetim Sistemleri, 3. hafta')
 
     await first.getByLabel(/^Durum:/).selectOption('done')
 
-    await expect(page.locator('[data-test="overall-summary"]')).toHaveText(
-      '1 / 24 görev tamamlandı',
-    )
+    await expect(page.locator('[data-test="overall-summary"]')).toHaveText('1 / 24 görev')
     await expect(page.locator('[data-test="overall-percent"]')).toHaveText('%4')
-    const vtCard = page.locator('[data-test="course-card"]', { hasText: 'Veri Tabanı' })
-    await expect(vtCard.locator('[data-test="course-summary"]')).toHaveText(
-      '1 / 8 görev tamamlandı',
-    )
+    const vtCourse = page.locator('[data-test="home-course"]', { hasText: 'Veri Tabanı' })
+    await expect(vtCourse.locator('[data-test="course-summary"]')).toHaveText('1 / 8')
+    await expect(page.locator('[data-test="term-week"]').nth(2)).toContainText('1 / 6 görev')
 
     await page.reload()
-    await expect(page.locator('[data-test="overall-summary"]')).toHaveText(
-      '1 / 24 görev tamamlandı',
-    )
+    await expect(page.locator('[data-test="overall-summary"]')).toHaveText('1 / 24 görev')
   })
 
   test('bu haftanın dersinden hafta detayına gidilir', async ({ page }) => {
@@ -44,7 +37,7 @@ test.describe('E2E: Ana Sayfa', () => {
 
     const items = page.locator('[data-test="this-week-item"]')
     await expect(items).toHaveCount(3)
-    await expect(items.first()).toContainText('YG · 3. hafta')
+    await expect(items.first()).toContainText('3. hafta: Geliştirme ve Test')
 
     await page.getByRole('link', { name: 'Yazılım Geliştirme, 3. haftaya git' }).click()
     await expect(page).toHaveURL('/derslerim/yazilim-gelistirme/hafta/3')

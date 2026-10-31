@@ -1,5 +1,14 @@
 import { describe, it, expect } from 'vitest'
-import { countOverdue, daysLeftText, getCurrentWeeks, getUpcomingTasks } from '../useDashboard'
+import {
+  addDays,
+  countOverdue,
+  daysLeftText,
+  getCurrentWeeks,
+  getElapsedPercent,
+  getTermWeeks,
+  getUpcomingTasks,
+  groupByDueDate,
+} from '../useDashboard'
 import coursesData from '@/data/courses.json'
 import weeksData from '@/data/weeks.json'
 import tasksData from '@/data/tasks.json'
@@ -79,5 +88,56 @@ describe('daysLeftText', () => {
     ['2026-11-04', '4 gün kaldı'],
   ])('%s → %s', (due, text) => {
     expect(daysLeftText(due, '2026-10-31')).toBe(text)
+  })
+})
+
+describe('getTermWeeks ve getElapsedPercent (dönem çizelgesi)', () => {
+  const withStatus = (status: TaskStatus = 'todo'): TaskWithStatus[] =>
+    tasksData.map((t) => ({ ...t, status }))
+
+  it('haftaların tarihini görevlerin son tarihinden çıkarır', () => {
+    const weeks = getTermWeeks(withStatus(), '2026-10-31')
+    expect(weeks.map((w) => `${w.weekNo}:${w.start}..${w.end}`)).toEqual([
+      '1:2026-10-15..2026-10-21',
+      '2:2026-10-22..2026-10-28',
+      '3:2026-10-29..2026-11-04',
+      '4:2026-11-05..2026-11-11',
+    ])
+    expect(weeks.map((w) => w.state)).toEqual(['past', 'past', 'current', 'upcoming'])
+    expect(weeks.map((w) => w.total)).toEqual([6, 6, 6, 6])
+  })
+
+  it('bitmemiş ve süresi geçmiş görevleri haftasına sayar; bitenler sayılmaz', () => {
+    expect(getTermWeeks(withStatus(), '2026-10-31').map((w) => w.overdue)).toEqual([4, 3, 0, 0])
+    expect(getTermWeeks(withStatus('done'), '2026-10-31').map((w) => w.overdue)).toEqual([
+      0, 0, 0, 0,
+    ])
+  })
+
+  it('geçen süreyi bugün dahil hesaplar, dönem dışında 0 ya da 100 olur', () => {
+    const weeks = getTermWeeks(withStatus(), '2026-10-31')
+    expect(getElapsedPercent(weeks, '2026-10-31')).toBe(61)
+    expect(getElapsedPercent(weeks, '2026-10-01')).toBe(0)
+    expect(getElapsedPercent(weeks, '2026-12-01')).toBe(100)
+    expect(getElapsedPercent([], '2026-10-31')).toBe(0)
+  })
+
+  it('addDays ay sonunu doğru geçer', () => {
+    expect(addDays('2026-10-28', 4)).toBe('2026-11-01')
+    expect(addDays('2026-10-21', -6)).toBe('2026-10-15')
+  })
+})
+
+describe('groupByDueDate', () => {
+  it('aynı günün görevlerini sırasını bozmadan bir araya toplar', () => {
+    const groups = groupByDueDate([
+      task('a', '2026-11-02'),
+      task('b', '2026-11-02'),
+      task('c', '2026-11-03'),
+    ])
+    expect(groups.map((g) => [g.date, g.tasks.map((t) => t.id)])).toEqual([
+      ['2026-11-02', ['a', 'b']],
+      ['2026-11-03', ['c']],
+    ])
   })
 })

@@ -347,26 +347,26 @@ Birim testleri, test ettikleri dosyanın yanındaki `__tests__/` klasöründe du
 
 ### `src/components/` — bileşenler
 
-| Dosya                        | Ne işe yarar                                                                                                                                   |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `layout/AppSidebar.vue`      | Sol kenar çubuğu: logo, ikonlu ana menü (seçili sayfa vurgulu), kullanıcı kartı, tema düğmesi, çıkış. Masaüstünde sabit, mobilde soldan açılır |
-| `layout/AppHeader.vue`       | Yalnızca mobilde görünen üst bar: menü düğmesi, logo, tema düğmesi                                                                             |
-| `layout/AppLogo.vue`         | Logo ve uygulama adı; kenar çubuğunda, mobil üst barda ve giriş sayfalarında                                                                   |
-| `layout/AppFooter.vue`       | Alt bilgi ve Gizlilik/KVKK bağlantısı                                                                                                          |
-| `layout/ThemeToggle.vue`     | Karanlık/aydınlık tema düğmesi                                                                                                                 |
-| `layout/DemoBanner.vue`      | Demo modundayken üstte çıkan uyarı                                                                                                             |
-| `layout/SkipLink.vue`        | Klavye kullanıcıları için "İçeriğe geç" bağlantısı                                                                                             |
-| `common/AppIcon.vue`         | Uygulamadaki tüm ikonlar tek yerde (`<AppIcon name="home" class="size-5" />`)                                                                  |
-| `common/PageHeader.vue`      | Sayfa başlığı ve açıklaması                                                                                                                    |
-| `common/TextField.vue`       | Etiketli metin kutusu (formlarda kullanılır)                                                                                                   |
-| `common/PagePlaceholder.vue` | **Geçici.** Sayfalarda "Geliştirilecek" listesini gösterir; sayfalar bitince silinir                                                           |
-| `auth/AuthCard.vue`          | Giriş, kayıt ve şifre sıfırlama formlarının ortak kartı; hata mesajını gösterir                                                                |
-| `auth/SubmitButton.vue`      | Form gönderme düğmesi; işlem sürerken pasifleşir                                                                                               |
-| `common/StatusSplitBar.vue`  | Görevlerin durum dağılımını (tamamlandı / devam ediyor / yapılacak) gösteren ince çubuk; renkleri `statusSegments.ts`'te                       |
-| `common/StatusLegend.vue`    | Durum renklerinin açıklaması; istenirse her durumun sayısını da yazar                                                                          |
-| `home/`                      | Ana Sayfa kartları: `OverallProgressCard` (genel ilerleme), `UpcomingTasks` (yaklaşan görevler), `ThisWeekCard` (bu haftanın dersleri)         |
-| `lessons/`                   | `CourseCard` (ders kartı; Ana Sayfa'da `compact`), `CourseStatusChart` (dersler için durum grafiği), `CourseFilterBar` (arama ve filtre)       |
-| `tasks/`                     | Görev kartı, filtre ve arama bileşenleri buraya eklenecek                                                                                      |
+| Dosya                        | Ne işe yarar                                                                                                                                               |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `layout/AppSidebar.vue`      | Sol kenar çubuğu: logo, ikonlu ana menü (seçili sayfa vurgulu), kullanıcı kartı, tema düğmesi, çıkış. Masaüstünde sabit, mobilde soldan açılır             |
+| `layout/AppHeader.vue`       | Yalnızca mobilde görünen üst bar: menü düğmesi, logo, tema düğmesi                                                                                         |
+| `layout/AppLogo.vue`         | Logo ve uygulama adı; kenar çubuğunda, mobil üst barda ve giriş sayfalarında                                                                               |
+| `layout/AppFooter.vue`       | Alt bilgi ve Gizlilik/KVKK bağlantısı                                                                                                                      |
+| `layout/ThemeToggle.vue`     | Karanlık/aydınlık tema düğmesi                                                                                                                             |
+| `layout/DemoBanner.vue`      | Demo modundayken üstte çıkan uyarı                                                                                                                         |
+| `layout/SkipLink.vue`        | Klavye kullanıcıları için "İçeriğe geç" bağlantısı                                                                                                         |
+| `common/AppIcon.vue`         | Uygulamadaki tüm ikonlar tek yerde (`<AppIcon name="home" class="size-5" />`)                                                                              |
+| `common/PageHeader.vue`      | Sayfa başlığı ve açıklaması                                                                                                                                |
+| `common/TextField.vue`       | Etiketli metin kutusu (formlarda kullanılır)                                                                                                               |
+| `common/PagePlaceholder.vue` | **Geçici.** Sayfalarda "Geliştirilecek" listesini gösterir; sayfalar bitince silinir                                                                       |
+| `auth/AuthCard.vue`          | Giriş, kayıt ve şifre sıfırlama formlarının ortak kartı; hata mesajını gösterir                                                                            |
+| `auth/SubmitButton.vue`      | Form gönderme düğmesi; işlem sürerken pasifleşir                                                                                                           |
+| `common/StatusSplitBar.vue`  | Görevlerin durum dağılımını (tamamlandı / devam ediyor / yapılacak) gösteren ince çubuk; renkleri `statusSegments.ts`'te                                   |
+| `common/StatusLegend.vue`    | Durum renklerinin açıklaması; istenirse her durumun sayısını da yazar                                                                                      |
+| `home/`                      | Ana Sayfa kartları: `TermOverview` (dönem çizelgesi), `UpcomingTasks` (güne göre yaklaşan görevler), `HomeCourses` (ders ilerlemesi ve bu haftanın konusu) |
+| `lessons/`                   | `CourseCard` (ders kartı), `CourseStatusChart` (dersler için durum grafiği), `CourseFilterBar` (arama ve filtre)                                           |
+| `tasks/`                     | Görev kartı, filtre ve arama bileşenleri buraya eklenecek                                                                                                  |
 
 ### `src/composables/` — tekrar kullanılan mantık
 
@@ -375,7 +375,7 @@ Birim testleri, test ettikleri dosyanın yanındaki `__tests__/` klasöründe du
 | `useMediaQuery.ts`     | Bir ekran koşulunun (ör. masaüstü genişliği, sistemin karanlık teması) o an geçerli olup olmadığını verir; değişince kendiliğinden güncellenir |
 | `useCourseProgress.ts` | Her dersin görevleri, durum sayıları, ilerleme yüzdesi ve durumu (Başlanmadı / Devam ediyor / Tamamlandı)                                      |
 | `useCourseFilters.ts`  | Dersleri duruma ve arama sözcüğüne göre süzer (Fuse.js)                                                                                        |
-| `useDashboard.ts`      | Ana Sayfa hesapları: bugüne göre her dersin haftası (görev son tarihlerinden), yaklaşan ve süresi geçmiş görevler                              |
+| `useDashboard.ts`      | Ana Sayfa hesapları: dönemin haftaları ve geçen süre, bugüne göre her dersin haftası, yaklaşan ve süresi geçmiş görevler                       |
 
 ### `src/views/` — sayfalar
 
