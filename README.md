@@ -79,7 +79,7 @@ Tüm ekip üyeleri aynı zamanda geliştiricidir.
 | Haftalık ders kartları ve öğrenme hedefleri                    | Ders ve hafta detayı     | Geliştiriliyor |
 | Görev listesi ve durum değiştirme                              | Görevlerim, hafta detayı | Geliştiriliyor |
 | Duruma, derse ve haftaya göre filtre; arama                    | Görevlerim               | Geliştiriliyor |
-| Genel ve ders bazında ilerleme göstergesi                      | Ana Sayfa                | Geliştiriliyor |
+| Genel ve ders bazında ilerleme, yaklaşan görevler, bu hafta    | Ana Sayfa                | Hazır          |
 
 ## Sayfalar
 
@@ -272,6 +272,7 @@ YG-Proje1-Grup3/
 │   ├── components/     Tekrar kullanılan bileşenler
 │   │   ├── auth/       Giriş/kayıt formlarının parçaları
 │   │   ├── common/     Her sayfada kullanılabilen küçük bileşenler
+│   │   ├── home/       Ana Sayfa kartları
 │   │   ├── layout/     Menü, üst bar, alt bilgi, tema düğmesi
 │   │   ├── lessons/    Ders kartı, ders grafiği ve filtresi; hafta kartları
 │   │   └── tasks/      Görev kartı, filtre, arama (geliştirilecek)
@@ -283,6 +284,7 @@ YG-Proje1-Grup3/
 │   ├── services/       Veri okuma/yazma (Firebase veya demo modu)
 │   ├── stores/         Ortak veri (Pinia)
 │   ├── types/          TypeScript tipleri
+│   ├── utils/          Küçük yardımcılar (Türkçe tarih biçimi)
 │   ├── views/          Sayfalar
 │   ├── App.vue         Kök bileşen
 │   ├── config.ts       Ortak sabitler
@@ -362,6 +364,7 @@ Birim testleri, test ettikleri dosyanın yanındaki `__tests__/` klasöründe du
 | `auth/SubmitButton.vue`      | Form gönderme düğmesi; işlem sürerken pasifleşir                                                                                               |
 | `common/StatusSplitBar.vue`  | Görevlerin durum dağılımını (tamamlandı / devam ediyor / yapılacak) gösteren ince çubuk; renkleri `statusSegments.ts`'te                       |
 | `common/StatusLegend.vue`    | Durum renklerinin açıklaması; istenirse her durumun sayısını da yazar                                                                          |
+| `home/`                      | Ana Sayfa kartları: `OverallProgressCard` (genel ilerleme), `UpcomingTasks` (yaklaşan görevler), `ThisWeekCard` (bu haftanın dersleri)         |
 | `lessons/`                   | `CourseCard` (ders kartı; Ana Sayfa'da `compact`), `CourseStatusChart` (dersler için durum grafiği), `CourseFilterBar` (arama ve filtre)       |
 | `tasks/`                     | Görev kartı, filtre ve arama bileşenleri buraya eklenecek                                                                                      |
 
@@ -372,12 +375,13 @@ Birim testleri, test ettikleri dosyanın yanındaki `__tests__/` klasöründe du
 | `useMediaQuery.ts`     | Bir ekran koşulunun (ör. masaüstü genişliği, sistemin karanlık teması) o an geçerli olup olmadığını verir; değişince kendiliğinden güncellenir |
 | `useCourseProgress.ts` | Her dersin görevleri, durum sayıları, ilerleme yüzdesi ve durumu (Başlanmadı / Devam ediyor / Tamamlandı)                                      |
 | `useCourseFilters.ts`  | Dersleri duruma ve arama sözcüğüne göre süzer (Fuse.js)                                                                                        |
+| `useDashboard.ts`      | Ana Sayfa hesapları: bugüne göre her dersin haftası (görev son tarihlerinden), yaklaşan ve süresi geçmiş görevler                              |
 
 ### `src/views/` — sayfalar
 
 | Dosya                         | Adres                               | Ne işe yarar                                                            |
 | ----------------------------- | ----------------------------------- | ----------------------------------------------------------------------- |
-| `HomeView.vue`                | `/`                                 | Ana Sayfa: genel ilerleme ve özet                                       |
+| `HomeView.vue`                | `/`                                 | Genel ilerleme, yaklaşan görevler, bu haftanın dersleri, ders özetleri  |
 | `CoursesView.vue`             | `/derslerim`                        | Ders kartları, durum grafiği, arama ve filtre                           |
 | `CourseDetailView.vue`        | `/derslerim/:dersId`                | Bir dersin haftaları; ders yoksa "bulunamadı" mesajı                    |
 | `WeekDetailView.vue`          | `/derslerim/:dersId/hafta/:haftaNo` | Haftanın öğrenme hedefleri ve görevleri                                 |
@@ -637,7 +641,7 @@ Ekran görüntüleri sayfalar tamamlandıkça `docs/screenshots/` klasörüne ek
 
 ## Bilinen eksikler
 
-- Ana Sayfa ve Profil sayfaları iskelet halindedir. Her sayfadaki
+- Profil sayfası iskelet halindedir. Her sayfadaki
   "Geliştirilecek" kutusu yapılacakları listeler; bu maddeler GitHub Projects panosunda issue
   olarak takip edilir.
 - Gizlilik sayfasındaki iletişim e-postası henüz eklenmedi (`src/config.ts` → `CONTACT_EMAIL`,
