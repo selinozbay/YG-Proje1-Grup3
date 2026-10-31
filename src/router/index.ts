@@ -11,8 +11,11 @@ declare module 'vue-router' {
     requiresAuth?: boolean
     /** Giriş yapmış kullanıcı ana sayfaya yönlendirilir (giriş, kayıt). */
     guestOnly?: boolean
-    /** 'app': menülü çerçeve (varsayılan), 'public': sade çerçeve. */
-    layout?: 'app' | 'public'
+    /**
+     * 'app': menülü çerçeve (varsayılan), 'public': sade çerçeve,
+     * 'auto': giriş yapmışsa menülü, yapmamışsa sade çerçeve (herkese açık sayfalar için).
+     */
+    layout?: 'app' | 'public' | 'auto'
   }
 }
 
@@ -82,7 +85,7 @@ const router = createRouter({
       path: '/gizlilik',
       name: 'privacy',
       component: () => import('@/views/PrivacyView.vue'),
-      meta: { title: 'Gizlilik ve KVKK', layout: 'public' },
+      meta: { title: 'Gizlilik ve KVKK', layout: 'auto' },
     },
     {
       path: '/:pathMatch(.*)*',

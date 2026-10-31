@@ -128,6 +128,20 @@ async function logout() {
         </span>
         <ThemeToggle />
       </div>
+      <!-- KVKK aydınlatma metni her zaman bir tık uzakta olsun (#36). -->
+      <RouterLink
+        to="/gizlilik"
+        :aria-current="isActive('/gizlilik') ? 'page' : undefined"
+        class="mt-1 flex items-center gap-3 rounded-xl px-3 py-2 text-xs font-medium transition-colors"
+        :class="
+          isActive('/gizlilik')
+            ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300'
+            : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100'
+        "
+      >
+        <AppIcon name="shield" class="size-4" />
+        Gizlilik ve KVKK
+      </RouterLink>
       <button
         type="button"
         class="mt-1 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-red-50 hover:text-red-700 dark:text-slate-400 dark:hover:bg-red-500/10 dark:hover:text-red-400"
