@@ -1,24 +1,120 @@
-import { describe, it, expect, beforeEach } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { flushPromises, mount } from '@vue/test-utils'
 import { createPinia, setActivePinia, type Pinia } from 'pinia'
 import TasksView from '../TasksView.vue'
+import { userDataService } from '@/services/userData'
 import { useCatalogStore } from '@/stores/catalog'
+import { useProgressStore } from '@/stores/progress'
 
+const USER_ID = 'ogrenci-1'
 let pinia: Pinia
 
-beforeEach(() => {
+beforeEach(async () => {
+  localStorage.clear()
+  vi.restoreAllMocks()
   pinia = createPinia()
   setActivePinia(pinia)
+  await useProgressStore().load(USER_ID)
 })
+
+const mountPage = () => mount(TasksView, { global: { plugins: [pinia] } })
+const cards = (wrapper: ReturnType<typeof mountPage>) => wrapper.findAll('article')
 
 describe('Görevlerim sayfası', () => {
   it('bütün derslerin görevlerini tek listede kart olarak gösterir', () => {
-    const wrapper = mount(TasksView, { global: { plugins: [pinia] } })
+    const wrapper = mountPage()
     const catalog = useCatalogStore()
 
-    expect(wrapper.findAll('article')).toHaveLength(catalog.tasks.length)
+    expect(cards(wrapper)).toHaveLength(catalog.tasks.length)
     for (const course of catalog.courses) {
       expect(wrapper.text()).toContain(course.title)
     }
+  })
+
+  it('kartta durum değişince görev kaydedilir ve özet güncellenir (#49)', async () => {
+    const wrapper = mountPage()
+    const progress = useProgressStore()
+    const firstTask = progress.tasks[0]!
+
+    await cards(wrapper)[0]!.find('[data-test="status-select"]').setValue('done')
+    await flushPromises()
+
+    expect(progress.statusOf(firstTask.id)).toBe('done')
+    expect(wrapper.find('[data-test="summary"]').text()).toBe(
+      `1 / ${progress.tasks.length} görev tamamlandı`,
+    )
+  })
+
+  it('kayıt başarısız olursa eski durum geri gelir ve hata mesajı görünür (#49)', async () => {
+    vi.spyOn(userDataService, 'setTaskStatus').mockRejectedValueOnce(new Error('bağlantı yok'))
+    const wrapper = mountPage()
+    const firstTask = useProgressStore().tasks[0]!
+
+    await cards(wrapper)[0]!.find('[data-test="status-select"]').setValue('done')
+    await flushPromises()
+
+    expect(useProgressStore().statusOf(firstTask.id)).toBe('todo')
+    expect(wrapper.find('[role="alert"]').text()).toContain('kaydedilemedi')
+  })
+
+  it('duruma göre filtreler ve düğmelerde görev sayısını gösterir (#24)', async () => {
+    const progress = useProgressStore()
+    await progress.setStatus(progress.tasks[0]!.id, 'done')
+    const wrapper = mountPage()
+
+    const doneButton = wrapper
+      .findAll('button[aria-pressed]')
+      .find((button) => button.text().startsWith('Tamamlandı'))!
+    expect(doneButton.text()).toContain('1')
+
+    await doneButton.trigger('click')
+    expect(doneButton.attributes('aria-pressed')).toBe('true')
+    expect(cards(wrapper)).toHaveLength(1)
+  })
+
+  it('derse ve haftaya göre filtreler; hafta seçenekleri seçilen derse göre değişir (#50)', async () => {
+    const catalog = useCatalogStore()
+    const wrapper = mountPage()
+    const [courseSelect, weekSelect] = wrapper.findAll('select:not([data-test="status-select"])')
+
+    await courseSelect!.setValue('veri-tabani')
+    const courseTasks = catalog.tasks.filter((task) => task.courseId === 'veri-tabani')
+    expect(cards(wrapper)).toHaveLength(courseTasks.length)
+
+    const weekOptions = weekSelect!.findAll('option').map((option) => option.text())
+    expect(weekOptions).toEqual([
+      'Tüm haftalar',
+      ...catalog.getWeeks('veri-tabani').map((week) => `${week.weekNo}. hafta`),
+    ])
+
+    await weekSelect!.setValue('2')
+    expect(cards(wrapper)).toHaveLength(courseTasks.filter((task) => task.weekNo === 2).length)
+    expect(cards(wrapper).every((card) => card.text().includes('2. hafta'))).toBe(true)
+  })
+
+  it('arama kutusuna yazıldıkça liste daralır (#26)', async () => {
+    const wrapper = mountPage()
+    const total = cards(wrapper).length
+
+    await wrapper.find('input[type="search"]').setValue('SQL')
+
+    const found = cards(wrapper)
+    expect(found.length).toBeGreaterThan(0)
+    expect(found.length).toBeLessThan(total)
+    for (const card of found) expect(card.text().toLocaleLowerCase('tr-TR')).toContain('sql')
+  })
+
+  it('sonuç yoksa boş durum mesajı gösterir, filtreler temizlenince liste geri gelir (#51)', async () => {
+    const wrapper = mountPage()
+    const total = cards(wrapper).length
+
+    await wrapper.find('input[type="search"]').setValue('böyle bir görev yok')
+    const empty = wrapper.find('[data-test="empty-state"]')
+    expect(empty.text()).toContain('Aradığın görev bulunamadı')
+    expect(cards(wrapper)).toHaveLength(0)
+
+    await empty.find('button').trigger('click')
+    expect(cards(wrapper)).toHaveLength(total)
+    expect((wrapper.find('input[type="search"]').element as HTMLInputElement).value).toBe('')
   })
 })

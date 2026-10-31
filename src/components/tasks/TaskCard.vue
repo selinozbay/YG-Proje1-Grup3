@@ -1,8 +1,20 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { TASK_STATUS_LABELS, type TaskStatus, type TaskWithStatus } from '@/types/task'
+import TaskStatusSelect from './TaskStatusSelect.vue'
+import { STATUS_CLASSES } from './statusStyles'
 
-const props = defineProps<{ task: TaskWithStatus; courseTitle: string }>()
+const props = withDefaults(
+  defineProps<{
+    task: TaskWithStatus
+    courseTitle: string
+    /** true ise durum rozeti yerine durumu değiştiren seçici gösterilir. */
+    editable?: boolean
+  }>(),
+  { editable: false },
+)
+
+const emit = defineEmits<{ 'status-change': [status: TaskStatus] }>()
 
 // "2026-10-21" → "21 Ekim 2026". Saati eklemek tarihin yerel saatle okunmasını sağlar;
 // yoksa bazı saat dilimlerinde bir önceki gün görünür.
@@ -15,12 +27,6 @@ const dueDateText = computed(() =>
       })
     : '',
 )
-
-const STATUS_CLASSES: Record<TaskStatus, string> = {
-  todo: 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300',
-  'in-progress': 'bg-amber-100 text-amber-800 dark:bg-amber-500/15 dark:text-amber-300',
-  done: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-500/15 dark:text-emerald-300',
-}
 </script>
 
 <template>
@@ -29,7 +35,15 @@ const STATUS_CLASSES: Record<TaskStatus, string> = {
   >
     <div class="flex items-start justify-between gap-3">
       <h2 class="leading-snug font-semibold">{{ task.title }}</h2>
+      <TaskStatusSelect
+        v-if="editable"
+        class="shrink-0"
+        :model-value="task.status"
+        :label="`Durum: ${task.title}`"
+        @update:model-value="emit('status-change', $event)"
+      />
       <span
+        v-else
         class="shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium"
         :class="STATUS_CLASSES[task.status]"
         data-test="status"
