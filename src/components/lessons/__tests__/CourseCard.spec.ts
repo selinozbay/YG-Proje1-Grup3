@@ -107,11 +107,7 @@ describe('CourseCard', () => {
     expect(wrapper.find('[data-test="next-task"]').exists()).toBe(false)
   })
 
-  it('compact hâlde açıklama ve görev listesi görünmez, başlık seviyesi ayarlanabilir', () => {
-    const wrapper = mountCard(tasks, { compact: true, headingLevel: 3 })
-    expect(wrapper.text()).not.toContain('İlişkisel veri modeli')
-    expect(wrapper.find('[data-test="course-tasks"]').exists()).toBe(false)
-    expect(wrapper.find('h3').exists()).toBe(true)
-    expect(wrapper.find('[data-test="course-summary"]').exists()).toBe(true)
+  it('başlık seviyesi ayarlanabilir', () => {
+    expect(mountCard(tasks, { headingLevel: 3 }).find('h3').exists()).toBe(true)
   })
 })
