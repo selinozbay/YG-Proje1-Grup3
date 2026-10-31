@@ -33,6 +33,18 @@ test.describe('E2E: Kayıt ol (#4)', () => {
     await expect(page).toHaveURL('/')
     await expect(page.locator('h1')).toContainText('Merhaba, Deneme Öğrenci')
   })
+
+  test('ad soyad yalnızca boşluksa kayıt olunmaz, Türkçe uyarı gösterilir (#71)', async ({
+    page,
+  }) => {
+    await fillRegisterForm(page)
+    await page.getByLabel('Ad soyad').fill('   ')
+    await page.getByRole('checkbox').check()
+    await page.getByRole('button', { name: 'Kayıt ol' }).click()
+
+    await expect(page.getByRole('alert')).toHaveText('Ad soyad alanını doldurun.')
+    await expect(page).toHaveURL(/\/kayit$/)
+  })
 })
 
 test.describe('E2E: Giriş yap (#4)', () => {
