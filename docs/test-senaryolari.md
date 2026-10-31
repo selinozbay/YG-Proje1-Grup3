@@ -23,7 +23,7 @@ Bölüm 3.2) bağlanmıştır.
 
 | Sonuç       | Sayı | Anlamı                                          |
 | ----------- | ---: | ----------------------------------------------- |
-| ✅ Geçti    |   39 | Beklenen sonuç alındı                           |
+| ✅ Geçti    |   43 | Beklenen sonuç alındı                           |
 | ❌ Kaldı    |    0 | Beklenen sonuç alınmadı, hata kaydı açıldı      |
 | ⚠️ Kısmen   |    0 | Çalışıyor ama beklenenden küçük bir sapma var   |
 | ⏳ Bekliyor |    8 | Özellik henüz geliştirilmedi, ilgili issue açık |
@@ -95,11 +95,13 @@ _CI_ = GitHub Actions.
 
 ### Tema (KH-9)
 
-| No   | Senaryo                         | Adımlar                                                                 | Beklenen sonuç        | Gerçek sonuç          | Yöntem | Sonuç |
-| ---- | ------------------------------- | ----------------------------------------------------------------------- | --------------------- | --------------------- | ------ | ----- |
-| T-32 | Tema düğmesiyle tema değiştirme | Üst çubuktaki "Karanlık temaya geç" düğmesine bas                       | Karanlık tema açılır  | Karanlık tema açıldı  | Elle   | ✅    |
-| T-33 | Temanın yenilemede korunması    | Karanlık temaya geç, sayfayı yeniden yükle                              | Karanlık tema korunur | Karanlık tema korundu | Elle   | ✅    |
-| T-34 | İlk açılışta tema               | Tema tercihi kayıtlı değilken, sistem karanlık temadayken uygulamayı aç | Aydınlık tema açılır  | Aydınlık tema açıldı  | Elle   | ✅    |
+| No   | Senaryo                                        | Adımlar                                                                  | Beklenen sonuç                                                                    | Gerçek sonuç                                                          | Yöntem     | Sonuç |
+| ---- | ---------------------------------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ---------- | ----- |
+| T-32 | Tema düğmesiyle tema değiştirme                | Üst çubuktaki "Karanlık temaya geç" düğmesine bas                        | Karanlık tema açılır                                                              | Karanlık tema açıldı                                                  | Elle       | ✅    |
+| T-33 | Temanın yenilemede korunması                   | Karanlık temaya geç, sayfayı yeniden yükle                               | Karanlık tema korunur                                                             | Karanlık tema korundu                                                 | Elle       | ✅    |
+| T-34 | İlk açılışta tema                              | Tema tercihi kayıtlı değilken, sistem karanlık temadayken uygulamayı aç  | Aydınlık tema açılır                                                              | Aydınlık tema açıldı                                                  | Elle       | ✅    |
+| T-55 | Profilde tema seçimi ve kalıcılık (#52, P1-13) | Profil'de "Karanlık"ı seç, sayfayı yenile; sonra "Aydınlık"ı seç, yenile | Seçilen tema hemen uygulanır ve yenilemede korunur; seçili seçenek işaretli gelir | Beklendiği gibi; yenilemeden sonra "Karanlık" seçili ve tema karanlık | Birim, E2E | ✅    |
+| T-56 | "Sistem" teması (#52)                          | Cihaz karanlık temadayken "Sistem"i seç, ardından cihazı aydınlığa al    | Uygulama cihazın temasını izler                                                   | Karanlık → aydınlık geçişi sayfa yenilenmeden izlendi                 | E2E        | ✅    |
 
 ### Mobil görünüm ve erişilebilirlik (KH-10)
 
@@ -112,13 +114,15 @@ _CI_ = GitHub Actions.
 
 ### Gizlilik, hesap silme ve veri güvenliği (KH-11)
 
-| No   | Senaryo                                       | Adımlar                                                                | Beklenen sonuç                                            | Gerçek sonuç    | Yöntem   | Sonuç  |
-| ---- | --------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------- | --------------- | -------- | ------ |
-| T-39 | Gizlilik sayfasının herkese açık olması       | Giriş yapmadan `/gizlilik` adresini aç                                 | Sayfa giriş istemeden açılır                              | Beklendiği gibi | Elle     | ✅     |
-| T-40 | Hesap ve verilerin silinmesi                  | Hesabı sil                                                             | Hesap ve tüm görev durumları silinir                      | Beklendiği gibi | Emülatör | ✅     |
-| T-41 | Kullanıcının yalnızca kendi verisine erişmesi | Bir kullanıcıyla başka bir kullanıcının belgesini okumayı/yazmayı dene | Erişim reddedilir; giriş yapmayan hiçbir belgeye erişemez | Beklendiği gibi | Emülatör | ✅     |
-| T-42 | Görev durumlarının Firestore'da saklanması    | Görev durumu kaydet, başka bir görevi kaydet                           | Her kayıt diğer görevleri korur                           | Beklendiği gibi | Emülatör | ✅     |
-| T-43 | Canlı sitede gerçek hesapla uçtan uca deneme  | Canlı sitede kayıt, giriş, şifre sıfırlama ve hesap silme              | Hepsi çalışır                                             | Henüz denenmedi | Elle     | ⏳ #60 |
+| No   | Senaryo                                           | Adımlar                                                                | Beklenen sonuç                                                                                                                                          | Gerçek sonuç                                           | Yöntem      | Sonuç  |
+| ---- | ------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ----------- | ------ |
+| T-39 | Gizlilik sayfasının herkese açık olması           | Giriş yapmadan `/gizlilik` adresini aç                                 | Sayfa giriş istemeden açılır                                                                                                                            | Beklendiği gibi                                        | Elle        | ✅     |
+| T-40 | Hesap ve verilerin silinmesi                      | Hesabı sil                                                             | Hesap ve tüm görev durumları silinir                                                                                                                    | Beklendiği gibi                                        | Emülatör    | ✅     |
+| T-41 | Kullanıcının yalnızca kendi verisine erişmesi     | Bir kullanıcıyla başka bir kullanıcının belgesini okumayı/yazmayı dene | Erişim reddedilir; giriş yapmayan hiçbir belgeye erişemez                                                                                               | Beklendiği gibi                                        | Emülatör    | ✅     |
+| T-42 | Görev durumlarının Firestore'da saklanması        | Görev durumu kaydet, başka bir görevi kaydet                           | Her kayıt diğer görevleri korur                                                                                                                         | Beklendiği gibi                                        | Emülatör    | ✅     |
+| T-43 | Canlı sitede gerçek hesapla uçtan uca deneme      | Canlı sitede kayıt, giriş, şifre sıfırlama ve hesap silme              | Hepsi çalışır                                                                                                                                           | Henüz denenmedi                                        | Elle        | ⏳ #60 |
+| T-57 | Profilde hesap bilgileri ve şifre sıfırlama (#30) | Profil'i aç, "Şifre sıfırlama bağlantısı gönder"e bas                  | Ad, e-posta ve baş harfler görünür; bağlantının e-postaya gönderildiği bildirilir, hata olursa Türkçe uyarı çıkar                                       | Beklendiği gibi (hata durumu birim testinde denendi)   | Birim, E2E  | ✅     |
+| T-58 | Profil istatistikleri (#29)                       | Profil'i aç, bir görevi tamamla                                        | Tamamlanan görev, devam eden görev, aktif ve tamamlanan ders sayıları, durum dağılımı ve derslere göre ilerleme görünür; görev tamamlanınca güncellenir | Beklendiği gibi; 375 px'de ve karanlık temada okunaklı | Birim, Elle | ✅     |
 
 ### Genel
 
