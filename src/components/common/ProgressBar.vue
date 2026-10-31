@@ -23,7 +23,7 @@ const percent = computed(() => Math.min(100, Math.max(0, Math.round(props.value 
 <template>
   <div class="flex items-center gap-3">
     <div
-      class="h-2.5 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800"
+      class="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800"
       role="progressbar"
       :aria-label="label"
       aria-valuemin="0"
@@ -31,11 +31,14 @@ const percent = computed(() => Math.min(100, Math.max(0, Math.round(props.value 
       :aria-valuenow="percent"
     >
       <div
-        class="h-full rounded-full bg-indigo-600 transition-[width] duration-300 dark:bg-indigo-500"
+        class="h-full rounded-full bg-indigo-600 transition-[width] duration-300 motion-reduce:transition-none dark:bg-indigo-400"
         :style="{ width: `${percent}%` }"
       />
     </div>
-    <span v-if="showValue" class="w-11 text-right text-sm font-medium tabular-nums">
+    <span
+      v-if="showValue"
+      class="w-10 text-right text-xs font-medium text-slate-600 tabular-nums dark:text-slate-300"
+    >
       %{{ percent }}
     </span>
   </div>

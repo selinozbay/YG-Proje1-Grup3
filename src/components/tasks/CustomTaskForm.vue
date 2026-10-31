@@ -57,7 +57,7 @@ const fieldClass =
 <template>
   <form
     ref="formEl"
-    class="mb-6 rounded-xl border border-indigo-200 bg-white p-4 shadow-sm dark:border-indigo-500/30 dark:bg-slate-900"
+    class="mb-6 rounded-lg border border-indigo-200 bg-white p-4 dark:border-indigo-500/30 dark:bg-slate-900"
     :aria-labelledby="headingId"
     novalidate
     data-test="custom-task-form"

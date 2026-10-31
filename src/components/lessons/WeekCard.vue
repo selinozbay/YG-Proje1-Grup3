@@ -16,7 +16,7 @@ defineProps<{
 <template>
   <RouterLink
     :to="to"
-    class="flex h-full flex-col rounded-xl border bg-white p-5 shadow-sm transition-colors hover:border-indigo-400 dark:bg-slate-900 dark:hover:border-indigo-500"
+    class="flex h-full flex-col rounded-lg border bg-white p-5 transition-colors hover:border-indigo-400 dark:bg-slate-900 dark:hover:border-indigo-500"
     :class="
       state === 'current'
         ? 'border-indigo-300 ring-1 ring-indigo-300 dark:border-indigo-500/60 dark:ring-indigo-500/60'

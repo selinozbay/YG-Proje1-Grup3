@@ -71,8 +71,11 @@ onBeforeUnmount(() => {
     <div class="flex min-h-screen min-w-0 flex-1 flex-col">
       <DemoBanner />
       <AppHeader :menu-open="sidebarOpen" @open-menu="openSidebar" />
-      <main id="main" tabindex="-1" class="flex-1 px-4 py-6 md:px-10 md:py-10">
-        <slot />
+      <main id="main" tabindex="-1" class="flex-1 px-4 py-6 md:px-8 md:py-8 lg:px-12">
+        <!-- Geniş ekranda satırlar okunaksız uzamasın diye içerik ortada sınırlı genişlikte durur. -->
+        <div class="mx-auto w-full max-w-[72rem]">
+          <slot />
+        </div>
       </main>
       <AppFooter />
     </div>
