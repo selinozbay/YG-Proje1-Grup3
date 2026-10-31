@@ -91,3 +91,123 @@ describe('useProgressStore', () => {
     spy.mockRestore()
   })
 })
+
+describe('Kullanıcının kendi görevleri (#23)', () => {
+  const USER = 'ogrenci-kendi'
+  const newTask = {
+    title: '  Sunuma hazırlan  ',
+    description: 'Slaytları bitir',
+    courseId: 'yazilim-gelistirme',
+    dueDate: '2026-11-10',
+  }
+
+  beforeEach(async () => {
+    setActivePinia(createPinia())
+    localStorage.clear()
+    vi.restoreAllMocks()
+    await useProgressStore().load(USER)
+  })
+
+  it('eklenen görev ders görevlerinin ardından listeye "kendi görevi" olarak girer', async () => {
+    const progress = useProgressStore()
+    const before = progress.tasks.length
+
+    const id = await progress.saveCustomTask(newTask)
+
+    expect(progress.tasks).toHaveLength(before + 1)
+    const added = progress.tasks[progress.tasks.length - 1]!
+    expect(added).toMatchObject({
+      id,
+      title: 'Sunuma hazırlan',
+      description: 'Slaytları bitir',
+      courseId: 'yazilim-gelistirme',
+      dueDate: '2026-11-10',
+      weekNo: 0,
+      tags: [],
+      custom: true,
+      status: 'todo',
+    })
+    expect(id).toMatch(/^custom-/)
+  })
+
+  it('kendi görevinin durumu değiştirilir ve genel ilerlemeye sayılır', async () => {
+    const progress = useProgressStore()
+    const id = await progress.saveCustomTask(newTask)
+
+    await progress.setStatus(id, 'done')
+
+    expect(progress.overall.done).toBe(1)
+    expect(progress.overall.total).toBe(progress.tasks.length)
+  })
+
+  it('kaydedilen görev sayfa yenilenince geri gelir', async () => {
+    const id = await useProgressStore().saveCustomTask(newTask)
+
+    setActivePinia(createPinia())
+    const reloaded = useProgressStore()
+    await reloaded.load(USER)
+
+    expect(reloaded.tasks.find((task) => task.id === id)?.title).toBe('Sunuma hazırlan')
+  })
+
+  it('düzenlenen görev aynı id ve eklenme zamanıyla güncellenir; boşaltılan alanlar silinir', async () => {
+    const progress = useProgressStore()
+    const id = await progress.saveCustomTask(newTask)
+    const createdAt = progress.customTasks[id]!.createdAt
+
+    await progress.saveCustomTask({ ...newTask, title: 'Sunum provası', dueDate: '' }, id)
+
+    expect(Object.keys(progress.customTasks)).toEqual([id])
+    expect(progress.customTasks[id]).toMatchObject({
+      title: 'Sunum provası',
+      dueDate: '',
+      createdAt,
+    })
+    expect(progress.tasks.find((task) => task.id === id)?.dueDate).toBeUndefined()
+  })
+
+  it('silinen görev ve durumu listeden ve kayıttan kalkar', async () => {
+    const progress = useProgressStore()
+    const id = await progress.saveCustomTask(newTask)
+    await progress.setStatus(id, 'in-progress')
+
+    await progress.deleteCustomTask(id)
+
+    expect(progress.tasks.some((task) => task.id === id)).toBe(false)
+    expect(progress.taskStatuses[id]).toBeUndefined()
+    setActivePinia(createPinia())
+    const reloaded = useProgressStore()
+    await reloaded.load(USER)
+    expect(reloaded.customTasks).toEqual({})
+    expect(reloaded.taskStatuses[id]).toBeUndefined()
+  })
+
+  it('kayıt başarısız olursa eklenen görev geri alınır ve hata iletilir', async () => {
+    const progress = useProgressStore()
+    vi.spyOn(userDataService, 'saveCustomTask').mockRejectedValueOnce(new Error('bağlantı yok'))
+
+    await expect(progress.saveCustomTask(newTask)).rejects.toThrow('bağlantı yok')
+    expect(progress.customTasks).toEqual({})
+  })
+
+  it('silme başarısız olursa görev ve durumu geri gelir', async () => {
+    const progress = useProgressStore()
+    const id = await progress.saveCustomTask(newTask)
+    await progress.setStatus(id, 'done')
+    vi.spyOn(userDataService, 'deleteCustomTask').mockRejectedValueOnce(new Error('bağlantı yok'))
+
+    await expect(progress.deleteCustomTask(id)).rejects.toThrow('bağlantı yok')
+    expect(progress.customTasks[id]).toBeDefined()
+    expect(progress.statusOf(id)).toBe('done')
+  })
+
+  it('çıkış yapınca kendi görevleri de bellekten silinir', async () => {
+    const progress = useProgressStore()
+    await progress.saveCustomTask(newTask)
+
+    progress.reset()
+
+    expect(progress.customTasks).toEqual({})
+    expect(progress.tasks.some((task) => task.custom)).toBe(false)
+  })
+})

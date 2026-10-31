@@ -19,8 +19,27 @@ export interface Task {
   description: string
   dueDate?: string // ISO tarih, ör. "2026-11-02"
   tags: string[]
+  /** Kullanıcının kendi eklediği görev (#23). Bu görevlerin haftası yoktur (weekNo 0). */
+  custom?: boolean
 }
 
 export interface TaskWithStatus extends Task {
   status: TaskStatus
 }
+
+/**
+ * Kullanıcının ders görevleri dışında kendisinin eklediği görev (#23).
+ * Kullanıcının kendi verisinde saklanır (Firestore users/{uid}.customTasks, demo modunda localStorage).
+ * Firestore boş değeri (undefined) kabul etmediği için isteğe bağlı alanlar '' olarak tutulur.
+ */
+export interface CustomTask {
+  id: string
+  title: string
+  description: string
+  courseId: string // '' = bir derse bağlı değil
+  dueDate: string // '' = son tarih yok, aksi halde "2026-11-02"
+  createdAt: string // ISO zaman; liste eklenme sırasına göre dizilir
+}
+
+/** Görev ekleme / düzenleme formunun alanları. */
+export type CustomTaskInput = Pick<CustomTask, 'title' | 'description' | 'courseId' | 'dueDate'>

@@ -68,3 +68,42 @@ test.describe('E2E: Görevlerim', () => {
     await expect(cards).toHaveCount(total)
   })
 })
+
+test.describe('E2E: Kendi görevim (#23)', () => {
+  test('eklenen görev sayfa yenilenince durur, düzenlenir ve silinir', async ({ page }) => {
+    await login(page)
+    await page.goto('/gorevlerim')
+
+    await page.getByRole('button', { name: '+ Görev ekle' }).click()
+    await page.getByRole('button', { name: 'Görevi ekle' }).click()
+    await expect(page.getByText('Görev başlığı boş olamaz.')).toBeVisible()
+
+    await page.getByLabel('Başlık').fill('Sunuma hazırlan')
+    await page.getByLabel('Son tarih').fill('2026-11-10')
+    await page.getByRole('button', { name: 'Görevi ekle' }).click()
+
+    const card = taskCard(page, 'Sunuma hazırlan')
+    await expect(card.getByText('Kendi görevim')).toBeVisible()
+    await expect(card).toContainText('Son tarih: 10 Kasım 2026')
+
+    await page.reload()
+    await expect(taskCard(page, 'Sunuma hazırlan')).toBeVisible()
+
+    await taskCard(page, 'Sunuma hazırlan')
+      .getByRole('button', { name: 'Sunuma hazırlan görevini düzenle' })
+      .click()
+    await page.getByLabel('Başlık').fill('Sunum provası')
+    await page.getByRole('button', { name: 'Değişiklikleri kaydet' }).click()
+    await expect(taskCard(page, 'Sunum provası')).toBeVisible()
+
+    await taskCard(page, 'Sunum provası')
+      .getByRole('button', { name: 'Sunum provası görevini sil' })
+      .click()
+    await page.getByRole('button', { name: 'Evet, sil' }).click()
+    await expect(taskCard(page, 'Sunum provası')).toHaveCount(0)
+
+    await page.reload()
+    await expect(page.locator('article').first()).toBeVisible()
+    await expect(taskCard(page, 'Sunum provası')).toHaveCount(0)
+  })
+})
