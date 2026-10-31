@@ -18,7 +18,15 @@ const options = Object.entries(TASK_STATUS_LABELS) as [TaskStatus, string][]
       :class="STATUS_CLASSES[status]"
       data-test="status-select"
     >
-      <option v-for="[value, text] in options" :key="value" :value="value">{{ text }}</option>
+      <!-- Seçenekler select'in rozet rengini miras almasın; açılan liste iki temada da okunaklı kalsın (#78). -->
+      <option
+        v-for="[value, text] in options"
+        :key="value"
+        :value="value"
+        class="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100"
+      >
+        {{ text }}
+      </option>
     </select>
   </label>
 </template>

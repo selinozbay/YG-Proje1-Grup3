@@ -26,4 +26,20 @@ describe('TaskStatusSelect', () => {
     await wrapper.find('select').setValue('done')
     expect(wrapper.emitted('update:modelValue')).toEqual([['done']])
   })
+
+  it('açılan seçenekler rozet rengini almaz, iki temada da sabit renktedir (#78)', () => {
+    const wrapper = mount(TaskStatusSelect, {
+      props: { modelValue: 'done', label: 'Durum: Görev' },
+    })
+    for (const option of wrapper.findAll('option')) {
+      expect(option.classes()).toEqual(
+        expect.arrayContaining([
+          'bg-white',
+          'text-slate-900',
+          'dark:bg-slate-900',
+          'dark:text-slate-100',
+        ]),
+      )
+    }
+  })
 })
