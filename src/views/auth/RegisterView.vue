@@ -42,26 +42,54 @@ async function submit() {
 </script>
 
 <template>
-  <AuthCard title="Kayıt ol" :error="error" @submit="submit">
-    <TextField v-model="displayName" label="Ad soyad" autocomplete="name" required />
-    <TextField v-model="email" label="E-posta" type="email" autocomplete="email" required />
+  <AuthCard
+    title="Kayıt ol"
+    subtitle="Hesabını oluştur, derslerini ve görevlerini takip etmeye başla."
+    :error="error"
+    @submit="submit"
+  >
+    <TextField
+      v-model="displayName"
+      label="Ad soyad"
+      icon="user"
+      placeholder="Adın ve soyadın"
+      autocomplete="name"
+      required
+    />
+    <TextField
+      v-model="email"
+      label="E-posta"
+      type="email"
+      icon="mail"
+      placeholder="ornek@eposta.com"
+      autocomplete="email"
+      required
+    />
     <TextField
       v-model="password"
       label="Şifre (en az 6 karakter)"
       type="password"
+      icon="lock"
       autocomplete="new-password"
       :minlength="6"
       required
     />
 
     <!-- KVKK: kullanıcı, verisi işlenmeden önce aydınlatma metnini okuduğunu onaylar. -->
-    <label class="flex items-start gap-2 text-sm">
-      <input v-model="acceptedPrivacy" type="checkbox" class="mt-1" required />
+    <label
+      class="flex cursor-pointer items-start gap-3 rounded-xl bg-slate-50 p-3 text-sm dark:bg-slate-800/60"
+    >
+      <input
+        v-model="acceptedPrivacy"
+        type="checkbox"
+        class="mt-0.5 size-4 shrink-0 accent-indigo-600"
+        required
+      />
       <span>
         <RouterLink
           to="/gizlilik"
           target="_blank"
-          class="text-indigo-600 underline dark:text-indigo-400"
+          class="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
         >
           Gizlilik ve KVKK Aydınlatma Metni</RouterLink
         >’ni okudum.
@@ -73,7 +101,10 @@ async function submit() {
     <template #footer>
       <p>
         Zaten hesabınız var mı?
-        <RouterLink to="/giris" class="text-indigo-600 underline dark:text-indigo-400">
+        <RouterLink
+          to="/giris"
+          class="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+        >
           Giriş yapın
         </RouterLink>
       </p>

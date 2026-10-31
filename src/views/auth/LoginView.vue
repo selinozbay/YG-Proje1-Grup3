@@ -36,26 +36,48 @@ async function submit() {
 </script>
 
 <template>
-  <AuthCard title="Giriş yap" :error="error" @submit="submit">
-    <TextField v-model="email" label="E-posta" type="email" autocomplete="email" required />
+  <AuthCard
+    title="Giriş yap"
+    subtitle="Tekrar hoş geldin! Derslerine kaldığın yerden devam et."
+    :error="error"
+    @submit="submit"
+  >
     <TextField
-      v-model="password"
-      label="Şifre"
-      type="password"
-      autocomplete="current-password"
+      v-model="email"
+      label="E-posta"
+      type="email"
+      icon="mail"
+      placeholder="ornek@eposta.com"
+      autocomplete="email"
       required
     />
+    <div>
+      <TextField
+        v-model="password"
+        label="Şifre"
+        type="password"
+        icon="lock"
+        autocomplete="current-password"
+        required
+      />
+      <p class="mt-2 text-right text-sm">
+        <RouterLink
+          to="/sifremi-unuttum"
+          class="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+        >
+          Şifremi unuttum
+        </RouterLink>
+      </p>
+    </div>
     <SubmitButton :loading="loading">Giriş yap</SubmitButton>
 
     <template #footer>
       <p>
-        <RouterLink to="/sifremi-unuttum" class="text-indigo-600 underline dark:text-indigo-400">
-          Şifremi unuttum
-        </RouterLink>
-      </p>
-      <p>
         Hesabınız yok mu?
-        <RouterLink to="/kayit" class="text-indigo-600 underline dark:text-indigo-400">
+        <RouterLink
+          to="/kayit"
+          class="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+        >
           Kayıt olun
         </RouterLink>
       </p>
