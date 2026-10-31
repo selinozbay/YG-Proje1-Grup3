@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, useId } from 'vue'
 import { RouterLink } from 'vue-router'
+import BackLink from '@/components/common/BackLink.vue'
 import PageHeader from '@/components/common/PageHeader.vue'
 import ProgressBar from '@/components/common/ProgressBar.vue'
 import WeekCard from '@/components/lessons/WeekCard.vue'
@@ -40,12 +41,7 @@ const weeksTitleId = useId()
 
 <template>
   <template v-if="course">
-    <RouterLink
-      to="/derslerim"
-      class="mb-2 inline-block text-sm text-indigo-600 underline hover:no-underline dark:text-indigo-400"
-    >
-      ← Derslerim
-    </RouterLink>
+    <BackLink to="/derslerim">Derslerim</BackLink>
     <PageHeader :title="course.title" :description="course.description" />
 
     <div

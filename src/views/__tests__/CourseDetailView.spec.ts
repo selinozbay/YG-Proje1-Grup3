@@ -84,6 +84,12 @@ describe('Ders detayı', () => {
     expect(wrapper.findAll('[data-test="week-card"]')[1]!.text()).toContain('Şu anki hafta')
   })
 
+  it('üstteki geri bağlantısı Derslerim sayfasına döner', () => {
+    const back = mountCourse().find('[data-test="back-link"]')
+    expect(back.text()).toBe('Derslerim')
+    expect(back.findComponent(RouterLinkStub).props('to')).toBe('/derslerim')
+  })
+
   it('"Geliştirilecek" kutusu kaldırıldı (#39)', () => {
     expect(mountCourse().text()).not.toContain('Geliştirilecek')
   })

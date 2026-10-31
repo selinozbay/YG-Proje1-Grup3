@@ -2,6 +2,7 @@
 import { computed, useId, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import AppIcon from '@/components/common/AppIcon.vue'
+import BackLink from '@/components/common/BackLink.vue'
 import PageHeader from '@/components/common/PageHeader.vue'
 import ProgressBar from '@/components/common/ProgressBar.vue'
 import TaskCard from '@/components/tasks/TaskCard.vue'
@@ -46,12 +47,7 @@ const tasksTitleId = useId()
 
 <template>
   <template v-if="week && course">
-    <RouterLink
-      :to="`/derslerim/${courseId}`"
-      class="mb-2 inline-block text-sm text-indigo-600 underline hover:no-underline dark:text-indigo-400"
-    >
-      ← {{ course.title }}
-    </RouterLink>
+    <BackLink :to="`/derslerim/${courseId}`">{{ course.title }}</BackLink>
     <PageHeader :title="`${week.weekNo}. Hafta · ${week.title}`" :description="week.description" />
 
     <section

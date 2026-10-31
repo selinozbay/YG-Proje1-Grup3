@@ -38,7 +38,7 @@ test.describe('E2E: Ders detayı (#39)', () => {
     await expect(page.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '100')
 
     // Sayfayı yenilemeden, uygulamanın içindeki bağlantıyla derse dönülür.
-    await page.getByRole('link', { name: '← Veri Tabanı Yönetim Sistemleri' }).click()
+    await page.getByRole('link', { name: 'Veri Tabanı Yönetim Sistemleri' }).click()
     await expect(page).toHaveURL('/derslerim/veri-tabani')
     await expect(page.locator('[aria-current="step"]')).toContainText('2. Hafta')
     const firstCard = page
