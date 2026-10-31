@@ -47,7 +47,10 @@ const router = createRouter({
       component: () => import('@/views/WeekDetailView.vue'),
       props: (route) => ({
         courseId: String(route.params.courseId),
-        weekNo: Number(route.params.weekNo),
+        // Yalnızca "2" gibi tam sayı yazımı kabul edilir; "2.0" veya "02" hafta bulunamadı olur (#72).
+        weekNo: /^[1-9]\d*$/.test(String(route.params.weekNo))
+          ? Number(route.params.weekNo)
+          : Number.NaN,
       }),
       meta: { title: 'Hafta', requiresAuth: true },
     },

@@ -19,13 +19,19 @@ const loading = ref(false)
 
 async function submit() {
   error.value = ''
+  // Yalnızca boşluk yazılmış ad tarayıcının `required` denetimini geçer (#71).
+  const name = displayName.value.trim()
+  if (!name) {
+    error.value = 'Ad soyad alanını doldurun.'
+    return
+  }
   if (!acceptedPrivacy.value) {
     error.value = 'Devam etmek için Aydınlatma Metni’ni okuduğunuzu onaylayın.'
     return
   }
   loading.value = true
   try {
-    await auth.register(email.value.trim(), password.value, displayName.value.trim())
+    await auth.register(email.value.trim(), password.value, name)
     await router.replace({ name: 'home' })
   } catch (e) {
     error.value = getAuthErrorMessage(e)
