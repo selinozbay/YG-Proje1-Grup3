@@ -169,8 +169,9 @@ Tüm ekip üyeleri aynı zamanda geliştiricidir.
 Firebase değerleri yoksa (ya da `npm run dev:demo` ile başlatıldıysa) uygulama Firebase'e hiç
 bağlanmadan çalışır. Ekranın üstünde sarı bir **"Demo modu"** uyarısı görünür.
 
-- Herhangi bir e-posta ve en az 6 karakterlik herhangi bir şifreyle kayıt olunup giriş yapılabilir.
-  Şifre saklanmaz ve kontrol edilmez.
+- Kayıtta öğrenci e-postası (`123456@ogr.ktu.edu.tr`) ve zayıf olmayan bir şifre istenir (kayıt
+  formu kuralları demo modunda da geçerlidir). Girişte ise herhangi bir e-posta ve en az 6
+  karakterlik herhangi bir şifre yeterlidir. Şifre saklanmaz ve kontrol edilmez.
 - Görev durumları yalnızca o tarayıcıda (`localStorage`) tutulur.
 - Bu sayede repo, Firebase anahtarları olmadan da kurulup denenebilir.
 
@@ -178,11 +179,16 @@ bağlanmadan çalışır. Ekranın üstünde sarı bir **"Demo modu"** uyarısı
 
 Hazır bir test hesabı yoktur.
 
-- **Firebase modunda:** "Kayıt ol" sayfasından kendi e-posta adresinizle hesap açın. Şifre olarak
+- **Kayıt kuralları:** Kayıt yalnızca KTÜ öğrenci e-postasıyla (öğrenci numarası +
+  `@ogr.ktu.edu.tr`) yapılabilir. Şifre en az 8 karakter olmalı ve harf, rakam, simgeden en az
+  ikisini içermelidir; formdaki gösterge "Zayıf" iken kayıt olunmaz. Giriş ve şifre sıfırlamada
+  bu kurallar yoktur.
+- **Firebase modunda:** "Kayıt ol" sayfasından öğrenci e-postanızla hesap açın. Şifre olarak
   e-posta hesabınızın şifresini değil, **bu uygulamaya özel yeni bir şifre** belirleyin. Gerçek
   e-posta kullanırsanız "Şifremi unuttum" e-postası da size ulaşır.
-- **Demo modunda:** `deneme@example.com` gibi uydurma bir adres ve en az 6 karakterlik bir şifre
-  yeterlidir.
+- **Demo modunda:** Kayıt için `123456@ogr.ktu.edu.tr` gibi uydurma bir öğrenci adresi ve
+  `Parola-2026` gibi bir şifre; giriş için `deneme@example.com` gibi herhangi bir adres ve en az 6
+  karakterlik bir şifre yeterlidir.
 - Hesapları Firebase Console → Authentication → Users bölümünden görebilir, silebilirsiniz.
 
 ## Komutlar
