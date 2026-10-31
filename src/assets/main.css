@@ -29,3 +29,28 @@
     @apply outline-2 outline-offset-2 outline-indigo-500;
   }
 }
+
+/* Sayfa geçişi (#34): App.vue'daki <Transition name="page"> kullanır. */
+.page-enter-active {
+  transition:
+    opacity 180ms ease-out,
+    transform 180ms ease-out;
+}
+.page-leave-active {
+  transition: opacity 120ms ease-in;
+}
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(6px);
+}
+.page-leave-to {
+  opacity: 0;
+}
+
+/* İşletim sisteminde "hareketi azalt" açıksa geçiş efektleri kapanır (erişilebilirlik). */
+@media (prefers-reduced-motion: reduce) {
+  .page-enter-active,
+  .page-leave-active {
+    transition: none;
+  }
+}

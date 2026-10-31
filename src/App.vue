@@ -21,6 +21,17 @@ const layout = computed(() => {
 
 <template>
   <component :is="layout">
-    <RouterView />
+    <!-- Sayfa geçişi (#34): eski sayfa solar, yenisi hafifçe yukarı kayarak gelir (main.css). -->
+    <RouterView v-slot="{ Component, route: current }">
+      <Transition name="page" mode="out-in">
+        <!-- Sayfaların birden çok kök öğesi olabildiği için tek bir sarmalayıcıya alınır. -->
+        <div
+          :key="current.path"
+          :class="layout === PublicLayout && 'flex w-full items-start justify-center'"
+        >
+          <component :is="Component" />
+        </div>
+      </Transition>
+    </RouterView>
   </component>
 </template>
