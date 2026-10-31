@@ -5,7 +5,7 @@
 Öğrencilerin aldıkları dersleri, haftalık ders içeriklerini, öğrenme hedeflerini, görevlerini ve
 kendi ilerlemelerini tek bir yerden, etkileşimli bir web arayüzüyle takip edebildiği uygulama.
 
-- **Canlı demo:** https://ders-ogrenci-bilgi-ekip.web.app
+- **Canlı demo:** https://ders.c1h4n.com (aynı site: https://ders-ogrenci-bilgi-ekip.web.app)
 - **Görev panosu (GitHub Projects):** https://github.com/users/selinozbay/projects/1
 - **Teslim tarihi:** 11 Kasım 2026
   ([Teslim milestone'u](https://github.com/selinozbay/YG-Proje1-Grup3/milestone/1))
@@ -65,21 +65,21 @@ Tüm ekip üyeleri aynı zamanda geliştiricidir.
 
 ## Özellikler
 
-| Özellik                                                        | Nerede                   | Durum          |
-| -------------------------------------------------------------- | ------------------------ | -------------- |
-| E-posta ve şifreyle kayıt, giriş, şifre sıfırlama              | Giriş / Kayıt            | Geliştiriliyor |
-| Giriş yapmayan kullanıcının uygulamaya girememesi              | Tüm sayfalar             | Hazır          |
-| Karanlık / aydınlık tema (seçim hatırlanır, açılışta aydınlık) | Üst menü                 | Hazır          |
-| Masaüstünde sabit sol menü, mobilde soldan açılan menü         | Tüm sayfalar             | Hazır          |
-| Gizlilik ve KVKK aydınlatma metni                              | Gizlilik                 | Hazır          |
-| Hesabı ve tüm verileri silme                                   | Profil                   | Geliştiriliyor |
-| Demo modu (Firebase olmadan çalışma)                           | Tüm sayfalar             | Hazır          |
-| Klavyeyle kullanım, "İçeriğe geç" bağlantısı                   | Tüm sayfalar             | Hazır          |
-| Ders kartları, durum grafiği, arama ve filtre                  | Derslerim                | Hazır          |
-| Haftalık ders kartları ve öğrenme hedefleri                    | Ders ve hafta detayı     | Geliştiriliyor |
-| Görev listesi ve durum değiştirme                              | Görevlerim, hafta detayı | Geliştiriliyor |
-| Duruma, derse ve haftaya göre filtre; arama                    | Görevlerim               | Geliştiriliyor |
-| Genel ve ders bazında ilerleme, yaklaşan görevler, bu hafta    | Ana Sayfa                | Hazır          |
+| Özellik                                                        | Nerede                   | Durum |
+| -------------------------------------------------------------- | ------------------------ | ----- |
+| E-posta ve şifreyle kayıt, giriş, şifre sıfırlama              | Giriş / Kayıt            | Hazır |
+| Giriş yapmayan kullanıcının uygulamaya girememesi              | Tüm sayfalar             | Hazır |
+| Karanlık / aydınlık tema (seçim hatırlanır, açılışta aydınlık) | Üst menü                 | Hazır |
+| Masaüstünde sabit sol menü, mobilde soldan açılan menü         | Tüm sayfalar             | Hazır |
+| Gizlilik ve KVKK aydınlatma metni                              | Gizlilik                 | Hazır |
+| Hesabı ve tüm verileri silme                                   | Profil                   | Hazır |
+| Demo modu (Firebase olmadan çalışma)                           | Tüm sayfalar             | Hazır |
+| Klavyeyle kullanım, "İçeriğe geç" bağlantısı                   | Tüm sayfalar             | Hazır |
+| Ders kartları, durum grafiği, arama ve filtre                  | Derslerim                | Hazır |
+| Haftalık ders kartları ve öğrenme hedefleri                    | Ders ve hafta detayı     | Hazır |
+| Görev listesi ve durum değiştirme                              | Görevlerim, hafta detayı | Hazır |
+| Duruma, derse ve haftaya göre filtre; arama                    | Görevlerim               | Hazır |
+| Genel ve ders bazında ilerleme, yaklaşan görevler, bu hafta    | Ana Sayfa                | Hazır |
 
 ## Sayfalar
 
@@ -255,7 +255,36 @@ birleştirilmeden önce düzeltilir.
    npm run deploy
    ```
 
-Site https://ders-ogrenci-bilgi-ekip.web.app adresinde yayınlanır.
+Site https://ders.c1h4n.com ve https://ders-ogrenci-bilgi-ekip.web.app adreslerinde yayınlanır
+(ikisi aynı sitedir).
+
+### Alan adı ve e-posta gönderimi
+
+Şifre sıfırlama e-postaları Firebase Authentication'ın kendi servisiyle, `noreply@ders.c1h4n.com`
+adresinden gönderilir. Daha önce kullanılan Gmail SMTP ayarı 1 Kasım 2026'da kapatıldı: KTÜ öğrenci
+postası (Microsoft 365) varsayılan `firebaseapp.com` göndericisinden gelen e-postaları teslim
+etmiyordu.
+
+- **Alan adı:** `ders.c1h4n.com`, Cihan'ın `c1h4n.com` alan adının alt alan adıdır. DNS kayıtları
+  Vercel'de (Domains → c1h4n.com → DNS Records) tutulur; her kaydın açıklamasında "ders projesi"
+  yazar. Bu kayıtlar silinirse site ve e-posta gönderimi bozulur.
+- **Site:** Firebase Console → Hosting'de `ders.c1h4n.com` bağlıdır (`A` kaydı `199.36.158.100`,
+  `TXT hosting-site=...` ve SSL için `_acme-challenge.ders`).
+- **E-posta:** Firebase Console → Authentication → Templates'te gönderici alan adı
+  `ders.c1h4n.com` olarak doğrulanmıştır. Teslim edilebilirlik için `ders` alt alan adında SPF
+  (`include:_spf.firebasemail.com`), iki DKIM kaydı (`firebase1/firebase2._domainkey.ders`) ve
+  DMARC (`_dmarc.ders`, `p=none`) kayıtları vardır.
+- **Yetkili alan adları:** Authentication → Settings → Authorized domains listesinde
+  `ders.c1h4n.com` vardır.
+- **Açık kalan:** E-postadaki bağlantı hâlâ `ders-ogrenci-bilgi-ekip.firebaseapp.com/__/auth/action`
+  adresine gider. Templates → Password reset → Customize action URL ile
+  `https://ders.c1h4n.com/__/auth/action` yapılması denendi; Firebase "An error occurred updating
+  action URL" hatası verdi, daha sonra yeniden denenecek.
+
+**KTÜ adreslerinde Gereksiz klasörü:** Alan adı yeni olduğu için şifre sıfırlama e-postası KTÜ
+öğrenci adreslerinde Gereksiz (Spam) klasörüne düşebilir. Kullanıcı e-postayı orada bulup
+"Gereksiz değil" olarak işaretlerse sonrakiler gelen kutusuna gelir. Sorun sürerse KTÜ Bilgi
+İşlem'den `ders.c1h4n.com` göndericisinin izin listesine eklenmesi istenebilir.
 
 ## Proje yapısı: hangi dosya ne işe yarar?
 
@@ -650,8 +679,10 @@ Ekran görüntüleri sayfalar tamamlandıkça `docs/screenshots/` klasörüne ek
   olarak takip edilir.
 - Gizlilik sayfasındaki iletişim e-postası henüz eklenmedi (`src/config.ts` → `CONTACT_EMAIL`,
   [#58](https://github.com/selinozbay/YG-Proje1-Grup3/issues/58)).
-- Canlı demo 31 Ekim'deki `main` sürümünü gösterir; teslimden önce son sürümle yeniden yayınlanacaktır
+- Canlı demo 1 Kasım'daki `main` sürümünü gösterir; teslimden önce son sürümle yeniden yayınlanacaktır
   ([#59](https://github.com/selinozbay/YG-Proje1-Grup3/issues/59)).
+- Şifre sıfırlama e-postası KTÜ öğrenci adreslerinde Gereksiz klasörüne düşebilir; e-postadaki
+  bağlantı henüz kendi alan adımıza taşınamadı (bkz. [Alan adı ve e-posta gönderimi](#alan-adı-ve-e-posta-gönderimi)).
 - Demo modunda şifre kontrol edilmez; bu mod yalnızca denemek içindir.
 
 ## Teslim dosyaları
