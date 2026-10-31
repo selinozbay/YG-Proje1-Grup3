@@ -3,7 +3,17 @@
 // PATHS'e 24x24 çizim yolunu ekleyin. Boyut ve renk kullanıldığı yerde verilir:
 // <AppIcon name="home" class="size-5 text-slate-400" />
 type IconName =
-  'logo' | 'home' | 'book' | 'tasks' | 'user' | 'logout' | 'menu' | 'close' | 'sun' | 'moon'
+  | 'logo'
+  | 'home'
+  | 'book'
+  | 'tasks'
+  | 'user'
+  | 'logout'
+  | 'menu'
+  | 'close'
+  | 'sun'
+  | 'moon'
+  | 'shield'
 
 defineProps<{ name: IconName }>()
 
@@ -21,6 +31,7 @@ const PATHS: Record<IconName, string[]> = {
     'M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4',
   ],
   moon: ['M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'],
+  shield: ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', 'M9 12l2 2 4-4'],
 }
 </script>
 
