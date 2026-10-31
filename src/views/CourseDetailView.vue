@@ -45,7 +45,7 @@ const weeksTitleId = useId()
     <PageHeader :title="course.title" :description="course.description" />
 
     <div
-      class="mb-6 flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:flex-row sm:items-center sm:gap-6 dark:border-slate-800 dark:bg-slate-900"
+      class="mb-6 flex flex-col gap-3 rounded-lg border border-slate-200 bg-white p-4 sm:flex-row sm:items-center sm:gap-6 dark:border-slate-800 dark:bg-slate-900"
     >
       <dl class="flex flex-wrap gap-x-6 gap-y-1 text-sm">
         <div>
@@ -79,7 +79,7 @@ const weeksTitleId = useId()
       </ul>
       <p
         v-else
-        class="rounded-xl border-2 border-dashed border-slate-300 p-6 text-center text-sm text-slate-600 dark:border-slate-700 dark:text-slate-400"
+        class="rounded-lg border border-dashed border-slate-300 p-6 text-center text-sm text-slate-600 dark:border-slate-700 dark:text-slate-400"
       >
         Bu derse henüz hafta eklenmemiş.
       </p>

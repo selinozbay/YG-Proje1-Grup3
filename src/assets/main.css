@@ -1,4 +1,9 @@
 @import 'tailwindcss';
+/*
+ * IBM Plex Sans uygulamayla birlikte yayınlanır; dışarıdan (Google Fonts) yüklenmez,
+ * Türkçe harfleri içerir.
+ */
+@import '@fontsource-variable/ibm-plex-sans';
 
 /*
  * Karanlık tema <html> etiketindeki "dark" sınıfıyla açılır (bkz. stores/preferences.ts).
@@ -7,9 +12,28 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Ortak tasarım değerleri (renk, yazı tipi) ekipçe belirlenince buraya eklenir:
- * @theme { --color-brand-500: #6366f1; }  →  `bg-brand-500` sınıfı oluşur.
+ * Ortak tasarım değerleri ("ders izlencesi": kâğıt zemin, mürekkep mavisi tek vurgu).
+ *
+ * Ana renk: bileşenlerdeki `indigo-*` sınıfları Tailwind'in morumsu indigosu yerine buradaki
+ * mürekkep mavisi tonlarını kullanır. Böylece bütün sayfalar dosyalarına dokunmadan aynı
+ * ana rengi alır. Yeşil, sarı ve gri görev durumlarına ayrılmıştır (tasks/statusStyles.ts).
+ * Yeni bir değer eklemek için: @theme { --color-brand-500: #...; } → `bg-brand-500`.
  */
+@theme {
+  --font-sans: 'IBM Plex Sans Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --color-indigo-50: #f2f5fd;
+  --color-indigo-100: #e3e9fb;
+  --color-indigo-200: #c9d4f6;
+  --color-indigo-300: #a2b4ee;
+  --color-indigo-400: #7a91e4;
+  --color-indigo-500: #5068d6;
+  --color-indigo-600: #3a4fc4;
+  --color-indigo-700: #3141a3;
+  --color-indigo-800: #2c3784;
+  --color-indigo-900: #28306a;
+  --color-indigo-950: #1a1f42;
+}
 
 @layer base {
   html {
@@ -22,6 +46,8 @@
 
   body {
     @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+    /* Sayılar alt alta hizalı dursun (ilerleme yüzdeleri, tarihler, görev sayıları). */
+    font-variant-numeric: tabular-nums;
   }
 
   /* Klavye ile gezinirken odak her zaman görünür olsun (erişilebilirlik). */

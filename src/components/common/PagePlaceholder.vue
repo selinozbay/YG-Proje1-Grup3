@@ -6,7 +6,7 @@ defineProps<{ title: string; items: string[] }>()
 
 <template>
   <section
-    class="rounded-xl border-2 border-dashed border-slate-300 p-5 dark:border-slate-700"
+    class="rounded-lg border border-dashed border-slate-300 p-5 dark:border-slate-700"
     aria-label="Geliştirilecek özellikler"
   >
     <p class="text-sm font-semibold text-slate-500 dark:text-slate-400">
