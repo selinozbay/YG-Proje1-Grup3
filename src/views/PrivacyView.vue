@@ -44,7 +44,7 @@ const LAST_UPDATED = '18 Ekim 2026'
       </li>
       <li>
         <strong>Kullanım verisi:</strong> görevlerinizin durumu (yapılacak, devam ediyor,
-        tamamlandı).
+        tamamlandı) ve kendi eklediğiniz görevler (başlık, açıklama, ders, son tarih).
       </li>
       <li>
         <strong>Tercihler:</strong> tema tercihiniz. Yalnızca tarayıcınızda tutulur, sunucuya
@@ -55,7 +55,10 @@ const LAST_UPDATED = '18 Ekim 2026'
     <h2>3. İşleme amaçları</h2>
     <ul>
       <li>Hesabınızı oluşturmak ve giriş yapmanızı sağlamak</li>
-      <li>Görev durumlarınızı ve ilerlemenizi kaydedip farklı cihazlarda göstermek</li>
+      <li>
+        Görev durumlarınızı, kendi eklediğiniz görevleri ve ilerlemenizi kaydedip farklı cihazlarda
+        göstermek
+      </li>
       <li>İstediğinizde şifre sıfırlama e-postası göndermek</li>
     </ul>
     <p>
@@ -78,9 +81,10 @@ const LAST_UPDATED = '18 Ekim 2026'
 
     <h2>6. Saklama süresi</h2>
     <p>
-      Verileriniz hesabınız açık olduğu sürece saklanır. Hesabınızı sildiğinizde hesabınız ve
-      ilerleme verileriniz silinir. Proje dönemi sona erdiğinde kalan tüm hesaplar ve veriler ekip
-      tarafından silinir.
+      Verileriniz hesabınız açık olduğu sürece saklanır. Kendi eklediğiniz bir görevi istediğiniz an
+      silebilirsiniz. Hesabınızı sildiğinizde hesabınız, ilerleme verileriniz ve kendi eklediğiniz
+      görevler silinir. Proje dönemi sona erdiğinde kalan tüm hesaplar ve veriler ekip tarafından
+      silinir.
     </p>
 
     <h2>7. Çerezler ve tarayıcı depolaması</h2>

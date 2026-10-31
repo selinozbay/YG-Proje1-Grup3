@@ -396,15 +396,15 @@ diğer sayfalardaki ilerleme de kendiliğinden güncellenir.
 Her servisin bir ortak arayüzü ve iki uygulaması vardır: Firebase'li ve demo modu. Hangisinin
 kullanılacağı `index.ts` içinde otomatik seçilir; store'lar farkı bilmez.
 
-| Dosya                   | Ne işe yarar                                                                    |
-| ----------------------- | ------------------------------------------------------------------------------- |
-| `auth/index.ts`         | Giriş servisinin arayüzü (`AuthService`) ve Firebase/demo seçimi                |
-| `auth/firebase.ts`      | Firebase Authentication ile kayıt, giriş, çıkış, şifre sıfırlama, hesap silme   |
-| `auth/local.ts`         | Demo modu girişi: kullanıcı `localStorage`'da tutulur, şifre kontrol edilmez    |
-| `auth/errors.ts`        | Firebase hata kodlarının Türkçe mesajları                                       |
-| `userData/index.ts`     | Kullanıcı verisi servisinin arayüzü (`UserDataService`) ve Firebase/demo seçimi |
-| `userData/firestore.ts` | Görev durumlarını Firestore'daki `users/{uid}` belgesine okur/yazar             |
-| `userData/local.ts`     | Demo modunda görev durumlarını `localStorage`'a okur/yazar                      |
+| Dosya                   | Ne işe yarar                                                                        |
+| ----------------------- | ----------------------------------------------------------------------------------- |
+| `auth/index.ts`         | Giriş servisinin arayüzü (`AuthService`) ve Firebase/demo seçimi                    |
+| `auth/firebase.ts`      | Firebase Authentication ile kayıt, giriş, çıkış, şifre sıfırlama, hesap silme       |
+| `auth/local.ts`         | Demo modu girişi: kullanıcı `localStorage`'da tutulur, şifre kontrol edilmez        |
+| `auth/errors.ts`        | Firebase hata kodlarının Türkçe mesajları                                           |
+| `userData/index.ts`     | Kullanıcı verisi servisinin arayüzü (`UserDataService`) ve Firebase/demo seçimi     |
+| `userData/firestore.ts` | Görev durumlarını ve kendi görevlerini Firestore'daki `users/{uid}` belgesine yazar |
+| `userData/local.ts`     | Demo modunda görev durumlarını ve kendi görevlerini `localStorage`'a yazar          |
 
 ### `src/firebase/`, `src/types/`, `src/data/`
 
@@ -434,8 +434,12 @@ kullanılacağı `index.ts` içinde otomatik seçilir; store'lar farkı bilmez.
 ```text
 users/{uid}
   taskStatuses: { "yg-w1-t1": "done", "wp-w2-t1": "in-progress" }
+  customTasks:  { "custom-…": { id, title, description, courseId, dueDate, createdAt } }
   updatedAt:    sunucu zamanı
 ```
+
+`customTasks`, kullanıcının ders görevleri dışında kendi eklediği görevlerdir (en fazla 100).
+Haftaları yoktur; Görevlerim'de "Kendi görevim" etiketiyle görünür, filtre ve aramaya dahildir.
 
 Görev durumları: `todo` (Yapılacak), `in-progress` (Devam ediyor), `done` (Tamamlandı). Durumu
 kaydedilmemiş görev "Yapılacak" sayılır. İlerleme kaydedilmez, her seferinde hesaplanır

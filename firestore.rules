@@ -5,8 +5,22 @@ rules_version = '2';
 // Burada eşleşmeyen her yol varsayılan olarak kapalıdır.
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    // Belgede yalnızca uygulamanın yazdığı alanlar olabilir; kullanıcının kendi
+    // eklediği görevler (#23) en fazla 100 tane olabilir.
+    function isValidUserData(data) {
+      return data.keys().hasOnly(['taskStatuses', 'customTasks', 'updatedAt'])
+        && (!('taskStatuses' in data) || data.taskStatuses is map)
+        && (!('customTasks' in data)
+          || (data.customTasks is map && data.customTasks.size() <= 100));
+    }
+
     match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read, delete: if isOwner(userId);
+      allow create, update: if isOwner(userId) && isValidUserData(request.resource.data);
     }
   }
 }

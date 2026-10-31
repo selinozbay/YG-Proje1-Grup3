@@ -118,3 +118,90 @@ describe('Görevlerim sayfası', () => {
     expect((wrapper.find('input[type="search"]').element as HTMLInputElement).value).toBe('')
   })
 })
+
+describe('Görevlerim: kendi görevini ekleme, düzenleme, silme (#23)', () => {
+  const customCards = (wrapper: ReturnType<typeof mountPage>) =>
+    cards(wrapper).filter((card) => card.find('[data-test="custom-badge"]').exists())
+
+  async function addTask(wrapper: ReturnType<typeof mountPage>, title: string) {
+    await wrapper.find('[data-test="add-task"]').trigger('click')
+    const form = wrapper.find('[data-test="custom-task-form"]')
+    await form.find('input[type="text"]').setValue(title)
+    await form.find('select').setValue('veri-tabani')
+    await form.trigger('submit')
+    await flushPromises()
+  }
+
+  it('Görev ekle formuyla eklenen görev listede, özette ve aramada görünür', async () => {
+    const wrapper = mountPage()
+    const total = useProgressStore().tasks.length
+
+    await addTask(wrapper, 'Sunuma hazırlan')
+
+    expect(wrapper.find('[data-test="custom-task-form"]').exists()).toBe(false)
+    expect(customCards(wrapper).map((card) => card.find('h2').text())).toEqual(['Sunuma hazırlan'])
+    expect(wrapper.find('[data-test="summary"]').text()).toBe(`0 / ${total + 1} görev tamamlandı`)
+    expect(wrapper.find('[role="status"]').text()).toBe('Görev eklendi.')
+
+    // Bulanık arama "sunumu" geçen görevi de getirebilir; en iyi eşleşme ilk sırada gelir.
+    await wrapper.find('input[type="search"]').setValue('sunuma')
+    expect(cards(wrapper)[0]!.find('h2').text()).toBe('Sunuma hazırlan')
+  })
+
+  it('ders filtresinde kendi görevi seçtiği derse göre görünür', async () => {
+    const wrapper = mountPage()
+    await addTask(wrapper, 'Sunuma hazırlan')
+
+    const [courseSelect] = wrapper.findAll('select:not([data-test="status-select"])')
+    await courseSelect!.setValue('veri-tabani')
+    expect(customCards(wrapper)).toHaveLength(1)
+    await courseSelect!.setValue('yazilim-gelistirme')
+    expect(customCards(wrapper)).toHaveLength(0)
+  })
+
+  it('boş başlıkla görev eklenmez, uyarı gösterilir', async () => {
+    const wrapper = mountPage()
+    const total = cards(wrapper).length
+
+    await wrapper.find('[data-test="add-task"]').trigger('click')
+    await wrapper.find('[data-test="custom-task-form"]').trigger('submit')
+    await flushPromises()
+
+    expect(wrapper.text()).toContain('Görev başlığı boş olamaz.')
+    expect(cards(wrapper)).toHaveLength(total)
+  })
+
+  it('kendi görevi düzenlenir ve silinir', async () => {
+    const wrapper = mountPage()
+    await addTask(wrapper, 'Sunuma hazırlan')
+
+    await customCards(wrapper)[0]!.find('[data-test="edit-task"]').trigger('click')
+    const form = wrapper.find('[data-test="custom-task-form"]')
+    expect((form.find('input[type="text"]').element as HTMLInputElement).value).toBe(
+      'Sunuma hazırlan',
+    )
+    await form.find('input[type="text"]').setValue('Sunum provası')
+    await form.trigger('submit')
+    await flushPromises()
+    expect(customCards(wrapper).map((card) => card.find('h2').text())).toEqual(['Sunum provası'])
+
+    const card = customCards(wrapper)[0]!
+    await card.find('[data-test="delete-task"]').trigger('click')
+    await card.find('[data-test="confirm-delete"]').trigger('click')
+    await flushPromises()
+    expect(customCards(wrapper)).toHaveLength(0)
+    expect(wrapper.find('[role="status"]').text()).toBe('Görev silindi.')
+  })
+
+  it('kayıt başarısız olursa form açık kalır ve hata gösterilir', async () => {
+    vi.spyOn(userDataService, 'saveCustomTask').mockRejectedValueOnce(new Error('bağlantı yok'))
+    const wrapper = mountPage()
+
+    await addTask(wrapper, 'Sunuma hazırlan')
+
+    expect(wrapper.find('[data-test="custom-task-form"] [role="alert"]').text()).toContain(
+      'kaydedilemedi',
+    )
+    expect(customCards(wrapper)).toHaveLength(0)
+  })
+})
