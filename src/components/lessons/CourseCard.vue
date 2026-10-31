@@ -6,6 +6,7 @@ import { STATUS_CLASSES } from '@/components/tasks/statusStyles'
 import { COURSE_STATUS_LABELS, type CourseProgress } from '@/composables/useCourseProgress'
 import { TASK_STATUS_LABELS } from '@/types/task'
 import { formatDate } from '@/utils/date'
+import { courseColor } from './courseColors'
 import { COURSE_STATUS_CLASSES } from './courseStatusStyles'
 
 /**
@@ -24,6 +25,7 @@ const props = withDefaults(
 
 const course = computed(() => props.item.course)
 const to = computed(() => `/derslerim/${course.value.id}`)
+const color = computed(() => courseColor(course.value.id))
 
 /** Tamamlanmamış görevlerden son tarihi en yakın olan; tarihi olmayanlar sonda. */
 const nextTask = computed(
@@ -36,18 +38,19 @@ const nextTask = computed(
 
 <template>
   <article
-    class="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900"
+    class="flex h-full flex-col rounded-lg border border-slate-200 bg-white p-4 transition-colors hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700"
     data-test="course-card"
   >
     <div class="mb-3 flex items-center justify-between gap-3">
       <span
-        class="rounded-md bg-indigo-50 px-2 py-0.5 text-xs font-semibold tracking-wide text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300"
+        class="rounded-md px-2 py-0.5 text-xs font-semibold tracking-wide"
+        :class="color.badge"
         data-test="course-code"
       >
         {{ course.code }}
       </span>
       <span
-        class="rounded-full px-2.5 py-0.5 text-xs font-medium"
+        class="rounded-full px-2 py-0.5 text-xs font-medium"
         :class="COURSE_STATUS_CLASSES[item.status]"
         data-test="course-status"
       >
@@ -55,7 +58,7 @@ const nextTask = computed(
       </span>
     </div>
 
-    <component :is="`h${headingLevel}`" class="text-lg leading-snug font-semibold">
+    <component :is="`h${headingLevel}`" class="text-base leading-snug font-semibold">
       <RouterLink
         :to="to"
         class="rounded hover:text-indigo-700 hover:underline focus:ring-2 focus:ring-indigo-500 focus:outline-none dark:hover:text-indigo-300"
