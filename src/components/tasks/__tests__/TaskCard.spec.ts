@@ -26,6 +26,14 @@ describe('TaskCard', () => {
     expect(wrapper.findAll('li').map((li) => li.text())).toEqual(['#analiz', '#planlama'])
   })
 
+  it('istenirse başlığı h3 olarak verir', () => {
+    const wrapper = mount(TaskCard, {
+      props: { task, courseTitle: 'Yazılım Geliştirme', headingLevel: 3 },
+    })
+    expect(wrapper.find('h3').text()).toBe('Kullanıcı hikâyelerini yaz')
+    expect(wrapper.find('h2').exists()).toBe(false)
+  })
+
   it('son tarihi Türkçe yazar', () => {
     const time = mountCard().find('[data-test="due-date"]')
     expect(time.attributes('datetime')).toBe('2026-10-21')
