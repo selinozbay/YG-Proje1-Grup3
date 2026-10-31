@@ -597,6 +597,10 @@ feat: görevlere durum filtresi ekle (#12)
 - **Kişi bazında katkı:** **Insights → Contributors**
   (https://github.com/selinozbay/YG-Proje1-Grup3/graphs/contributors). Burada yalnızca `main`
   dalına giren ve git e-postası GitHub hesabıyla eşleşen commitler sayılır.
+- **Ekip katkı tablosu:** [`docs/katki-tablosu.md`](docs/katki-tablosu.md) her üyenin birleşen
+  PR'larını, kapattığı issue'ları ve commit sayısını bağlantılarıyla listeler (hocanın P1-19
+  maddesi). `node scripts/katki-tablosu.mjs > docs/katki-tablosu.md` ile GitHub'dan yeniden
+  üretilir (gh CLI ile giriş gerekir).
 - **Bilgisayarda:** `git log --oneline` (kısa liste), `git log --stat` (değişen dosyalarla). VS
   Code'da Kaynak Denetimi panelindeki **Graph** bölümü.
 
@@ -649,3 +653,4 @@ Ekran görüntüleri sayfalar tamamlandıkça `docs/screenshots/` klasörüne ek
 | `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))       |
 | `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55)) |
 | `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))      |
+| `docs/katki-tablosu.md`       | Ekip katkı tablosu ([#65](https://github.com/selinozbay/YG-Proje1-Grup3/issues/65)) |
