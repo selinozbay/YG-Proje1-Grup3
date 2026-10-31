@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import AppIcon from '@/components/common/AppIcon.vue'
-import { APP_NAME, CONTACT_EMAIL } from '@/config'
+import { APP_NAME, CONTACT_EMAIL, DATA_DELETION_DATE } from '@/config'
 import { useAuthStore } from '@/stores/auth'
 
 // Metni güncellediğinizde bu tarihi de değiştirin.
-const LAST_UPDATED = '18 Ekim 2026'
+const LAST_UPDATED = '31 Ekim 2026'
 
 const router = useRouter()
 const auth = useAuthStore()
@@ -51,12 +51,11 @@ function goBack() {
     <p>
       Uygulamayı geliştiren YG-Proje1-Grup3 proje ekibi. İletişim:
       <a
-        v-if="CONTACT_EMAIL"
         :href="`mailto:${CONTACT_EMAIL}`"
         class="text-indigo-600 underline dark:text-indigo-400"
+        data-test="contact-email"
         >{{ CONTACT_EMAIL }}</a
       >
-      <span v-else>iletişim adresi henüz eklenmedi.</span>
     </p>
 
     <h2>2. İşlenen kişisel veriler</h2>
@@ -100,15 +99,21 @@ function goBack() {
     <p>
       Veriler, Google’ın Firebase hizmetlerinde (Authentication, Cloud Firestore, Hosting) saklanır.
       Bu hizmetlerin veri merkezleri yurt dışında bulunabilir; bu nedenle verileriniz yurt dışındaki
-      sunucularda tutulur. Veriler bunun dışında hiçbir kişi veya kurumla paylaşılmaz.
+      sunucularda tutulur.
+    </p>
+    <p>
+      Şifre sıfırlama e-postaları, ekibin {{ CONTACT_EMAIL }} adresli Gmail hesabı üzerinden
+      gönderilir. Bu sırada yalnızca e-posta adresiniz ve sıfırlama bağlantısı Google’ın e-posta
+      altyapısından geçer. Veriler bunların dışında hiçbir kişi veya kurumla paylaşılmaz.
     </p>
 
     <h2>6. Saklama süresi</h2>
     <p>
       Verileriniz hesabınız açık olduğu sürece saklanır. Kendi eklediğiniz bir görevi istediğiniz an
       silebilirsiniz. Hesabınızı sildiğinizde hesabınız, ilerleme verileriniz ve kendi eklediğiniz
-      görevler silinir. Proje dönemi sona erdiğinde kalan tüm hesaplar ve veriler ekip tarafından
-      silinir.
+      görevler silinir. Proje dönemi sona erdiğinde, en geç
+      <strong>{{ DATA_DELETION_DATE }}</strong> tarihinde, kalan tüm hesaplar ve veriler ekip
+      tarafından silinir.
     </p>
 
     <h2>7. Çerezler ve tarayıcı depolaması</h2>
@@ -134,7 +139,18 @@ function goBack() {
     </ul>
     <p>
       Hesabınızı ve verilerinizi <strong>Profil › Hesabı sil</strong> bölümünden kendiniz
-      silebilirsiniz. Diğer talepleriniz için veri sorumlusuna e-posta ile başvurabilirsiniz.
+      silebilirsiniz.
+    </p>
+
+    <h2>9. Başvuru yolu</h2>
+    <p>
+      Yukarıdaki haklarınızla ilgili taleplerinizi, uygulamada kayıtlı e-posta adresinizden
+      <a :href="`mailto:${CONTACT_EMAIL}`" class="text-indigo-600 underline dark:text-indigo-400">{{
+        CONTACT_EMAIL
+      }}</a>
+      adresine yazarak iletebilirsiniz. Kimliğinizi doğrulayabilmemiz için başvurunuzda ad
+      soyadınızı ve talebinizi açıkça belirtiniz. Başvurular, KVKK’nın 13. maddesi uyarınca en geç
+      <strong>30 gün</strong> içinde ve ücretsiz olarak yanıtlanır.
     </p>
   </article>
 </template>

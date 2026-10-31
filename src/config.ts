@@ -1,10 +1,13 @@
 export const APP_NAME = 'Ders Panosu'
 
 /**
- * Gizlilik/KVKK sayfasında gösterilen başvuru adresi.
- * TODO: Ekip iletişim e-postası belirlenince doldurun.
+ * Gizlilik/KVKK sayfasında gösterilen başvuru adresi (#58). Ekibin ortak Gmail hesabı;
+ * şifre sıfırlama e-postaları da bu hesap üzerinden gönderilir (Firebase SMTP ayarı).
  */
-export const CONTACT_EMAIL = ''
+export const CONTACT_EMAIL = 'projemeil@gmail.com'
+
+/** Proje dönemi bitince kalan tüm hesap ve verilerin silineceği tarih (Gizlilik sayfası). */
+export const DATA_DELETION_DATE = '31 Ocak 2027'
 
 /** localStorage anahtarları tek yerde tutulur; çakışmasın diye hepsi aynı önekle başlar. */
 export const STORAGE_KEYS = {
