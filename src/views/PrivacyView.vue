@@ -1,8 +1,23 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+import AppIcon from '@/components/common/AppIcon.vue'
 import { APP_NAME, CONTACT_EMAIL } from '@/config'
+import { useAuthStore } from '@/stores/auth'
 
 // Metni güncellediğinizde bu tarihi de değiştirin.
 const LAST_UPDATED = '18 Ekim 2026'
+
+const router = useRouter()
+const auth = useAuthStore()
+
+/**
+ * Geri dön: uygulama içinden gelindiyse önceki sayfaya (ör. giriş ya da kayıt formu),
+ * bağlantı yeni sekmede ya da doğrudan açıldıysa ana sayfaya / giriş ekranına gider.
+ */
+function goBack() {
+  if (window.history.state?.back) router.back()
+  else router.push(auth.isAuthenticated ? '/' : '/giris')
+}
 </script>
 
 <!--
@@ -13,6 +28,15 @@ const LAST_UPDATED = '18 Ekim 2026'
   <article
     class="w-full max-w-3xl space-y-3 leading-relaxed [&_h2]:pt-4 [&_h2]:text-lg [&_h2]:font-semibold [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5"
   >
+    <button
+      type="button"
+      class="-ml-2 inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm font-medium text-indigo-600 hover:bg-indigo-50 dark:text-indigo-400 dark:hover:bg-indigo-500/10"
+      data-test="privacy-back"
+      @click="goBack"
+    >
+      <AppIcon name="arrow-right" class="size-4 rotate-180" />
+      Geri dön
+    </button>
     <h1 class="text-2xl font-bold tracking-tight">Gizlilik ve KVKK Aydınlatma Metni</h1>
     <p class="text-sm text-slate-500 dark:text-slate-400">Son güncelleme: {{ LAST_UPDATED }}</p>
 
