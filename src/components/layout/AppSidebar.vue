@@ -2,6 +2,8 @@
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import AppIcon from '@/components/common/AppIcon.vue'
+import ConfirmDialog from '@/components/common/ConfirmDialog.vue'
+import { useLayoutTransition } from '@/composables/useLayoutTransition'
 import { useAuthStore } from '@/stores/auth'
 import AppLogo from './AppLogo.vue'
 import ThemeToggle from './ThemeToggle.vue'
@@ -70,9 +72,23 @@ watch(
   },
 )
 
+// --- Çıkış onayı (#35) ---
+const { leaveApp } = useLayoutTransition()
+const logoutConfirmOpen = ref(false)
+const loggingOut = ref(false)
+
 async function logout() {
-  await auth.logout()
-  await router.replace({ name: 'login' })
+  loggingOut.value = true
+  try {
+    // Önce menülü çerçeve solar, sonra çıkış yapılıp giriş ekranı kayarak gelir.
+    await leaveApp(async () => {
+      await auth.logout()
+      await router.replace({ name: 'login' })
+    })
+  } finally {
+    loggingOut.value = false
+    logoutConfirmOpen.value = false
+  }
 }
 </script>
 
@@ -189,11 +205,25 @@ async function logout() {
       <button
         type="button"
         class="mt-1 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-red-50 hover:text-red-700 dark:text-slate-400 dark:hover:bg-red-500/10 dark:hover:text-red-400"
-        @click="logout"
+        aria-haspopup="dialog"
+        @click="logoutConfirmOpen = true"
       >
         <AppIcon name="logout" class="size-5" />
         Çıkış yap
       </button>
     </div>
+
+    <ConfirmDialog
+      :open="logoutConfirmOpen"
+      title="Çıkış yapmak istediğinize emin misiniz?"
+      message="Tekrar girmek için e-posta ve şifrenizi yazmanız gerekecek."
+      confirm-label="Evet, çıkış yap"
+      cancel-label="Hayır"
+      busy-label="Çıkış yapılıyor…"
+      :busy="loggingOut"
+      tone="danger"
+      @confirm="logout"
+      @cancel="logoutConfirmOpen = false"
+    />
   </aside>
 </template>

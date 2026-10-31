@@ -34,7 +34,8 @@ watch(isDesktop, () => closeSidebar(false))
 watch(sidebarOpen, (open) => document.body.classList.toggle('overflow-hidden', open))
 
 function onKeydown(event: KeyboardEvent) {
-  if (event.key === 'Escape') closeSidebar()
+  // Açık bir onay penceresi varsa Esc yalnızca o pencereyi kapatsın, menüyü değil.
+  if (event.key === 'Escape' && !document.querySelector('dialog[open]')) closeSidebar()
 }
 onMounted(() => window.addEventListener('keydown', onKeydown))
 onBeforeUnmount(() => {

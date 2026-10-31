@@ -30,27 +30,91 @@
   }
 }
 
-/* Sayfa geçişi (#34): App.vue'daki <Transition name="page"> kullanır. */
+/* Sayfa geçişi (#34): App.vue'daki <Transition name="page"> kullanır; yeni sayfa belirerek gelir. */
 .page-enter-active {
   transition:
     opacity 180ms ease-out,
     transform 180ms ease-out;
 }
-.page-leave-active {
-  transition: opacity 120ms ease-in;
-}
 .page-enter-from {
   opacity: 0;
   transform: translateY(6px);
 }
-.page-leave-to {
+
+/*
+ * Çerçeve geçişi (#35): giriş yapınca ya da çıkış yapınca menülü çerçeve ile giriş ekranı
+ * arasında geçilir. Eski ekran hafifçe küçülerek solar (.is-leaving, useLayoutTransition),
+ * yenisi aşağıdan kayarak gelir (.layout-enter-*).
+ */
+.layout-shell {
+  transition:
+    opacity 200ms ease-in,
+    transform 200ms ease-in;
+}
+.layout-shell.is-leaving {
   opacity: 0;
+  transform: scale(0.98);
+}
+.layout-enter-active {
+  transition:
+    opacity 300ms ease-out,
+    transform 300ms ease-out;
+}
+.layout-enter-from {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+/* Onay penceresi (#35): açılırken hafifçe büyür, arka plan bulanıklaşır. */
+.confirm-dialog[open] {
+  animation: dialog-in 180ms ease-out;
+}
+.confirm-dialog[data-state='closing'] {
+  animation: dialog-out 150ms ease-in forwards;
+}
+.confirm-dialog::backdrop {
+  background-color: rgb(2 6 23 / 0.5);
+  backdrop-filter: blur(4px);
+  animation: backdrop-in 180ms ease-out;
+}
+.confirm-dialog[data-state='closing']::backdrop {
+  animation: backdrop-out 150ms ease-in forwards;
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+@keyframes dialog-out {
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes backdrop-out {
+  to {
+    opacity: 0;
+  }
 }
 
 /* İşletim sisteminde "hareketi azalt" açıksa geçiş efektleri kapanır (erişilebilirlik). */
 @media (prefers-reduced-motion: reduce) {
   .page-enter-active,
-  .page-leave-active {
+  .layout-shell,
+  .layout-enter-active {
     transition: none;
+  }
+  .confirm-dialog[open],
+  .confirm-dialog[data-state='closing'],
+  .confirm-dialog::backdrop,
+  .confirm-dialog[data-state='closing']::backdrop {
+    animation: none;
   }
 }

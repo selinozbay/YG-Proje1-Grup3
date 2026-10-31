@@ -66,7 +66,16 @@ test.describe('E2E: Giriş yap (#4)', () => {
     await login(page)
     await expect(page).toHaveURL('/')
 
-    await page.getByRole('button', { name: 'Çıkış yap' }).click()
+    // #35: çıkış önce onay penceresi açar; "Hayır" kalınca sayfada kalınır.
+    await page.getByRole('button', { name: 'Çıkış yap', exact: true }).click()
+    const dialog = page.getByRole('dialog', { name: 'Çıkış yapmak istediğinize emin misiniz?' })
+    await expect(dialog).toBeVisible()
+    await dialog.getByRole('button', { name: 'Hayır' }).click()
+    await expect(dialog).toBeHidden()
+    await expect(page).toHaveURL('/')
+
+    await page.getByRole('button', { name: 'Çıkış yap', exact: true }).click()
+    await dialog.getByRole('button', { name: 'Evet, çıkış yap' }).click()
     await expect(page).toHaveURL(/\/giris/)
 
     await page.goto('/profil')
