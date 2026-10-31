@@ -13,9 +13,10 @@ declare module 'vue-router' {
     guestOnly?: boolean
     /**
      * 'app': menülü çerçeve (varsayılan), 'public': sade çerçeve,
-     * 'auto': giriş yapmışsa menülü, yapmamışsa sade çerçeve (herkese açık sayfalar için).
+     * 'auto': giriş yapmışsa menülü, yapmamışsa sade çerçeve (herkese açık sayfalar için),
+     * 'auth': giriş, kayıt ve şifremi unuttum ekranlarının iki bölümlü çerçevesi.
      */
-    layout?: 'app' | 'public' | 'auto'
+    layout?: 'app' | 'public' | 'auto' | 'auth'
   }
 }
 
@@ -70,19 +71,19 @@ const router = createRouter({
       path: '/giris',
       name: 'login',
       component: () => import('@/views/auth/LoginView.vue'),
-      meta: { title: 'Giriş yap', guestOnly: true, layout: 'public' },
+      meta: { title: 'Giriş yap', guestOnly: true, layout: 'auth' },
     },
     {
       path: '/kayit',
       name: 'register',
       component: () => import('@/views/auth/RegisterView.vue'),
-      meta: { title: 'Kayıt ol', guestOnly: true, layout: 'public' },
+      meta: { title: 'Kayıt ol', guestOnly: true, layout: 'auth' },
     },
     {
       path: '/sifremi-unuttum',
       name: 'forgot-password',
       component: () => import('@/views/auth/ForgotPasswordView.vue'),
-      meta: { title: 'Şifremi unuttum', guestOnly: true, layout: 'public' },
+      meta: { title: 'Şifremi unuttum', guestOnly: true, layout: 'auth' },
     },
     {
       path: '/gizlilik',

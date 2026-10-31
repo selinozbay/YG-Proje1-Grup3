@@ -46,12 +46,12 @@ const describedBy = computed(
 
 <template>
   <div>
-    <label :for="id" class="mb-1.5 block text-sm font-medium">{{ label }}</label>
+    <label :for="id" class="mb-2 block text-sm font-semibold">{{ label }}</label>
     <div class="relative">
       <AppIcon
         v-if="icon"
         :name="icon"
-        class="pointer-events-none absolute top-1/2 left-3 size-5 -translate-y-1/2 text-slate-400 dark:text-slate-500"
+        class="pointer-events-none absolute top-1/2 left-4 size-5 -translate-y-1/2 text-slate-400 dark:text-slate-500"
       />
       <input
         :id="id"
@@ -63,13 +63,13 @@ const describedBy = computed(
         :placeholder="placeholder"
         :aria-invalid="error ? 'true' : undefined"
         :aria-describedby="describedBy"
-        class="w-full rounded-xl border bg-white py-2.5 text-slate-900 shadow-xs transition placeholder:text-slate-400 focus:ring-4 focus:outline-none dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
+        class="h-12 w-full rounded-xl border bg-slate-50 text-slate-900 transition placeholder:text-slate-400 focus:bg-white focus:ring-4 focus:outline-none dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:bg-slate-900"
         :class="[
-          icon ? 'pl-10' : 'pl-3.5',
-          isPassword ? 'pr-11' : 'pr-3.5',
+          icon ? 'pl-11' : 'pl-4',
+          isPassword ? 'pr-12' : 'pr-4',
           error
             ? 'border-red-400 focus:border-red-500 focus:ring-red-500/15 dark:border-red-500/70'
-            : 'border-slate-300 focus:border-indigo-500 focus:ring-indigo-500/15 dark:border-slate-700 dark:focus:border-indigo-400',
+            : 'border-slate-200 focus:border-indigo-500 focus:ring-indigo-500/15 dark:border-slate-800 dark:focus:border-indigo-400',
         ]"
       />
       <button
@@ -78,7 +78,7 @@ const describedBy = computed(
         :aria-label="revealed ? 'Şifreyi gizle' : 'Şifreyi göster'"
         :aria-pressed="revealed"
         :title="revealed ? 'Şifreyi gizle' : 'Şifreyi göster'"
-        class="absolute top-1/2 right-1.5 -translate-y-1/2 rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 dark:text-slate-500 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+        class="absolute top-1/2 right-2 -translate-y-1/2 rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 dark:text-slate-500 dark:hover:bg-slate-800 dark:hover:text-slate-200"
         @click="revealed = !revealed"
       >
         <AppIcon :name="revealed ? 'eye-off' : 'eye'" class="size-5" />

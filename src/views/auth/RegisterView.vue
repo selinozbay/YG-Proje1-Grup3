@@ -44,7 +44,7 @@ async function submit() {
 <template>
   <AuthCard
     title="Kayıt ol"
-    subtitle="Hesabını oluştur, derslerini ve görevlerini takip etmeye başla."
+    subtitle="Hesabınızı oluşturun; derslerinizi ve görevlerinizi tek panodan takip edin."
     :error="error"
     @submit="submit"
   >
@@ -52,7 +52,7 @@ async function submit() {
       v-model="displayName"
       label="Ad soyad"
       icon="user"
-      placeholder="Adın ve soyadın"
+      placeholder="Adınızı ve soyadınızı giriniz"
       autocomplete="name"
       required
     />
@@ -61,7 +61,7 @@ async function submit() {
       label="E-posta"
       type="email"
       icon="mail"
-      placeholder="ornek@eposta.com"
+      placeholder="E-posta adresinizi giriniz"
       autocomplete="email"
       required
     />
@@ -70,19 +70,18 @@ async function submit() {
       label="Şifre (en az 6 karakter)"
       type="password"
       icon="lock"
+      placeholder="Bir şifre belirleyiniz"
       autocomplete="new-password"
       :minlength="6"
       required
     />
 
     <!-- KVKK: kullanıcı, verisi işlenmeden önce aydınlatma metnini okuduğunu onaylar. -->
-    <label
-      class="flex cursor-pointer items-start gap-3 rounded-xl bg-slate-50 p-3 text-sm dark:bg-slate-800/60"
-    >
+    <label class="flex cursor-pointer items-start gap-3 text-sm">
       <input
         v-model="acceptedPrivacy"
         type="checkbox"
-        class="mt-0.5 size-4 shrink-0 accent-indigo-600"
+        class="mt-0.5 size-4 shrink-0 rounded accent-indigo-600"
         required
       />
       <span>

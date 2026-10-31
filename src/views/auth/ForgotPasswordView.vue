@@ -36,7 +36,7 @@ async function submit() {
     :subtitle="
       sent
         ? undefined
-        : 'E-posta adresini yaz; şifreni yenilemen için sana bir bağlantı gönderelim.'
+        : 'E-posta adresinizi girin; şifrenizi yenilemeniz için size bir bağlantı gönderelim.'
     "
     :error="error"
     @submit="submit"
@@ -56,8 +56,8 @@ async function submit() {
           Bu adrese kayıtlı bir hesap varsa şifre sıfırlama bağlantısı gönderildi.
         </p>
         <p v-if="isFirebaseEnabled">
-          Gelen kutunu ve gereksiz (spam) klasörünü kontrol et. Bağlantıdan yeni şifreni
-          belirledikten sonra giriş yapabilirsin.
+          Gelen kutunuzu ve gereksiz (spam) klasörünü kontrol edin. Bağlantıdan yeni şifrenizi
+          belirledikten sonra giriş yapabilirsiniz.
         </p>
         <p v-else>Demo modunda e-posta gönderilmez.</p>
       </div>
@@ -68,7 +68,7 @@ async function submit() {
         label="E-posta"
         type="email"
         icon="mail"
-        placeholder="ornek@eposta.com"
+        placeholder="E-posta adresinizi giriniz"
         autocomplete="email"
         required
       />

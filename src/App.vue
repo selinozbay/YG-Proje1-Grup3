@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
 import { useLayoutTransition } from '@/composables/useLayoutTransition'
 import AppLayout from '@/layouts/AppLayout.vue'
+import AuthLayout from '@/layouts/AuthLayout.vue'
 import PublicLayout from '@/layouts/PublicLayout.vue'
 import { useAuthStore } from '@/stores/auth'
 import { usePreferencesStore } from '@/stores/preferences'
@@ -13,11 +14,19 @@ const route = useRoute()
 const auth = useAuthStore()
 const { leaving } = useLayoutTransition()
 
-const isPublicLayout = computed(() => {
+const LAYOUTS = { app: AppLayout, public: PublicLayout, auth: AuthLayout }
+
+const layoutName = computed<keyof typeof LAYOUTS>(() => {
   const { layout } = route.meta
   // 'auto': herkese açık sayfa (ör. Gizlilik), giriş yapmışsa menüsüyle birlikte gösterilir.
-  return layout === 'public' || (layout === 'auto' && !auth.isAuthenticated)
+  if (layout === 'auto') return auth.isAuthenticated ? 'app' : 'public'
+  return layout ?? 'app'
 })
+
+/** Sayfa sarmalayıcısının çerçeveye göre yerleşimi. */
+const pageClass = computed(() =>
+  layoutName.value === 'public' ? 'flex w-full items-start justify-center' : undefined,
+)
 </script>
 
 <template>
@@ -27,12 +36,8 @@ const isPublicLayout = computed(() => {
   -->
   <!-- Eski çerçeve zaten soldurulduğu için beklemeden kalkar (leave: 0). -->
   <Transition name="layout" :duration="{ enter: 300, leave: 0 }">
-    <div
-      :key="isPublicLayout ? 'public' : 'app'"
-      class="layout-shell"
-      :class="{ 'is-leaving': leaving }"
-    >
-      <component :is="isPublicLayout ? PublicLayout : AppLayout">
+    <div :key="layoutName" class="layout-shell" :class="{ 'is-leaving': leaving }">
+      <component :is="LAYOUTS[layoutName]">
         <!-- Sayfa geçişi (#34): eski sayfa solar, yenisi hafifçe yukarı kayarak gelir. -->
         <RouterView v-slot="{ Component, route: current }">
           <!--
@@ -41,10 +46,7 @@ const isPublicLayout = computed(() => {
           -->
           <Transition name="page" mode="out-in" :duration="{ enter: 180, leave: 0 }">
             <!-- Sayfaların birden çok kök öğesi olabildiği için tek bir sarmalayıcıya alınır. -->
-            <div
-              :key="current.path"
-              :class="isPublicLayout && 'flex w-full items-start justify-center'"
-            >
+            <div :key="current.path" :class="pageClass">
               <component :is="Component" />
             </div>
           </Transition>

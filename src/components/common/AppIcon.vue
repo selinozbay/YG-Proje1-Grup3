@@ -20,6 +20,8 @@ type IconName =
   | 'eye-off'
   | 'check-circle'
   | 'alert'
+  | 'check'
+  | 'arrow-right'
 
 defineProps<{ name: IconName }>()
 
@@ -55,6 +57,8 @@ const PATHS: Record<IconName, string[]> = {
   ],
   'check-circle': ['M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0z', 'M8 12l3 3 5-6'],
   alert: ['M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0z', 'M12 8v4', 'M12 16h.01'],
+  check: ['M20 6 9 17l-5-5'],
+  'arrow-right': ['M5 12h14', 'M13 6l6 6-6 6'],
 }
 </script>
 

@@ -1,64 +1,69 @@
 <script setup lang="ts">
 import AppIcon from '@/components/common/AppIcon.vue'
-import ProgressBar from '@/components/common/ProgressBar.vue'
 
 const features = [
-  { icon: 'book', text: 'Derslerini ve haftalık içeriklerini kart kart gör' },
-  { icon: 'tasks', text: 'Görevlerini işaretle, filtrele ve ara' },
-  { icon: 'check-circle', text: 'İlerlemeni tek bakışta takip et' },
-] as const
+  'Haftalık ders içerikleri ve öğrenme hedefleri',
+  'Görev takibi, filtreleme ve arama',
+  'Genel ve ders bazında ilerleme göstergesi',
+]
+const year = new Date().getFullYear()
 </script>
 
 <!--
-  Giriş, kayıt ve şifremi unuttum ekranlarının solundaki tanıtım paneli (#3).
-  Yalnızca masaüstünde görünür; mobilde form tek başına gösterilir.
-  Sayfada tek bir h1 olsun diye başlık <p> ile yazılır (başlık formun üstünde).
+  Giriş, kayıt ve şifremi unuttum ekranlarının sol paneli (#3). Yalnızca geniş
+  ekranlarda görünür. Sayfada tek bir h1 olsun diye başlık <p> ile yazılır.
 -->
 <template>
-  <div
-    class="relative hidden overflow-hidden bg-linear-to-br from-indigo-600 via-indigo-600 to-violet-700 p-10 text-white md:flex md:flex-col"
+  <aside
+    class="relative hidden overflow-hidden bg-[#0b1530] px-14 py-12 text-white lg:flex lg:flex-col"
+    aria-label="Uygulama tanıtımı"
   >
-    <!-- Arka plandaki yumuşak ışık halkaları (yalnızca süs). -->
-    <div
-      aria-hidden="true"
-      class="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full bg-white/10 blur-2xl"
-    />
-    <div
-      aria-hidden="true"
-      class="pointer-events-none absolute -bottom-28 -left-20 size-72 rounded-full bg-violet-400/30 blur-3xl"
-    />
-
-    <div class="relative flex items-center gap-3">
-      <span class="grid size-10 place-items-center rounded-xl bg-white/15 ring-1 ring-white/25">
-        <AppIcon name="logo" class="size-5" />
-      </span>
-      <span class="font-semibold">Ders Panosu</span>
-    </div>
-
-    <p class="relative mt-10 text-3xl leading-tight font-bold">
-      Derslerini, haftalarını ve görevlerini tek panoda takip et.
-    </p>
-
-    <ul class="relative mt-8 space-y-4 text-indigo-50">
-      <li v-for="feature in features" :key="feature.text" class="flex items-center gap-3">
-        <span class="grid size-8 shrink-0 place-items-center rounded-lg bg-white/15">
-          <AppIcon :name="feature.icon" class="size-4" />
-        </span>
-        {{ feature.text }}
-      </li>
-    </ul>
-
-    <!-- Uygulamadan küçük bir örnek: haftanın ilerleme kartı (panelin altına yaslanır). -->
-    <div aria-hidden="true" class="relative mt-auto pt-10">
-      <div
-        class="rounded-2xl bg-white p-4 text-slate-900 shadow-2xl shadow-indigo-950/40 dark:bg-slate-900 dark:text-slate-100"
-      >
-        <p class="text-xs font-medium text-slate-500 dark:text-slate-400">
-          Yazılım Geliştirme · 3. Hafta
-        </p>
-        <p class="mt-1 mb-3 font-semibold">Geliştirme ve Test</p>
-        <ProgressBar :value="67" label="Örnek ilerleme" />
+    <!-- Sağ üstteki iç içe halkalar (yalnızca süs). -->
+    <div aria-hidden="true" class="pointer-events-none absolute -top-48 -right-40">
+      <div class="size-[38rem] rounded-full border-[3.5rem] border-white/[0.03]">
+        <div class="m-10 size-[28rem] rounded-full border-[3rem] border-white/[0.04]">
+          <div class="m-10 size-[16rem] rounded-full bg-indigo-500/10" />
+        </div>
       </div>
     </div>
-  </div>
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-[#070d20] to-transparent"
+    />
+
+    <div class="relative flex items-center gap-4">
+      <span
+        class="grid size-14 place-items-center rounded-2xl bg-white/10 ring-1 ring-white/20 backdrop-blur"
+      >
+        <AppIcon name="logo" class="size-8" />
+      </span>
+      <span class="leading-tight">
+        <span class="block text-2xl font-bold tracking-tight">Ders Panosu</span>
+        <span class="block text-xs tracking-wide text-slate-400">YG · Proje 1 · Grup 3</span>
+      </span>
+    </div>
+
+    <div class="relative my-auto max-w-lg py-12">
+      <p class="text-xs font-bold tracking-[0.2em] text-sky-400 uppercase">
+        Etkileşimli Ders Deneyimi
+      </p>
+      <p class="mt-4 text-4xl leading-tight font-bold tracking-tight">
+        Derslerinize ve görevlerinize tek noktadan ulaşın.
+      </p>
+      <p class="mt-5 leading-relaxed text-slate-300">
+        Haftalık ders akışınızı, görevlerinizi ve öğrenme ilerlemenizi tek bir panoda, düzenli ve
+        güvenli şekilde takip edin.
+      </p>
+      <ul class="mt-8 space-y-3.5">
+        <li v-for="feature in features" :key="feature" class="flex items-center gap-3">
+          <AppIcon name="check" class="size-5 shrink-0 text-sky-400" />
+          <span class="text-slate-200">{{ feature }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <p class="relative font-mono text-xs text-slate-500">
+      © {{ year }} YG-Proje1-Grup3 · Yazılım Geliştirme
+    </p>
+  </aside>
 </template>
