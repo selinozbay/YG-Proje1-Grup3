@@ -276,10 +276,16 @@ etmiyordu.
   DMARC (`_dmarc.ders`, `p=none`) kayıtları vardır.
 - **Yetkili alan adları:** Authentication → Settings → Authorized domains listesinde
   `ders.c1h4n.com` vardır.
-- **Açık kalan:** E-postadaki bağlantı hâlâ `ders-ogrenci-bilgi-ekip.firebaseapp.com/__/auth/action`
-  adresine gider. Templates → Password reset → Customize action URL ile
-  `https://ders.c1h4n.com/__/auth/action` yapılması denendi; Firebase "An error occurred updating
-  action URL" hatası verdi, daha sonra yeniden denenecek.
+- **E-postadaki bağlantı:** `ders-ogrenci-bilgi-ekip.firebaseapp.com/__/auth/action` adresine gider
+  ve olduğu gibi bırakıldı. Templates → Password reset → Customize action URL ile
+  `https://ders.c1h4n.com/__/auth/action` yapılmak istendi; Firebase Console "An error occurred
+  updating action URL" dedi. Konsolun gönderdiği istek
+  (`PATCH .../config?updateMask=notification.sendEmail.callbackUri`) sunucudan
+  `400 INVALID_ARGUMENT: EMAIL_TEMPLATE_UPDATE_NOT_ALLOWED` cevabını alıyor: Firebase bu projede
+  e-posta şablonlarının değiştirilmesine izin vermiyor. Proje ücretsiz Spark planında; Google
+  oltalamayı önlemek için ücretsiz projelerde şablon değişikliklerini kısıtlıyor (gönderici alan
+  adının değiştirilmesine ise izin verdi). Ücretli Blaze planına geçilirse yeniden denenebilir;
+  ders projesi için gerekli görülmedi.
 
 **KTÜ adreslerinde Gereksiz klasörü:** Alan adı yeni olduğu için şifre sıfırlama e-postası KTÜ
 öğrenci adreslerinde Gereksiz (Spam) klasörüne düşebilir. Kullanıcı e-postayı orada bulup
@@ -682,7 +688,8 @@ Ekran görüntüleri sayfalar tamamlandıkça `docs/screenshots/` klasörüne ek
 - Canlı demo 1 Kasım'daki `main` sürümünü gösterir; teslimden önce son sürümle yeniden yayınlanacaktır
   ([#59](https://github.com/selinozbay/YG-Proje1-Grup3/issues/59)).
 - Şifre sıfırlama e-postası KTÜ öğrenci adreslerinde Gereksiz klasörüne düşebilir; e-postadaki
-  bağlantı henüz kendi alan adımıza taşınamadı (bkz. [Alan adı ve e-posta gönderimi](#alan-adı-ve-e-posta-gönderimi)).
+  bağlantı, Firebase ücretsiz planda izin vermediği için `firebaseapp.com` adresinde kaldı (bkz.
+  [Alan adı ve e-posta gönderimi](#alan-adı-ve-e-posta-gönderimi)).
 - Demo modunda şifre kontrol edilmez; bu mod yalnızca denemek içindir.
 
 ## Teslim dosyaları
