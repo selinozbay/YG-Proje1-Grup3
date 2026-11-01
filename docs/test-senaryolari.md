@@ -23,7 +23,7 @@ Bölüm 3.2) bağlanmıştır.
 
 | Sonuç       | Sayı | Anlamı                                          |
 | ----------- | ---: | ----------------------------------------------- |
-| ✅ Geçti    |   42 | Beklenen sonuç alındı                           |
+| ✅ Geçti    |   46 | Beklenen sonuç alındı                           |
 | ❌ Kaldı    |    0 | Beklenen sonuç alınmadı, hata kaydı açıldı      |
 | ⚠️ Kısmen   |    0 | Çalışıyor ama beklenenden küçük bir sapma var   |
 | ⏳ Bekliyor |    8 | Özellik henüz geliştirilmedi, ilgili issue açık |
@@ -101,11 +101,12 @@ _CI_ = GitHub Actions.
 
 ### Tema (KH-9)
 
-| No   | Senaryo                         | Adımlar                                                                 | Beklenen sonuç        | Gerçek sonuç          | Yöntem | Sonuç |
-| ---- | ------------------------------- | ----------------------------------------------------------------------- | --------------------- | --------------------- | ------ | ----- |
-| T-32 | Tema düğmesiyle tema değiştirme | Üst çubuktaki "Karanlık temaya geç" düğmesine bas                       | Karanlık tema açılır  | Karanlık tema açıldı  | Elle   | ✅    |
-| T-33 | Temanın yenilemede korunması    | Karanlık temaya geç, sayfayı yeniden yükle                              | Karanlık tema korunur | Karanlık tema korundu | Elle   | ✅    |
-| T-34 | İlk açılışta tema               | Tema tercihi kayıtlı değilken, sistem karanlık temadayken uygulamayı aç | Aydınlık tema açılır  | Aydınlık tema açıldı  | Elle   | ✅    |
+| No   | Senaryo                                       | Adımlar                                                                 | Beklenen sonuç                       | Gerçek sonuç                                                                                                                                      | Yöntem      | Sonuç             |
+| ---- | --------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------- |
+| T-32 | Tema düğmesiyle tema değiştirme               | Üst çubuktaki "Karanlık temaya geç" düğmesine bas                       | Karanlık tema açılır                 | Karanlık tema açıldı                                                                                                                              | Elle        | ✅                |
+| T-33 | Temanın yenilemede korunması                  | Karanlık temaya geç, sayfayı yeniden yükle                              | Karanlık tema korunur                | Karanlık tema korundu                                                                                                                             | Elle        | ✅                |
+| T-34 | İlk açılışta tema                             | Tema tercihi kayıtlı değilken, sistem karanlık temadayken uygulamayı aç | Aydınlık tema açılır                 | Aydınlık tema açıldı                                                                                                                              | Elle        | ✅                |
+| T-54 | Karanlık temada durum seçicisinin seçenekleri | Karanlık temada bir görevi "Tamamlandı" yap, seçiciyi tekrar aç         | Açılan listedeki üç seçenek okunaklı | İlk denemede seçenekler açık yeşil yazıyla okunmuyordu ([B-03](#hata-listesi)). Düzeltmeden sonra koyu zemin, açık yazı; kapalı rozet yeşil kaldı | Elle, Birim | ✅ (yeniden test) |
 
 ### Mobil görünüm ve erişilebilirlik (KH-10)
 
@@ -141,13 +142,15 @@ _CI_ = GitHub Actions.
 | ---- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----- | ---------- | ----- |
 | B-01 | T-11    | Ad soyad alanına yalnızca boşluk yazılınca kayıt kabul ediliyor, kullanıcının adı boş kaydediliyor. Alan `required` olduğu hâlde boşluklar tarayıcı denetimini geçiyor; kod adı kırptıktan sonra boş olup olmadığına bakmıyor (`src/views/auth/RegisterView.vue`). | Orta  | Düzeltildi | #71   |
 | B-02 | T-20    | Hafta numarası `2.0` gibi ondalıklı yazılınca 2. hafta açılıyor; adres düzeltilmiyor. Kullanıcıyı engellemiyor.                                                                                                                                                    | Düşük | Düzeltildi | #72   |
+| B-03 | T-54    | Durum seçicisinde açılan seçenekler seçili durumun rozet rengini alıyor; karanlık temada "Tamamlandı" seçiliyken açık yeşil yazılar okunmuyor (`src/components/tasks/TaskStatusSelect.vue`).                                                                       | Orta  | Düzeltildi | #78   |
 
 ### Düzeltme kaydı
 
-| Hata | Düzeltme                                                                                                                       | Eklenen test                                                                | Yeniden test sonucu |
-| ---- | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- | ------------------- |
-| B-01 | `RegisterView.vue`: ad kırpıldıktan sonra boşsa kayıt yapılmıyor, "Ad soyad alanını doldurun." uyarısı gösteriliyor            | `e2e/auth-flows.spec.ts`: "ad soyad yalnızca boşluksa kayıt olunmaz…"       | ✅ Geçti            |
-| B-02 | `router/index.ts`: hafta numarası yalnızca `2` gibi tam sayı yazımıyla kabul ediliyor; `2.0` ve `02` "Hafta bulunamadı" oluyor | `e2e/week-url.spec.ts`: geçerli hafta ile `2.0`, `02`, `9`, `abc` adresleri | ✅ Geçti            |
+| Hata | Düzeltme                                                                                                                                         | Eklenen test                                                                | Yeniden test sonucu |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- | ------------------- |
+| B-01 | `RegisterView.vue`: ad kırpıldıktan sonra boşsa kayıt yapılmıyor, "Ad soyad alanını doldurun." uyarısı gösteriliyor                              | `e2e/auth-flows.spec.ts`: "ad soyad yalnızca boşluksa kayıt olunmaz…"       | ✅ Geçti            |
+| B-02 | `router/index.ts`: hafta numarası yalnızca `2` gibi tam sayı yazımıyla kabul ediliyor; `2.0` ve `02` "Hafta bulunamadı" oluyor                   | `e2e/week-url.spec.ts`: geçerli hafta ile `2.0`, `02`, `9`, `abc` adresleri | ✅ Geçti            |
+| B-03 | `TaskStatusSelect.vue`: seçeneklere rozetten bağımsız sabit renk verildi (aydınlıkta beyaz zemin / koyu yazı, karanlıkta koyu zemin / açık yazı) | `TaskStatusSelect.spec.ts`: "açılan seçenekler rozet rengini almaz…"        | ✅ Geçti            |
 
 Eklenen testler düzeltme geri alınınca kalıyor, düzeltmeyle geçiyor; yani hata geri gelirse CI
 bunu yakalar. Düzeltmeden sonra lint, tip kontrolü, Vitest (29/29) ve Playwright (16/16) hatasız.
