@@ -1,4 +1,9 @@
 @import 'tailwindcss';
+/*
+ * IBM Plex Sans uygulamayla birlikte yayınlanır; dışarıdan (Google Fonts) yüklenmez,
+ * Türkçe harfleri içerir.
+ */
+@import '@fontsource-variable/ibm-plex-sans';
 
 /*
  * Karanlık tema <html> etiketindeki "dark" sınıfıyla açılır (bkz. stores/preferences.ts).
@@ -7,9 +12,28 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Ortak tasarım değerleri (renk, yazı tipi) ekipçe belirlenince buraya eklenir:
- * @theme { --color-brand-500: #6366f1; }  →  `bg-brand-500` sınıfı oluşur.
+ * Ortak tasarım değerleri ("ders izlencesi": kâğıt zemin, mürekkep mavisi tek vurgu).
+ *
+ * Ana renk: bileşenlerdeki `indigo-*` sınıfları Tailwind'in morumsu indigosu yerine buradaki
+ * mürekkep mavisi tonlarını kullanır. Böylece bütün sayfalar dosyalarına dokunmadan aynı
+ * ana rengi alır. Yeşil, sarı ve gri görev durumlarına ayrılmıştır (tasks/statusStyles.ts).
+ * Yeni bir değer eklemek için: @theme { --color-brand-500: #...; } → `bg-brand-500`.
  */
+@theme {
+  --font-sans: 'IBM Plex Sans Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --color-indigo-50: #f2f5fd;
+  --color-indigo-100: #e3e9fb;
+  --color-indigo-200: #c9d4f6;
+  --color-indigo-300: #a2b4ee;
+  --color-indigo-400: #7a91e4;
+  --color-indigo-500: #5068d6;
+  --color-indigo-600: #3a4fc4;
+  --color-indigo-700: #3141a3;
+  --color-indigo-800: #2c3784;
+  --color-indigo-900: #28306a;
+  --color-indigo-950: #1a1f42;
+}
 
 @layer base {
   html {
@@ -22,10 +46,101 @@
 
   body {
     @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+    /* Sayılar alt alta hizalı dursun (ilerleme yüzdeleri, tarihler, görev sayıları). */
+    font-variant-numeric: tabular-nums;
   }
 
   /* Klavye ile gezinirken odak her zaman görünür olsun (erişilebilirlik). */
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-indigo-500;
+  }
+}
+
+/* Sayfa geçişi (#34): App.vue'daki <Transition name="page"> kullanır; yeni sayfa belirerek gelir. */
+.page-enter-active {
+  transition:
+    opacity 180ms ease-out,
+    transform 180ms ease-out;
+}
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/*
+ * Çerçeve geçişi (#35): giriş yapınca ya da çıkış yapınca menülü çerçeve ile giriş ekranı
+ * arasında geçilir. Eski ekran hafifçe küçülerek solar (.is-leaving, useLayoutTransition),
+ * yenisi aşağıdan kayarak gelir (.layout-enter-*).
+ */
+.layout-shell {
+  transition:
+    opacity 200ms ease-in,
+    transform 200ms ease-in;
+}
+.layout-shell.is-leaving {
+  opacity: 0;
+  transform: scale(0.98);
+}
+.layout-enter-active {
+  transition:
+    opacity 300ms ease-out,
+    transform 300ms ease-out;
+}
+.layout-enter-from {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+/* Onay penceresi (#35): açılırken hafifçe büyür, arka plan bulanıklaşır. */
+.confirm-dialog[open] {
+  animation: dialog-in 180ms ease-out;
+}
+.confirm-dialog[data-state='closing'] {
+  animation: dialog-out 150ms ease-in forwards;
+}
+.confirm-dialog::backdrop {
+  background-color: rgb(2 6 23 / 0.5);
+  backdrop-filter: blur(4px);
+  animation: backdrop-in 180ms ease-out;
+}
+.confirm-dialog[data-state='closing']::backdrop {
+  animation: backdrop-out 150ms ease-in forwards;
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+@keyframes dialog-out {
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes backdrop-out {
+  to {
+    opacity: 0;
+  }
+}
+
+/* İşletim sisteminde "hareketi azalt" açıksa geçiş efektleri kapanır (erişilebilirlik). */
+@media (prefers-reduced-motion: reduce) {
+  .page-enter-active,
+  .layout-shell,
+  .layout-enter-active {
+    transition: none;
+  }
+  .confirm-dialog[open],
+  .confirm-dialog[data-state='closing'],
+  .confirm-dialog::backdrop,
+  .confirm-dialog[data-state='closing']::backdrop {
+    animation: none;
   }
 }

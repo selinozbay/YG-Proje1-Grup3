@@ -156,7 +156,7 @@ async function deleteCustomTask(taskId: string) {
 
   <ul
     v-if="filteredTasks.length"
-    class="mb-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
+    class="mb-8 divide-y divide-slate-200 overflow-hidden rounded-lg border border-slate-200 bg-white dark:divide-slate-800 dark:border-slate-800 dark:bg-slate-900"
     aria-label="Görevler"
   >
     <li v-for="task in filteredTasks" :key="task.id">
@@ -173,7 +173,7 @@ async function deleteCustomTask(taskId: string) {
 
   <div
     v-else
-    class="rounded-xl border-2 border-dashed border-slate-300 p-8 text-center dark:border-slate-700"
+    class="rounded-lg border border-dashed border-slate-300 p-8 text-center dark:border-slate-700"
     data-test="empty-state"
   >
     <p class="font-semibold">
