@@ -9,9 +9,9 @@ defineProps<{ subtitle?: string }>()
 <template>
   <span class="flex min-w-0 items-center gap-3">
     <span
-      class="grid size-9 shrink-0 place-items-center rounded-xl bg-linear-to-br from-indigo-500 to-violet-600 text-white shadow-sm shadow-indigo-500/30"
+      class="grid size-8 shrink-0 place-items-center rounded-md bg-indigo-600 text-white dark:bg-indigo-500"
     >
-      <AppIcon name="logo" class="size-5" />
+      <AppIcon name="logo" class="size-[18px]" />
     </span>
     <span class="min-w-0">
       <span class="block truncate leading-tight font-semibold">{{ APP_NAME }}</span>

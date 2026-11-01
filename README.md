@@ -5,7 +5,7 @@
 Öğrencilerin aldıkları dersleri, haftalık ders içeriklerini, öğrenme hedeflerini, görevlerini ve
 kendi ilerlemelerini tek bir yerden, etkileşimli bir web arayüzüyle takip edebildiği uygulama.
 
-- **Canlı demo:** https://ders-ogrenci-bilgi-ekip.web.app
+- **Canlı demo:** https://ders.c1h4n.com (aynı site: https://ders-ogrenci-bilgi-ekip.web.app)
 - **Görev panosu (GitHub Projects):** https://github.com/users/selinozbay/projects/1
 - **Teslim tarihi:** 11 Kasım 2026
   ([Teslim milestone'u](https://github.com/selinozbay/YG-Proje1-Grup3/milestone/1))
@@ -13,7 +13,7 @@ kendi ilerlemelerini tek bir yerden, etkileşimli bir web arayüzüyle takip ede
 ## İçindekiler
 
 1. [Projenin amacı](#projenin-amacı)
-2. [Ekip ve roller](#ekip-ve-roller)
+2. [Ekip, roller ve katkılar](#ekip-roller-ve-katkılar)
 3. [Özellikler](#özellikler)
 4. [Sayfalar](#sayfalar)
 5. [Kullanılan teknolojiler](#kullanılan-teknolojiler)
@@ -52,72 +52,128 @@ responsive tasarım ve kullanıcı deneyimidir.
 | Öğrenci        | Ders haftalarını, görevleri ve ilerlemesini kolayca görmek; tamamlananları işaretlemek. |
 | Ders sorumlusu | Ders akışının anlaşılır görünmesi ve öğrencinin ne yapacağını kolayca takip edebilmesi. |
 
-## Ekip ve roller
+## Ekip, roller ve katkılar
 
 Tüm ekip üyeleri aynı zamanda geliştiricidir.
 
-| Üye          | Rol                                 |
-| ------------ | ----------------------------------- |
-| Selin Özbay  | Lider + Geliştirici                 |
-| Cihan Bayram | Analist + Geliştirici               |
-| Tahir Taş    | Test / Kalite + Geliştirici         |
-| Ali Tekçe    | Dokümantasyon / Sunum + Geliştirici |
+| Üye          | GitHub                                           | Rol                                 |
+| ------------ | ------------------------------------------------ | ----------------------------------- |
+| Selin Özbay  | [@selinozbay](https://github.com/selinozbay)     | Lider + Geliştirici                 |
+| Cihan Bayram | [@C1H4N](https://github.com/C1H4N)               | Analist + Geliştirici               |
+| Tahir Taş    | [@rumeyus](https://github.com/rumeyus)           | Test / Kalite + Geliştirici         |
+| Ali Tekçe    | [@alitekce2005](https://github.com/alitekce2005) | Dokümantasyon / Sunum + Geliştirici |
+
+### Kim ne yaptı?
+
+1 Kasım 2026 itibarıyla. Görevler 28–29 Ekim'de lider Selin Özbay tarafından dağıtıldı; herkes
+kendi işlerini bu dağılıma göre panoda kendine atadı. Numaralar PR ve issue'lardır; her PR'ın
+içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
+[`docs/katki-tablosu.md`](docs/katki-tablosu.md)'de.
+
+**Selin Özbay (Lider + Geliştirici)**
+
+- GitHub deposunu ve görev panosunu açtı (18 Ekim), görevleri ekibe dağıttı (29 Ekim).
+- Ana Sayfa: dönem çizelgesi, güne göre yaklaşan görevler, derslerin bu haftası
+  ([#84](https://github.com/selinozbay/YG-Proje1-Grup3/pull/84); #9–#13, #48).
+- Derslerim: ders kartları, durum grafiği, arama ve filtre ([#83](https://github.com/selinozbay/YG-Proje1-Grup3/pull/83); #14–#19).
+- Uygulamanın ortak tasarımı: yazı tipi, renkler, kenar çubuğu, görev listeleri ([#86](https://github.com/selinozbay/YG-Proje1-Grup3/pull/86)).
+- Ekip katkı tablosu ve onu GitHub'dan üreten betik ([#85](https://github.com/selinozbay/YG-Proje1-Grup3/pull/85); P1-19).
+- Şifre sıfırlama e-postasının KTÜ adreslerine ulaşması: Firebase e-posta ve alan adı ayarları
+  (Cihan'la birlikte), belgelenmesi ve Gereksiz klasörü uyarısı ([#87](https://github.com/selinozbay/YG-Proje1-Grup3/pull/87), [#88](https://github.com/selinozbay/YG-Proje1-Grup3/pull/88)).
+- PR incelemeleri ve onayları (#77, #79, #81), birleştirmeler (#77, #83–#88).
+
+**Cihan Bayram (Analist + Geliştirici)**
+
+- Gereksinimler (#31). Jira görevlerini GitHub'a aktardı; panonun sütunlarını, etiketlerini ve
+  otomasyonlarını kurdu (20 Ekim).
+- Örnek ders, hafta ve görev verisi ve tutarlılık testi ([#66](https://github.com/selinozbay/YG-Proje1-Grup3/pull/66); #62).
+- Görev kartları ve tek liste ([#67](https://github.com/selinozbay/YG-Proje1-Grup3/pull/67); #22).
+- Görevlerim: durum değiştirme, duruma/derse/haftaya göre filtre, Fuse.js ile arama, boş durum
+  ([#68](https://github.com/selinozbay/YG-Proje1-Grup3/pull/68); #21, #24, #26, #49–#51).
+- Hafta detayı: öğrenme hedefleri, görevler, ilerleme, haftalar arası geçiş ([#69](https://github.com/selinozbay/YG-Proje1-Grup3/pull/69); #43–#47).
+- Kendi görevini ekleme, düzenleme ve silme; Firestore kuralları ([#70](https://github.com/selinozbay/YG-Proje1-Grup3/pull/70); #20, #23).
+- Giriş, şifre sıfırlama ve görev senkronu testleri ([#61](https://github.com/selinozbay/YG-Proje1-Grup3/pull/61); #4, #5, #25).
+- README'nin kurulum, test ve çalışma düzeni bölümleri; teslim tarihi düzeltmesi ([#63](https://github.com/selinozbay/YG-Proje1-Grup3/pull/63)).
+- `ders.c1h4n.com` alan adını ve DNS kayıtlarını sağladı. Birleştirmeler: #63, #75, #76.
+
+**Tahir Taş (Test / Kalite + Geliştirici)**
+
+- Birim, bileşen ve E2E test altyapısı ve CI ([#37](https://github.com/selinozbay/YG-Proje1-Grup3/pull/37); #38).
+- Test senaryosu tablosu ve hata kaydı: [`docs/test-senaryolari.md`](docs/test-senaryolari.md)
+  ([#73](https://github.com/selinozbay/YG-Proje1-Grup3/pull/73); P1-15).
+- Testte bulduğu hataların düzeltilmesi: boş adla kayıt, hafta adresi ([#74](https://github.com/selinozbay/YG-Proje1-Grup3/pull/74); #71, #72).
+- Kayıt kuralları: öğrenci e-postası ve şifre gücü göstergesi ([#76](https://github.com/selinozbay/YG-Proje1-Grup3/pull/76); #6, #7).
+- Ders detayı: hafta kartları, ilerleme, zaman çizelgesi ([#77](https://github.com/selinozbay/YG-Proje1-Grup3/pull/77); #39–#42).
+- Birleşmeyi bekleyen: Profil ([#81](https://github.com/selinozbay/YG-Proje1-Grup3/pull/81); #27–#30, #52), durum seçicisinin karanlık tema
+  düzeltmesi ([#79](https://github.com/selinozbay/YG-Proje1-Grup3/pull/79); #78).
+
+**Ali Tekçe (Dokümantasyon / Sunum + Geliştirici)**
+
+- Proje iskeleti (18 Ekim): Vue, TypeScript, Tailwind ve Firebase kurulumu; giriş, kayıt ve şifre
+  sıfırlama altyapısı; sayfa yönlendirmesi; ilk README ve ilk canlı yayın (#1).
+- Haftalık ders kartlarının ilk tasarımı (#1).
+- Kenar çubuğu: KVKK bağlantısı, menü geçiş efektleri, çıkış onayı ([#75](https://github.com/selinozbay/YG-Proje1-Grup3/pull/75); #33–#36).
+- Proje raporunun ara sürümü (`docs/proje-raporu.pdf`; #54).
+- Birleştirmeler: #61, #66–#70, #73, #74.
+- Birleşmeyi bekleyen: giriş ekranlarının yeni tasarımı ([#80](https://github.com/selinozbay/YG-Proje1-Grup3/pull/80); #3), KVKK iletişim bilgisi
+  ([#82](https://github.com/selinozbay/YG-Proje1-Grup3/pull/82); #58).
 
 ## Özellikler
 
-| Özellik                                                        | Nerede                   | Durum          |
-| -------------------------------------------------------------- | ------------------------ | -------------- |
-| E-posta ve şifreyle kayıt, giriş, şifre sıfırlama              | Giriş / Kayıt            | Geliştiriliyor |
-| Giriş yapmayan kullanıcının uygulamaya girememesi              | Tüm sayfalar             | Hazır          |
-| Karanlık / aydınlık tema (seçim hatırlanır, açılışta aydınlık) | Üst menü                 | Hazır          |
-| Masaüstünde sabit sol menü, mobilde soldan açılan menü         | Tüm sayfalar             | Hazır          |
-| Gizlilik ve KVKK aydınlatma metni                              | Gizlilik                 | Hazır          |
-| Hesabı ve tüm verileri silme                                   | Profil                   | Geliştiriliyor |
-| Demo modu (Firebase olmadan çalışma)                           | Tüm sayfalar             | Hazır          |
-| Klavyeyle kullanım, "İçeriğe geç" bağlantısı                   | Tüm sayfalar             | Hazır          |
-| Birden fazla ders, ders kartları                               | Derslerim                | Geliştiriliyor |
-| Haftalık ders kartları ve öğrenme hedefleri                    | Ders ve hafta detayı     | Geliştiriliyor |
-| Görev listesi ve durum değiştirme                              | Görevlerim, hafta detayı | Geliştiriliyor |
-| Duruma, derse ve haftaya göre filtre; arama                    | Görevlerim               | Geliştiriliyor |
-| Genel ve ders bazında ilerleme göstergesi                      | Ana Sayfa                | Geliştiriliyor |
+| Özellik                                                        | Nerede                   | Durum |
+| -------------------------------------------------------------- | ------------------------ | ----- |
+| E-posta ve şifreyle kayıt, giriş, şifre sıfırlama              | Giriş / Kayıt            | Hazır |
+| Giriş yapmayan kullanıcının uygulamaya girememesi              | Tüm sayfalar             | Hazır |
+| Karanlık / aydınlık tema (seçim hatırlanır, açılışta aydınlık) | Üst menü                 | Hazır |
+| Masaüstünde sabit sol menü, mobilde soldan açılan menü         | Tüm sayfalar             | Hazır |
+| Gizlilik ve KVKK aydınlatma metni                              | Gizlilik                 | Hazır |
+| Hesabı ve tüm verileri silme                                   | Profil                   | Hazır |
+| Demo modu (Firebase olmadan çalışma)                           | Tüm sayfalar             | Hazır |
+| Klavyeyle kullanım, "İçeriğe geç" bağlantısı                   | Tüm sayfalar             | Hazır |
+| Ders kartları, durum grafiği, arama ve filtre                  | Derslerim                | Hazır |
+| Haftalık ders kartları ve öğrenme hedefleri                    | Ders ve hafta detayı     | Hazır |
+| Görev listesi ve durum değiştirme                              | Görevlerim, hafta detayı | Hazır |
+| Duruma, derse ve haftaya göre filtre; arama                    | Görevlerim               | Hazır |
+| Genel ve ders bazında ilerleme, yaklaşan görevler, bu hafta    | Ana Sayfa                | Hazır |
 
 ## Sayfalar
 
-| Sayfa            | Adres                               | Giriş gerekir mi? | İçerik                                               |
-| ---------------- | ----------------------------------- | ----------------- | ---------------------------------------------------- |
-| Ana Sayfa        | `/`                                 | Evet              | Genel ilerleme, yaklaşan görevler, bu haftanın dersi |
-| Derslerim        | `/derslerim`                        | Evet              | Ders kartları                                        |
-| Ders detayı      | `/derslerim/:dersId`                | Evet              | Dersin haftaları                                     |
-| Hafta detayı     | `/derslerim/:dersId/hafta/:haftaNo` | Evet              | Öğrenme hedefleri ve o haftanın görevleri            |
-| Görevlerim       | `/gorevlerim`                       | Evet              | Tüm görevler, filtre ve arama                        |
-| Profil           | `/profil`                           | Evet              | Hesap bilgileri, tercihler, hesabı silme             |
-| Giriş yap        | `/giris`                            | Hayır             | E-posta ve şifreyle giriş                            |
-| Kayıt ol         | `/kayit`                            | Hayır             | Yeni hesap, KVKK onayı                               |
-| Şifremi unuttum  | `/sifremi-unuttum`                  | Hayır             | Şifre sıfırlama e-postası                            |
-| Gizlilik ve KVKK | `/gizlilik`                         | Hayır             | Aydınlatma metni                                     |
-| Bulunamadı       | Diğer tüm adresler                  | Hayır             | 404 sayfası                                          |
+| Sayfa            | Adres                               | Giriş gerekir mi? | İçerik                                                |
+| ---------------- | ----------------------------------- | ----------------- | ----------------------------------------------------- |
+| Ana Sayfa        | `/`                                 | Evet              | Dönem çizelgesi, yaklaşan görevler, bu haftanın dersi |
+| Derslerim        | `/derslerim`                        | Evet              | Ders kartları, durum grafiği, arama ve filtre         |
+| Ders detayı      | `/derslerim/:dersId`                | Evet              | Dersin haftaları, ilerlemesi ve zaman çizelgesi       |
+| Hafta detayı     | `/derslerim/:dersId/hafta/:haftaNo` | Evet              | Öğrenme hedefleri ve o haftanın görevleri             |
+| Görevlerim       | `/gorevlerim`                       | Evet              | Tüm görevler, filtre, arama, kendi görevini ekleme    |
+| Profil           | `/profil`                           | Evet              | Hesap bilgileri, tercihler, hesabı silme              |
+| Giriş yap        | `/giris`                            | Hayır             | E-posta ve şifreyle giriş                             |
+| Kayıt ol         | `/kayit`                            | Hayır             | Yeni hesap, KVKK onayı                                |
+| Şifremi unuttum  | `/sifremi-unuttum`                  | Hayır             | Şifre sıfırlama e-postası                             |
+| Gizlilik ve KVKK | `/gizlilik`                         | Hayır             | Aydınlatma metni                                      |
+| Bulunamadı       | Diğer tüm adresler                  | Hayır             | 404 sayfası                                           |
 
 ## Kullanılan teknolojiler
 
-| Teknoloji                                                            | Sürüm | Projede ne için kullanılıyor                                          |
-| -------------------------------------------------------------------- | ----- | --------------------------------------------------------------------- |
-| [Vue](https://vuejs.org/)                                            | 3.5   | Arayüzü bileşenlere bölerek oluşturmak (HTML + CSS + TypeScript)      |
-| [TypeScript](https://www.typescriptlang.org/)                        | 6.0   | JavaScript'e tip denetimi eklemek; hataları çalıştırmadan yakalamak   |
-| [Vite](https://vite.dev/)                                            | 8.3   | Geliştirme sunucusu ve yayın için derleme                             |
-| [Vue Router](https://router.vuejs.org/)                              | 5.4   | Sayfalar arası geçiş, giriş yapılmadan sayfaların açılmasını önleme   |
-| [Pinia](https://pinia.vuejs.org/)                                    | 4.1   | Sayfaların ortak kullandığı veri: oturum, ilerleme, tema              |
-| [Tailwind CSS](https://tailwindcss.com/)                             | 4.3   | Stil, responsive tasarım ve karanlık tema                             |
-| [Firebase Authentication](https://firebase.google.com/docs/auth)     | 13.0  | E-posta ve şifreyle kayıt, giriş, şifre sıfırlama                     |
-| [Cloud Firestore](https://firebase.google.com/docs/firestore)        | 13.0  | Kullanıcının görev durumlarını saklamak                               |
-| [Firebase Hosting](https://firebase.google.com/docs/hosting)         | —     | Uygulamayı internette yayınlamak                                      |
-| ESLint, Oxlint, Prettier                                             | —     | Kod hatalarını yakalamak ve herkesin aynı biçimde kod yazması         |
-| [Vitest](https://vitest.dev/)                                        | 5.0   | Birim ve bileşen testleri                                             |
-| [Vue Test Utils](https://test-utils.vuejs.org/)                      | 2.5   | Bileşenleri testte çalıştırıp çıktısını kontrol etmek                 |
-| [Playwright](https://playwright.dev/)                                | 1.64  | Gerçek tarayıcıda uçtan uca (E2E) testler                             |
-| [Firebase Emulator](https://firebase.google.com/docs/emulator-suite) | —     | Firestore kurallarını gerçek veritabanına dokunmadan test etmek       |
-| [GitHub Actions](https://docs.github.com/actions)                    | —     | Her push ve PR'da lint, tip kontrolü, derleme ve testleri çalıştırmak |
-| GitHub Projects                                                      | —     | Görev takibi ve iş bölümü (issue'lar ve pano)                         |
-| Git ve GitHub                                                        | —     | Sürüm kontrolü ve bireysel katkının kaydı                             |
+| Teknoloji                                                            | Sürüm | Projede ne için kullanılıyor                                                  |
+| -------------------------------------------------------------------- | ----- | ----------------------------------------------------------------------------- |
+| [Vue](https://vuejs.org/)                                            | 3.5   | Arayüzü bileşenlere bölerek oluşturmak (HTML + CSS + TypeScript)              |
+| [TypeScript](https://www.typescriptlang.org/)                        | 6.0   | JavaScript'e tip denetimi eklemek; hataları çalıştırmadan yakalamak           |
+| [Vite](https://vite.dev/)                                            | 8.3   | Geliştirme sunucusu ve yayın için derleme                                     |
+| [Vue Router](https://router.vuejs.org/)                              | 5.4   | Sayfalar arası geçiş, giriş yapılmadan sayfaların açılmasını önleme           |
+| [Pinia](https://pinia.vuejs.org/)                                    | 4.1   | Sayfaların ortak kullandığı veri: oturum, ilerleme, tema                      |
+| [Tailwind CSS](https://tailwindcss.com/)                             | 4.3   | Stil, responsive tasarım ve karanlık tema                                     |
+| [Firebase Authentication](https://firebase.google.com/docs/auth)     | 13.0  | E-posta ve şifreyle kayıt, giriş, şifre sıfırlama                             |
+| [Cloud Firestore](https://firebase.google.com/docs/firestore)        | 13.0  | Kullanıcının görev durumlarını ve kendi görevlerini saklamak                  |
+| [Fuse.js](https://www.fusejs.io/)                                    | 7.5   | Görev ve ders aramada küçük yazım hatalarını ve şapkalı harfleri tolere etmek |
+| [Firebase Hosting](https://firebase.google.com/docs/hosting)         | —     | Uygulamayı internette yayınlamak                                              |
+| ESLint, Oxlint, Prettier                                             | —     | Kod hatalarını yakalamak ve herkesin aynı biçimde kod yazması                 |
+| [Vitest](https://vitest.dev/)                                        | 5.0   | Birim ve bileşen testleri                                                     |
+| [Vue Test Utils](https://test-utils.vuejs.org/)                      | 2.5   | Bileşenleri testte çalıştırıp çıktısını kontrol etmek                         |
+| [Playwright](https://playwright.dev/)                                | 1.64  | Gerçek tarayıcıda uçtan uca (E2E) testler                                     |
+| [Firebase Emulator](https://firebase.google.com/docs/emulator-suite) | —     | Firestore kurallarını gerçek veritabanına dokunmadan test etmek               |
+| [GitHub Actions](https://docs.github.com/actions)                    | —     | Her push ve PR'da lint, tip kontrolü, derleme ve testleri çalıştırmak         |
+| GitHub Projects                                                      | —     | Görev takibi ve iş bölümü (issue'lar ve pano)                                 |
+| Git ve GitHub                                                        | —     | Sürüm kontrolü ve bireysel katkının kaydı                                     |
 
 ## Kurulum ve çalıştırma
 
@@ -169,8 +225,9 @@ Tüm ekip üyeleri aynı zamanda geliştiricidir.
 Firebase değerleri yoksa (ya da `npm run dev:demo` ile başlatıldıysa) uygulama Firebase'e hiç
 bağlanmadan çalışır. Ekranın üstünde sarı bir **"Demo modu"** uyarısı görünür.
 
-- Herhangi bir e-posta ve en az 6 karakterlik herhangi bir şifreyle kayıt olunup giriş yapılabilir.
-  Şifre saklanmaz ve kontrol edilmez.
+- Kayıtta öğrenci e-postası (`123456@ogr.ktu.edu.tr`) ve güçlü bir şifre istenir (kayıt
+  formu kuralları demo modunda da geçerlidir). Girişte ise herhangi bir e-posta ve en az 6
+  karakterlik herhangi bir şifre yeterlidir. Şifre saklanmaz ve kontrol edilmez.
 - Görev durumları yalnızca o tarayıcıda (`localStorage`) tutulur.
 - Bu sayede repo, Firebase anahtarları olmadan da kurulup denenebilir.
 
@@ -178,11 +235,16 @@ bağlanmadan çalışır. Ekranın üstünde sarı bir **"Demo modu"** uyarısı
 
 Hazır bir test hesabı yoktur.
 
-- **Firebase modunda:** "Kayıt ol" sayfasından kendi e-posta adresinizle hesap açın. Şifre olarak
+- **Kayıt kuralları:** Kayıt yalnızca KTÜ öğrenci e-postasıyla (öğrenci numarası +
+  `@ogr.ktu.edu.tr`) yapılabilir. Şifre güçlü olmalıdır: en az 10 karakter ve küçük harf, büyük
+  harf, rakam, simgeden en az üçü. Formdaki gösterge "Güçlü" olmadan kayıt olunmaz. Giriş ve şifre
+  sıfırlamada bu kurallar yoktur.
+- **Firebase modunda:** "Kayıt ol" sayfasından öğrenci e-postanızla hesap açın. Şifre olarak
   e-posta hesabınızın şifresini değil, **bu uygulamaya özel yeni bir şifre** belirleyin. Gerçek
   e-posta kullanırsanız "Şifremi unuttum" e-postası da size ulaşır.
-- **Demo modunda:** `deneme@example.com` gibi uydurma bir adres ve en az 6 karakterlik bir şifre
-  yeterlidir.
+- **Demo modunda:** Kayıt için `123456@ogr.ktu.edu.tr` gibi uydurma bir öğrenci adresi ve
+  `Parola-2026` gibi bir şifre; giriş için `deneme@example.com` gibi herhangi bir adres ve en az 6
+  karakterlik bir şifre yeterlidir.
 - Hesapları Firebase Console → Authentication → Users bölümünden görebilir, silebilirsiniz.
 
 ## Komutlar
@@ -207,29 +269,20 @@ bittiğinden emin olun.
 
 ### Testler
 
-- **Birim ve bileşen testleri** (`src/**/__tests__/`): ders kataloğu ve ilerleme store'larının
-  hesapları, kayıt başarısız olunca durumun geri alınması, bir görevin durumu değişince farklı
-  sayfaların birlikte güncellenmesi, `AppIcon` bileşeni. Çalıştırma: `npm test`. Testler her zaman
-  demo modunda çalışır; `.env.local` dolu olsa bile gerçek Firebase'e bağlanmaz.
-- **Uçtan uca (E2E) testler** (`e2e/`): kayıt (KVKK onayı zorunlu), giriş, hatalı şifre uyarısı,
-  şifremi unuttum, çıkış, giriş yapmayanın giriş sayfasına yönlenmesi ve girişten sonra istediği
-  sayfaya dönmesi, menüden sayfa geçişleri. Playwright uygulamayı `npm run dev:demo` ile kendisi
-  açar.
-  - İlk seferde tarayıcıyı kurun: `npx playwright install chromium`
-  - Çalıştırmadan önce açık bir `npm run dev` varsa kapatın. Kapatmazsanız Playwright onu
-    kullanır ve Firebase modunda açık olduğu için demo girişi yapan testler başarısız olur.
-  - Çalıştırma: `npm run test:e2e`
-- **Firebase testleri** (`test/`): gerçek Firebase yolunu, canlı projeye dokunmadan bilgisayarda
-  açılan Auth ve Firestore emülatörlerine karşı dener (Java 21+ ve Firebase CLI gerekir).
-  - Güvenlik kuralları: giriş yapmayan hiçbir belgeye, giriş yapan yalnızca kendi belgesine
-    erişebilir.
-  - Giriş ve kayıt: kayıt, aynı e-postayla ikinci kayıt, kısa şifre, doğru ve yanlış şifreyle giriş,
-    oturum değişikliği; hata mesajlarının Türkçe olması.
-  - Şifremi unuttum: sıfırlama e-postasının gönderilmesi, kayıtlı olmayan e-postada hesabın
-    varlığının belli edilmemesi.
-  - Görev durumları: kaydedilmesi, başka kullanıcının verisinin okunamaması, hesap silinince
-    verinin ve hesabın silinmesi (KVKK).
-  - Çalıştırma: `npm run test:firebase` (emülatörleri açar, testleri koşar, kapatır)
+| Tür                 | Klasör              | Neyi kapsar                                                                        | Çalıştırma              |
+| ------------------- | ------------------- | ---------------------------------------------------------------------------------- | ----------------------- |
+| Birim ve bileşen    | `src/**/__tests__/` | Store'lar, hesaplamalar, filtre ve arama, bileşenler, sayfalar                     | `npm test`              |
+| Uçtan uca (E2E)     | `e2e/`              | Kayıt, giriş, şifremi unuttum, menü, Ana Sayfa, Derslerim, Görevlerim, haftalar    | `npm run test:e2e`      |
+| Firebase (emülatör) | `test/`             | Firestore güvenlik kuralları, gerçek giriş ve kayıt, kullanıcı verisi, hesap silme | `npm run test:firebase` |
+
+- Birim testleri ve E2E her zaman demo modunda çalışır; `.env.local` dolu olsa bile gerçek
+  Firebase'e bağlanmaz.
+- E2E için ilk seferde tarayıcıyı kurun: `npx playwright install chromium`. Açık bir
+  `npm run dev` varsa önce kapatın (Playwright onu kullanırsa demo girişi yapan testler bozulur).
+- Firebase testleri canlı projeye dokunmadan bilgisayarda açılan emülatörlerle çalışır; Java 21+ ve
+  Firebase CLI gerekir.
+- Elle yapılan test senaryoları ve bulunan hatalar:
+  [`docs/test-senaryolari.md`](docs/test-senaryolari.md).
 
 **Otomatik kontrol (CI):** `main`'e her push'ta ve `main`'e açılan her PR'da GitHub Actions dört
 kontrol çalıştırır: lint + tip kontrolü + derleme, birim testleri, E2E testleri ve Firebase
@@ -249,7 +302,42 @@ birleştirilmeden önce düzeltilir.
    npm run deploy
    ```
 
-Site https://ders-ogrenci-bilgi-ekip.web.app adresinde yayınlanır.
+Site https://ders.c1h4n.com ve https://ders-ogrenci-bilgi-ekip.web.app adreslerinde yayınlanır
+(ikisi aynı sitedir).
+
+### Alan adı ve e-posta gönderimi
+
+Şifre sıfırlama e-postaları Firebase Authentication'ın kendi servisiyle, `noreply@ders.c1h4n.com`
+adresinden gönderilir. Daha önce kullanılan Gmail SMTP ayarı 1 Kasım 2026'da kapatıldı: KTÜ öğrenci
+postası (Microsoft 365) varsayılan `firebaseapp.com` göndericisinden gelen e-postaları teslim
+etmiyordu.
+
+- **Alan adı:** `ders.c1h4n.com`, Cihan'ın `c1h4n.com` alan adının alt alan adıdır. DNS kayıtları
+  Vercel'de (Domains → c1h4n.com → DNS Records) tutulur; her kaydın açıklamasında "ders projesi"
+  yazar. Bu kayıtlar silinirse site ve e-posta gönderimi bozulur.
+- **Site:** Firebase Console → Hosting'de `ders.c1h4n.com` bağlıdır (`A` kaydı `199.36.158.100`,
+  `TXT hosting-site=...` ve SSL için `_acme-challenge.ders`).
+- **E-posta:** Firebase Console → Authentication → Templates'te gönderici alan adı
+  `ders.c1h4n.com` olarak doğrulanmıştır. Teslim edilebilirlik için `ders` alt alan adında SPF
+  (`include:_spf.firebasemail.com`), iki DKIM kaydı (`firebase1/firebase2._domainkey.ders`) ve
+  DMARC (`_dmarc.ders`, `p=none`) kayıtları vardır.
+- **Yetkili alan adları:** Authentication → Settings → Authorized domains listesinde
+  `ders.c1h4n.com` vardır.
+- **E-postadaki bağlantı:** `ders-ogrenci-bilgi-ekip.firebaseapp.com/__/auth/action` adresine gider
+  ve olduğu gibi bırakıldı. Templates → Password reset → Customize action URL ile
+  `https://ders.c1h4n.com/__/auth/action` yapılmak istendi; Firebase Console "An error occurred
+  updating action URL" dedi. Konsolun gönderdiği istek
+  (`PATCH .../config?updateMask=notification.sendEmail.callbackUri`) sunucudan
+  `400 INVALID_ARGUMENT: EMAIL_TEMPLATE_UPDATE_NOT_ALLOWED` cevabını alıyor: Firebase bu projede
+  e-posta şablonlarının değiştirilmesine izin vermiyor. Proje ücretsiz Spark planında; Google
+  oltalamayı önlemek için ücretsiz projelerde şablon değişikliklerini kısıtlıyor (gönderici alan
+  adının değiştirilmesine ise izin verdi). Ücretli Blaze planına geçilirse yeniden denenebilir;
+  ders projesi için gerekli görülmedi.
+
+**KTÜ adreslerinde Gereksiz klasörü:** Alan adı yeni olduğu için şifre sıfırlama e-postası KTÜ
+öğrenci adreslerinde Gereksiz (Spam) klasörüne düşebilir. Kullanıcı e-postayı orada bulup
+"Gereksiz değil" olarak işaretlerse sonrakiler gelen kutusuna gelir. Sorun sürerse KTÜ Bilgi
+İşlem'den `ders.c1h4n.com` göndericisinin izin listesine eklenmesi istenebilir.
 
 ## Proje yapısı: hangi dosya ne işe yarar?
 
@@ -266,10 +354,11 @@ YG-Proje1-Grup3/
 │   ├── components/     Tekrar kullanılan bileşenler
 │   │   ├── auth/       Giriş/kayıt formlarının parçaları
 │   │   ├── common/     Her sayfada kullanılabilen küçük bileşenler
+│   │   ├── home/       Ana Sayfa kartları
 │   │   ├── layout/     Menü, üst bar, alt bilgi, tema düğmesi
-│   │   ├── lessons/    Ders ve hafta kartları (geliştirilecek)
-│   │   └── tasks/      Görev kartı, filtre, arama (geliştirilecek)
-│   ├── composables/    Tekrar kullanılan mantık (useMediaQuery)
+│   │   ├── lessons/    Ders ve hafta kartları, ders grafiği, filtre, zaman çizelgesi
+│   │   └── tasks/      Görev kartı, durum seçici, filtre, kendi görev formu
+│   ├── composables/    Tekrar kullanılan mantık (filtre, arama, ilerleme hesapları)
 │   ├── data/           Ders kataloğu (JSON)
 │   ├── firebase/       Firebase bağlantısı
 │   ├── layouts/        Sayfa çerçeveleri
@@ -277,11 +366,13 @@ YG-Proje1-Grup3/
 │   ├── services/       Veri okuma/yazma (Firebase veya demo modu)
 │   ├── stores/         Ortak veri (Pinia)
 │   ├── types/          TypeScript tipleri
+│   ├── utils/          Küçük yardımcılar (Türkçe tarih biçimi)
 │   ├── views/          Sayfalar
 │   ├── App.vue         Kök bileşen
 │   ├── config.ts       Ortak sabitler
 │   └── main.ts         Uygulamanın başladığı yer
-├── test/               Firestore güvenlik kuralı testleri
+├── scripts/            Ekip katkı tablosunu üreten betik
+├── test/               Firebase emülatör testleri (kurallar, giriş, kullanıcı verisi)
 └── (kök dizindeki ayar dosyaları — aşağıda)
 ```
 
@@ -339,36 +430,36 @@ Birim testleri, test ettikleri dosyanın yanındaki `__tests__/` klasöründe du
 
 ### `src/components/` — bileşenler
 
-| Dosya                        | Ne işe yarar                                                                                                                                   |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `layout/AppSidebar.vue`      | Sol kenar çubuğu: logo, ikonlu ana menü (seçili sayfa vurgulu), kullanıcı kartı, tema düğmesi, çıkış. Masaüstünde sabit, mobilde soldan açılır |
-| `layout/AppHeader.vue`       | Yalnızca mobilde görünen üst bar: menü düğmesi, logo, tema düğmesi                                                                             |
-| `layout/AppLogo.vue`         | Logo ve uygulama adı; kenar çubuğunda, mobil üst barda ve giriş sayfalarında                                                                   |
-| `layout/AppFooter.vue`       | Alt bilgi ve Gizlilik/KVKK bağlantısı                                                                                                          |
-| `layout/ThemeToggle.vue`     | Karanlık/aydınlık tema düğmesi                                                                                                                 |
-| `layout/DemoBanner.vue`      | Demo modundayken üstte çıkan uyarı                                                                                                             |
-| `layout/SkipLink.vue`        | Klavye kullanıcıları için "İçeriğe geç" bağlantısı                                                                                             |
-| `common/AppIcon.vue`         | Uygulamadaki tüm ikonlar tek yerde (`<AppIcon name="home" class="size-5" />`)                                                                  |
-| `common/PageHeader.vue`      | Sayfa başlığı ve açıklaması                                                                                                                    |
-| `common/TextField.vue`       | Etiketli metin kutusu (formlarda kullanılır)                                                                                                   |
-| `common/PagePlaceholder.vue` | **Geçici.** Sayfalarda "Geliştirilecek" listesini gösterir; sayfalar bitince silinir                                                           |
-| `auth/AuthCard.vue`          | Giriş, kayıt ve şifre sıfırlama formlarının ortak kartı; hata mesajını gösterir                                                                |
-| `auth/SubmitButton.vue`      | Form gönderme düğmesi; işlem sürerken pasifleşir                                                                                               |
-| `lessons/`                   | Ders ve hafta kartları buraya eklenecek                                                                                                        |
-| `tasks/`                     | Görev kartı, filtre ve arama bileşenleri buraya eklenecek                                                                                      |
+| Klasör     | İçindekiler                                                                                                                                       |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `layout/`  | Kenar çubuğu (`AppSidebar`), mobil üst bar, logo, alt bilgi, tema düğmesi, demo uyarısı, "İçeriğe geç" bağlantısı                                 |
+| `common/`  | Ortak parçalar: ikonlar (`AppIcon`), sayfa başlığı, metin kutusu, onay penceresi, geri bağlantısı, ilerleme çubuğu, durum dağılımı çubuğu         |
+| `auth/`    | Giriş, kayıt ve şifre sıfırlama formlarının ortak kartı, gönder düğmesi, şifre gücü göstergesi                                                    |
+| `home/`    | Ana Sayfa: `TermOverview` (dönem çizelgesi), `UpcomingTasks` (güne göre yaklaşan görevler), `HomeCourses` (ders ilerlemesi ve bu haftanın konusu) |
+| `lessons/` | Ders kartı, ders grafiği ve filtresi (Derslerim); hafta kartı ve zaman çizelgesi (Ders detayı); ders renkleri                                     |
+| `tasks/`   | Görev kartı, durum seçici, görev filtresi, kendi görevini ekleme formu; görev durumlarının renkleri                                               |
 
 ### `src/composables/` — tekrar kullanılan mantık
 
-| Dosya              | Ne işe yarar                                                                                                                                   |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `useMediaQuery.ts` | Bir ekran koşulunun (ör. masaüstü genişliği, sistemin karanlık teması) o an geçerli olup olmadığını verir; değişince kendiliğinden güncellenir |
+| Dosya                    | Ne işe yarar                                                                                                     |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| `useTaskFilters.ts`      | Görevleri duruma, derse, haftaya ve aramaya göre süzer (Fuse.js)                                                 |
+| `useTaskStatusChange.ts` | Görev durumunu değiştirir; kayıt başarısız olursa hata mesajı hazırlar                                           |
+| `useCustomTaskForm.ts`   | Kendi görevini ekleme formunun kuralları (başlık ve açıklama uzunluğu)                                           |
+| `useCourseProgress.ts`   | Her dersin görevleri, ilerlemesi ve durumu (Başlanmadı / Devam ediyor / Tamamlandı)                              |
+| `useCourseFilters.ts`    | Dersleri duruma ve aramaya göre süzer (Fuse.js)                                                                  |
+| `useDashboard.ts`        | Ana Sayfa hesapları: dönemin haftaları, geçen süre, bugüne göre her dersin haftası, yaklaşan ve geciken görevler |
+| `useLayoutTransition.ts` | Giriş ve çıkışta çerçeveler arası geçiş efekti                                                                   |
+| `useMediaQuery.ts`       | Bir ekran koşulunun (masaüstü genişliği, sistemin karanlık teması) o an geçerli olup olmadığı                    |
+
+`src/utils/date.ts` tarihleri Türkçe yazar ("4 Kasım", "1 Kasım Pazar").
 
 ### `src/views/` — sayfalar
 
 | Dosya                         | Adres                               | Ne işe yarar                                                            |
 | ----------------------------- | ----------------------------------- | ----------------------------------------------------------------------- |
-| `HomeView.vue`                | `/`                                 | Ana Sayfa: genel ilerleme ve özet                                       |
-| `CoursesView.vue`             | `/derslerim`                        | Ders kartları                                                           |
+| `HomeView.vue`                | `/`                                 | Genel ilerleme, yaklaşan görevler, bu haftanın dersleri, ders özetleri  |
+| `CoursesView.vue`             | `/derslerim`                        | Ders kartları, durum grafiği, arama ve filtre                           |
 | `CourseDetailView.vue`        | `/derslerim/:dersId`                | Bir dersin haftaları; ders yoksa "bulunamadı" mesajı                    |
 | `WeekDetailView.vue`          | `/derslerim/:dersId/hafta/:haftaNo` | Haftanın öğrenme hedefleri ve görevleri                                 |
 | `TasksView.vue`               | `/gorevlerim`                       | Tüm görevler, filtre ve arama                                           |
@@ -384,12 +475,12 @@ Birim testleri, test ettikleri dosyanın yanındaki `__tests__/` klasöründe du
 Sayfalar veriyi doğrudan Firebase'den değil, bu store'lardan okur. Bir sayfada görev tamamlanınca
 diğer sayfalardaki ilerleme de kendiliğinden güncellenir.
 
-| Dosya            | Ne işe yarar                                                                                                        |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `auth.ts`        | Giriş yapan kullanıcı; kayıt, giriş, çıkış, şifre sıfırlama, hesap silme işlemleri                                  |
-| `catalog.ts`     | Ders kataloğu (dersler, haftalar, görevler). `getCourse`, `getWeeks`, `getWeek` yardımcıları                        |
-| `progress.ts`    | Kullanıcının görev durumları. `tasks` (durumlarıyla görevler), `overall` (genel ilerleme), `summarize`, `setStatus` |
-| `preferences.ts` | Tema tercihi (aydınlık / karanlık / sistem); `localStorage`'a kaydedilir                                            |
+| Dosya            | Ne işe yarar                                                                                                           |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `auth.ts`        | Giriş yapan kullanıcı; kayıt, giriş, çıkış, şifre sıfırlama, hesap silme işlemleri                                     |
+| `catalog.ts`     | Ders kataloğu (dersler, haftalar, görevler). `getCourse`, `getWeeks`, `getWeek` yardımcıları                           |
+| `progress.ts`    | Kullanıcının görev durumları ve kendi görevleri: `tasks`, `overall`, `setStatus`, `saveCustomTask`, `deleteCustomTask` |
+| `preferences.ts` | Tema tercihi (aydınlık / karanlık / sistem); `localStorage`'a kaydedilir                                               |
 
 ### `src/services/` — veri okuma ve yazma
 
@@ -481,19 +572,10 @@ kriterleri** başlığı altında yazar.
   | Test         | İnceleme bitti, test ve kalite kontrolü yapılıyor |
   | Yapıldı      | PR birleşti ya da issue kapandı (kendiliğinden)   |
 
-- **Her issue'nun kendi numarası vardır:** `#1`, `#2` … Numara, issue başlığının yanında ve
-  panodaki kartın altında yazar. Yeni issue açılınca GitHub numarayı kendisi verir. Issue'lar ve
-  PR'lar aynı sayacı paylaştığı için numaralar arada atlayabilir.
-- Panoya doğrudan eklenen **taslak** (draft) kartların numarası yoktur. İşe başlamadan önce kartın
-  menüsünden **Convert to issue** ile issue'ya çevirin.
-- **Öncelik:** her kartın **Öncelik** alanı vardır: En yüksek, Yüksek, Orta, Düşük.
-- **Alt görevler:** büyük işler (ör. bir sayfanın tamamı) ana issue olarak açılır; parçaları issue
-  sayfasındaki **Create sub-issue** ile alt görev olarak eklenir. Ana issue'da kaç alt görevin
-  bittiği görünür.
-- **Etiketler (Labels):** yeni özellik için `enhancement`, hata için `bug`, doküman için
-  `documentation`.
-- Eski Jira görevleri (`KAN-…`) GitHub'a aktarıldı. Her issue'nun altında Jira anahtarı ve görevi
-  açan kişi yazar.
+- Her kartın bir issue numarası (`#12`), bir **Öncelik** alanı (En yüksek / Yüksek / Orta / Düşük)
+  ve bir etiketi vardır: `enhancement` (özellik), `bug` (hata), `documentation` (doküman).
+- Eski Jira görevleri (`KAN-…`) 20 Ekim'de GitHub'a aktarıldı; her issue'nun altında Jira anahtarı
+  ve görevi açan kişi yazar.
 
 ### Görev akışı
 
@@ -569,18 +651,9 @@ feat: görevlere durum filtresi ekle (#12)
 - Sonuç yoksa "Bu durumda görev yok" mesajı gösteriliyor
 ```
 
-- Başlık en fazla ~72 karakter olsun ve nokta ile bitmesin.
-- Issue numarası başlığın **sonuna** yazılır. Satırı `#` ile başlatmayın: git, düzenleyicide
-  yazılan commit mesajlarında `#` ile başlayan satırları yorum sayıp siler.
-- Issue'yu kapatan `Closes #12` satırı PR açıklamasına yazılır (şablonda hazır); commit mesajında
-  numarayı yazmak yeterlidir.
-- `update`, `final`, `son hali` gibi açıklamasız mesajlar kullanılmaz.
-- Çok satırlı mesaj için VS Code'da Kaynak Denetimi kutusuna başlık, bir boş satır ve açıklama
-  yazın. Terminalde her `-m` ayrı bir paragraf olur:
-
-  ```bash
-  git commit -m "feat: görevlere durum filtresi ekle (#12)" -m "- Görevlerim sayfasına durum filtresi eklendi"
-  ```
+- Başlık kısa olsun (~72 karakter), issue numarası başlığın **sonuna** yazılsın. `update`,
+  `final`, `son hali` gibi açıklamasız mesajlar kullanılmaz.
+- Issue'yu kapatan `Closes #12` satırı PR açıklamasına yazılır (şablonda hazır).
 
 ### Commitlere nereden bakılır?
 
@@ -591,8 +664,10 @@ feat: görevlere durum filtresi ekle (#12)
 - **Kişi bazında katkı:** **Insights → Contributors**
   (https://github.com/selinozbay/YG-Proje1-Grup3/graphs/contributors). Burada yalnızca `main`
   dalına giren ve git e-postası GitHub hesabıyla eşleşen commitler sayılır.
-- **Bilgisayarda:** `git log --oneline` (kısa liste), `git log --stat` (değişen dosyalarla). VS
-  Code'da Kaynak Denetimi panelindeki **Graph** bölümü.
+- **Ekip katkı tablosu:** [`docs/katki-tablosu.md`](docs/katki-tablosu.md) her üyenin birleşen
+  PR'larını, kapattığı issue'ları ve commit sayısını bağlantılarıyla listeler (hocanın P1-19
+  maddesi). `node scripts/katki-tablosu.mjs > docs/katki-tablosu.md` ile GitHub'dan yeniden
+  üretilir (gh CLI ile giriş gerekir).
 
 ### Kurallar
 
@@ -612,7 +687,7 @@ feat: görevlere durum filtresi ekle (#12)
 - Uygulamadaki [Gizlilik ve KVKK sayfası](src/views/PrivacyView.vue), hangi verilerin neden ve
   nerede işlendiğini açıklar. Kayıt sırasında kullanıcı bu metni okuduğunu onaylar.
 - Yalnızca gerekli veriler tutulur: ad soyad ve e-posta (Firebase Authentication), görev durumları
-  (Firestore). Tema tercihi yalnızca tarayıcıda kalır.
+  ve kullanıcının kendi eklediği görevler (Firestore). Tema tercihi yalnızca tarayıcıda kalır.
 - Şifreler Firebase tarafından geri çözülemeyecek biçimde saklanır; ekip şifreleri göremez.
 - Firestore veritabanı Avrupa'da (`eur3`) bulunur. Güvenlik kuralları
   ([`firestore.rules`](firestore.rules)) her kullanıcının yalnızca kendi verisine erişmesine izin
@@ -627,13 +702,15 @@ Ekran görüntüleri sayfalar tamamlandıkça `docs/screenshots/` klasörüne ek
 
 ## Bilinen eksikler
 
-- Ana Sayfa, Derslerim, Görevlerim ve Profil sayfaları iskelet halindedir. Her sayfadaki
-  "Geliştirilecek" kutusu yapılacakları listeler; bu maddeler GitHub Projects panosunda issue
-  olarak takip edilir.
+- Profil sayfası henüz iskelet halindedir; tamamlanmış hâli
+  [#81](https://github.com/selinozbay/YG-Proje1-Grup3/pull/81) ile gelecek.
 - Gizlilik sayfasındaki iletişim e-postası henüz eklenmedi (`src/config.ts` → `CONTACT_EMAIL`,
   [#58](https://github.com/selinozbay/YG-Proje1-Grup3/issues/58)).
-- Canlı demo iskelet sürümünü gösterir; sayfalar tamamlandıkça yeniden yayınlanacaktır
+- Canlı demo 1 Kasım'daki `main` sürümünü gösterir; teslimden önce son sürümle yeniden yayınlanacaktır
   ([#59](https://github.com/selinozbay/YG-Proje1-Grup3/issues/59)).
+- Şifre sıfırlama e-postası KTÜ öğrenci adreslerinde Gereksiz klasörüne düşebilir; e-postadaki
+  bağlantı, Firebase ücretsiz planda izin vermediği için `firebaseapp.com` adresinde kaldı (bkz.
+  [Alan adı ve e-posta gönderimi](#alan-adı-ve-e-posta-gönderimi)).
 - Demo modunda şifre kontrol edilmez; bu mod yalnızca denemek içindir.
 
 ## Teslim dosyaları
@@ -643,3 +720,4 @@ Ekran görüntüleri sayfalar tamamlandıkça `docs/screenshots/` klasörüne ek
 | `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))       |
 | `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55)) |
 | `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))      |
+| `docs/katki-tablosu.md`       | Ekip katkı tablosu ([#65](https://github.com/selinozbay/YG-Proje1-Grup3/issues/65)) |

@@ -13,8 +13,8 @@ async function login(page: Page, email = 'ogrenci@example.com', password = 'paro
 async function fillRegisterForm(page: Page) {
   await page.goto('/kayit')
   await page.getByLabel('Ad soyad').fill('Deneme Öğrenci')
-  await page.getByLabel('E-posta').fill('yeni.ogrenci@example.com')
-  await page.getByLabel('Şifre (en az 6 karakter)').fill('parola123')
+  await page.getByLabel('Öğrenci e-postası').fill('123456@ogr.ktu.edu.tr')
+  await page.getByLabel('Şifre', { exact: true }).fill('Parola-2026')
 }
 
 test.describe('E2E: Kayıt ol (#4)', () => {
@@ -44,6 +44,44 @@ test.describe('E2E: Kayıt ol (#4)', () => {
 
     await expect(page.getByRole('alert')).toHaveText('Ad soyad alanını doldurun.')
     await expect(page).toHaveURL(/\/kayit$/)
+  })
+
+  for (const email of ['ali@ogr.ktu.edu.tr', '123456@gmail.com']) {
+    test(`öğrenci e-postası olmayan ${email} ile kayıt olunmaz (#6)`, async ({ page }) => {
+      await fillRegisterForm(page)
+      await page.getByLabel('Öğrenci e-postası').fill(email)
+      await page.getByRole('checkbox').check()
+      await page.getByRole('button', { name: 'Kayıt ol' }).click()
+
+      await expect(page.getByRole('alert')).toHaveText(
+        'Öğrenci e-postanızı girin (ör. 123456@ogr.ktu.edu.tr).',
+      )
+      await expect(page).toHaveURL(/\/kayit$/)
+    })
+  }
+
+  test('şifre gücü yazdıkça değişir, zayıf ve orta şifreyle kayıt olunmaz (#7)', async ({
+    page,
+  }) => {
+    await fillRegisterForm(page)
+    const password = page.getByLabel('Şifre', { exact: true })
+
+    await password.fill('parola')
+    await expect(page.getByText('Şifre gücü: Zayıf')).toBeVisible()
+    await expect(page.getByText('En az 10 karakter kullanın.')).toBeVisible()
+    await password.fill('parola123')
+    await expect(page.getByText('Şifre gücü: Orta')).toBeVisible()
+    await password.fill('Parola-2026')
+    await expect(page.getByText('Şifre gücü: Güçlü')).toBeVisible()
+
+    await page.getByRole('checkbox').check()
+    for (const weakOrMedium of ['parolaparola', 'parola123']) {
+      await password.fill(weakOrMedium)
+      await page.getByRole('button', { name: 'Kayıt ol' }).click()
+
+      await expect(page.getByRole('alert')).toContainText('Şifre yeterince güçlü değil.')
+      await expect(page).toHaveURL(/\/kayit$/)
+    }
   })
 })
 
@@ -78,7 +116,16 @@ test.describe('E2E: Giriş yap (#4)', () => {
     await login(page)
     await expect(page).toHaveURL('/')
 
-    await page.getByRole('button', { name: 'Çıkış yap' }).click()
+    // #35: çıkış önce onay penceresi açar; "Hayır" kalınca sayfada kalınır.
+    await page.getByRole('button', { name: 'Çıkış yap', exact: true }).click()
+    const dialog = page.getByRole('dialog', { name: 'Çıkış yapmak istediğinize emin misiniz?' })
+    await expect(dialog).toBeVisible()
+    await dialog.getByRole('button', { name: 'Hayır' }).click()
+    await expect(dialog).toBeHidden()
+    await expect(page).toHaveURL('/')
+
+    await page.getByRole('button', { name: 'Çıkış yap', exact: true }).click()
+    await dialog.getByRole('button', { name: 'Evet, çıkış yap' }).click()
     await expect(page).toHaveURL(/\/giris/)
 
     await page.goto('/profil')
