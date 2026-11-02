@@ -1,9 +1,10 @@
 @import 'tailwindcss';
 /*
  * IBM Plex Sans uygulamayla birlikte yayınlanır; dışarıdan (Google Fonts) yüklenmez,
- * Türkçe harfleri içerir.
+ * Türkçe harfleri içerir. Genişlik ekseni (wdth) de yüklenir: başlıklar ve büyük sayılar
+ * aynı yazı tipinin dar (condensed) hâliyle yazılır (`font-stretch-condensed`).
  */
-@import '@fontsource-variable/ibm-plex-sans';
+@import '@fontsource-variable/ibm-plex-sans/wdth.css';
 
 /*
  * Karanlık tema <html> etiketindeki "dark" sınıfıyla açılır (bkz. stores/preferences.ts).
@@ -12,27 +13,51 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Ortak tasarım değerleri ("ders izlencesi": kâğıt zemin, mürekkep mavisi tek vurgu).
+ * Ortak tasarım değerleri: "ajanda". Lacivert kapak (kenar çubuğu), fosforlu kalem sarısı
+ * (şu an / bu hafta / sıradaki teslim), her derse bir ayraç rengi (lessons/courseColors.ts).
  *
- * Ana renk: bileşenlerdeki `indigo-*` sınıfları Tailwind'in morumsu indigosu yerine buradaki
- * mürekkep mavisi tonlarını kullanır. Böylece bütün sayfalar dosyalarına dokunmadan aynı
- * ana rengi alır. Yeşil, sarı ve gri görev durumlarına ayrılmıştır (tasks/statusStyles.ts).
+ * - slate: Tailwind'in grisi yerine lacivert tonlu gri. Yazılar, çizgiler ve karanlık temanın
+ *   zeminleri bu tonlardan gelir; bileşen dosyalarına dokunmadan hepsi aynı aileye geçer.
+ * - indigo: bağlantılar, düğmeler, odak çizgisi ve "Devam ediyor" durumu (mavi mürekkep).
+ * - marker: fosforlu sarı. Yalnızca "şu an" anlamında kullanılır, durum rengi değildir.
+ * - Yeşil "Tamamlandı" durumuna ayrılmıştır (tasks/statusStyles.ts).
  * Yeni bir değer eklemek için: @theme { --color-brand-500: #...; } → `bg-brand-500`.
  */
 @theme {
   --font-sans: 'IBM Plex Sans Variable', ui-sans-serif, system-ui, sans-serif;
 
-  --color-indigo-50: #f2f5fd;
-  --color-indigo-100: #e3e9fb;
-  --color-indigo-200: #c9d4f6;
-  --color-indigo-300: #a2b4ee;
-  --color-indigo-400: #7a91e4;
-  --color-indigo-500: #5068d6;
-  --color-indigo-600: #3a4fc4;
-  --color-indigo-700: #3141a3;
-  --color-indigo-800: #2c3784;
-  --color-indigo-900: #28306a;
-  --color-indigo-950: #1a1f42;
+  --color-slate-50: #f6f7fb;
+  --color-slate-100: #eceef5;
+  --color-slate-200: #dcdfeb;
+  --color-slate-300: #c2c6da;
+  --color-slate-400: #8f95b6;
+  --color-slate-500: #5d6386;
+  --color-slate-600: #4b5174;
+  --color-slate-700: #383d60;
+  --color-slate-800: #252a4b;
+  --color-slate-900: #171b37;
+  --color-slate-950: #0e1126;
+
+  --color-indigo-50: #eff2ff;
+  --color-indigo-100: #e0e6ff;
+  --color-indigo-200: #c5d0ff;
+  --color-indigo-300: #a1b1ff;
+  --color-indigo-400: #7c8ff7;
+  --color-indigo-500: #5a6fe8;
+  --color-indigo-600: #3d55d6;
+  --color-indigo-700: #3244b5;
+  --color-indigo-800: #2b3992;
+  --color-indigo-900: #283372;
+  --color-indigo-950: #191f45;
+
+  /* Kâğıt: uygulamanın zemini (kartlar beyaz). */
+  --color-paper: #eff1f7;
+  /* Lacivert kapak: kenar çubuğu ve mobil üst bar. */
+  --color-ink: #14183a;
+  --color-ink-soft: #232857;
+  /* Fosforlu kalem. */
+  --color-marker: #ffe14d;
+  --color-marker-soft: #fff4b8;
 }
 
 @layer base {
@@ -45,7 +70,7 @@
   }
 
   body {
-    @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+    @apply bg-paper text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
     /* Sayılar alt alta hizalı dursun (ilerleme yüzdeleri, tarihler, görev sayıları). */
     font-variant-numeric: tabular-nums;
   }
@@ -130,12 +155,40 @@
   }
 }
 
+/*
+ * Dönem çizelgesinin açılışı (Ana Sayfa): hücreler hafta hafta belirir, ardından "Bugün"
+ * çizgisi yukarıdan aşağı çizilir. Uygulamadaki tek kendiliğinden oynayan hareket budur.
+ */
+.term-reveal {
+  animation: term-in 380ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+.today-line {
+  transform-origin: top;
+  animation: today-draw 520ms cubic-bezier(0.2, 0.7, 0.2, 1) 320ms both;
+}
+@keyframes term-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+@keyframes today-draw {
+  from {
+    transform: scaleY(0);
+  }
+}
+
 /* İşletim sisteminde "hareketi azalt" açıksa geçiş efektleri kapanır (erişilebilirlik). */
 @media (prefers-reduced-motion: reduce) {
   .page-enter-active,
   .layout-shell,
   .layout-enter-active {
     transition: none;
+  }
+  .term-reveal,
+  .today-line {
+    animation: none;
   }
   .confirm-dialog[open],
   .confirm-dialog[data-state='closing'],

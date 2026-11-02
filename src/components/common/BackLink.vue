@@ -8,7 +8,7 @@ defineProps<{ to: string }>()
 <template>
   <RouterLink
     :to="to"
-    class="group -ml-2 mb-3 inline-flex max-w-full items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-indigo-700 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-indigo-300"
+    class="group -ml-2 mb-4 inline-flex max-w-full items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-white hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-white"
     data-test="back-link"
   >
     <svg

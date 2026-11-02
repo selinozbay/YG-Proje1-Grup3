@@ -12,10 +12,13 @@ export const WEEK_STATE_LABELS: Record<WeekState, string> = {
   upcoming: 'Sırada',
 }
 
-/** Rozet renkleri, görev durumlarıyla aynı tonlarda (aydınlık ve karanlık tema). */
+/**
+ * Rozet renkleri: tamamlanan hafta yeşil (görev durumuyla aynı), şu anki hafta fosforlu sarı
+ * (uygulamada "şu an" hep bu renk), sıradakiler gri.
+ */
 export const WEEK_STATE_CLASSES: Record<WeekState, string> = {
   done: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-500/15 dark:text-emerald-300',
-  current: 'bg-indigo-100 text-indigo-800 dark:bg-indigo-500/15 dark:text-indigo-300',
+  current: 'bg-marker text-ink',
   upcoming: 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300',
 }
 

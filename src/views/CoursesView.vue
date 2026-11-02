@@ -34,7 +34,7 @@ const { filters, filteredCourses, statusCounts, isFiltered, resetFilters } =
 
   <ul
     v-if="filteredCourses.length"
-    class="grid items-start gap-3 sm:grid-cols-2 xl:grid-cols-3"
+    class="grid items-stretch gap-5 sm:grid-cols-2 xl:grid-cols-3"
     aria-label="Dersler"
   >
     <li v-for="item in filteredCourses" :key="item.course.id">
@@ -44,16 +44,16 @@ const { filters, filteredCourses, statusCounts, isFiltered, resetFilters } =
 
   <div
     v-else
-    class="rounded-lg border border-dashed border-slate-300 p-8 text-center dark:border-slate-700"
+    class="rounded-2xl border-2 border-dashed border-slate-300 px-6 py-10 text-center dark:border-slate-700"
     data-test="empty-state"
   >
-    <p class="font-medium">Aramana uyan ders bulunamadı.</p>
+    <p class="text-lg font-bold font-stretch-condensed">Aramana uyan ders bulunamadı.</p>
     <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
       Farklı bir sözcük dene ya da filtreleri temizle.
     </p>
     <button
       type="button"
-      class="mt-4 rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium hover:bg-slate-100 focus:ring-2 focus:ring-indigo-500 focus:outline-none dark:border-slate-700 dark:hover:bg-slate-800"
+      class="mt-5 rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-white hover:bg-ink-soft dark:bg-marker dark:text-ink dark:hover:bg-marker/90"
       @click="resetFilters"
     >
       Filtreleri temizle

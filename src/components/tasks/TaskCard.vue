@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, useTemplateRef } from 'vue'
 import { TASK_STATUS_LABELS, type TaskStatus, type TaskWithStatus } from '@/types/task'
+import StatusIcon from '@/components/common/StatusIcon.vue'
+import { courseColor } from '@/components/lessons/courseColors'
+import { toISODate } from '@/utils/date'
 import TaskStatusSelect from './TaskStatusSelect.vue'
 import { STATUS_CLASSES } from './statusStyles'
 
@@ -42,6 +45,19 @@ const metaText = computed(() =>
   props.task.custom ? props.courseTitle : `${props.courseTitle} · ${props.task.weekNo}. hafta`,
 )
 
+/** Son tarihi geçmiş, bitmemiş görev: tarih kırmızı yazılır ve "Süresi geçti" eklenir. */
+const late = computed(
+  () =>
+    props.task.status !== 'done' &&
+    !!props.task.dueDate &&
+    props.task.dueDate < toISODate(new Date()),
+)
+
+/** Soldaki şerit dersin renginde; derse bağlı olmayan kendi görevinde gri. */
+const stripClass = computed(() =>
+  props.task.courseId ? courseColor(props.task.courseId).bar : 'bg-slate-300 dark:bg-slate-600',
+)
+
 // Silmeden önce kartın içinde onay istenir.
 const confirmingDelete = ref(false)
 const cancelDeleteButton = useTemplateRef<HTMLButtonElement>('cancelDeleteButton')
@@ -57,27 +73,43 @@ function confirmDelete() {
   emit('delete')
 }
 
-const actionClass =
-  'rounded px-2 py-1 font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none'
+const actionClass = 'rounded-md px-2 py-1 font-semibold'
 </script>
 
 <template>
-  <!-- Listede bir satır: solda başlık ve ayrıntılar, sağda durum. Liste çerçevesini sayfa çizer. -->
-  <article class="flex flex-col gap-3 px-4 py-3.5 sm:flex-row sm:items-start sm:gap-6">
+  <!--
+    Listede bir satır: solda dersin renginde ince şerit, başlık ve ayrıntılar; sağda durum.
+    Tamamlanan görevin başlığı üstü çizili görünür. Liste çerçevesini sayfa çizer.
+  -->
+  <article
+    class="relative flex flex-col gap-3 py-4 pr-4 pl-5 sm:flex-row sm:items-start sm:gap-6 sm:pr-5 sm:pl-6"
+  >
+    <span
+      class="absolute top-4 bottom-4 left-0 w-1 rounded-r-full"
+      :class="stripClass"
+      aria-hidden="true"
+    />
     <div class="min-w-0 flex-1">
       <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-        <component :is="`h${headingLevel}`" class="text-[0.9375rem] leading-snug font-medium">
+        <component
+          :is="`h${headingLevel}`"
+          class="text-base leading-snug font-semibold"
+          :class="
+            task.status === 'done' &&
+            'text-slate-500 line-through decoration-emerald-500/70 decoration-2 dark:text-slate-400'
+          "
+        >
           {{ task.title }}
         </component>
         <span
           v-if="task.custom"
-          class="rounded bg-violet-50 px-1.5 py-px text-[0.6875rem] font-medium text-violet-700 dark:bg-violet-500/15 dark:text-violet-300"
+          class="rounded-md bg-marker-soft px-1.5 py-px text-[0.6875rem] font-semibold text-ink dark:bg-marker/15 dark:text-marker"
           data-test="custom-badge"
         >
           Kendi görevim
         </span>
       </div>
-      <p v-if="metaText" class="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
+      <p v-if="metaText" class="mt-0.5 text-xs font-medium text-slate-500 dark:text-slate-400">
         {{ metaText }}
       </p>
 
@@ -87,26 +119,43 @@ const actionClass =
 
       <div
         v-if="task.dueDate || task.tags.length"
-        class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs"
+        class="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs"
       >
-        <time
+        <span
           v-if="task.dueDate"
-          :datetime="task.dueDate"
-          class="text-slate-600 dark:text-slate-400"
-          data-test="due-date"
+          class="inline-flex items-center gap-1.5"
+          :class="
+            late
+              ? 'font-semibold text-red-700 dark:text-red-400'
+              : 'text-slate-600 dark:text-slate-400'
+          "
         >
-          Son tarih: {{ dueDateText }}
-        </time>
-        <ul
-          v-if="task.tags.length"
-          class="flex flex-wrap gap-x-2 text-slate-500 dark:text-slate-400"
-          aria-label="Etiketler"
-        >
-          <li v-for="tag in task.tags" :key="tag">#{{ tag }}</li>
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-3.5 shrink-0">
+            <path
+              fill-rule="evenodd"
+              d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <time :datetime="task.dueDate" data-test="due-date">Son tarih: {{ dueDateText }}</time>
+          <span
+            v-if="late"
+            class="rounded bg-red-100 px-1.5 py-px font-semibold text-red-800 dark:bg-red-500/15 dark:text-red-300"
+            >Süresi geçti</span
+          >
+        </span>
+        <ul v-if="task.tags.length" class="flex flex-wrap gap-1.5" aria-label="Etiketler">
+          <li
+            v-for="tag in task.tags"
+            :key="tag"
+            class="rounded-md bg-slate-100 px-1.5 py-px text-slate-600 dark:bg-slate-800 dark:text-slate-400"
+          >
+            #{{ tag }}
+          </li>
         </ul>
       </div>
 
-      <div v-if="editable && task.custom" class="mt-2.5 flex flex-wrap items-center gap-1 text-xs">
+      <div v-if="editable && task.custom" class="mt-3 flex flex-wrap items-center gap-1 text-xs">
         <template v-if="!confirmingDelete">
           <button
             type="button"
@@ -134,7 +183,7 @@ const actionClass =
           </button>
         </template>
         <template v-else>
-          <span class="mr-2 font-medium">Bu görev silinsin mi?</span>
+          <span class="mr-2 font-semibold">Bu görev silinsin mi?</span>
           <button
             type="button"
             :class="[actionClass, 'bg-red-600 text-white hover:bg-red-700 dark:bg-red-500']"
@@ -165,11 +214,11 @@ const actionClass =
       />
       <span
         v-else
-        class="inline-block rounded-full px-2.5 py-0.5 text-xs font-medium"
+        class="inline-flex items-center gap-1.5 rounded-full py-1 pr-2.5 pl-1.5 text-xs font-semibold"
         :class="STATUS_CLASSES[task.status]"
         data-test="status"
       >
-        {{ TASK_STATUS_LABELS[task.status] }}
+        <StatusIcon :status="task.status" class="size-4" />{{ TASK_STATUS_LABELS[task.status] }}
       </span>
     </div>
   </article>

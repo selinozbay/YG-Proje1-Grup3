@@ -56,6 +56,21 @@ describe('Ana Sayfa', () => {
     expect(text(wrapper, 'elapsed')).toBe('%61')
   })
 
+  it('dönem çizelgesinde her dersin her haftası o haftanın sayfasına götürür (#11)', () => {
+    const wrapper = mountPage()
+    const week3 = wrapper.findAll('[data-test="term-week"]')[2]!
+    const cells = week3.findAllComponents(RouterLinkStub)
+
+    // Satırlar katalog sırasıyla dersler; hücrenin adında ders, hafta ve ilerleme yazar.
+    expect(cells).toHaveLength(3)
+    expect(cells[0]!.props('to')).toBe('/derslerim/yazilim-gelistirme/hafta/3')
+    expect(cells[0]!.attributes('aria-label')).toBe(
+      'Yazılım Geliştirme 3. hafta: 0 / 2 görev tamamlandı',
+    )
+    // Her görev bir durum simgesiyle çizilir: 3. haftada her derste 2 görev var.
+    expect(cells[0]!.findAll('svg[data-status]')).toHaveLength(2)
+  })
+
   it('yaklaşan görevleri güne göre gruplar, geçmişleri ayrıca sayar (#13)', () => {
     const wrapper = mountPage()
     const rows = wrapper.findAll('[data-test="upcoming-task"]')

@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useId } from 'vue'
+import StatusIcon from '@/components/common/StatusIcon.vue'
 import { COURSE_STATUS_LABELS } from '@/composables/useCourseProgress'
 import { COURSE_STATUS_FILTERS, type CourseStatusFilter } from '@/composables/useCourseFilters'
+import type { TaskStatus } from '@/types/task'
 
 /** Derslerim'de arama ve duruma göre filtre (#19). Görünümü Görevlerim'deki filtreyle aynı. */
 defineProps<{ counts: Record<CourseStatusFilter, number> }>()
@@ -12,50 +14,72 @@ const status = defineModel<CourseStatusFilter>('status', { required: true })
 const labelOf = (value: CourseStatusFilter) =>
   value === 'all' ? 'Tümü' : COURSE_STATUS_LABELS[value]
 
+/** Filtre düğmelerindeki simge; "Tümü"nün simgesi yok. */
+const ICONS: Partial<Record<CourseStatusFilter, TaskStatus>> = {
+  'not-started': 'todo',
+  'in-progress': 'in-progress',
+  done: 'done',
+}
+
 const searchId = useId()
 </script>
 
 <template>
   <section
-    class="mb-5 flex flex-col gap-3 rounded-lg border border-slate-200 bg-white p-3 sm:p-4 lg:flex-row lg:items-end dark:border-slate-800 dark:bg-slate-900"
+    class="mb-4 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
     aria-label="Arama ve filtreler"
   >
-    <div class="flex-1">
+    <div class="w-full lg:max-w-md">
       <label
         :for="searchId"
-        class="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-400"
+        class="mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-300"
         >Ders ara</label
       >
-      <input
-        :id="searchId"
-        v-model="query"
-        type="search"
-        placeholder="Ders kodu, adı ya da öğretim elemanı yaz"
-        autocomplete="off"
-        class="w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 focus:outline-none dark:border-slate-700 dark:bg-slate-950"
-      />
+      <div class="relative">
+        <svg
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+          class="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11zM2 9a7 7 0 1 1 12.45 4.39l3.08 3.08a.75.75 0 1 1-1.06 1.06l-3.08-3.08A7 7 0 0 1 2 9z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        <input
+          :id="searchId"
+          v-model="query"
+          type="search"
+          placeholder="Ders kodu, adı ya da öğretim elemanı yaz"
+          autocomplete="off"
+          class="w-full rounded-xl border border-slate-300 bg-white py-2.5 pr-3 pl-9 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 focus:outline-none dark:border-slate-700 dark:bg-slate-900"
+        />
+      </div>
     </div>
 
-    <div
-      class="inline-flex flex-wrap gap-0.5 self-start rounded-md bg-slate-100 p-0.5 lg:self-auto dark:bg-slate-800"
-      role="group"
-      aria-label="Duruma göre filtrele"
-    >
+    <div class="flex flex-wrap gap-1.5" role="group" aria-label="Duruma göre filtrele">
       <button
         v-for="value in COURSE_STATUS_FILTERS"
         :key="value"
         type="button"
         :aria-pressed="status === value"
-        class="rounded px-2.5 py-1 text-sm transition-colors focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        class="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition-colors"
         :class="
           status === value
-            ? 'bg-white font-medium text-slate-900 shadow-[0_1px_2px_rgb(15_23_42/0.08)] dark:bg-slate-950 dark:text-slate-100'
-            : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100'
+            ? 'bg-ink text-white dark:bg-marker dark:text-ink'
+            : 'bg-white text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50 dark:bg-slate-900 dark:text-slate-300 dark:ring-slate-700 dark:hover:bg-slate-800'
         "
         @click="status = value"
       >
+        <StatusIcon v-if="ICONS[value]" :status="ICONS[value]!" class="size-4" />
         {{ labelOf(value) }}
-        <span class="ml-0.5 text-xs text-slate-500 dark:text-slate-400">{{ counts[value] }}</span>
+        <span
+          class="text-xs tabular-nums"
+          :class="status === value ? 'opacity-80' : 'text-slate-500 dark:text-slate-400'"
+          >{{ counts[value] }}</span
+        >
       </button>
     </div>
   </section>

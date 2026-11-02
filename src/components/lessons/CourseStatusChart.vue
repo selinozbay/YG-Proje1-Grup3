@@ -14,30 +14,44 @@ defineProps<{ items: CourseProgress[] }>()
 <template>
   <section
     aria-labelledby="course-chart-title"
-    class="mb-5 rounded-lg border border-slate-200 bg-white p-4 sm:p-5 dark:border-slate-800 dark:bg-slate-900"
+    class="mb-6 rounded-2xl bg-white p-4 ring-1 ring-slate-200 sm:p-6 dark:bg-slate-900 dark:ring-slate-800"
     data-test="course-chart"
   >
-    <div class="mb-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
-      <h2 id="course-chart-title" class="font-semibold">Derslere göre görev durumu</h2>
+    <div class="mb-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+      <h2 id="course-chart-title" class="text-xl font-bold font-stretch-condensed">
+        Derslere göre görev durumu
+      </h2>
       <StatusLegend />
     </div>
 
     <ul class="space-y-4">
-      <li v-for="item in items" :key="item.course.id" data-test="course-chart-row">
-        <div class="mb-1.5 flex items-baseline justify-between gap-3 text-sm">
-          <span class="flex min-w-0 items-center gap-2">
-            <span
-              class="shrink-0 rounded px-1.5 py-0.5 text-xs font-semibold"
-              :class="courseColor(item.course.id).badge"
-              >{{ item.course.code }}</span
-            >
-            <span class="truncate text-slate-700 dark:text-slate-300">{{ item.course.title }}</span>
-          </span>
-          <span class="shrink-0 text-slate-600 tabular-nums dark:text-slate-400">
-            {{ item.counts.done }} / {{ item.counts.total }} · %{{ item.counts.percent }}
-          </span>
-        </div>
-        <StatusSplitBar :counts="item.counts" :label="`${item.course.title} görev durumu`" />
+      <li
+        v-for="item in items"
+        :key="item.course.id"
+        class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-2 sm:grid-cols-[minmax(0,16rem)_minmax(0,1fr)_5.5rem]"
+        data-test="course-chart-row"
+      >
+        <span class="flex min-w-0 items-center gap-2.5 text-sm">
+          <span
+            class="shrink-0 rounded-md px-1.5 py-0.5 text-xs font-bold font-stretch-condensed"
+            :class="courseColor(item.course.id).solid"
+            >{{ item.course.code }}</span
+          >
+          <span class="truncate font-medium text-slate-800 dark:text-slate-200">{{
+            item.course.title
+          }}</span>
+        </span>
+        <StatusSplitBar
+          class="col-span-2 max-sm:order-last sm:col-span-1"
+          size="lg"
+          :counts="item.counts"
+          :label="`${item.course.title} görev durumu`"
+        />
+        <span
+          class="text-right text-sm font-semibold font-stretch-condensed text-slate-700 tabular-nums dark:text-slate-300"
+        >
+          {{ item.counts.done }} / {{ item.counts.total }} · %{{ item.counts.percent }}
+        </span>
       </li>
     </ul>
   </section>

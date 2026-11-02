@@ -33,12 +33,8 @@ const greeting = computed(() =>
 
 const overall = computed(() => countStatuses(progress.tasks))
 // Dönem çizelgesi ders haftalarına göre; kendi görevlerin haftası olmadığı için sayılmaz.
-const termWeeks = computed(() =>
-  getTermWeeks(
-    progress.tasks.filter((task) => !task.custom),
-    today,
-  ),
-)
+const courseTasks = computed(() => progress.tasks.filter((task) => !task.custom))
+const termWeeks = computed(() => getTermWeeks(courseTasks.value, today))
 const elapsedPercent = computed(() => getElapsedPercent(termWeeks.value, today))
 const upcoming = computed(() => getUpcomingTasks(progress.tasks, today, 6))
 const overdueCount = computed(() => countOverdue(progress.tasks, today))
@@ -58,9 +54,16 @@ const courseTitle = (courseId: string) => catalog.getCourse(courseId)?.title ?? 
     {{ saveError }}
   </p>
 
-  <TermOverview :weeks="termWeeks" :elapsed-percent="elapsedPercent" :counts="overall" />
+  <TermOverview
+    :weeks="termWeeks"
+    :elapsed-percent="elapsedPercent"
+    :counts="overall"
+    :courses="catalog.courses"
+    :tasks="courseTasks"
+    :today="today"
+  />
 
-  <div class="grid items-start gap-5 lg:grid-cols-5">
+  <div class="grid items-start gap-6 lg:grid-cols-5">
     <UpcomingTasks
       class="lg:col-span-3"
       :tasks="upcoming"
