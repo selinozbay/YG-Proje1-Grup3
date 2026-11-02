@@ -5,6 +5,7 @@ import type { ThemePreference } from '@/types/user'
 
 // Tema seçimi (#52). Seçim preferences store'da localStorage'a kaydedilir;
 // sayfa yenilenince index.html'deki betik ve store aynı tercihi okur.
+// Her seçenekte o temanın küçük bir önizlemesi çizilir.
 const preferences = usePreferencesStore()
 
 const theme = computed({
@@ -12,62 +13,61 @@ const theme = computed({
   set: (value: ThemePreference) => preferences.setTheme(value),
 })
 
-const OPTIONS: { value: ThemePreference; label: string; hint: string; icon: string[] }[] = [
-  {
-    value: 'light',
-    label: 'Aydınlık',
-    hint: 'Her zaman açık renkler',
-    icon: [
-      'M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z',
-      'M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4',
-    ],
-  },
-  {
-    value: 'dark',
-    label: 'Karanlık',
-    hint: 'Her zaman koyu renkler',
-    icon: ['M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'],
-  },
-  {
-    value: 'system',
-    label: 'Sistem',
-    hint: 'Cihazın temasını izler',
-    icon: [
-      'M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z',
-      'M8 21h8M12 17v4',
-    ],
-  },
+const OPTIONS: { value: ThemePreference; label: string; hint: string }[] = [
+  { value: 'light', label: 'Aydınlık', hint: 'Her zaman açık renkler' },
+  { value: 'dark', label: 'Karanlık', hint: 'Her zaman koyu renkler' },
+  { value: 'system', label: 'Sistem', hint: 'Cihazın temasını izler' },
 ]
 </script>
 
 <template>
   <fieldset
-    class="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900"
+    class="rounded-2xl bg-white p-5 ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800"
   >
-    <legend class="float-left mb-3 w-full font-semibold">Tema</legend>
-    <div class="clear-both grid gap-2">
+    <legend class="float-left mb-4 w-full text-lg font-bold font-stretch-condensed">Tema</legend>
+    <div class="clear-both grid grid-cols-3 gap-2.5">
       <label
         v-for="option in OPTIONS"
         :key="option.value"
-        class="flex cursor-pointer items-center gap-3 rounded-lg border border-slate-200 p-3 transition-colors focus-within:ring-2 focus-within:ring-indigo-500 hover:bg-slate-50 has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50 dark:border-slate-700 dark:hover:bg-slate-800 dark:has-[:checked]:border-indigo-400 dark:has-[:checked]:bg-indigo-500/10"
+        class="group cursor-pointer rounded-xl p-1.5 ring-1 ring-slate-200 transition-shadow focus-within:ring-2 focus-within:ring-indigo-500 hover:ring-slate-400 has-[:checked]:ring-[3px] has-[:checked]:ring-ink dark:ring-slate-700 dark:hover:ring-slate-500 dark:has-[:checked]:ring-marker"
         data-test="theme-option"
       >
         <input v-model="theme" type="radio" name="theme" :value="option.value" class="sr-only" />
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+        <!-- Önizleme: lacivert kenar çubuğu, sarı seçili menü, kâğıt ya da koyu zemin. -->
+        <span
           aria-hidden="true"
-          class="size-5 shrink-0 text-slate-500 dark:text-slate-400"
+          class="relative flex h-16 overflow-hidden rounded-lg ring-1 ring-black/5"
+          :class="option.value === 'dark' ? 'bg-slate-950' : 'bg-paper'"
         >
-          <path v-for="d in option.icon" :key="d" :d="d" />
-        </svg>
-        <span>
-          <span class="block text-sm font-medium">{{ option.label }}</span>
-          <span class="block text-xs text-slate-500 dark:text-slate-400">{{ option.hint }}</span>
+          <span class="flex w-1/3 flex-col gap-1 bg-ink p-1.5">
+            <span class="h-1.5 w-full rounded-sm bg-marker" />
+            <span class="h-1 w-3/4 rounded-sm bg-white/30" />
+            <span class="h-1 w-2/3 rounded-sm bg-white/30" />
+          </span>
+          <span class="flex flex-1 flex-col gap-1.5 p-2">
+            <span
+              class="h-2 w-3/4 rounded-sm"
+              :class="option.value === 'dark' ? 'bg-slate-500' : 'bg-slate-700'"
+            />
+            <span
+              class="h-5 w-full rounded"
+              :class="option.value === 'dark' ? 'bg-slate-800' : 'bg-white'"
+            />
+          </span>
+          <!-- Sistem: önizlemenin sağ yarısı koyu. -->
+          <span
+            v-if="option.value === 'system'"
+            class="absolute inset-y-0 right-0 flex w-[36%] flex-col gap-1.5 bg-slate-950 p-2 pl-0"
+          >
+            <span class="h-2 w-1/2 rounded-r-sm bg-slate-500" />
+            <span class="h-5 w-full rounded-r bg-slate-800" />
+          </span>
+        </span>
+        <span class="block px-1 pt-2 pb-0.5">
+          <span class="block text-sm font-semibold">{{ option.label }}</span>
+          <span class="block text-xs leading-snug text-slate-500 dark:text-slate-400">{{
+            option.hint
+          }}</span>
         </span>
       </label>
     </div>

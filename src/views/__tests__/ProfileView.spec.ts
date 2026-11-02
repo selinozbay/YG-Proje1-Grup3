@@ -134,3 +134,62 @@ describe('Profil — istatistikler (#29)', () => {
     expect(wrapper.text()).toContain('Hesabımı ve verilerimi sil')
   })
 })
+
+describe('Profil — hesap silme (KVKK)', () => {
+  // Onay penceresi body'ye taşındığı için sayfa belgeye bağlanarak açılır. Önceki testlerin
+  // pencereleri de body'de kaldığı için her zaman en son eklenen pencereye bakılır.
+  const mountAttached = () =>
+    mount(ProfileView, { global: { plugins: [pinia] }, attachTo: document.body })
+  const lastDialog = () => {
+    const dialogs = document.querySelectorAll('dialog')
+    return dialogs[dialogs.length - 1]!
+  }
+  const button = (test: string) =>
+    lastDialog().querySelector<HTMLButtonElement>(`[data-test="${test}"]`)!
+
+  it('önce onay penceresi açar; Vazgeç denirse hesap silinmez', async () => {
+    const remove = vi.spyOn(useAuthStore(), 'deleteAccount').mockResolvedValue()
+    const wrapper = mountAttached()
+
+    await wrapper.find('[data-test="delete-account"]').trigger('click')
+    await flushPromises()
+    const dialog = lastDialog()
+    expect(dialog.hasAttribute('open')).toBe(true)
+    expect(dialog.querySelector('h2')!.textContent).toBe('Hesabınız silinsin mi?')
+
+    button('confirm-cancel').click()
+    await flushPromises()
+    expect(remove).not.toHaveBeenCalled()
+    wrapper.unmount()
+  })
+
+  it('onaylanınca hesabı ve verileri siler', async () => {
+    const remove = vi.spyOn(useAuthStore(), 'deleteAccount').mockResolvedValue()
+    const wrapper = mountAttached()
+
+    await wrapper.find('[data-test="delete-account"]').trigger('click')
+    await flushPromises()
+    button('confirm-ok').click()
+    await flushPromises()
+
+    expect(remove).toHaveBeenCalledOnce()
+    wrapper.unmount()
+  })
+
+  it('silinemezse sayfada Türkçe hata gösterir', async () => {
+    vi.spyOn(useAuthStore(), 'deleteAccount').mockRejectedValue({
+      code: 'auth/network-request-failed',
+    })
+    const wrapper = mountAttached()
+
+    await wrapper.find('[data-test="delete-account"]').trigger('click')
+    await flushPromises()
+    button('confirm-ok').click()
+    await flushPromises()
+
+    expect(wrapper.find('[role="alert"]').text()).toBe(
+      'Bağlantı kurulamadı. İnternet bağlantınızı kontrol edin.',
+    )
+    wrapper.unmount()
+  })
+})

@@ -9,11 +9,16 @@ import { STATUS_SEGMENTS } from './statusSegments'
  * Ekran okuyucu bütün sayıları `label` ile birlikte okur, fareyle üstüne gelince her
  * parçanın adı ve sayısı görünür. Renklerin açıklaması için StatusLegend kullanın.
  */
-const props = defineProps<{
-  counts: StatusCounts
-  /** Ekran okuyucunun okuyacağı ad, ör. "Veri Tabanı görev durumu". */
-  label: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    counts: StatusCounts
+    /** Ekran okuyucunun okuyacağı ad, ör. "Veri Tabanı görev durumu". */
+    label: string
+    /** Çubuğun kalınlığı. */
+    size?: 'sm' | 'lg'
+  }>(),
+  { size: 'sm' },
+)
 
 const share = (value: number) =>
   props.counts.total === 0 ? 0 : Math.round((value / props.counts.total) * 100)
@@ -38,8 +43,11 @@ const description = computed(
   <div
     role="img"
     :aria-label="description"
-    class="flex h-2 gap-0.5 overflow-hidden rounded-full"
-    :class="counts.total === 0 && 'bg-slate-200 dark:bg-slate-800'"
+    class="flex gap-0.5 overflow-hidden rounded-full"
+    :class="[
+      size === 'lg' ? 'h-3.5' : 'h-2',
+      counts.total === 0 && 'bg-slate-200 dark:bg-slate-800',
+    ]"
     data-test="status-split-bar"
   >
     <span

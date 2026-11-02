@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import { getAuthErrorMessage } from '@/services/auth'
 import { useAuthStore } from '@/stores/auth'
 
-// Hesap bilgileri ve şifre sıfırlama bağlantısı (#30).
+// Hesap bilgileri ve şifre sıfırlama bağlantısı (#30). Üst kısım öğrenci kartı gibi lacivert.
 const auth = useAuthStore()
 
 /** "Ayşe Yılmaz" → "AY"; ad yoksa e-postanın ilk harfi. */
@@ -38,37 +38,37 @@ async function sendResetLink() {
 <template>
   <section
     aria-labelledby="account-title"
-    class="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900"
+    class="overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800"
     data-test="account-card"
   >
     <h2 id="account-title" class="sr-only">Hesap bilgileri</h2>
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-4 bg-ink px-5 py-6 text-white">
       <span
         aria-hidden="true"
-        class="flex size-14 shrink-0 items-center justify-center rounded-full bg-indigo-600 text-lg font-semibold text-white dark:bg-indigo-500"
+        class="flex size-16 shrink-0 items-center justify-center rounded-2xl bg-marker text-2xl font-bold font-stretch-condensed text-ink"
         data-test="avatar"
       >
         {{ initials }}
       </span>
       <dl class="min-w-0">
         <dt class="sr-only">Ad soyad</dt>
-        <dd class="truncate text-lg font-semibold">
+        <dd class="truncate text-2xl leading-tight font-bold font-stretch-condensed">
           {{ auth.user?.displayName || 'Adsız kullanıcı' }}
         </dd>
         <dt class="sr-only">E-posta</dt>
-        <dd class="truncate text-sm text-slate-600 dark:text-slate-400">{{ auth.user?.email }}</dd>
+        <dd class="truncate text-sm text-slate-300">{{ auth.user?.email }}</dd>
       </dl>
     </div>
 
-    <div class="mt-5 border-t border-slate-200 pt-4 dark:border-slate-800">
-      <h3 class="text-sm font-semibold">Şifre</h3>
+    <div class="p-5">
+      <h3 class="text-sm font-bold">Şifre</h3>
       <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
         Şifrenizi değiştirmek için e-posta adresinize bir sıfırlama bağlantısı gönderilir.
       </p>
       <button
         type="button"
         :disabled="sending"
-        class="mt-3 rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none disabled:opacity-60 dark:border-slate-700 dark:hover:bg-slate-800"
+        class="mt-3 rounded-xl px-3.5 py-2 text-sm font-semibold ring-1 ring-slate-300 hover:bg-slate-50 disabled:opacity-60 dark:ring-slate-700 dark:hover:bg-slate-800"
         data-test="reset-password"
         @click="sendResetLink"
       >

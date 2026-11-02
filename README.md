@@ -94,6 +94,9 @@ içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
 - Kendi görevini ekleme, düzenleme ve silme; Firestore kuralları ([#70](https://github.com/selinozbay/YG-Proje1-Grup3/pull/70); #20, #23).
 - Giriş, şifre sıfırlama ve görev senkronu testleri ([#61](https://github.com/selinozbay/YG-Proje1-Grup3/pull/61); #4, #5, #25).
 - README'nin kurulum, test ve çalışma düzeni bölümleri; teslim tarihi düzeltmesi ([#63](https://github.com/selinozbay/YG-Proje1-Grup3/pull/63)).
+- Arayüzün yeni görünümü: lacivert kenar çubuğu ve "şu an" için sarı vurgu, ders renkleri,
+  derslere ve haftalara bölünmüş dönem çizelgesi, ders kapakları, durum simgeleri, hesap silmede
+  onay penceresi (#91).
 - `ders.c1h4n.com` alan adını ve DNS kayıtlarını sağladı. Birleştirmeler: #63, #75, #76.
 
 **Tahir Taş (Test / Kalite + Geliştirici)**
@@ -430,14 +433,14 @@ Birim testleri, test ettikleri dosyanın yanındaki `__tests__/` klasöründe du
 
 ### `src/components/` — bileşenler
 
-| Klasör     | İçindekiler                                                                                                                                       |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `layout/`  | Kenar çubuğu (`AppSidebar`), mobil üst bar, logo, alt bilgi, tema düğmesi, demo uyarısı, "İçeriğe geç" bağlantısı                                 |
-| `common/`  | Ortak parçalar: ikonlar (`AppIcon`), sayfa başlığı, metin kutusu, onay penceresi, geri bağlantısı, ilerleme çubuğu, durum dağılımı çubuğu         |
-| `auth/`    | Giriş, kayıt ve şifre sıfırlama formlarının ortak kartı, gönder düğmesi, şifre gücü göstergesi                                                    |
-| `home/`    | Ana Sayfa: `TermOverview` (dönem çizelgesi), `UpcomingTasks` (güne göre yaklaşan görevler), `HomeCourses` (ders ilerlemesi ve bu haftanın konusu) |
-| `lessons/` | Ders kartı, ders grafiği ve filtresi (Derslerim); hafta kartı ve zaman çizelgesi (Ders detayı); ders renkleri                                     |
-| `tasks/`   | Görev kartı, durum seçici, görev filtresi, kendi görevini ekleme formu; görev durumlarının renkleri                                               |
+| Klasör     | İçindekiler                                                                                                                                                  |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `layout/`  | Kenar çubuğu (`AppSidebar`), mobil üst bar, logo, alt bilgi, tema düğmesi, demo uyarısı, "İçeriğe geç" bağlantısı                                            |
+| `common/`  | Ortak parçalar: ikonlar (`AppIcon`), durum simgesi (`StatusIcon`), sayfa başlığı, metin kutusu, onay penceresi, geri bağlantısı, ilerleme ve durum çubukları |
+| `auth/`    | Giriş, kayıt ve şifre sıfırlama formlarının ortak kartı, gönder düğmesi, şifre gücü göstergesi                                                               |
+| `home/`    | Ana Sayfa: `TermOverview` (dönem çizelgesi), `UpcomingTasks` (güne göre yaklaşan görevler), `HomeCourses` (ders ilerlemesi ve bu haftanın konusu)            |
+| `lessons/` | Ders kartı, ders grafiği ve filtresi (Derslerim); hafta kartı ve zaman çizelgesi (Ders detayı); ders renkleri                                                |
+| `tasks/`   | Görev kartı, durum seçici, görev filtresi, kendi görevini ekleme formu; görev durumlarının renkleri                                                          |
 
 ### `src/composables/` — tekrar kullanılan mantık
 

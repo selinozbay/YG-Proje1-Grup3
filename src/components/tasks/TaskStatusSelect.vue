@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { TASK_STATUS_LABELS, type TaskStatus } from '@/types/task'
+import StatusIcon from '@/components/common/StatusIcon.vue'
 import { STATUS_CLASSES } from './statusStyles'
 
 /** Görev durumunu değiştiren açılır liste. `label` ekranda görünmez, ekran okuyucu okur. */
@@ -10,16 +11,17 @@ const options = Object.entries(TASK_STATUS_LABELS) as [TaskStatus, string][]
 </script>
 
 <!--
-  Renkli rozet ayrı çizilir, gerçek <select> onun üstünde görünmez durur (#78).
+  Renkli rozet (durum simgesi ve adı) ayrı çizilir, gerçek <select> onun üstünde görünmez durur (#78).
   Tarayıcı açılan listeyi select'in kendi renkleriyle çizdiği için select tema renginde
   tutulur; böylece liste rozetin rengini almaz, aydınlık ve karanlık temada okunaklı kalır.
 -->
 <template>
   <label
-    class="relative inline-flex cursor-pointer items-center rounded-full py-0.5 pr-7 pl-2.5 text-xs font-medium focus-within:ring-2 focus-within:ring-indigo-500"
+    class="relative inline-flex cursor-pointer items-center gap-1.5 rounded-full py-1 pr-7 pl-1.5 text-xs font-semibold whitespace-nowrap ring-1 ring-black/5 ring-inset focus-within:ring-2 focus-within:ring-indigo-500 dark:ring-white/10"
     :class="STATUS_CLASSES[status]"
   >
     <span class="sr-only">{{ label }}</span>
+    <StatusIcon :status="status" class="size-4" />
     <span aria-hidden="true">{{ TASK_STATUS_LABELS[status] }}</span>
     <svg
       viewBox="0 0 20 20"

@@ -93,35 +93,36 @@ async function logout() {
 </script>
 
 <!--
-  Masaüstünde (md ve üstü) solda sabit duran kenar çubuğu.
+  Masaüstünde (md ve üstü) solda sabit duran lacivert kenar çubuğu ("ajandanın kapağı").
   Mobilde soldan kayarak açılan çekmece; açma/kapama AppLayout'ta yönetilir.
+  Seçili menü fosforlu kalemle işaretlenmiş gibi sarı zeminle gösterilir.
 -->
 <template>
   <aside
     id="app-sidebar"
     aria-label="Kenar çubuğu"
-    class="flex w-72 shrink-0 flex-col border-r border-slate-200 bg-white max-md:fixed max-md:transition-transform max-md:duration-300 max-md:ease-[cubic-bezier(0.32,0.72,0,1)] max-md:motion-reduce:transition-none max-md:inset-y-0 max-md:left-0 max-md:z-40 max-md:shadow-xl md:sticky md:top-0 md:h-screen md:w-60 md:translate-x-0 dark:border-slate-800 dark:bg-slate-900"
+    class="flex w-72 shrink-0 flex-col bg-ink text-slate-200 max-md:fixed max-md:inset-y-0 max-md:left-0 max-md:z-40 max-md:shadow-2xl max-md:transition-transform max-md:duration-300 max-md:ease-[cubic-bezier(0.32,0.72,0,1)] max-md:motion-reduce:transition-none md:sticky md:top-0 md:h-screen md:w-64 md:translate-x-0 dark:md:border-r dark:md:border-slate-800"
     :class="open ? 'translate-x-0' : 'max-md:-translate-x-full'"
   >
-    <div class="flex items-center gap-2 px-4 pt-5 pb-4">
-      <AppLogo subtitle="Proje 1 · Grup 3" />
+    <div class="flex items-center gap-2 px-5 pt-6 pb-6">
+      <AppLogo subtitle="Proje 1 · Grup 3" tone="inverse" />
       <button
         ref="closeButton"
         type="button"
         aria-label="Menüyü kapat"
-        class="-mr-2 ml-auto rounded-lg p-2 text-slate-500 hover:bg-slate-100 md:hidden dark:hover:bg-slate-800"
+        class="-mr-2 ml-auto rounded-lg p-2 text-slate-300 hover:bg-white/10 hover:text-white focus-visible:outline-marker md:hidden"
         @click="emit('close')"
       >
         <AppIcon name="close" class="size-5" />
       </button>
     </div>
 
-    <nav aria-label="Ana menü" class="flex-1 overflow-y-auto px-3 py-2">
-      <ul class="relative flex flex-col gap-0.5">
+    <nav aria-label="Ana menü" class="flex-1 overflow-y-auto px-3">
+      <ul class="relative flex flex-col gap-1">
         <!-- Kayan seçim göstergesi: seçili menünün arkasında durur, menü değişince kayar. -->
         <li
           aria-hidden="true"
-          class="pointer-events-none absolute inset-x-0 top-0 rounded-md bg-indigo-50 dark:bg-indigo-500/10"
+          class="pointer-events-none absolute inset-x-0 top-0 rounded-lg bg-marker"
           :class="[
             indicatorAnimated &&
               'transition-[transform,height,opacity] duration-300 ease-out motion-reduce:transition-none',
@@ -142,21 +143,17 @@ async function logout() {
           <RouterLink
             :to="item.to"
             :aria-current="isActive(item.to) ? 'page' : undefined"
-            class="group flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-150"
+            class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-[0.9375rem] transition-colors duration-150 focus-visible:outline-marker"
             :class="
               isActive(item.to)
-                ? 'text-indigo-700 dark:text-indigo-200'
-                : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/70 dark:hover:text-slate-100'
+                ? 'font-semibold text-ink'
+                : 'font-medium text-slate-300 hover:bg-white/[0.07] hover:text-white'
             "
           >
             <AppIcon
               :name="item.icon"
-              class="size-[18px] shrink-0 transition-colors duration-150"
-              :class="
-                isActive(item.to)
-                  ? 'text-indigo-600 dark:text-indigo-400'
-                  : 'text-slate-400 group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300'
-              "
+              class="size-5 shrink-0 transition-colors duration-150"
+              :class="isActive(item.to) ? 'text-ink' : 'text-slate-400 group-hover:text-white'"
             />
             {{ item.label }}
           </RouterLink>
@@ -164,34 +161,31 @@ async function logout() {
       </ul>
     </nav>
 
-    <div class="border-t border-slate-200 p-3 dark:border-slate-800">
+    <div class="border-t border-white/10 p-3">
       <div class="flex items-center gap-3 px-2 py-2">
         <span
-          class="grid size-8 shrink-0 place-items-center rounded-full bg-slate-200 text-xs font-semibold text-slate-700 dark:bg-slate-700 dark:text-slate-200"
+          class="grid size-9 shrink-0 place-items-center rounded-full bg-marker text-sm font-bold font-stretch-condensed text-ink"
           aria-hidden="true"
         >
           {{ initials }}
         </span>
         <span class="min-w-0 flex-1">
-          <span class="block truncate text-sm font-medium">{{ displayName }}</span>
-          <span
-            v-if="auth.user?.displayName"
-            class="block truncate text-xs text-slate-500 dark:text-slate-400"
-          >
+          <span class="block truncate text-sm font-semibold text-white">{{ displayName }}</span>
+          <span v-if="auth.user?.displayName" class="block truncate text-xs text-slate-400">
             {{ auth.user.email }}
           </span>
         </span>
-        <ThemeToggle />
+        <ThemeToggle tone="inverse" />
       </div>
       <!-- KVKK aydınlatma metni her zaman bir tık uzakta olsun (#36). -->
       <RouterLink
         to="/gizlilik"
         :aria-current="isActive('/gizlilik') ? 'page' : undefined"
-        class="mt-1 flex items-center gap-3 rounded-md px-3 py-2 text-xs font-medium transition-colors"
+        class="mt-1 flex items-center gap-3 rounded-lg px-3 py-2 text-xs font-medium transition-colors focus-visible:outline-marker"
         :class="
           isActive('/gizlilik')
-            ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300'
-            : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100'
+            ? 'bg-white/10 text-white'
+            : 'text-slate-400 hover:bg-white/[0.07] hover:text-white'
         "
       >
         <AppIcon name="shield" class="size-4" />
@@ -199,7 +193,7 @@ async function logout() {
       </RouterLink>
       <button
         type="button"
-        class="mt-0.5 flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-red-50 hover:text-red-700 dark:text-slate-400 dark:hover:bg-red-500/10 dark:hover:text-red-400"
+        class="mt-0.5 flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-red-500/15 hover:text-red-200 focus-visible:outline-marker"
         aria-haspopup="dialog"
         @click="logoutConfirmOpen = true"
       >
