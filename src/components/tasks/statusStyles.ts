@@ -2,7 +2,7 @@ import type { TaskStatus } from '@/types/task'
 
 /**
  * Görev durumunun rozet ve seçicide kullanılan renkleri (aydınlık ve karanlık tema).
- * Gri: yapılacak, mavi: devam ediyor, yeşil: tamamlandı. Rozetin içinde StatusIcon da durur;
+ * Gri: yapılacak, turuncu: devam ediyor, yeşil: tamamlandı. Rozetin içinde StatusIcon da durur;
  * durum renge bakmadan da şekilden anlaşılır.
  */
 export const STATUS_CLASSES: Record<TaskStatus, string> = {

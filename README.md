@@ -94,9 +94,9 @@ içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
 - Kendi görevini ekleme, düzenleme ve silme; Firestore kuralları ([#70](https://github.com/selinozbay/YG-Proje1-Grup3/pull/70); #20, #23).
 - Giriş, şifre sıfırlama ve görev senkronu testleri ([#61](https://github.com/selinozbay/YG-Proje1-Grup3/pull/61); #4, #5, #25).
 - README'nin kurulum, test ve çalışma düzeni bölümleri; teslim tarihi düzeltmesi ([#63](https://github.com/selinozbay/YG-Proje1-Grup3/pull/63)).
-- Arayüzün yeni görünümü: lacivert kenar çubuğu ve "şu an" için sarı vurgu, ders renkleri,
+- Arayüzün yeni görünümü: turuncu vurgu rengi, temayı izleyen kenar çubuğu, ders renkleri,
   derslere ve haftalara bölünmüş dönem çizelgesi, ders kapakları, durum simgeleri, hesap silmede
-  onay penceresi (#91).
+  onay penceresi ([#92](https://github.com/selinozbay/YG-Proje1-Grup3/pull/92), #91).
 - `ders.c1h4n.com` alan adını ve DNS kayıtlarını sağladı. Birleştirmeler: #63, #75, #76.
 
 **Tahir Taş (Test / Kalite + Geliştirici)**

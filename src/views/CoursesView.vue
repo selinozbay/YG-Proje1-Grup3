@@ -53,7 +53,7 @@ const { filters, filteredCourses, statusCounts, isFiltered, resetFilters } =
     </p>
     <button
       type="button"
-      class="mt-5 rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-white hover:bg-ink-soft dark:bg-marker dark:text-ink dark:hover:bg-marker/90"
+      class="mt-5 rounded-xl px-4 py-2.5 text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-400 dark:text-slate-950 dark:hover:bg-indigo-300"
       @click="resetFilters"
     >
       Filtreleri temizle

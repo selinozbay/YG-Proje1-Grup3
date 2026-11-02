@@ -64,8 +64,10 @@ const labelClass = 'mb-1.5 block text-sm font-semibold'
     data-test="custom-task-form"
     @submit.prevent="submit"
   >
-    <!-- Formun başlığı fosforlu sarı bir şeritte: sayfada o an doldurulan şey bu. -->
-    <div class="flex items-center gap-3 bg-marker px-4 py-3 text-ink sm:px-6">
+    <!-- Formun başlığı vurgu renginin açık tonunda bir şeritte: sayfada o an doldurulan şey bu. -->
+    <div
+      class="flex items-center gap-3 border-b border-indigo-100 bg-indigo-50 px-4 py-3 text-indigo-900 sm:px-6 dark:border-indigo-400/15 dark:bg-indigo-400/[0.08] dark:text-indigo-100"
+    >
       <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5 shrink-0">
         <path
           v-if="mode === 'edit'"
@@ -195,7 +197,7 @@ const labelClass = 'mb-1.5 block text-sm font-semibold'
       <button
         type="submit"
         :disabled="saving"
-        class="rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-white hover:bg-ink-soft disabled:opacity-60 dark:bg-marker dark:text-ink dark:hover:bg-marker/90"
+        class="rounded-xl px-4 py-2.5 text-sm font-semibold disabled:opacity-60 bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-400 dark:text-slate-950 dark:hover:bg-indigo-300"
       >
         {{ saving ? 'Kaydediliyor…' : mode === 'edit' ? 'Değişiklikleri kaydet' : 'Görevi ekle' }}
       </button>

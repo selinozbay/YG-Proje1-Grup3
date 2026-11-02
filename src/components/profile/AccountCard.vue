@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import { getAuthErrorMessage } from '@/services/auth'
 import { useAuthStore } from '@/stores/auth'
 
-// Hesap bilgileri ve şifre sıfırlama bağlantısı (#30). Üst kısım öğrenci kartı gibi lacivert.
+// Hesap bilgileri ve şifre sıfırlama bağlantısı (#30). Üst kısım öğrenci kartı gibi vurgu renginin açık tonunda.
 const auth = useAuthStore()
 
 /** "Ayşe Yılmaz" → "AY"; ad yoksa e-postanın ilk harfi. */
@@ -42,10 +42,12 @@ async function sendResetLink() {
     data-test="account-card"
   >
     <h2 id="account-title" class="sr-only">Hesap bilgileri</h2>
-    <div class="flex items-center gap-4 bg-ink px-5 py-6 text-white">
+    <div
+      class="flex items-center gap-4 border-b border-indigo-100 bg-indigo-50 px-5 py-6 dark:border-indigo-400/15 dark:bg-indigo-400/[0.08]"
+    >
       <span
         aria-hidden="true"
-        class="flex size-16 shrink-0 items-center justify-center rounded-2xl bg-marker text-2xl font-bold font-stretch-condensed text-ink"
+        class="flex size-16 shrink-0 items-center justify-center rounded-2xl text-2xl font-bold font-stretch-condensed bg-indigo-600 text-white dark:bg-indigo-400 dark:text-slate-950"
         data-test="avatar"
       >
         {{ initials }}
@@ -56,7 +58,7 @@ async function sendResetLink() {
           {{ auth.user?.displayName || 'Adsız kullanıcı' }}
         </dd>
         <dt class="sr-only">E-posta</dt>
-        <dd class="truncate text-sm text-slate-300">{{ auth.user?.email }}</dd>
+        <dd class="truncate text-sm text-slate-600 dark:text-slate-400">{{ auth.user?.email }}</dd>
       </dl>
     </div>
 

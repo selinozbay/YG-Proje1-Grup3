@@ -2,7 +2,7 @@ import { TASK_STATUS_LABELS } from '@/types/task'
 
 /**
  * Durum dağılımı çubuğunun parçaları, çizim sırasıyla. Renkler görev durumu
- * rozetleriyle aynı tonlarda (yeşil, mavi); "yapılacak" kalan kısmı gösterdiği için nötr gri.
+ * rozetleriyle aynı tonlarda (yeşil, turuncu); "yapılacak" kalan kısmı gösterdiği için nötr gri.
  * Renk tek başına anlam taşımaz: yanında her zaman ad ve sayı yazar.
  */
 export const STATUS_SEGMENTS = [

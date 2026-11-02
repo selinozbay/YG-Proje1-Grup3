@@ -11,7 +11,7 @@ import { formatDate } from '@/utils/date'
 /**
  * Ana Sayfa'nın üstündeki dönem çizelgesi (#9, #11): bir ders programı gibi, sütunlar
  * dönemin haftaları, satırlar dersler. Her hücrede o dersin o haftaki görevleri durum
- * simgeleriyle durur (hücre o haftanın sayfasına götürür). Bu hafta fosforlu sarıyla
+ * simgeleriyle durur (hücre o haftanın sayfasına götürür). Bu hafta vurgu rengiyle
  * işaretlidir, "Bugün" çizgisi dönemin ne kadarının geçtiğini gösterir. Üstteki iki çubuk
  * tamamlanan görev oranını geçen süreyle karşılaştırır: öğrenci takvimin önünde mi, gerisinde mi?
  */
@@ -118,7 +118,7 @@ const showToday = computed(() => props.elapsedPercent > 0 && props.elapsedPercen
               aria-hidden="true"
             >
               <span
-                class="block h-full rounded-full bg-ink dark:bg-slate-300"
+                class="block h-full rounded-full bg-slate-600 dark:bg-slate-300"
                 :style="{ width: `${elapsedPercent}%` }"
               />
             </span>
@@ -163,7 +163,7 @@ const showToday = computed(() => props.elapsedPercent > 0 && props.elapsedPercen
             class="flex min-w-0 flex-col border-l border-slate-200 dark:border-slate-800"
             :class="
               week.state === 'current'
-                ? 'bg-marker-soft/70 dark:bg-marker/[0.07]'
+                ? 'bg-indigo-50/80 dark:bg-indigo-400/[0.07]'
                 : courses.length === 0 && w === 0 && 'border-l-0'
             "
             :aria-current="week.state === 'current' ? 'step' : undefined"
@@ -178,7 +178,7 @@ const showToday = computed(() => props.elapsedPercent > 0 && props.elapsedPercen
                 >
                 <span
                   v-if="week.state === 'current'"
-                  class="rounded bg-marker px-1.5 py-px text-[0.6875rem] font-semibold text-ink max-sm:sr-only"
+                  class="rounded px-1.5 py-px text-[0.6875rem] font-semibold max-sm:sr-only bg-indigo-600 text-white dark:bg-indigo-400 dark:text-slate-950"
                   >Bu hafta</span
                 >
               </p>
@@ -248,11 +248,11 @@ const showToday = computed(() => props.elapsedPercent > 0 && props.elapsedPercen
           aria-hidden="true"
         >
           <span
-            class="today-line absolute top-0 -left-px block w-0.5 bg-ink dark:bg-marker"
+            class="today-line absolute top-0 -left-px block w-0.5 bg-indigo-500 dark:bg-indigo-400"
             :style="{ height: `${courses.length * 2.75}rem` }"
           />
           <span
-            class="absolute -translate-x-1/2 rounded-full bg-ink px-2 py-0.5 text-[0.6875rem] font-semibold whitespace-nowrap text-marker dark:bg-marker dark:text-ink"
+            class="absolute -translate-x-1/2 rounded-full px-2 py-0.5 text-[0.6875rem] font-semibold whitespace-nowrap bg-indigo-600 text-white dark:bg-indigo-400 dark:text-slate-950"
             :style="{ top: `${courses.length * 2.75 + 0.2}rem` }"
             >Bugün</span
           >

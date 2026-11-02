@@ -6,7 +6,7 @@ import { WEEK_STATE_CLASSES, WEEK_STATE_LABELS, type WeekState } from './weekSta
 
 /**
  * Ders detayındaki hafta kartı (#40, #41). Kartın tamamı hafta detayına götüren bağlantıdır.
- * Solda büyük hafta numarası; şu anki hafta fosforlu sarı çerçeveyle işaretlidir.
+ * Solda büyük hafta numarası; şu anki hafta vurgu renginde çerçeveyle işaretlidir.
  */
 withDefaults(
   defineProps<{
@@ -24,10 +24,10 @@ withDefaults(
 <template>
   <RouterLink
     :to="to"
-    class="group flex h-full gap-4 rounded-2xl bg-white p-5 ring-1 transition-shadow hover:shadow-[0_6px_24px_-12px_rgb(20_24_58/0.35)] dark:bg-slate-900"
+    class="group flex h-full gap-4 rounded-2xl bg-white p-5 ring-1 transition-shadow hover:shadow-[0_6px_24px_-12px_rgb(23_28_39/0.35)] dark:bg-slate-900"
     :class="
       state === 'current'
-        ? 'ring-[3px] ring-marker'
+        ? 'ring-2 ring-indigo-500 dark:ring-indigo-400'
         : 'ring-slate-200 hover:ring-slate-300 dark:ring-slate-800 dark:hover:ring-slate-700'
     "
     data-test="week-card"
@@ -35,7 +35,9 @@ withDefaults(
     <span
       class="w-10 shrink-0 text-5xl leading-[0.85] font-bold font-stretch-condensed tabular-nums"
       :class="
-        state === 'upcoming' ? 'text-slate-300 dark:text-slate-600' : 'text-ink dark:text-white'
+        state === 'upcoming'
+          ? 'text-slate-300 dark:text-slate-600'
+          : 'text-slate-900 dark:text-white'
       "
       aria-hidden="true"
       >{{ week.weekNo }}</span

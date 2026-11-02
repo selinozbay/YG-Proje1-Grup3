@@ -88,7 +88,7 @@ const fieldClass =
         class="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition-colors"
         :class="
           status === value
-            ? 'bg-ink text-white dark:bg-marker dark:text-ink'
+            ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
             : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
         "
         @click="status = value"
