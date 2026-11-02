@@ -9,9 +9,10 @@ describe('courseColor', () => {
     expect(courseColor('veri-tabani')).toBe(courseColor('veri-tabani'))
   })
 
-  it('görev durumlarının renklerini (yeşil, sarı) kullanmaz', () => {
+  it('vurgu ve görev durumu renklerini (turuncu, yeşil, kırmızı) kullanmaz', () => {
     for (const course of coursesData) {
-      expect(courseColor(course.id).bar).not.toMatch(/emerald|green|amber|yellow/)
+      // indigo, uygulamada turuncu vurgu rengine eşlenmiştir (assets/main.css).
+      expect(courseColor(course.id).bar).not.toMatch(/orange|indigo|amber|emerald|green|red/)
     }
   })
 

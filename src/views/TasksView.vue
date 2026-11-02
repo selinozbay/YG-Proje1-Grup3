@@ -98,7 +98,7 @@ async function deleteCustomTask(taskId: string) {
       <button
         v-if="formTarget !== 'new'"
         type="button"
-        class="inline-flex items-center rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-white shadow-[0_6px_16px_-8px_rgb(20_24_58/0.6)] hover:bg-ink-soft dark:bg-marker dark:text-ink dark:hover:bg-marker/90"
+        class="inline-flex items-center rounded-xl px-4 py-2.5 text-sm font-semibold shadow-[0_6px_16px_-8px_rgb(194_65_12/0.6)] bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-400 dark:text-slate-950 dark:hover:bg-indigo-300"
         data-test="add-task"
         @click="openForm('new')"
       >
@@ -206,7 +206,7 @@ async function deleteCustomTask(taskId: string) {
     <button
       v-if="isFiltered"
       type="button"
-      class="mt-5 rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-white hover:bg-ink-soft dark:bg-marker dark:text-ink dark:hover:bg-marker/90"
+      class="mt-5 rounded-xl px-4 py-2.5 text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-400 dark:text-slate-950 dark:hover:bg-indigo-300"
       @click="resetFilters"
     >
       Filtreleri temizle

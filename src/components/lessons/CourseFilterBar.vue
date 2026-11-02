@@ -68,7 +68,7 @@ const searchId = useId()
         class="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition-colors"
         :class="
           status === value
-            ? 'bg-ink text-white dark:bg-marker dark:text-ink'
+            ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
             : 'bg-white text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50 dark:bg-slate-900 dark:text-slate-300 dark:ring-slate-700 dark:hover:bg-slate-800'
         "
         @click="status = value"

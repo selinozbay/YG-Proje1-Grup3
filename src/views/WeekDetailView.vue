@@ -83,7 +83,7 @@ const tasksTitleId = useId()
             <svg
               viewBox="0 0 20 20"
               aria-hidden="true"
-              class="mt-px size-[1.125rem] shrink-0 rounded-md bg-marker p-0.5 text-ink"
+              class="mt-px size-[1.125rem] shrink-0 rounded-md bg-indigo-100 p-0.5 text-indigo-700 dark:bg-indigo-400/20 dark:text-indigo-200"
               fill="none"
               stroke="currentColor"
               stroke-width="2.5"

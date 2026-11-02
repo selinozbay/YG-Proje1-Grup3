@@ -9,7 +9,7 @@ import { formatDayLong } from '@/utils/date'
 
 /**
  * Ana Sayfa'daki yaklaşan görevler (#13): bir ajanda sayfası gibi, solda gün, sağda o gün
- * teslim edilecek görevler. En yakın gün fosforlu sarıyla işaretlidir.
+ * teslim edilecek görevler. En yakın gün vurgu rengiyle işaretlidir.
  * Durum buradan da değiştirilebilir; tamamlanan görev listeden çıkar.
  */
 const props = defineProps<{
@@ -101,7 +101,7 @@ const stripClass = (task: TaskWithStatus) =>
             class="rounded px-1.5 py-0.5 text-[0.6875rem] leading-tight font-semibold whitespace-nowrap"
             :class="
               g === 0
-                ? 'bg-marker text-ink'
+                ? 'bg-indigo-600 text-white dark:bg-indigo-400 dark:text-slate-950'
                 : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300'
             "
             data-test="days-left"

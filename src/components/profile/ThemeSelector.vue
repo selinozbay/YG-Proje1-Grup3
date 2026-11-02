@@ -29,20 +29,33 @@ const OPTIONS: { value: ThemePreference; label: string; hint: string }[] = [
       <label
         v-for="option in OPTIONS"
         :key="option.value"
-        class="group cursor-pointer rounded-xl p-1.5 ring-1 ring-slate-200 transition-shadow focus-within:ring-2 focus-within:ring-indigo-500 hover:ring-slate-400 has-[:checked]:ring-[3px] has-[:checked]:ring-ink dark:ring-slate-700 dark:hover:ring-slate-500 dark:has-[:checked]:ring-marker"
+        class="group cursor-pointer rounded-xl p-1.5 ring-1 ring-slate-200 transition-shadow focus-within:ring-2 focus-within:ring-indigo-500 hover:ring-slate-400 has-[:checked]:ring-[3px] has-[:checked]:ring-indigo-500 dark:ring-slate-700 dark:hover:ring-slate-500 dark:has-[:checked]:ring-indigo-400"
         data-test="theme-option"
       >
         <input v-model="theme" type="radio" name="theme" :value="option.value" class="sr-only" />
-        <!-- Önizleme: lacivert kenar çubuğu, sarı seçili menü, kâğıt ya da koyu zemin. -->
+        <!-- Önizleme: temayı izleyen kenar çubuğu, turuncu seçili menü, açık ya da koyu zemin. -->
         <span
           aria-hidden="true"
           class="relative flex h-16 overflow-hidden rounded-lg ring-1 ring-black/5"
           :class="option.value === 'dark' ? 'bg-slate-950' : 'bg-paper'"
         >
-          <span class="flex w-1/3 flex-col gap-1 bg-ink p-1.5">
-            <span class="h-1.5 w-full rounded-sm bg-marker" />
-            <span class="h-1 w-3/4 rounded-sm bg-white/30" />
-            <span class="h-1 w-2/3 rounded-sm bg-white/30" />
+          <span
+            class="flex w-1/3 flex-col gap-1 border-r p-1.5"
+            :class="
+              option.value === 'dark'
+                ? 'border-slate-800 bg-slate-900'
+                : 'border-slate-200 bg-white'
+            "
+          >
+            <span class="h-1.5 w-full rounded-sm bg-indigo-500" />
+            <span
+              class="h-1 w-3/4 rounded-sm"
+              :class="option.value === 'dark' ? 'bg-slate-600' : 'bg-slate-300'"
+            />
+            <span
+              class="h-1 w-2/3 rounded-sm"
+              :class="option.value === 'dark' ? 'bg-slate-600' : 'bg-slate-300'"
+            />
           </span>
           <span class="flex flex-1 flex-col gap-1.5 p-2">
             <span

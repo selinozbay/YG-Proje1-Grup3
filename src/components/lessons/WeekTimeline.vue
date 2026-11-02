@@ -4,7 +4,7 @@ import type { Week } from '@/types/course'
 import { WEEK_STATE_LABELS, type WeekState } from './weekState'
 
 // Haftaların akışı (#42): bir hat üstünde duraklar gibi; mobilde dikey, geniş ekranda yatay.
-// Tamamlanan duraklar yeşil, şu anki durak fosforlu sarı, sıradakiler boş halka.
+// Tamamlanan duraklar yeşil, şu anki durak vurgu renginde, sıradakiler boş halka.
 // Şu anki hafta aria-current="step" ile ekran okuyucuya da bildirilir.
 defineProps<{
   items: { week: Week; to: string; state: WeekState }[]
@@ -12,7 +12,8 @@ defineProps<{
 
 const DOT_CLASSES: Record<WeekState, string> = {
   done: 'bg-emerald-600 text-white dark:bg-emerald-500 dark:text-slate-950',
-  current: 'bg-marker text-ink ring-[5px] ring-marker/35',
+  current:
+    'bg-indigo-600 text-white ring-[5px] ring-indigo-500/20 dark:bg-indigo-400 dark:text-slate-950 dark:ring-indigo-400/25',
   upcoming:
     'bg-white text-slate-500 ring-2 ring-slate-300 ring-inset dark:bg-slate-900 dark:text-slate-400 dark:ring-slate-700',
 }
@@ -63,7 +64,7 @@ const DOT_CLASSES: Record<WeekState, string> = {
           class="mt-1 inline-block text-xs font-semibold"
           :class="
             item.state === 'current'
-              ? 'rounded bg-marker px-1.5 py-px text-ink'
+              ? 'rounded bg-indigo-100 px-1.5 py-px text-indigo-800 dark:bg-indigo-400/20 dark:text-indigo-200'
               : item.state === 'done'
                 ? 'text-emerald-700 dark:text-emerald-400'
                 : 'text-slate-500 dark:text-slate-400'

@@ -1,12 +1,12 @@
 import coursesData from '@/data/courses.json'
 
 /**
- * Her dersin ayraç rengi: defterdeki renkli ayraçlar gibi, ders sayfalar arasında bir bakışta
- * ayırt edilsin diye. Yeşil "Tamamlandı", mavi "Devam ediyor", sarı "şu an" anlamına geldiği
- * için burada yok. Renk dersin katalogdaki sırasından gelir; yeni ders eklenince mevcut
- * derslerin rengi değişmez.
+ * Her dersin rengi: ders sayfalar arasında bir bakışta ayırt edilsin diye. Turuncu uygulamanın
+ * vurgu rengi ve "Devam ediyor" durumu, yeşil "Tamamlandı", kırmızı geciken görev olduğu için
+ * burada yok. Renk dersin katalogdaki sırasından gelir; yeni ders eklenince mevcut derslerin
+ * rengi değişmez.
  *
- * - solid: dolu ayraç (beyaz yazı, kontrast ≥ 4.5:1)
+ * - solid: dolu zemin (beyaz yazı, kontrast ≥ 4.5:1)
  * - badge: açık zeminli kod rozeti
  * - bar: ince şerit ve çubuklar
  * - text: renkli yazı (aydınlık ve karanlık tema)
@@ -22,20 +22,20 @@ const PALETTE = [
     border: 'border-violet-500',
   },
   {
-    solid: 'bg-orange-700 text-white',
-    badge: 'bg-orange-100 text-orange-800 dark:bg-orange-500/20 dark:text-orange-200',
-    bar: 'bg-orange-500',
-    text: 'text-orange-700 dark:text-orange-300',
-    ring: 'ring-orange-500',
-    border: 'border-orange-500',
+    solid: 'bg-sky-700 text-white',
+    badge: 'bg-sky-100 text-sky-800 dark:bg-sky-500/20 dark:text-sky-200',
+    bar: 'bg-sky-500',
+    text: 'text-sky-700 dark:text-sky-300',
+    ring: 'ring-sky-500',
+    border: 'border-sky-500',
   },
   {
-    solid: 'bg-fuchsia-700 text-white',
-    badge: 'bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-500/20 dark:text-fuchsia-200',
-    bar: 'bg-fuchsia-500',
-    text: 'text-fuchsia-700 dark:text-fuchsia-300',
-    ring: 'ring-fuchsia-500',
-    border: 'border-fuchsia-500',
+    solid: 'bg-pink-700 text-white',
+    badge: 'bg-pink-100 text-pink-800 dark:bg-pink-500/20 dark:text-pink-200',
+    bar: 'bg-pink-500',
+    text: 'text-pink-700 dark:text-pink-300',
+    ring: 'ring-pink-500',
+    border: 'border-pink-500',
   },
   {
     solid: 'bg-cyan-700 text-white',
@@ -46,12 +46,12 @@ const PALETTE = [
     border: 'border-cyan-500',
   },
   {
-    solid: 'bg-rose-600 text-white',
-    badge: 'bg-rose-100 text-rose-800 dark:bg-rose-500/20 dark:text-rose-200',
-    bar: 'bg-rose-500',
-    text: 'text-rose-700 dark:text-rose-300',
-    ring: 'ring-rose-500',
-    border: 'border-rose-500',
+    solid: 'bg-fuchsia-700 text-white',
+    badge: 'bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-500/20 dark:text-fuchsia-200',
+    bar: 'bg-fuchsia-500',
+    text: 'text-fuchsia-700 dark:text-fuchsia-300',
+    ring: 'ring-fuchsia-500',
+    border: 'border-fuchsia-500',
   },
 ] as const
 

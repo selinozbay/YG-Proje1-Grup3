@@ -103,7 +103,7 @@ const actionClass = 'rounded-md px-2 py-1 font-semibold'
         </component>
         <span
           v-if="task.custom"
-          class="rounded-md bg-marker-soft px-1.5 py-px text-[0.6875rem] font-semibold text-ink dark:bg-marker/15 dark:text-marker"
+          class="rounded-md bg-slate-100 px-1.5 py-px text-[0.6875rem] font-semibold text-slate-700 ring-1 ring-slate-200 ring-inset dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700"
           data-test="custom-badge"
         >
           Kendi görevim
