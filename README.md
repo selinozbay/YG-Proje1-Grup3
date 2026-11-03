@@ -77,7 +77,8 @@ içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
   ([#84](https://github.com/selinozbay/YG-Proje1-Grup3/pull/84); #9–#13, #48).
 - Derslerim: ders kartları, durum grafiği, arama ve filtre ([#83](https://github.com/selinozbay/YG-Proje1-Grup3/pull/83); #14–#19).
 - Uygulamanın ortak tasarımı: yazı tipi, renkler, kenar çubuğu, görev listeleri ([#86](https://github.com/selinozbay/YG-Proje1-Grup3/pull/86)).
-- Ekip katkı tablosu ve onu GitHub'dan üreten betik ([#85](https://github.com/selinozbay/YG-Proje1-Grup3/pull/85); P1-19).
+- Ekip katkı tablosu ve onu GitHub'dan üreten betik ([#85](https://github.com/selinozbay/YG-Proje1-Grup3/pull/85); P1-19);
+  1 ve 3 Kasım'da ara güncellemeleri ([#90](https://github.com/selinozbay/YG-Proje1-Grup3/pull/90), #65).
 - Şifre sıfırlama e-postasının KTÜ adreslerine ulaşması: Firebase e-posta ve alan adı ayarları
   (Cihan'la birlikte), belgelenmesi ve Gereksiz klasörü uyarısı ([#87](https://github.com/selinozbay/YG-Proje1-Grup3/pull/87), [#88](https://github.com/selinozbay/YG-Proje1-Grup3/pull/88)).
 - PR incelemeleri ve onayları (#77, #79, #81), birleştirmeler (#77, #83–#90, #92, #94).
@@ -738,4 +739,4 @@ Bütün sayfaların mobil ve masaüstü ekran görüntüleri (hocanın P1-08 mad
 | `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))                  | Henüz yok                                        |
 | `docs/screenshots/`           | Ekran görüntüleri ([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57))              | Henüz yok                                        |
 | `docs/test-senaryolari.md`    | Test senaryoları ve hata kaydı ([#60](https://github.com/selinozbay/YG-Proje1-Grup3/issues/60)) | 30 Ekim sürümüne göre; son sürümle güncellenecek |
-| `docs/katki-tablosu.md`       | Ekip katkı tablosu ([#65](https://github.com/selinozbay/YG-Proje1-Grup3/issues/65))             | Teslimden önce son hâli üretilecek               |
+| `docs/katki-tablosu.md`       | Ekip katkı tablosu ([#65](https://github.com/selinozbay/YG-Proje1-Grup3/issues/65))             | 3 Kasım'da güncellendi; son hâli teslimden önce  |
