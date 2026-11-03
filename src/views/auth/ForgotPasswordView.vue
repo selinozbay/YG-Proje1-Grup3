@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import AuthCard from '@/components/auth/AuthCard.vue'
+import AppIcon from '@/components/common/AppIcon.vue'
 import SubmitButton from '@/components/auth/SubmitButton.vue'
 import TextField from '@/components/common/TextField.vue'
 import { isFirebaseEnabled } from '@/firebase'
@@ -30,27 +31,57 @@ async function submit() {
 </script>
 
 <template>
-  <AuthCard title="Şifremi unuttum" :error="error" @submit="submit">
+  <AuthCard
+    title="Şifremi unuttum"
+    :subtitle="
+      sent
+        ? undefined
+        : 'E-posta adresinizi girin; şifrenizi yenilemeniz için size bir bağlantı gönderelim.'
+    "
+    :error="error"
+    @submit="submit"
+  >
     <!-- Hesabın var olup olmadığı söylenmez; böylece kayıtlı e-postalar tahmin edilemez. -->
-    <p
+    <div
       v-if="sent"
       role="status"
-      class="rounded-lg bg-green-50 px-3 py-2 text-sm text-green-800 dark:bg-green-950 dark:text-green-300"
+      class="flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-900 dark:border-green-900 dark:bg-green-950/60 dark:text-green-200"
     >
-      Bu adrese kayıtlı bir hesap varsa şifre sıfırlama bağlantısı gönderildi.
-      <template v-if="isFirebaseEnabled">
-        Birkaç dakika içinde gelmezse Gereksiz (Spam) klasörüne de bakın.
-      </template>
-      <template v-else> (Demo modunda e-posta gönderilmez.)</template>
-    </p>
+      <AppIcon
+        name="check-circle"
+        class="mt-0.5 size-5 shrink-0 text-green-600 dark:text-green-400"
+      />
+      <div class="space-y-1.5">
+        <p class="font-medium">
+          Bu adrese kayıtlı bir hesap varsa şifre sıfırlama bağlantısı gönderildi.
+        </p>
+        <!-- main'deki cümle korunur (#5): kurumsal sunucular iletiyi Gereksiz'e taşıyabiliyor. -->
+        <p v-if="isFirebaseEnabled">
+          Birkaç dakika içinde gelmezse Gereksiz (Spam) klasörüne de bakın. Bağlantıdan yeni
+          şifrenizi belirledikten sonra giriş yapabilirsiniz.
+        </p>
+        <p v-else>Demo modunda e-posta gönderilmez.</p>
+      </div>
+    </div>
     <template v-else>
-      <TextField v-model="email" label="E-posta" type="email" autocomplete="email" required />
+      <TextField
+        v-model="email"
+        label="E-posta"
+        type="email"
+        icon="mail"
+        placeholder="E-posta adresinizi giriniz"
+        autocomplete="email"
+        required
+      />
       <SubmitButton :loading="loading">Bağlantı gönder</SubmitButton>
     </template>
 
     <template #footer>
-      <RouterLink to="/giris" class="text-indigo-600 underline dark:text-indigo-400">
-        Giriş sayfasına dön
+      <RouterLink
+        to="/giris"
+        class="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+      >
+        ← Giriş sayfasına dön
       </RouterLink>
     </template>
   </AuthCard>

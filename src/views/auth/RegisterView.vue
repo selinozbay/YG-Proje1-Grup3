@@ -55,22 +55,39 @@ async function submit() {
 </script>
 
 <template>
-  <AuthCard title="Kayıt ol" :error="error" @submit="submit">
-    <TextField v-model="displayName" label="Ad soyad" autocomplete="name" required />
+  <AuthCard
+    title="Kayıt ol"
+    subtitle="Hesabınızı oluşturun; derslerinizi ve görevlerinizi tek panodan takip edin."
+    :error="error"
+    @submit="submit"
+  >
+    <TextField
+      v-model="displayName"
+      label="Ad soyad"
+      icon="user"
+      placeholder="Adınızı ve soyadınızı giriniz"
+      autocomplete="name"
+      required
+    />
+    <!-- Öğrenci e-postası kuralı (#6): yalnızca 123456@ogr.ktu.edu.tr biçimi kabul edilir. -->
     <TextField
       v-model="email"
       label="Öğrenci e-postası"
       type="email"
+      icon="mail"
+      placeholder="123456@ogr.ktu.edu.tr"
       autocomplete="email"
       hint="Öğrenci numaranızla: 123456@ogr.ktu.edu.tr"
       required
     />
     <div>
-      <!-- minlength yok: kısa şifrede tarayıcının değil, formun Türkçe uyarısı görünsün. -->
+      <!-- Güçlü şifre kuralı (#7). minlength yok: kısa şifrede tarayıcının değil, formun Türkçe uyarısı görünsün. -->
       <TextField
         v-model="password"
         label="Şifre"
         type="password"
+        icon="lock"
+        placeholder="Bir şifre belirleyiniz"
         autocomplete="new-password"
         hint="En az 10 karakter; küçük-büyük harf, rakam ve simgeden en az üçü."
         :describedby="strengthId"
@@ -80,13 +97,18 @@ async function submit() {
     </div>
 
     <!-- KVKK: kullanıcı, verisi işlenmeden önce aydınlatma metnini okuduğunu onaylar. -->
-    <label class="flex items-start gap-2 text-sm">
-      <input v-model="acceptedPrivacy" type="checkbox" class="mt-1" required />
+    <label class="flex cursor-pointer items-start gap-3 text-sm">
+      <input
+        v-model="acceptedPrivacy"
+        type="checkbox"
+        class="mt-0.5 size-4 shrink-0 rounded accent-indigo-600"
+        required
+      />
       <span>
         <RouterLink
           to="/gizlilik"
           target="_blank"
-          class="text-indigo-600 underline dark:text-indigo-400"
+          class="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
         >
           Gizlilik ve KVKK Aydınlatma Metni</RouterLink
         >’ni okudum.
@@ -98,7 +120,10 @@ async function submit() {
     <template #footer>
       <p>
         Zaten hesabınız var mı?
-        <RouterLink to="/giris" class="text-indigo-600 underline dark:text-indigo-400">
+        <RouterLink
+          to="/giris"
+          class="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+        >
           Giriş yapın
         </RouterLink>
       </p>
