@@ -190,6 +190,15 @@ B-01…B-03 ve B-05…B-07 için eklenen testler düzeltme geri alınınca kalı
 yani hata geri gelirse CI bunu yakalar. B-05…B-07 düzeltmesinden sonra lint, tip kontrolü,
 Vitest (209/209) ve Playwright (41/41, 4 yeni test) hatasız.
 
+## Denenip uygulanmayan işler
+
+Denendiği, ölçüldüğü hâlde ekip kararıyla birleştirilmeyen işler. Kodları ana dala girmediği için
+senaryo tablosunda yer almazlar.
+
+| İş  | Ne denendi                                                                                                                                                                                           | Ölçüm                                                                                                                                                                   | Karar                                                                                                                                            |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| #8  | Girişten ve kayıttan sonra, sayfa açılana kadar gidilecek sayfanın iskeletini gösteren geçiş (Ana Sayfa'ya gidiliyorsa onun taslağı, başka sayfaya gidiliyorsa genel taslak). 6 E2E testiyle denendi | Demo modunda Playwright: form ~0,4 sn'de soluyor, iskelet ~0,7 sn ekranda kalıyor, sayfa ~1,3 sn'de tam açılıyor. Geçiş olmadan Ana Sayfa girişten hemen sonra açılıyor | Siteyi olduğundan yavaş gösterdiği için uygulanmadı; issue "not planned" olarak kapatıldı (3 Kasım 2026). Mevcut sayfa geçişleri yeterli bulundu |
+
 ## Otomatik test sayıları
 
 `main` dalı, commit `c364147` (3 Kasım 2026). Hepsi geçti.
