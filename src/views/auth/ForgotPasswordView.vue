@@ -55,9 +55,10 @@ async function submit() {
         <p class="font-medium">
           Bu adrese kayıtlı bir hesap varsa şifre sıfırlama bağlantısı gönderildi.
         </p>
+        <!-- main'deki cümle korunur (#5): kurumsal sunucular iletiyi Gereksiz'e taşıyabiliyor. -->
         <p v-if="isFirebaseEnabled">
-          Gelen kutunuzu ve gereksiz (spam) klasörünü kontrol edin. Bağlantıdan yeni şifrenizi
-          belirledikten sonra giriş yapabilirsiniz.
+          Birkaç dakika içinde gelmezse Gereksiz (Spam) klasörüne de bakın. Bağlantıdan yeni
+          şifrenizi belirledikten sonra giriş yapabilirsiniz.
         </p>
         <p v-else>Demo modunda e-posta gönderilmez.</p>
       </div>

@@ -44,7 +44,7 @@ const year = new Date().getFullYear()
     </div>
 
     <div class="relative my-auto max-w-lg py-12">
-      <p class="text-xs font-bold tracking-[0.2em] text-sky-400 uppercase">
+      <p class="text-xs font-bold tracking-[0.2em] text-indigo-400 uppercase">
         Etkileşimli Ders Deneyimi
       </p>
       <p class="mt-4 text-4xl leading-tight font-bold tracking-tight">
@@ -56,7 +56,7 @@ const year = new Date().getFullYear()
       </p>
       <ul class="mt-8 space-y-3.5">
         <li v-for="feature in features" :key="feature" class="flex items-center gap-3">
-          <AppIcon name="check" class="size-5 shrink-0 text-sky-400" />
+          <AppIcon name="check" class="size-5 shrink-0 text-indigo-400" />
           <span class="text-slate-200">{{ feature }}</span>
         </li>
       </ul>

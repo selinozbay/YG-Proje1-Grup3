@@ -7,10 +7,10 @@ defineProps<{ menuOpen: boolean }>()
 defineEmits<{ openMenu: [] }>()
 </script>
 
-<!-- Yalnızca mobilde görünen üst bar: menü düğmesi, logo, tema düğmesi. -->
+<!-- Yalnızca mobilde görünen üst bar: menü düğmesi, logo, tema düğmesi. Temayı izler. -->
 <template>
   <header
-    class="sticky top-0 z-20 flex items-center gap-2 border-b border-slate-200 bg-white/85 px-4 py-3 backdrop-blur md:hidden dark:border-slate-800 dark:bg-slate-900/85"
+    class="sticky top-0 z-20 flex items-center gap-2 border-b border-slate-200 bg-white px-4 py-2.5 md:hidden dark:border-slate-800 dark:bg-slate-900"
   >
     <button
       id="menu-button"

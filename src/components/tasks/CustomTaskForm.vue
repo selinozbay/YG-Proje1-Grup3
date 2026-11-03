@@ -51,25 +51,41 @@ async function submit() {
 }
 
 const fieldClass =
-  'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 focus:outline-none aria-invalid:border-red-500 dark:border-slate-700 dark:bg-slate-950'
+  'w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 focus:outline-none aria-invalid:border-red-500 aria-invalid:ring-2 aria-invalid:ring-red-500/20 dark:border-slate-700 dark:bg-slate-950'
+const labelClass = 'mb-1.5 block text-sm font-semibold'
 </script>
 
 <template>
   <form
     ref="formEl"
-    class="mb-6 rounded-xl border border-indigo-200 bg-white p-4 shadow-sm dark:border-indigo-500/30 dark:bg-slate-900"
+    class="mb-6 overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800"
     :aria-labelledby="headingId"
     novalidate
     data-test="custom-task-form"
     @submit.prevent="submit"
   >
-    <h2 :id="headingId" class="mb-4 font-semibold">
-      {{ mode === 'edit' ? 'Görevi düzenle' : 'Yeni görev ekle' }}
-    </h2>
+    <!-- Formun başlığı vurgu renginin açık tonunda bir şeritte: sayfada o an doldurulan şey bu. -->
+    <div
+      class="flex items-center gap-3 border-b border-indigo-100 bg-indigo-50 px-4 py-3 text-indigo-900 sm:px-6 dark:border-indigo-400/15 dark:bg-indigo-400/[0.08] dark:text-indigo-100"
+    >
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5 shrink-0">
+        <path
+          v-if="mode === 'edit'"
+          d="M13.59 2.59a2 2 0 0 1 2.82 0l1 1a2 2 0 0 1 0 2.82l-9.5 9.5a2 2 0 0 1-.93.53l-3.24.81a.75.75 0 0 1-.91-.91l.81-3.24a2 2 0 0 1 .53-.93l9.42-9.58z"
+        />
+        <path
+          v-else
+          d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5z"
+        />
+      </svg>
+      <h2 :id="headingId" class="text-lg font-bold font-stretch-condensed">
+        {{ mode === 'edit' ? 'Görevi düzenle' : 'Yeni görev ekle' }}
+      </h2>
+    </div>
 
-    <div class="grid gap-4 sm:grid-cols-2">
+    <div class="grid gap-4 p-4 sm:grid-cols-2 sm:p-6">
       <div class="sm:col-span-2">
-        <label :for="ids.title" class="mb-1 block text-sm font-medium">
+        <label :for="ids.title" :class="labelClass">
           Başlık <span class="text-red-600" aria-hidden="true">*</span>
         </label>
         <input
@@ -96,7 +112,7 @@ const fieldClass =
       </div>
 
       <div class="sm:col-span-2">
-        <label :for="ids.description" class="mb-1 block text-sm font-medium">Açıklama</label>
+        <label :for="ids.description" :class="labelClass">Açıklama</label>
         <textarea
           :id="ids.description"
           v-model="form.description"
@@ -118,7 +134,7 @@ const fieldClass =
       </div>
 
       <div>
-        <label :for="ids.courseId" class="mb-1 block text-sm font-medium">Ders</label>
+        <label :for="ids.courseId" :class="labelClass">Ders</label>
         <select
           :id="ids.courseId"
           v-model="form.courseId"
@@ -141,7 +157,7 @@ const fieldClass =
       </div>
 
       <div>
-        <label :for="ids.dueDate" class="mb-1 block text-sm font-medium">Son tarih</label>
+        <label :for="ids.dueDate" :class="labelClass">Son tarih</label>
         <input
           :id="ids.dueDate"
           v-model="form.dueDate"
@@ -163,15 +179,17 @@ const fieldClass =
     <p
       v-if="error"
       role="alert"
-      class="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-900 dark:bg-red-950 dark:text-red-200"
+      class="mx-4 mb-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-800 ring-1 ring-red-200 sm:mx-6 dark:bg-red-500/10 dark:text-red-200 dark:ring-red-900"
     >
       {{ error }}
     </p>
 
-    <div class="mt-4 flex flex-wrap justify-end gap-3">
+    <div
+      class="flex flex-wrap justify-end gap-3 border-t border-slate-200 bg-slate-50 px-4 py-3 sm:px-6 dark:border-slate-800 dark:bg-slate-950/40"
+    >
       <button
         type="button"
-        class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:bg-slate-100 focus:ring-2 focus:ring-indigo-500 focus:outline-none dark:border-slate-700 dark:hover:bg-slate-800"
+        class="rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-700 ring-1 ring-slate-300 hover:bg-white dark:text-slate-200 dark:ring-slate-700 dark:hover:bg-slate-800"
         @click="emit('cancel')"
       >
         Vazgeç
@@ -179,7 +197,7 @@ const fieldClass =
       <button
         type="submit"
         :disabled="saving"
-        class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none disabled:opacity-60 dark:bg-indigo-500 dark:hover:bg-indigo-400"
+        class="rounded-xl px-4 py-2.5 text-sm font-semibold disabled:opacity-60 bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-400 dark:text-slate-950 dark:hover:bg-indigo-300"
       >
         {{ saving ? 'Kaydediliyor…' : mode === 'edit' ? 'Değişiklikleri kaydet' : 'Görevi ekle' }}
       </button>
