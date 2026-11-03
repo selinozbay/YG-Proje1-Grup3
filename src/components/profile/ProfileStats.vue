@@ -16,15 +16,16 @@ const codeOf = (courseId: string) => catalog.getCourse(courseId)?.code ?? ''
 <template>
   <section
     aria-labelledby="stats-title"
-    class="rounded-2xl bg-white p-5 ring-1 ring-slate-200 sm:p-6 dark:bg-slate-900 dark:ring-slate-800"
+    class="@container rounded-2xl bg-white p-5 ring-1 ring-slate-200 sm:p-6 dark:bg-slate-900 dark:ring-slate-800"
   >
     <h2 id="stats-title" class="mb-5 text-lg font-bold font-stretch-condensed">İstatistikler</h2>
 
-    <dl class="grid grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-4">
+    <!-- Sütun sayısı kutunun genişliğine göre: Profil'in dar sağ sütununda 2, geniş alanda 4 (#99). -->
+    <dl class="grid grid-cols-2 gap-x-4 gap-y-5 @[36rem]:grid-cols-4">
       <div data-test="stat-done">
         <dt class="text-xs text-slate-600 dark:text-slate-400">Tamamlanan görev</dt>
         <dd class="mt-1 leading-none">
-          <span class="text-3xl font-bold font-stretch-condensed tabular-nums"
+          <span class="text-3xl font-bold whitespace-nowrap font-stretch-condensed tabular-nums"
             >{{ stats.tasks.done }} / {{ stats.tasks.total }}</span
           >
           <span class="ml-1 text-sm font-semibold text-emerald-700 dark:text-emerald-400">

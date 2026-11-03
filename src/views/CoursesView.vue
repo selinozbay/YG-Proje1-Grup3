@@ -32,12 +32,21 @@ const { filters, filteredCourses, statusCounts, isFiltered, resetFilters } =
     <template v-else>{{ courses.length }} ders</template>
   </p>
 
+  <!--
+    Her kart iki satırlık bir alt ızgara (subgrid): üst satır kartın kendisi, alt satır açılır
+    görev listesi. Aynı satırdaki kartların üst kısmı eşit boyda kalır; bir kartın görevleri
+    açılınca yalnızca o kart aşağı uzar, yanındaki kart etkilenmez (#101).
+  -->
   <ul
     v-if="filteredCourses.length"
-    class="grid items-stretch gap-5 sm:grid-cols-2 xl:grid-cols-3"
+    class="grid gap-x-5 gap-y-5 sm:grid-cols-2 xl:grid-cols-3"
     aria-label="Dersler"
   >
-    <li v-for="item in filteredCourses" :key="item.course.id">
+    <li
+      v-for="item in filteredCourses"
+      :key="item.course.id"
+      class="row-span-2 grid grid-rows-subgrid gap-y-0"
+    >
       <CourseCard :item="item" />
     </li>
   </ul>

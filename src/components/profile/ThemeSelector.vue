@@ -21,22 +21,26 @@ const OPTIONS: { value: ThemePreference; label: string; hint: string }[] = [
 </script>
 
 <template>
+  <!--
+    Düzen ekran genişliğine değil kutunun genişliğine göre seçilir (#99): Profil'in iki sütunlu
+    düzeninde sol sütun dar kalınca kartlar alt alta, önizleme solda ve yazı sağda durur.
+  -->
   <fieldset
-    class="rounded-2xl bg-white p-5 ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800"
+    class="@container rounded-2xl bg-white p-5 ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800"
   >
     <legend class="float-left mb-4 w-full text-lg font-bold font-stretch-condensed">Tema</legend>
-    <div class="clear-both grid grid-cols-3 gap-2.5">
+    <div class="clear-both grid gap-2.5 @[18rem]:grid-cols-3">
       <label
         v-for="option in OPTIONS"
         :key="option.value"
-        class="group cursor-pointer rounded-xl p-1.5 ring-1 ring-slate-200 transition-shadow focus-within:ring-2 focus-within:ring-indigo-500 hover:ring-slate-400 has-[:checked]:ring-[3px] has-[:checked]:ring-indigo-500 dark:ring-slate-700 dark:hover:ring-slate-500 dark:has-[:checked]:ring-indigo-400"
+        class="group flex cursor-pointer items-center gap-3 rounded-xl p-1.5 ring-1 ring-slate-200 transition-shadow focus-within:ring-2 focus-within:ring-indigo-500 hover:ring-slate-400 has-[:checked]:ring-[3px] has-[:checked]:ring-indigo-500 dark:ring-slate-700 dark:hover:ring-slate-500 dark:has-[:checked]:ring-indigo-400 @[18rem]:block"
         data-test="theme-option"
       >
         <input v-model="theme" type="radio" name="theme" :value="option.value" class="sr-only" />
         <!-- Önizleme: temayı izleyen kenar çubuğu, turuncu seçili menü, açık ya da koyu zemin. -->
         <span
           aria-hidden="true"
-          class="relative flex h-16 overflow-hidden rounded-lg ring-1 ring-black/5"
+          class="relative flex h-16 w-24 shrink-0 overflow-hidden rounded-lg ring-1 ring-black/5 @[18rem]:w-auto"
           :class="option.value === 'dark' ? 'bg-slate-950' : 'bg-paper'"
         >
           <span
@@ -76,7 +80,7 @@ const OPTIONS: { value: ThemePreference; label: string; hint: string }[] = [
             <span class="h-5 w-full rounded-r bg-slate-800" />
           </span>
         </span>
-        <span class="block px-1 pt-2 pb-0.5">
+        <span class="block px-1 @[18rem]:pt-2 @[18rem]:pb-0.5">
           <span class="block text-sm font-semibold">{{ option.label }}</span>
           <span class="block text-xs leading-snug text-slate-500 dark:text-slate-400">{{
             option.hint

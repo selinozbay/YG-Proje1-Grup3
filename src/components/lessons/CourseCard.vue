@@ -48,69 +48,78 @@ const nextTask = computed(
 </script>
 
 <template>
-  <article
-    class="flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800"
-    data-test="course-card"
-  >
-    <!-- Ayraç: dersin rengi, büyük kod ve durum. -->
-    <div class="flex items-start justify-between gap-3 px-5 pt-4 pb-3" :class="color.solid">
-      <span
-        class="text-[2.75rem] leading-none font-bold font-stretch-condensed"
-        data-test="course-code"
-        >{{ course.code }}</span
-      >
-      <span
-        class="mt-1 inline-flex items-center gap-1.5 rounded-full bg-white px-2 py-1 text-xs font-semibold text-slate-900"
-        data-test="course-status"
-      >
-        <StatusIcon :status="STATUS_ICON[item.status]" class="size-3.5" />{{
-          COURSE_STATUS_LABELS[item.status]
-        }}
-      </span>
-    </div>
-
-    <div class="flex flex-1 flex-col p-5">
-      <component
-        :is="`h${headingLevel}`"
-        class="text-lg leading-snug font-bold font-stretch-condensed"
-      >
-        <RouterLink :to="to" class="rounded underline-offset-4 hover:underline">
-          {{ course.title }}
-        </RouterLink>
-      </component>
-      <p class="mt-0.5 text-sm text-slate-500 dark:text-slate-400" data-test="course-instructor">
-        {{ course.instructor }}
-      </p>
-      <p class="mt-3 text-sm text-slate-700 dark:text-slate-300">
-        {{ course.description }}
-      </p>
-
-      <div class="mt-auto pt-5">
-        <p class="mb-1.5 text-xs text-slate-600 dark:text-slate-400" data-test="course-summary">
-          {{ item.counts.done }} / {{ item.counts.total }} görev tamamlandı
-        </p>
-        <ProgressBar
-          :value="item.counts.percent"
-          :label="`${course.title} ilerlemesi`"
-          :bar-class="color.bar"
-          size="md"
-        />
-
-        <p
-          v-if="nextTask"
-          class="mt-4 rounded-lg bg-slate-50 px-3 py-2 text-xs text-slate-600 dark:bg-slate-800/60 dark:text-slate-400"
-          data-test="next-task"
+  <!--
+    Kart iki parçadır ve üst ızgaranın iki satırına yerleşir (bkz. CoursesView.vue): üst parça
+    satırdaki diğer kartlarla eşit boyda uzar, alttaki görev listesi yalnızca kendi boyu kadardır.
+    Görev listesi yoksa üst parçanın alt köşeleri de yuvarlanır.
+  -->
+  <article class="row-span-2 grid grid-rows-subgrid gap-y-0" data-test="course-card">
+    <div
+      class="flex flex-col overflow-hidden rounded-t-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
+      :class="item.tasks.length ? 'border-b-0' : 'rounded-b-2xl'"
+    >
+      <!-- Ayraç: dersin rengi, büyük kod ve durum. -->
+      <div class="flex items-start justify-between gap-3 px-5 pt-4 pb-3" :class="color.solid">
+        <span
+          class="text-[2.75rem] leading-none font-bold font-stretch-condensed"
+          data-test="course-code"
+          >{{ course.code }}</span
         >
-          Sıradaki görev:
-          <span class="font-semibold text-slate-900 dark:text-slate-100">{{ nextTask.title }}</span>
-          <template v-if="nextTask.dueDate"> · {{ formatDate(nextTask.dueDate) }}</template>
+        <span
+          class="mt-1 inline-flex items-center gap-1.5 rounded-full bg-white px-2 py-1 text-xs font-semibold text-slate-900"
+          data-test="course-status"
+        >
+          <StatusIcon :status="STATUS_ICON[item.status]" class="size-3.5" />{{
+            COURSE_STATUS_LABELS[item.status]
+          }}
+        </span>
+      </div>
+
+      <div class="flex flex-1 flex-col p-5">
+        <component
+          :is="`h${headingLevel}`"
+          class="text-lg leading-snug font-bold font-stretch-condensed"
+        >
+          <RouterLink :to="to" class="rounded underline-offset-4 hover:underline">
+            {{ course.title }}
+          </RouterLink>
+        </component>
+        <p class="mt-0.5 text-sm text-slate-500 dark:text-slate-400" data-test="course-instructor">
+          {{ course.instructor }}
         </p>
+        <p class="mt-3 text-sm text-slate-700 dark:text-slate-300">
+          {{ course.description }}
+        </p>
+
+        <div class="mt-auto pt-5">
+          <p class="mb-1.5 text-xs text-slate-600 dark:text-slate-400" data-test="course-summary">
+            {{ item.counts.done }} / {{ item.counts.total }} görev tamamlandı
+          </p>
+          <ProgressBar
+            :value="item.counts.percent"
+            :label="`${course.title} ilerlemesi`"
+            :bar-class="color.bar"
+            size="md"
+          />
+
+          <p
+            v-if="nextTask"
+            class="mt-4 rounded-lg bg-slate-50 px-3 py-2 text-xs text-slate-600 dark:bg-slate-800/60 dark:text-slate-400"
+            data-test="next-task"
+          >
+            Sıradaki görev:
+            <span class="font-semibold text-slate-900 dark:text-slate-100">{{
+              nextTask.title
+            }}</span>
+            <template v-if="nextTask.dueDate"> · {{ formatDate(nextTask.dueDate) }}</template>
+          </p>
+        </div>
       </div>
     </div>
 
     <details
       v-if="item.tasks.length"
-      class="group border-t border-slate-200 dark:border-slate-800"
+      class="group self-start overflow-hidden rounded-b-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
       data-test="course-tasks"
     >
       <summary

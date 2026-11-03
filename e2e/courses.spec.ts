@@ -66,4 +66,40 @@ test.describe('E2E: Derslerim', () => {
     await page.getByRole('button', { name: 'Filtreleri temizle' }).click()
     await expect(page.locator('[data-test="course-card"]')).toHaveCount(3)
   })
+  test('görevleri açılan kart uzar, yanındaki kart olduğu gibi kalır (#101)', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 })
+    await login(page)
+    await page.goto('/derslerim')
+    // Sayfa açılış animasyonu bitmeden ölçülürse kartlar birkaç piksel kayık görünür.
+    const settle = () =>
+      page.evaluate(() => Promise.all(document.getAnimations().map((a) => a.finished)))
+
+    const first = courseCard(page, 'Yazılım Geliştirme')
+    const neighbour = courseCard(page, 'Web Programlama')
+    // Konumlar sayfanın başına göre ölçülür; liste açılınca sayfa kaysa da sonuç değişmez.
+    const top = (card: typeof first, test: string) =>
+      card
+        .locator(`[data-test="${test}"]`)
+        .evaluate((el) => el.getBoundingClientRect().top + window.scrollY)
+    // Kartın görünen alt kenarı: en alttaki görev listesi kutusunun altı.
+    const bottom = (card: typeof first) =>
+      card
+        .locator('[data-test="course-tasks"]')
+        .evaluate((el) => el.getBoundingClientRect().bottom + window.scrollY)
+
+    await expect(neighbour).toBeVisible()
+    await settle()
+    // Kapalıyken aynı satırdaki kartlar eşit boyda.
+    expect(await bottom(first)).toBe(await bottom(neighbour))
+    const neighbourSummaryBefore = await top(neighbour, 'course-summary')
+    const neighbourBottomBefore = await bottom(neighbour)
+
+    await first.getByText('Görevleri göster').click()
+    await expect(first.getByRole('list')).toBeVisible()
+    await settle()
+
+    expect(await top(neighbour, 'course-summary')).toBe(neighbourSummaryBefore)
+    expect(await bottom(neighbour)).toBe(neighbourBottomBefore)
+    expect(await bottom(first)).toBeGreaterThan(neighbourBottomBefore + 100)
+  })
 })

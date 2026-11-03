@@ -44,6 +44,29 @@ test.describe('E2E: Profil', () => {
     await expect(html(page)).not.toHaveClass(/dark/)
   })
 
+  test('1024 px genişlikte tema kartları sıkışmaz (#99)', async ({ page }) => {
+    await page.setViewportSize({ width: 1024, height: 768 })
+    await login(page)
+
+    const cards = page.locator('[data-test="theme-option"]')
+    await expect(cards).toHaveCount(3)
+    for (const card of await cards.all()) {
+      const { width } = (await card.boundingBox())!
+      expect(width).toBeGreaterThanOrEqual(150)
+      // Açıklama (ör. "Her zaman açık renkler") en fazla iki satır olmalı.
+      const hint = card.locator('span.block').last()
+      const lines = await hint.evaluate(
+        (el) => el.getBoundingClientRect().height / parseFloat(getComputedStyle(el).lineHeight),
+      )
+      expect(Math.round(lines)).toBeLessThanOrEqual(2)
+    }
+
+    // "1 / 24" gibi tamamlanan görev sayısı tek satırda kalmalı.
+    const doneNumber = page.locator('[data-test="stat-done"] dd > span').first()
+    const numberLines = await doneNumber.evaluate((el) => el.getClientRects().length)
+    expect(numberLines).toBe(1)
+  })
+
   test('şifre sıfırlama bağlantısı gönderildiği bildirilir (#30)', async ({ page }) => {
     await login(page)
     await page.getByRole('button', { name: 'Şifre sıfırlama bağlantısı gönder' }).click()

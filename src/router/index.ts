@@ -98,6 +98,12 @@ const router = createRouter({
       meta: { title: 'Sayfa bulunamadı', layout: 'public' },
     },
   ],
+  // Yeni sayfa en üstten açılır; tarayıcının geri/ileri düğmesinde eski konuma dönülür (#98).
+  // Yalnızca sorgu değişince (ör. ?redirect=) yerinde kalınır.
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) return savedPosition
+    if (to.path !== from.path) return { top: 0 }
+  },
 })
 
 router.beforeEach(async (to) => {
