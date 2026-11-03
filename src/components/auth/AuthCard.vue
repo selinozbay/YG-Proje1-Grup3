@@ -11,7 +11,9 @@ defineEmits<{ submit: [] }>()
 -->
 <template>
   <section>
-    <h1 class="text-2xl font-bold tracking-wider text-indigo-600 uppercase dark:text-indigo-400">
+    <h1
+      class="text-[2rem] leading-[1.05] font-bold font-stretch-condensed text-slate-900 sm:text-[2.5rem] dark:text-white"
+    >
       {{ title }}
     </h1>
     <p v-if="subtitle" class="mt-2 text-slate-600 dark:text-slate-400">{{ subtitle }}</p>

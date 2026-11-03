@@ -121,7 +121,7 @@ function onBackdropClick(event: MouseEvent) {
             :class="
               tone === 'danger'
                 ? 'bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-400'
-                : 'bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400'
+                : 'bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-400 dark:text-slate-950 dark:hover:bg-indigo-300'
             "
             data-test="confirm-ok"
             @click="emit('confirm')"
