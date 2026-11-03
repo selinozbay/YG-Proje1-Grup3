@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import AppIcon from '@/components/common/AppIcon.vue'
-import { APP_NAME, CONTACT_EMAIL, DATA_DELETION_DATE } from '@/config'
+import { APP_NAME, CONTACT_EMAIL, DATA_DELETION_DATE, RESET_EMAIL_SENDER } from '@/config'
 import { useAuthStore } from '@/stores/auth'
 
 // Metni güncellediğinizde bu tarihi de değiştirin.
@@ -102,8 +102,8 @@ function goBack() {
       sunucularda tutulur.
     </p>
     <p>
-      Şifre sıfırlama e-postaları, ekibin {{ CONTACT_EMAIL }} adresli Gmail hesabı üzerinden
-      gönderilir. Bu sırada yalnızca e-posta adresiniz ve sıfırlama bağlantısı Google’ın e-posta
+      Şifre sıfırlama e-postaları Firebase (Google) üzerinden {{ RESET_EMAIL_SENDER }} adresinden
+      gider. Bu sırada yalnızca e-posta adresiniz ve sıfırlama bağlantısı Google’ın e-posta
       altyapısından geçer. Veriler bunların dışında hiçbir kişi veya kurumla paylaşılmaz.
     </p>
 

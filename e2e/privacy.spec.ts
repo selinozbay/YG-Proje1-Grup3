@@ -17,6 +17,9 @@ test.describe('E2E: Gizlilik ve KVKK sayfası', () => {
     await expect(contact).toHaveAttribute('href', 'mailto:projemeil@gmail.com')
     await expect(page.getByRole('heading', { name: '9. Başvuru yolu' })).toBeVisible()
     await expect(page.getByText('henüz eklenmedi')).toHaveCount(0)
+    await expect(
+      page.getByText('Firebase (Google) üzerinden noreply@ders.c1h4n.com adresinden gider'),
+    ).toBeVisible()
   })
 
   test('doğrudan açılınca "Geri dön" giriş ekranına gider', async ({ page }) => {

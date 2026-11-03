@@ -707,8 +707,6 @@ Ekran görüntüleri sayfalar tamamlandıkça `docs/screenshots/` klasörüne ek
 
 - Profil sayfası henüz iskelet halindedir; tamamlanmış hâli
   [#81](https://github.com/selinozbay/YG-Proje1-Grup3/pull/81) ile gelecek.
-- Gizlilik sayfasındaki iletişim e-postası henüz eklenmedi (`src/config.ts` → `CONTACT_EMAIL`,
-  [#58](https://github.com/selinozbay/YG-Proje1-Grup3/issues/58)).
 - Canlı demo 1 Kasım'daki `main` sürümünü gösterir; teslimden önce son sürümle yeniden yayınlanacaktır
   ([#59](https://github.com/selinozbay/YG-Proje1-Grup3/issues/59)).
 - Şifre sıfırlama e-postası KTÜ öğrenci adreslerinde Gereksiz klasörüne düşebilir; e-postadaki

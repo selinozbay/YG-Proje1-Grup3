@@ -1,10 +1,13 @@
 export const APP_NAME = 'Ders Panosu'
 
-/**
- * Gizlilik/KVKK sayfasında gösterilen başvuru adresi (#58). Ekibin ortak Gmail hesabı;
- * şifre sıfırlama e-postaları da bu hesap üzerinden gönderilir (Firebase SMTP ayarı).
- */
+/** Gizlilik/KVKK sayfasında gösterilen başvuru adresi (#58): ekibin ortak e-posta hesabı. */
 export const CONTACT_EMAIL = 'projemeil@gmail.com'
+
+/**
+ * Şifre sıfırlama e-postalarının gönderen adresi. E-postayı Firebase Authentication kendisi
+ * gönderir (Gmail SMTP 1 Kasım 2026'da kapatıldı; bkz. README → Alan adı ve e-posta gönderimi).
+ */
+export const RESET_EMAIL_SENDER = 'noreply@ders.c1h4n.com'
 
 /** Proje dönemi bitince kalan tüm hesap ve verilerin silineceği tarih (Gizlilik sayfası). */
 export const DATA_DELETION_DATE = '31 Ocak 2027'
