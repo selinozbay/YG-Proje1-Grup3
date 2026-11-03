@@ -76,21 +76,25 @@
   }
 }
 
-/* Sayfa geçişi (#34): App.vue'daki <Transition name="page"> kullanır; yeni sayfa belirerek gelir. */
-.page-enter-active {
-  transition:
-    opacity 180ms ease-out,
-    transform 180ms ease-out;
+/*
+ * Sayfa geçişi (#34): yeni sayfa eklendiği anda hafifçe belirir (App.vue → .page-in).
+ * Eski sayfa beklemeden kaldırılır; böylece geçiş sırasında iki sayfa aynı anda bulunmaz
+ * ve yazılanlar yanlışlıkla eski sayfanın kutularına gitmez.
+ */
+.page-in {
+  animation: page-in 180ms ease-out backwards;
 }
-.page-enter-from {
-  opacity: 0;
-  transform: translateY(6px);
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
 }
 
 /*
  * Çerçeve geçişi (#35): giriş yapınca ya da çıkış yapınca menülü çerçeve ile giriş ekranı
  * arasında geçilir. Eski ekran hafifçe küçülerek solar (.is-leaving, useLayoutTransition),
- * yenisi aşağıdan kayarak gelir (.layout-enter-*).
+ * ardından kaldırılır; yenisi eklendiği anda aşağıdan kayarak gelir (.layout-in).
  */
 .layout-shell {
   transition:
@@ -101,14 +105,14 @@
   opacity: 0;
   transform: scale(0.98);
 }
-.layout-enter-active {
-  transition:
-    opacity 300ms ease-out,
-    transform 300ms ease-out;
+.layout-in {
+  animation: layout-in 300ms ease-out backwards;
 }
-.layout-enter-from {
-  opacity: 0;
-  transform: translateY(16px);
+@keyframes layout-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
 }
 
 /* Onay penceresi (#35): açılırken hafifçe büyür, arka plan bulanıklaşır. */
@@ -176,10 +180,12 @@
 
 /* İşletim sisteminde "hareketi azalt" açıksa geçiş efektleri kapanır (erişilebilirlik). */
 @media (prefers-reduced-motion: reduce) {
-  .page-enter-active,
-  .layout-shell,
-  .layout-enter-active {
+  .layout-shell {
     transition: none;
+  }
+  .page-in,
+  .layout-in {
+    animation: none;
   }
   .term-reveal,
   .today-line {
