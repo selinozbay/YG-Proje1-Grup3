@@ -78,10 +78,11 @@ içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
 - Derslerim: ders kartları, durum grafiği, arama ve filtre ([#83](https://github.com/selinozbay/YG-Proje1-Grup3/pull/83); #14–#19).
 - Uygulamanın ortak tasarımı: yazı tipi, renkler, kenar çubuğu, görev listeleri ([#86](https://github.com/selinozbay/YG-Proje1-Grup3/pull/86)).
 - Ekip katkı tablosu ve onu GitHub'dan üreten betik ([#85](https://github.com/selinozbay/YG-Proje1-Grup3/pull/85); P1-19);
-  1 ve 3 Kasım'da ara güncellemeleri ([#90](https://github.com/selinozbay/YG-Proje1-Grup3/pull/90), #65).
+  1 ve 3 Kasım'da ara güncellemeleri ([#90](https://github.com/selinozbay/YG-Proje1-Grup3/pull/90), [#97](https://github.com/selinozbay/YG-Proje1-Grup3/pull/97); #65).
 - Şifre sıfırlama e-postasının KTÜ adreslerine ulaşması: Firebase e-posta ve alan adı ayarları
   (Cihan'la birlikte), belgelenmesi ve Gereksiz klasörü uyarısı ([#87](https://github.com/selinozbay/YG-Proje1-Grup3/pull/87), [#88](https://github.com/selinozbay/YG-Proje1-Grup3/pull/88)).
-- PR incelemeleri ve onayları (#77, #79, #81), birleştirmeler (#77, #83–#90, #92, #94).
+- PR incelemeleri ve onayları (#77, #79, #81), birleştirmeler (#77, #83–#90, #92, #94, #96, #97,
+  #100, #102).
 
 **Cihan Bayram (Analist + Geliştirici)**
 
@@ -105,13 +106,15 @@ içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
 
 - Birim, bileşen ve E2E test altyapısı ve CI ([#37](https://github.com/selinozbay/YG-Proje1-Grup3/pull/37); #38).
 - Test senaryosu tablosu ve hata kaydı: [`docs/test-senaryolari.md`](docs/test-senaryolari.md)
-  ([#73](https://github.com/selinozbay/YG-Proje1-Grup3/pull/73); P1-15).
+  ([#73](https://github.com/selinozbay/YG-Proje1-Grup3/pull/73); P1-15); 3 Kasım'daki ikinci tur: 70 senaryo geçti ([#100](https://github.com/selinozbay/YG-Proje1-Grup3/pull/100)).
 - Testte bulduğu hataların düzeltilmesi: boş adla kayıt, hafta adresi ([#74](https://github.com/selinozbay/YG-Proje1-Grup3/pull/74); #71, #72).
 - Kayıt kuralları: öğrenci e-postası ve şifre gücü göstergesi ([#76](https://github.com/selinozbay/YG-Proje1-Grup3/pull/76); #6, #7).
 - Ders detayı: hafta kartları, ilerleme, zaman çizelgesi ([#77](https://github.com/selinozbay/YG-Proje1-Grup3/pull/77); #39–#42).
 - Profil: hesap kartı, şifre sıfırlama bağlantısı, tema seçimi, istatistikler
   ([#81](https://github.com/selinozbay/YG-Proje1-Grup3/pull/81); #27–#30, #52).
 - Durum seçicisinin karanlık temada okunaklı olması ([#79](https://github.com/selinozbay/YG-Proje1-Grup3/pull/79); #78).
+- Testte bulduğu arayüz hatalarının düzeltilmesi: sayfa değişince en üstten açılma, Profil'de dar
+  ekranda tema kartları, Derslerim'de kart yüksekliği ([#102](https://github.com/selinozbay/YG-Proje1-Grup3/pull/102); #98, #99, #101).
 
 **Ali Tekçe (Dokümantasyon / Sunum + Geliştirici)**
 
@@ -280,13 +283,13 @@ bittiğinden emin olun.
 
 ### Testler
 
-| Tür                 | Klasör              | Neyi kapsar                                                                                                   | Çalıştırma              |
-| ------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------- |
-| Birim ve bileşen    | `src/**/__tests__/` | Store'lar, hesaplamalar, filtre ve arama, bileşenler, sayfalar                                                | `npm test`              |
-| Uçtan uca (E2E)     | `e2e/`              | Kayıt, giriş, şifremi unuttum, menü, Ana Sayfa, Derslerim, ders ve hafta detayı, Görevlerim, Profil, Gizlilik | `npm run test:e2e`      |
-| Firebase (emülatör) | `test/`             | Firestore güvenlik kuralları, gerçek giriş ve kayıt, kullanıcı verisi, hesap silme                            | `npm run test:firebase` |
+| Tür                 | Klasör              | Neyi kapsar                                                                                                                 | Çalıştırma              |
+| ------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| Birim ve bileşen    | `src/**/__tests__/` | Store'lar, hesaplamalar, filtre ve arama, bileşenler, sayfalar                                                              | `npm test`              |
+| Uçtan uca (E2E)     | `e2e/`              | Kayıt, giriş, şifremi unuttum, menü, sayfa geçişi, Ana Sayfa, Derslerim, ders ve hafta detayı, Görevlerim, Profil, Gizlilik | `npm run test:e2e`      |
+| Firebase (emülatör) | `test/`             | Firestore güvenlik kuralları, gerçek giriş ve kayıt, kullanıcı verisi, hesap silme                                          | `npm run test:firebase` |
 
-- 3 Kasım 2026 itibarıyla 209 birim ve bileşen testi, 37 E2E testi ve 23 Firebase emülatör testi
+- 3 Kasım 2026 itibarıyla 209 birim ve bileşen testi, 41 E2E testi ve 23 Firebase emülatör testi
   vardır; hepsi CI'da geçer.
 - Birim testleri ve E2E her zaman demo modunda çalışır; `.env.local` dolu olsa bile gerçek
   Firebase'e bağlanmaz.
@@ -732,11 +735,11 @@ Bütün sayfaların mobil ve masaüstü ekran görüntüleri (hocanın P1-08 mad
 
 3 Kasım 2026 itibarıyla durumları:
 
-| Dosya                         | İçerik                                                                                          | Durum                                            |
-| ----------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))                   | 31 Ekim ara sürümü; son hâli hazırlanacak        |
-| `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55))             | Henüz yok                                        |
-| `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))                  | Henüz yok                                        |
-| `docs/screenshots/`           | Ekran görüntüleri ([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57))              | Henüz yok                                        |
-| `docs/test-senaryolari.md`    | Test senaryoları ve hata kaydı ([#60](https://github.com/selinozbay/YG-Proje1-Grup3/issues/60)) | 30 Ekim sürümüne göre; son sürümle güncellenecek |
-| `docs/katki-tablosu.md`       | Ekip katkı tablosu ([#65](https://github.com/selinozbay/YG-Proje1-Grup3/issues/65))             | 3 Kasım'da güncellendi; son hâli teslimden önce  |
+| Dosya                         | İçerik                                                                                          | Durum                                                                                     |
+| ----------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))                   | 31 Ekim ara sürümü; son hâli hazırlanacak                                                 |
+| `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55))             | Henüz yok                                                                                 |
+| `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))                  | Henüz yok                                                                                 |
+| `docs/screenshots/`           | Ekran görüntüleri ([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57))              | Henüz yok                                                                                 |
+| `docs/test-senaryolari.md`    | Test senaryoları ve hata kaydı ([#60](https://github.com/selinozbay/YG-Proje1-Grup3/issues/60)) | 3 Kasım'da güncellendi: 70 senaryo geçti, 1 bekliyor (canlı sitede gerçek hesapla deneme) |
+| `docs/katki-tablosu.md`       | Ekip katkı tablosu ([#65](https://github.com/selinozbay/YG-Proje1-Grup3/issues/65))             | 3 Kasım'da güncellendi; son hâli teslimden önce                                           |
