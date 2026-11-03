@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, useId } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import AuthCard from '@/components/auth/AuthCard.vue'
+import PasswordStrengthMeter from '@/components/auth/PasswordStrengthMeter.vue'
 import SubmitButton from '@/components/auth/SubmitButton.vue'
 import TextField from '@/components/common/TextField.vue'
 import { getAuthErrorMessage } from '@/services/auth'
+import { checkPasswordStrength, isStudentEmail } from '@/services/auth/registration'
 import { useAuthStore } from '@/stores/auth'
 
 const auth = useAuthStore()
 const router = useRouter()
+const strengthId = useId()
 
 const displayName = ref('')
 const email = ref('')
@@ -23,6 +26,16 @@ async function submit() {
   const name = displayName.value.trim()
   if (!name) {
     error.value = 'Ad soyad alanını doldurun.'
+    return
+  }
+  if (!isStudentEmail(email.value)) {
+    error.value = 'Öğrenci e-postanızı girin (ör. 123456@ogr.ktu.edu.tr).'
+    return
+  }
+  // Yalnızca güçlü şifreyle kayıt olunur; zayıf ve orta şifreler reddedilir (#7).
+  if (checkPasswordStrength(password.value).level !== 'strong') {
+    error.value =
+      'Şifre yeterince güçlü değil. En az 10 karakter kullanın ve küçük harf, büyük harf, rakam ve simgeden en az üçünü karıştırın.'
     return
   }
   if (!acceptedPrivacy.value) {
@@ -56,25 +69,32 @@ async function submit() {
       autocomplete="name"
       required
     />
+    <!-- Öğrenci e-postası kuralı (#6): yalnızca 123456@ogr.ktu.edu.tr biçimi kabul edilir. -->
     <TextField
       v-model="email"
-      label="E-posta"
+      label="Öğrenci e-postası"
       type="email"
       icon="mail"
-      placeholder="E-posta adresinizi giriniz"
+      placeholder="123456@ogr.ktu.edu.tr"
       autocomplete="email"
+      hint="Öğrenci numaranızla: 123456@ogr.ktu.edu.tr"
       required
     />
-    <TextField
-      v-model="password"
-      label="Şifre (en az 6 karakter)"
-      type="password"
-      icon="lock"
-      placeholder="Bir şifre belirleyiniz"
-      autocomplete="new-password"
-      :minlength="6"
-      required
-    />
+    <div>
+      <!-- Güçlü şifre kuralı (#7). minlength yok: kısa şifrede tarayıcının değil, formun Türkçe uyarısı görünsün. -->
+      <TextField
+        v-model="password"
+        label="Şifre"
+        type="password"
+        icon="lock"
+        placeholder="Bir şifre belirleyiniz"
+        autocomplete="new-password"
+        hint="En az 10 karakter; küçük-büyük harf, rakam ve simgeden en az üçü."
+        :describedby="strengthId"
+        required
+      />
+      <PasswordStrengthMeter :id="strengthId" :password="password" />
+    </div>
 
     <!-- KVKK: kullanıcı, verisi işlenmeden önce aydınlatma metnini okuduğunu onaylar. -->
     <label class="flex cursor-pointer items-start gap-3 text-sm">

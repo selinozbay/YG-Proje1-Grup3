@@ -40,4 +40,10 @@ describe('TextField (#3)', () => {
     const texts = describedBy.map((id) => wrapper.find(`[id="${id}"]`).text())
     expect(texts).toEqual(['Şifre çok kısa.', 'En az 6 karakter.'])
   })
+
+  it('dışarıdaki ek içeriği (ör. şifre gücü) de aria-describedby sonuna ekler', () => {
+    const input = field({ hint: 'İpucu', describedby: 'guc-gostergesi' }).find('input')
+    const ids = input.attributes('aria-describedby')?.split(' ') ?? []
+    expect(ids[ids.length - 1]).toBe('guc-gostergesi')
+  })
 })

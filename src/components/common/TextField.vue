@@ -12,10 +12,12 @@ const props = withDefaults(
     placeholder?: string
     /** Kutunun solunda gösterilen ikon. */
     icon?: 'mail' | 'lock' | 'user'
-    /** Kutunun altındaki yardımcı yazı (ör. kurallar). */
+    /** Alanın altında görünen açıklama (ör. kurallar); ekran okuyucu alanla birlikte okur. */
     hint?: string
     /** Bu alana özel hata; doluysa kutu kırmızı çerçeveyle gösterilir. */
     error?: string
+    /** Alanın altındaki ek içeriğin id'si (ör. şifre gücü göstergesi). */
+    describedby?: string
   }>(),
   {
     type: 'text',
@@ -26,21 +28,25 @@ const props = withDefaults(
     icon: undefined,
     hint: '',
     error: '',
+    describedby: undefined,
   },
 )
 
 const model = defineModel<string>({ required: true })
 const id = useId() // etiket ile alanı bağlar (ekran okuyucular için)
-const hintId = useId()
-const errorId = useId()
+const hintId = `${id}-hint`
+const errorId = `${id}-error`
 
 // Şifre alanlarında yazılanı göster/gizle düğmesi.
 const isPassword = computed(() => props.type === 'password')
 const revealed = ref(false)
 const inputType = computed(() => (isPassword.value && revealed.value ? 'text' : props.type))
 
+// Ekran okuyucu sırayla hatayı, açıklamayı ve ek içeriği (ör. şifre gücü) okur.
 const describedBy = computed(
-  () => [props.error && errorId, props.hint && hintId].filter(Boolean).join(' ') || undefined,
+  () =>
+    [props.error && errorId, props.hint && hintId, props.describedby].filter(Boolean).join(' ') ||
+    undefined,
 )
 </script>
 
