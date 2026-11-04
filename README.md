@@ -122,7 +122,8 @@ içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
   sıfırlama altyapısı; sayfa yönlendirmesi; ilk README ve ilk canlı yayın (#1).
 - Haftalık ders kartlarının ilk tasarımı (#1).
 - Kenar çubuğu: KVKK bağlantısı, menü geçiş efektleri, çıkış onayı ([#75](https://github.com/selinozbay/YG-Proje1-Grup3/pull/75); #33–#36).
-- Proje raporunun ara sürümü (`docs/proje-raporu.pdf`; #54).
+- Proje raporu (`docs/proje-raporu.pdf`; #54), ekran görüntüleri (`docs/screenshots/`; #57) ve
+  kullanıcı dokümanı (`docs/kullanici-dokumani.pdf`; #55).
 - Birleştirmeler: #61, #66–#70, #73, #74.
 - Giriş, kayıt ve şifremi unuttum ekranlarının iki bölümlü tasarımı; sayfa geçişinde ara sıra
   kırılan "Şifremi unuttum" E2E testinin düzeltilmesi ([#80](https://github.com/selinozbay/YG-Proje1-Grup3/pull/80); #2, #3).
@@ -747,7 +748,7 @@ sürümünden demo modunda alındı ve [`docs/screenshots/`](docs/screenshots/) 
 | Dosya                         | İçerik                                                                                          | Durum                                                                                     |
 | ----------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))                   | 4 Kasım son hâli: tüm bölümler, test sonuçları ve yeni ekran görüntüleri                  |
-| `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55))             | Henüz yok                                                                                 |
+| `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55))             | 4 Kasım: adım adım kullanım, ekran görüntüleri, sık sorulan sorular (17 sayfa)            |
 | `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))                  | Henüz yok                                                                                 |
 | `docs/screenshots/`           | Ekran görüntüleri ([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57))              | 4 Kasım: bütün sayfalar, masaüstü ve mobil (26 görüntü)                                   |
 | `docs/test-senaryolari.md`    | Test senaryoları ve hata kaydı ([#60](https://github.com/selinozbay/YG-Proje1-Grup3/issues/60)) | 3 Kasım'da güncellendi: 70 senaryo geçti, 1 bekliyor (canlı sitede gerçek hesapla deneme) |

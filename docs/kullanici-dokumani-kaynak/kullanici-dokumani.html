@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<title>Kullanıcı Dokümanı — Ders Panosu</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 20mm 18mm;
+    @bottom-left { content: "Ders Panosu · Kullanıcı Dokümanı"; font: 8.5pt 'Segoe UI', sans-serif; color: #64748b; }
+    @bottom-right { content: counter(page) " / " counter(pages); font: 8.5pt 'Segoe UI', sans-serif; color: #64748b; }
+  }
+  @page :first { margin: 0; @bottom-left { content: none; } @bottom-right { content: none; } }
+
+  :root { --ink: #0f172a; --muted: #475569; --line: #e2e8f0; --accent: #c2410c; --accent-soft: #fff6ee; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; font-family: 'Segoe UI', 'Calibri', Arial, sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--ink); }
+
+  /* Kapak */
+  .cover { height: 297mm; padding: 28mm 22mm; display: flex; flex-direction: column; background: linear-gradient(160deg, #0e121b 0%, #171c27 55%, #3a1305 100%); color: #fff; page-break-after: always; }
+  .cover .kicker { font-size: 10pt; letter-spacing: .18em; text-transform: uppercase; opacity: .8; }
+  .cover h1 { font-size: 34pt; line-height: 1.12; margin: 18mm 0 4mm; font-weight: 700; }
+  .cover .sub { font-size: 15pt; opacity: .9; margin: 0; }
+  .cover .tag { align-self: flex-start; display: inline-block; margin-top: 8mm; padding: 2mm 4mm; border: 1px solid rgba(255,255,255,.5); border-radius: 3mm; font-size: 10pt; }
+  .cover .spacer { flex: 1; }
+  .cover table { width: 100%; border-collapse: collapse; font-size: 10.5pt; margin-bottom: 8mm; }
+  .cover th { text-align: left; font-weight: 600; padding: 2.2mm 0; border-bottom: 1px solid rgba(255,255,255,.35); opacity: .85; }
+  .cover td { padding: 2.2mm 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+  .cover .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 10mm; font-size: 9.5pt; }
+  .cover .meta b { display: block; font-size: 8pt; letter-spacing: .1em; text-transform: uppercase; opacity: .7; font-weight: 600; }
+
+  /* İçerik */
+  h2 { font-size: 16pt; margin: 0 0 3mm; padding-top: 2mm; color: var(--accent); page-break-after: avoid; }
+  h2 .no { color: #fdb27b; margin-right: 2mm; }
+  h3 { font-size: 11.5pt; margin: 5mm 0 2mm; page-break-after: avoid; }
+  section { page-break-before: auto; margin-top: 9mm; }
+  section.newpage { page-break-before: always; margin-top: 0; }
+  table.ids td:first-child { white-space: nowrap; }
+  p { margin: 0 0 2.5mm; }
+  ul, ol { margin: 0 0 3mm; padding-left: 6mm; }
+  li { margin-bottom: 1mm; }
+  code { font-family: Consolas, 'Cascadia Mono', monospace; font-size: 9pt; background: #f1f5f9; padding: 0 1mm; border-radius: 1mm; }
+  pre { font-family: Consolas, 'Cascadia Mono', monospace; font-size: 8.6pt; line-height: 1.4; background: #f8fafc; border: 1px solid var(--line); border-radius: 2mm; padding: 3mm 4mm; margin: 0 0 3mm; white-space: pre-wrap; page-break-inside: avoid; }
+
+  table.t { width: 100%; border-collapse: collapse; margin: 1mm 0 4mm; font-size: 9.3pt; page-break-inside: auto; }
+  table.t th { background: var(--accent-soft); color: #9f3a0f; text-align: left; font-weight: 600; padding: 1.8mm 2.2mm; border-bottom: 1px solid #ffd3ad; }
+  table.t td { padding: 1.8mm 2.2mm; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.t tr { page-break-inside: avoid; }
+  table.t td.nowrap, table.t th.nowrap { white-space: nowrap; }
+
+  .pill { display: inline-block; padding: .2mm 2mm; border-radius: 10mm; font-size: 8.3pt; font-weight: 600; white-space: nowrap; }
+  .ok { background: #dcfce7; color: #166534; }
+  .wip { background: #fef3c7; color: #92400e; }
+  .wait { background: #e2e8f0; color: #334155; }
+
+  .note { background: #f8fafc; border: 1px solid var(--line); border-radius: 2mm; padding: 3mm 4mm; margin: 2mm 0 4mm; font-size: 9.6pt; page-break-inside: avoid; }
+  .note b { color: var(--accent); }
+
+  .toc ol { list-style: none; padding: 0; columns: 1; }
+  .toc li { display: flex; gap: 3mm; padding: 1.6mm 0; border-bottom: 1px dotted #cbd5e1; font-size: 10.5pt; }
+  .toc li span:first-child { color: var(--accent); font-weight: 600; width: 8mm; }
+
+  .arch { display: grid; gap: 2mm; margin: 2mm 0 4mm; page-break-inside: avoid; }
+  .arch .layer { display: grid; grid-template-columns: 34mm 1fr; border: 1px solid var(--line); border-radius: 2mm; overflow: hidden; }
+  .arch .layer b { background: var(--accent-soft); color: #9f3a0f; padding: 2.5mm 3mm; font-size: 9.5pt; }
+  .arch .layer span { padding: 2.5mm 3mm; font-size: 9.3pt; }
+  .arch .down { text-align: center; color: #94a3b8; font-size: 9pt; line-height: 1; }
+
+  figure { margin: 2mm 0 5mm; page-break-inside: avoid; }
+  figure img { width: 100%; border: 1px solid var(--line); border-radius: 2mm; display: block; }
+  figcaption { font-size: 8.8pt; color: var(--muted); margin-top: 1.5mm; }
+  .figs { display: block; }
+  .figs figure { width: 150mm; margin: 2mm auto 6mm; }
+  .figs-mobile { display: grid; grid-template-columns: 1.8fr 1fr; gap: 5mm; align-items: start; }
+  .figs-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; align-items: start; }
+  .figs-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5mm; align-items: start; page-break-inside: avoid; }
+  .figs-3 figure, .figs-2 figure { margin: 0 0 4mm; }
+  .cover .accent { color: #fb8f45; }
+  .steps { counter-reset: step; list-style: none; padding-left: 0; }
+  .steps > li { counter-increment: step; position: relative; padding-left: 9mm; margin-bottom: 2.2mm; }
+  .steps > li::before { content: counter(step); position: absolute; left: 0; top: .2mm; width: 5.5mm; height: 5.5mm; border-radius: 50%; background: var(--accent); color: #fff; font-size: 8.5pt; font-weight: 700; display: grid; place-items: center; }
+  .tip { background: #fff6ee; border: 1px solid #ffd3ad; border-radius: 2mm; padding: 3mm 4mm; margin: 2mm 0 4mm; font-size: 9.6pt; page-break-inside: avoid; }
+  .tip b { color: #9f3a0f; }
+  .warn { background: #fef2f2; border: 1px solid #fecaca; border-radius: 2mm; padding: 3mm 4mm; margin: 2mm 0 4mm; font-size: 9.6pt; page-break-inside: avoid; }
+  .warn b { color: #b91c1c; }
+  .kbd { font-family: Consolas, monospace; font-size: 8.8pt; border: 1px solid #c9d0dc; border-bottom-width: 2px; border-radius: 1mm; padding: 0 1.2mm; background: #fff; }
+  .ui { font-weight: 600; color: #171c27; }
+  .side { display: grid; grid-template-columns: 1fr 62mm; gap: 6mm; align-items: start; page-break-inside: avoid; }
+  .side figure { margin: 0; }
+  figure.narrow { width: 120mm; margin: 2mm auto 5mm; }
+  figure.mid { width: 140mm; margin: 2mm auto 5mm; }
+</style>
+</head>
+<body>
+
+<!-- KAPAK -->
+<div class="cover">
+  <div class="kicker">Yazılım Geliştirme · Proje 1</div>
+  <h1>Ders Panosu<br /><span class="accent">Kullanıcı Dokümanı</span></h1>
+  <p class="sub">Etkileşimli Ders Deneyimi Panosu nasıl kullanılır?</p>
+  <span class="tag">Grup 3 · YG-Proje1-Grup3</span>
+  <div class="spacer"></div>
+  <div class="meta">
+    <div><b>Uygulama adresi</b>https://ders.c1h4n.com</div>
+    <div><b>Kimler için</b>Uygulamayı kullanacak öğrenciler</div>
+    <div><b>İletişim</b>projemeil@gmail.com</div>
+    <div><b>Tarih / sürüm</b>4 Kasım 2026 · Sürüm 1.0</div>
+  </div>
+</div>
+
+<!-- İÇİNDEKİLER -->
+<section class="toc" style="margin-top:0">
+  <h2>İçindekiler</h2>
+  <ol>
+    <li><span>1</span><span>Ders Panosu nedir?</span></li>
+    <li><span>2</span><span>Başlarken: kayıt olma, giriş yapma, şifre sıfırlama</span></li>
+    <li><span>3</span><span>Ekranı tanıyalım: menü, tema ve çıkış</span></li>
+    <li><span>4</span><span>Ana Sayfa</span></li>
+    <li><span>5</span><span>Derslerim, ders ve hafta detayı</span></li>
+    <li><span>6</span><span>Görevlerim</span></li>
+    <li><span>7</span><span>Profil</span></li>
+    <li><span>8</span><span>Gizlilik ve kişisel verileriniz</span></li>
+    <li><span>9</span><span>Telefonda kullanım</span></li>
+    <li><span>10</span><span>Klavyeyle kullanım ve erişilebilirlik</span></li>
+    <li><span>11</span><span>Sık sorulan sorular ve sorun giderme</span></li>
+  </ol>
+  <div class="note">
+    <b>Bu doküman hakkında:</b> Ekran görüntüleri 4 Kasım 2026'daki sürümden, örnek bir öğrenci
+    hesabıyla alınmıştır. Sizin ekranınızda dersler, görevler ve sayılar kendi ilerlemenize göre
+    farklı görünecektir. Görüntülerin üstündeki sarı "Demo modu" şeridi yalnızca deneme sürümünde
+    çıkar; gerçek sitede görünmez.
+  </div>
+</section>
+
+<!-- 1 -->
+<section class="newpage">
+  <h2><span class="no">1</span>Ders Panosu nedir?</h2>
+  <p>
+    Ders Panosu, aldığınız derslerin haftalık içeriklerini, her haftanın öğrenme hedeflerini ve
+    görevlerini tek bir yerde toplayan bir web uygulamasıdır. Görevlerinizin durumunu
+    işaretledikçe ilerlemeniz bütün sayfalarda anında güncellenir.
+  </p>
+  <ul>
+    <li><b>Tarayıcıda çalışır:</b> Kurulum gerekmez. Bilgisayarda, tablette ve telefonda güncel bir tarayıcıyla (Chrome, Edge, Firefox, Safari) <b>https://ders.c1h4n.com</b> adresine girmeniz yeterlidir.</li>
+    <li><b>İlerlemeniz size özeldir:</b> İşaretlediğiniz görevler hesabınızda saklanır; başka bir cihazdan girdiğinizde de aynı durumu görürsünüz.</li>
+    <li><b>Görev durumları üç tanedir:</b></li>
+  </ul>
+  <table class="t">
+    <tr><th style="width:24%">Durum</th><th style="width:28%">Simgesi</th><th>Anlamı</th></tr>
+    <tr><td>Yapılacak</td><td>Boş halka, gri</td><td>Göreve henüz başlamadınız. Yeni görevler bu durumda başlar.</td></tr>
+    <tr><td>Devam ediyor</td><td>Yarısı dolu halka, turuncu</td><td>Görev üzerinde çalışıyorsunuz.</td></tr>
+    <tr><td>Tamamlandı</td><td>Onay işaretli daire, yeşil</td><td>Görevi bitirdiniz; ilerlemenize sayılır.</td></tr>
+    <tr><td>Süresi geçti</td><td>Kırmızı halka</td><td>Son tarihi geçmiş ama bitmemiş görev. Ayrı bir durum değildir; görev bitince kırmızı uyarı kalkar.</td></tr>
+  </table>
+</section>
+
+<!-- 2 -->
+<section>
+  <h2><span class="no">2</span>Başlarken</h2>
+
+  <h3>2.1 Kayıt olma</h3>
+  <ol class="steps">
+    <li><b>https://ders.c1h4n.com</b> adresini açın. Giriş ekranı gelir; altındaki <span class="ui">Kayıt olun</span> düğmesine basın.</li>
+    <li><span class="ui">Ad soyad</span> alanına adınızı ve soyadınızı yazın.</li>
+    <li><span class="ui">Öğrenci e-postası</span> alanına üniversitenin verdiği öğrenci adresinizi yazın: öğrenci numaranız + <code>@ogr.ktu.edu.tr</code> (ör. <code>123456@ogr.ktu.edu.tr</code>). Başka adreslerle kayıt olunamaz.</li>
+    <li><span class="ui">Şifre</span> alanına güçlü bir şifre yazın. Kutunun altındaki çubuk şifrenin gücünü gösterir; yalnızca <b>Güçlü</b> şifreyle kayıt olunur. Göz simgesine basarak yazdığınızı görebilirsiniz.</li>
+    <li><span class="ui">Gizlilik ve KVKK Aydınlatma Metni'ni okudum</span> kutusunu işaretleyin. Bağlantıya basarsanız metin yeni sekmede açılır.</li>
+    <li><span class="ui">Kayıt ol</span>'a basın. Hesabınız açılır ve doğrudan Ana Sayfa'ya geçersiniz.</li>
+  </ol>
+  <div class="tip"><b>Güçlü şifre kuralı:</b> En az 10 karakter olmalı ve küçük harf, büyük harf, rakam ve simgeden (ör. <code>! ? - #</code>) en az üçünü içermelidir. Örnek biçim: <code>Ders-Panosu-2026</code>. E-posta hesabınızın şifresini <b>kullanmayın</b>; bu uygulamaya özel bir şifre belirleyin.</div>
+  <div class="figs-2">
+    <figure><img src="../screenshots/masaustu-02-kayit.png" alt="Kayıt ekranı" /><figcaption>Şekil 1 — Doğru doldurulmuş kayıt formu: şifre gücü "Güçlü"</figcaption></figure>
+    <figure><img src="img/kayit-hata.png" alt="Kayıt hatası" /><figcaption>Şekil 2 — Zayıf şifrede eksik kurallar listelenir; öğrenci e-postası olmayan adres kabul edilmez</figcaption></figure>
+  </div>
+
+  <h3>2.2 Giriş yapma</h3>
+  <ol class="steps">
+    <li>Giriş ekranında <span class="ui">E-posta</span> ve <span class="ui">Şifre</span> alanlarını doldurun.</li>
+    <li><span class="ui">Giriş yap</span>'a basın. Giriş yapmadan bir sayfaya gitmeye çalıştıysanız, girişten sonra doğrudan o sayfa açılır.</li>
+  </ol>
+  <p>E-posta ya da şifre yanlışsa "E-posta veya şifre hatalı." uyarısı çıkar. Güvenlik nedeniyle hangisinin yanlış olduğu söylenmez. Çok sayıda hatalı denemeden sonra bir süre beklemeniz istenebilir.</p>
+  <figure class="mid"><img src="../screenshots/masaustu-01-giris.png" alt="Giriş ekranı" /><figcaption>Şekil 3 — Giriş ekranı</figcaption></figure>
+</section>
+
+<section>
+  <h3>2.3 Şifremi unuttum</h3>
+  <ol class="steps">
+    <li>Giriş ekranında şifre kutusunun altındaki <span class="ui">Şifremi unuttum</span> bağlantısına basın.</li>
+    <li>Kayıtlı e-posta adresinizi yazıp <span class="ui">Bağlantı gönder</span>'e basın.</li>
+    <li>E-posta kutunuzu açın. <code>noreply@ders.c1h4n.com</code> adresinden bir şifre sıfırlama e-postası gelir.</li>
+    <li>E-postadaki bağlantıya basın, açılan sayfada yeni şifrenizi yazın.</li>
+    <li>Ders Panosu'na dönüp yeni şifrenizle giriş yapın.</li>
+  </ol>
+  <div class="side">
+    <div>
+      <div class="tip"><b>E-posta gelmediyse:</b> Birkaç dakika bekleyin ve <b>Gereksiz (Spam / Junk)</b> klasörüne bakın. Okul e-postanız Outlook'ta açılıyorsa gelen kutusunun üstündeki <b>Diğer</b> sekmesine de bakın. E-postayı orada bulursanız "Gereksiz değil" olarak işaretleyin; sonrakiler gelen kutunuza gelir.</div>
+      <p>Güvenlik nedeniyle, yazdığınız adrese kayıtlı bir hesap olup olmadığı söylenmez; her durumda aynı mesaj görünür. Yeni bir bağlantı istediğinizde eskisi geçersiz olur, en son gelen e-postayı kullanın.</p>
+      <p>Giriş yapmışken şifrenizi değiştirmek isterseniz <b>Profil</b> sayfasındaki <span class="ui">Şifre sıfırlama bağlantısı gönder</span> düğmesini kullanabilirsiniz (Bölüm 7).</p>
+    </div>
+    <figure><img src="img/sifre-sifirlama-gonderildi.png" alt="Bağlantı gönderildi" /><figcaption>Şekil 4 — Bağlantı gönderildiğinde çıkan onay</figcaption></figure>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="newpage">
+  <h2><span class="no">3</span>Ekranı tanıyalım</h2>
+  <p>Giriş yaptıktan sonra ekranın solunda <b>kenar çubuğu</b> (menü), sağında ise açık olan sayfa durur.</p>
+  <table class="t">
+    <tr><th style="width:30%">Kenar çubuğundaki öğe</th><th>Ne işe yarar?</th></tr>
+    <tr><td>Ana Sayfa, Derslerim, Görevlerim, Profil</td><td>Sayfalar arasında geçiş. Bulunduğunuz sayfa açık turuncu zeminle vurgulanır.</td></tr>
+    <tr><td>Kullanıcı kartı</td><td>Adınızın baş harfleri, adınız ve e-postanız.</td></tr>
+    <tr><td>Ay / güneş simgesi</td><td>Aydınlık ve karanlık tema arasında geçer; seçiminiz hatırlanır. "Cihazın temasını izle" seçeneği Profil'dedir.</td></tr>
+    <tr><td>Gizlilik ve KVKK</td><td>Kişisel verilerinizin nasıl işlendiğini anlatan metni açar.</td></tr>
+    <tr><td>Çıkış yap</td><td>"Çıkış yapmak istediğinize emin misiniz?" sorusunu sorar. <span class="ui">Evet, çıkış yap</span> derseniz giriş ekranına dönülür; <span class="ui">Hayır</span> ya da <span class="kbd">Esc</span> ile vazgeçersiniz.</td></tr>
+  </table>
+  <figure class="mid"><img src="../screenshots/masaustu-12-cikis-onayi.png" alt="Çıkış onayı" /><figcaption>Şekil 5 — Çıkış yapmadan önce sorulan onay</figcaption></figure>
+</section>
+
+<!-- 4 -->
+<section class="newpage">
+  <h2><span class="no">4</span>Ana Sayfa</h2>
+  <p>Ana Sayfa, bütün derslerinizin dönem içindeki durumunu tek bakışta gösterir.</p>
+  <figure><img src="../screenshots/masaustu-04-ana-sayfa.png" alt="Ana Sayfa" /><figcaption>Şekil 6 — Ana Sayfa</figcaption></figure>
+  <h3>4.1 Dönem çizelgesi</h3>
+  <ul>
+    <li><b>Sütunlar haftalar, satırlar derslerdir.</b> Her ders kendi rengindeki kod rozetiyle (ör. YG, WP, VT) gösterilir.</li>
+    <li>Her hücrede o dersin o haftadaki görevleri <b>durum simgeleriyle</b> durur (Bölüm 1'deki tablo). Hücreye basarsanız o haftanın sayfası açılır.</li>
+    <li>İçinde bulunduğunuz hafta turuncu zeminle ve <b>Bu hafta</b> etiketiyle, bugünün tarihi turuncu <b>Bugün</b> çizgisiyle işaretlidir. Sütunun altında o hafta kaç görevin bittiği ve kaçının geciktiği yazar.</li>
+    <li>Sağ üstteki iki çubuk <b>Tamamlanan görev</b> oranını dönemin <b>Geçen süre</b>siyle karşılaştırır. Tamamlanan çubuk geride kalıyorsa takvimin gerisindesiniz demektir.</li>
+  </ul>
+  <figure class="mid"><img src="img/donem-cizelgesi.png" alt="Dönem çizelgesi" /><figcaption>Şekil 7 — Dönem çizelgesi: 3. hafta "Bu hafta", kırmızı halkalar geciken görevler</figcaption></figure>
+</section>
+
+<section>
+  <h3 style="margin-top:0">4.2 Yaklaşan görevler</h3>
+  <p>
+    Son tarihi yaklaşan görevler bir ajanda gibi güne göre sıralanır: solda gün ve kalan süre,
+    sağda o gün teslim edilecek görevler. Görevin durumunu buradan da değiştirebilirsiniz;
+    tamamlanan görev listeden çıkar. Son tarihi geçmiş görev varsa listenin üstünde kırmızı bir
+    uyarı ve <span class="ui">Görevlerim'de bak</span> bağlantısı çıkar.
+  </p>
+  <h3>4.3 Derslerim kutusu</h3>
+  <p>
+    Her dersin ilerleme çubuğunu, bu haftasını ve o haftanın öğrenme hedeflerini gösterir.
+    Haftanın adına basarak hafta sayfasına geçebilirsiniz.
+  </p>
+</section>
+
+<!-- 5 -->
+<section class="newpage">
+  <h2><span class="no">5</span>Derslerim, ders ve hafta detayı</h2>
+  <h3>5.1 Derslerim</h3>
+  <ul>
+    <li>Üstteki grafik her derste kaç görevin tamamlandığını, devam ettiğini ve yapılacağını gösterir.</li>
+    <li><span class="ui">Ders ara</span> kutusuna ders kodu, adı ya da öğretim elemanı yazarak; <span class="ui">Tümü / Başlanmadı / Devam ediyor / Tamamlandı</span> düğmeleriyle dersleri süzebilirsiniz.</li>
+    <li>Her <b>ders kartında</b> dersin rengi, kodu, adı, öğretim elemanı, ilerleme çubuğu ve bu haftası vardır. <span class="ui">Görevleri göster</span> ile dersin görevlerini kartın içinde açabilir, kartın başlığına basarak ders sayfasına gidebilirsiniz.</li>
+  </ul>
+  <figure><img src="../screenshots/masaustu-05-derslerim.png" alt="Derslerim" /><figcaption>Şekil 8 — Derslerim</figcaption></figure>
+</section>
+
+<section class="newpage">
+  <h3 style="margin-top:0">5.2 Ders detayı</h3>
+  <p>
+    Dersin renkli kapağında açıklaması ve genel ilerlemesi yer alır. Altındaki <b>haftaların akışı</b>
+    dersin haftalarını sırayla gösterir. Her hafta kartında bir etiket bulunur:
+    <b>Tamamlandı</b> (bütün görevleri bitti), <b>Şu anki hafta</b> (bitmemiş ilk hafta) ya da
+    <b>Sırada</b>. Hafta kartına basarak o haftanın sayfasını açın.
+  </p>
+  <figure><img src="../screenshots/masaustu-06-ders-detayi.png" alt="Ders detayı" /><figcaption>Şekil 9 — Ders detayı: kapak, haftaların akışı ve hafta kartları</figcaption></figure>
+</section>
+
+<section class="newpage">
+  <h3 style="margin-top:0">5.3 Hafta detayı</h3>
+  <ul>
+    <li><b>Görevler:</b> Haftanın görevleri; her satırda son tarih, etiketler ve durum seçicisi vardır.</li>
+    <li><b>Bu haftanın ilerlemesi</b> ve <b>Öğrenme hedefleri</b> sağdaki kutulardadır.</li>
+    <li>Sayfanın altındaki <span class="ui">Önceki hafta</span> / <span class="ui">Sonraki hafta</span> kartlarıyla haftalar arasında geçebilir, en üstteki geri bağlantısıyla derse dönebilirsiniz.</li>
+  </ul>
+  <figure><img src="../screenshots/masaustu-07-hafta-detayi.png" alt="Hafta detayı" /><figcaption>Şekil 10 — Hafta detayı</figcaption></figure>
+</section>
+
+<!-- 6 -->
+<section class="newpage">
+  <h2><span class="no">6</span>Görevlerim</h2>
+  <p>Bütün derslerinizdeki görevler ve kendi eklediğiniz görevler bu sayfada tek listede durur.</p>
+
+  <h3>6.1 Görevin durumunu değiştirmek</h3>
+  <ol class="steps">
+    <li>Görevin sağındaki durum rozetine (ör. <span class="ui">Yapılacak</span>) basın.</li>
+    <li>Açılan listeden <span class="ui">Yapılacak</span>, <span class="ui">Devam ediyor</span> ya da <span class="ui">Tamamlandı</span>'yı seçin.</li>
+  </ol>
+  <p>Değişiklik hemen kaydedilir; Ana Sayfa'daki çizelge, ders kartları ve ilerleme çubukları aynı anda güncellenir. İnternet bağlantınız koptuğu için kaydedilemezse görev eski durumuna döner ve bir uyarı çıkar.</p>
+
+  <h3>6.2 Aramak ve süzmek</h3>
+  <ul>
+    <li><span class="ui">Görev ara</span>: başlık, açıklama ya da etikette geçen bir kelime yazın; liste siz yazdıkça daralır. Küçük yazım hataları ve şapkalı harfler sorun olmaz.</li>
+    <li><span class="ui">Ders</span> ve <span class="ui">Hafta</span> seçicileri: yalnızca bir dersin ya da haftanın görevlerini gösterir.</li>
+    <li><span class="ui">Tümü / Yapılacak / Devam ediyor / Tamamlandı</span> düğmeleri: duruma göre süzer; her düğmede o durumdaki görev sayısı yazar.</li>
+    <li>Filtreleri sıfırlamak için <span class="ui">Filtreleri temizle</span>'ye basın.</li>
+  </ul>
+  <figure><img src="img/gorevlerim-filtre.png" alt="Görevlerim filtre" /><figcaption>Şekil 11 — "Devam ediyor" filtresi seçili Görevlerim sayfası</figcaption></figure>
+</section>
+
+<section class="newpage">
+  <h3 style="margin-top:0">6.3 Kendi görevinizi eklemek</h3>
+  <p>Ders görevleri dışındaki işlerinizi (ör. bir kitap almak, sunuma hazırlanmak) de takip edebilirsiniz.</p>
+  <ol class="steps">
+    <li>Sağ üstteki <span class="ui">+ Görev ekle</span>'ye basın.</li>
+    <li><span class="ui">Başlık</span> yazın (zorunlu, en fazla 100 karakter).</li>
+    <li>İsterseniz <span class="ui">Açıklama</span> (en fazla 500 karakter), <span class="ui">Ders</span> ve <span class="ui">Son tarih</span> seçin. Derse bağlamak istemiyorsanız "Derse bağlı değil" olarak bırakın.</li>
+    <li><span class="ui">Görevi ekle</span>'ye basın. Görev listeye "Kendi görevim" etiketiyle eklenir.</li>
+  </ol>
+  <figure class="mid"><img src="img/gorev-ekle-form.png" alt="Görev ekleme formu" /><figcaption>Şekil 12 — Yeni görev ekleme formu</figcaption></figure>
+
+  <h3>6.4 Kendi görevinizi düzenlemek ya da silmek</h3>
+  <p>
+    Kendi eklediğiniz görevlerin altında <span class="ui">Düzenle</span> ve <span class="ui">Sil</span>
+    düğmeleri vardır. Silmeden önce "Bu görev silinsin mi?" diye sorulur. Ders görevleri
+    düzenlenemez ve silinemez; yalnızca durumları değiştirilebilir. En fazla 100 kendi göreviniz olabilir.
+  </p>
+  <figure class="mid"><img src="img/kendi-gorevim.png" alt="Kendi görevim" /><figcaption>Şekil 13 — "Kendi görevim" etiketli görev ve Düzenle / Sil düğmeleri</figcaption></figure>
+</section>
+
+<!-- 7 -->
+<section class="newpage">
+  <h2><span class="no">7</span>Profil</h2>
+  <table class="t">
+    <tr><th style="width:26%">Bölüm</th><th>Ne yapabilirsiniz?</th></tr>
+    <tr><td>Hesap bilgileri</td><td>Adınızı ve e-postanızı görürsünüz. <span class="ui">Şifre sıfırlama bağlantısı gönder</span> ile e-postanıza şifre değiştirme bağlantısı gelir (Bölüm 2.3'teki adımlar).</td></tr>
+    <tr><td>Tema</td><td><b>Aydınlık</b> (her zaman açık renkler), <b>Karanlık</b> (her zaman koyu renkler) ya da <b>Sistem</b> (cihazınızın temasını izler) seçin. Seçiminiz bu tarayıcıda hatırlanır.</td></tr>
+    <tr><td>İstatistikler</td><td>Tamamlanan ve devam eden görev sayısı, aktif ve tamamlanan ders sayısı, görev durumlarının dağılımı ve derslere göre ilerleme.</td></tr>
+    <tr><td>Hesabı sil</td><td>Hesabınızı ve bütün ilerlemenizi kalıcı olarak siler (aşağıdaki uyarıya bakın).</td></tr>
+  </table>
+  <div class="figs-2">
+    <figure><img src="img/profil-sifre-sifirlama.png" alt="Profil" /><figcaption>Şekil 14 — Profil: şifre sıfırlama bağlantısı gönderildi</figcaption></figure>
+    <figure><img src="img/hesap-silme-onayi.png" alt="Hesap silme onayı" /><figcaption>Şekil 15 — Hesap silmeden önce sorulan onay</figcaption></figure>
+  </div>
+  <div class="warn"><b>Hesabı silmek geri alınamaz.</b> <span class="ui">Hesabımı ve verilerimi sil</span>'e bastığınızda "Hesabınız silinsin mi?" diye sorulur. <span class="ui">Evet, hesabımı sil</span> derseniz önce görev durumlarınız ve kendi görevleriniz, ardından hesabınız silinir ve giriş ekranına dönülür. Uzun süredir giriş yapmadıysanız güvenlik için önce çıkış yapıp yeniden giriş yapmanız istenebilir.</div>
+</section>
+
+<!-- 8 -->
+<section class="newpage">
+  <h2><span class="no">8</span>Gizlilik ve kişisel verileriniz</h2>
+  <ul>
+    <li><b>Hangi veriler tutulur?</b> Ad soyad, e-posta, şifre (geri çözülemeyecek biçimde; ekip göremez), görevlerinizin durumu ve kendi eklediğiniz görevler. Tema tercihiniz yalnızca tarayıcınızda kalır.</li>
+    <li><b>Nerede tutulur?</b> Google'ın Firebase hizmetlerinde; bu sunucular yurt dışında bulunabilir. Reklam veya izleme çerezi kullanılmaz.</li>
+    <li><b>Ne kadar süre?</b> Hesabınız açık olduğu sürece; en geç 31 Ocak 2027'de bütün hesaplar ve veriler silinir.</li>
+    <li><b>Haklarınız:</b> Verilerinizle ilgili bilgi isteme, düzeltme ve silme gibi taleplerinizi kayıtlı e-postanızdan <b>projemeil@gmail.com</b> adresine yazabilirsiniz; en geç 30 gün içinde yanıtlanır. Hesabınızı Profil'den kendiniz de silebilirsiniz.</li>
+  </ul>
+  <p>Ayrıntılar için kenar çubuğundaki ya da sayfa altındaki <span class="ui">Gizlilik ve KVKK</span> bağlantısını açın; sayfanın başındaki <span class="ui">Geri dön</span> ile geldiğiniz yere dönersiniz.</p>
+</section>
+
+<!-- 9 -->
+<section class="newpage">
+  <h2><span class="no">9</span>Telefonda kullanım</h2>
+  <p>
+    Uygulama telefonda da aynı özelliklerle çalışır. Dar ekranlarda kenar çubuğu gizlenir; sol
+    üstteki <b>☰</b> düğmesiyle menü soldan kayarak açılır. Bir sayfa seçtiğinizde, arka plana
+    dokunduğunuzda ya da <b>✕</b>'e bastığınızda menü kapanır. Tema düğmesi üst barın sağındadır.
+  </p>
+  <div class="figs-3">
+    <figure><img src="../screenshots/mobil-04-ana-sayfa.png" alt="Mobil Ana Sayfa" /><figcaption>Şekil 16 — Ana Sayfa</figcaption></figure>
+    <figure><img src="../screenshots/mobil-12-menu.png" alt="Mobil menü" /><figcaption>Şekil 17 — Açılan menü</figcaption></figure>
+    <figure><img src="../screenshots/mobil-08-gorevlerim.png" alt="Mobil Görevlerim" /><figcaption>Şekil 18 — Görevlerim</figcaption></figure>
+  </div>
+</section>
+
+<!-- 10 -->
+<section>
+  <h2><span class="no">10</span>Klavyeyle kullanım ve erişilebilirlik</h2>
+  <ul>
+    <li><span class="kbd">Tab</span> ile bağlantılar, düğmeler ve form alanları arasında ilerleyin; odaklanan öğe turuncu bir çerçeveyle gösterilir. <span class="kbd">Shift</span>+<span class="kbd">Tab</span> geri gider.</li>
+    <li>Sayfa açıldığında ilk <span class="kbd">Tab</span>'da çıkan <span class="ui">İçeriğe geç</span> bağlantısı menüyü atlayıp doğrudan sayfa içeriğine götürür.</li>
+    <li><span class="kbd">Enter</span> bağlantıları ve düğmeleri çalıştırır; durum seçicilerde ok tuşlarıyla seçim yapılır.</li>
+    <li><span class="kbd">Esc</span> açık menüyü ya da onay penceresini kapatır. Onay pencerelerinde ilk seçili düğme her zaman vazgeçme düğmesidir; yanlışlıkla <span class="kbd">Enter</span>'a basmak bir şey silmez.</li>
+    <li>Durumlar yalnızca renkle değil, simge şekliyle ve yazıyla da gösterilir. Ekran okuyucular hata mesajlarını, eklenen/silinen görevleri ve şifre gücünü sesli okur.</li>
+    <li>Cihazınızda "hareketi azalt" ayarı açıksa menü ve sayfa geçiş animasyonları kapanır.</li>
+  </ul>
+</section>
+
+<!-- 11 -->
+<section class="newpage">
+  <h2><span class="no">11</span>Sık sorulan sorular ve sorun giderme</h2>
+  <table class="t">
+    <tr><th style="width:34%">Sorun</th><th>Ne yapmalı?</th></tr>
+    <tr><td>Kayıt olurken "Öğrenci e-postanızı girin" uyarısı çıkıyor.</td><td>Yalnızca <code>öğrenci-numarası@ogr.ktu.edu.tr</code> biçimindeki adreslerle kayıt olunur (ör. <code>123456@ogr.ktu.edu.tr</code>). Gmail gibi kişisel adresler kabul edilmez.</td></tr>
+    <tr><td>"Şifre yeterince güçlü değil" uyarısı çıkıyor.</td><td>Şifre gücü çubuğunun altındaki eksikleri tamamlayın: en az 10 karakter ve küçük harf, büyük harf, rakam, simgeden en az üçü.</td></tr>
+    <tr><td>"Bu e-posta adresiyle zaten bir hesap var" uyarısı çıkıyor.</td><td>Daha önce kayıt olmuşsunuz. Giriş ekranına dönün; şifrenizi hatırlamıyorsanız <span class="ui">Şifremi unuttum</span>'u kullanın.</td></tr>
+    <tr><td>Şifre sıfırlama e-postası gelmiyor.</td><td>Birkaç dakika bekleyin; Gereksiz (Spam) klasörüne ve Outlook'ta <b>Diğer</b> sekmesine bakın. Adresi doğru yazdığınızdan emin olun. Yine gelmezse yeni bir bağlantı isteyin ve yalnızca en son geleni kullanın.</td></tr>
+    <tr><td>"Çok fazla deneme yapıldı" uyarısı çıkıyor.</td><td>Güvenlik için girişler kısa bir süre durduruldu. Birkaç dakika bekleyip tekrar deneyin ya da şifrenizi sıfırlayın.</td></tr>
+    <tr><td>"Bağlantı kurulamadı" ya da "durumu kaydedilemedi" uyarısı çıkıyor.</td><td>İnternet bağlantınızı kontrol edip yeniden deneyin. Kaydedilemeyen değişiklik geri alınır; yanlış bir durum kalmaz.</td></tr>
+    <tr><td>Hesap silerken "yeniden giriş yapmanız gerekiyor" deniyor.</td><td>Güvenlik gereği; çıkış yapıp yeniden giriş yapın ve silme işlemini tekrarlayın.</td></tr>
+    <tr><td>Başka cihazda temam farklı görünüyor.</td><td>Tema tercihi her tarayıcıda ayrı saklanır; o cihazda da Profil'den seçin. Görevleriniz ve ilerlemeniz ise her cihazda aynıdır.</td></tr>
+    <tr><td>Ekranın üstünde sarı "Demo modu" şeridi var.</td><td>Uygulamanın deneme sürümünü açmışsınız; veriler yalnızca o tarayıcıda tutulur. Gerçek hesabınız için <b>https://ders.c1h4n.com</b> adresini kullanın.</td></tr>
+    <tr><td>Yanlış bir adrese gittim, "Sayfa bulunamadı" yazıyor.</td><td>Sayfadaki bağlantıyla ana sayfaya dönün ya da kenar çubuğunu kullanın.</td></tr>
+  </table>
+  <div class="note"><b>Yardım ve iletişim:</b> Burada çözemediğiniz bir sorun için <b>projemeil@gmail.com</b> adresine, sorunu ve gördüğünüz uyarıyı (mümkünse ekran görüntüsüyle) yazın.</div>
+</section>
+
+</body>
+</html>
