@@ -718,9 +718,18 @@ feat: görevlere durum filtresi ekle (#12)
 
 ## Ekran görüntüleri
 
-Bütün sayfaların mobil ve masaüstü ekran görüntüleri (hocanın P1-08 maddesi) son tasarımla
-`docs/screenshots/` klasörüne eklenecek
-([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57)).
+Bütün sayfaların masaüstü (1366 px) ve mobil (390 px) ekran görüntüleri, 4 Kasım 2026'daki `main`
+sürümünden demo modunda alındı ve [`docs/screenshots/`](docs/screenshots/) klasöründedir
+([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57)):
+
+- `masaustu-01`…`masaustu-12`: giriş, kayıt, şifremi unuttum, Ana Sayfa, Derslerim, ders ve hafta
+  detayı, Görevlerim, Profil, Gizlilik, 404 ve çıkış onayı
+- `mobil-01`…`mobil-12`: aynı sayfalar ve açılan menü
+- `karanlik-01`, `karanlik-02`: Ana Sayfa ve Görevlerim, karanlık tema
+
+| Ana Sayfa                                                | Mobil menü                                        |
+| -------------------------------------------------------- | ------------------------------------------------- |
+| ![Ana Sayfa](docs/screenshots/masaustu-04-ana-sayfa.png) | ![Mobil menü](docs/screenshots/mobil-12-menu.png) |
 
 ## Bilinen eksikler
 
@@ -733,13 +742,13 @@ Bütün sayfaların mobil ve masaüstü ekran görüntüleri (hocanın P1-08 mad
 
 ## Teslim dosyaları
 
-3 Kasım 2026 itibarıyla durumları:
+4 Kasım 2026 itibarıyla durumları:
 
 | Dosya                         | İçerik                                                                                          | Durum                                                                                     |
 | ----------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))                   | 31 Ekim ara sürümü; son hâli hazırlanacak                                                 |
+| `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))                   | 4 Kasım son hâli: tüm bölümler, test sonuçları ve yeni ekran görüntüleri                  |
 | `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55))             | Henüz yok                                                                                 |
 | `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))                  | Henüz yok                                                                                 |
-| `docs/screenshots/`           | Ekran görüntüleri ([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57))              | Henüz yok                                                                                 |
+| `docs/screenshots/`           | Ekran görüntüleri ([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57))              | 4 Kasım: bütün sayfalar, masaüstü ve mobil (26 görüntü)                                   |
 | `docs/test-senaryolari.md`    | Test senaryoları ve hata kaydı ([#60](https://github.com/selinozbay/YG-Proje1-Grup3/issues/60)) | 3 Kasım'da güncellendi: 70 senaryo geçti, 1 bekliyor (canlı sitede gerçek hesapla deneme) |
 | `docs/katki-tablosu.md`       | Ekip katkı tablosu ([#65](https://github.com/selinozbay/YG-Proje1-Grup3/issues/65))             | 3 Kasım'da güncellendi; son hâli teslimden önce                                           |

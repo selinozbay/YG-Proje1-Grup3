@@ -12,13 +12,13 @@
   }
   @page :first { margin: 0; @bottom-left { content: none; } @bottom-right { content: none; } }
 
-  :root { --ink: #0f172a; --muted: #475569; --line: #e2e8f0; --accent: #4f46e5; --accent-soft: #eef2ff; }
+  :root { --ink: #0f172a; --muted: #475569; --line: #e2e8f0; --accent: #c2410c; --accent-soft: #fff6ee; }
   * { box-sizing: border-box; }
   html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   body { margin: 0; font-family: 'Segoe UI', 'Calibri', Arial, sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--ink); }
 
   /* Kapak */
-  .cover { height: 297mm; padding: 28mm 22mm; display: flex; flex-direction: column; background: linear-gradient(160deg, #312e81 0%, #4f46e5 55%, #7c3aed 100%); color: #fff; page-break-after: always; }
+  .cover { height: 297mm; padding: 28mm 22mm; display: flex; flex-direction: column; background: linear-gradient(160deg, #0e121b 0%, #171c27 55%, #3a1305 100%); color: #fff; page-break-after: always; }
   .cover .kicker { font-size: 10pt; letter-spacing: .18em; text-transform: uppercase; opacity: .8; }
   .cover h1 { font-size: 34pt; line-height: 1.12; margin: 18mm 0 4mm; font-weight: 700; }
   .cover .sub { font-size: 15pt; opacity: .9; margin: 0; }
@@ -32,7 +32,7 @@
 
   /* İçerik */
   h2 { font-size: 16pt; margin: 0 0 3mm; padding-top: 2mm; color: var(--accent); page-break-after: avoid; }
-  h2 .no { color: #a5b4fc; margin-right: 2mm; }
+  h2 .no { color: #fdb27b; margin-right: 2mm; }
   h3 { font-size: 11.5pt; margin: 5mm 0 2mm; page-break-after: avoid; }
   section { page-break-before: auto; margin-top: 9mm; }
   section.newpage { page-break-before: always; margin-top: 0; }
@@ -44,7 +44,7 @@
   pre { font-family: Consolas, 'Cascadia Mono', monospace; font-size: 8.6pt; line-height: 1.4; background: #f8fafc; border: 1px solid var(--line); border-radius: 2mm; padding: 3mm 4mm; margin: 0 0 3mm; white-space: pre-wrap; page-break-inside: avoid; }
 
   table.t { width: 100%; border-collapse: collapse; margin: 1mm 0 4mm; font-size: 9.3pt; page-break-inside: auto; }
-  table.t th { background: var(--accent-soft); color: #3730a3; text-align: left; font-weight: 600; padding: 1.8mm 2.2mm; border-bottom: 1px solid #c7d2fe; }
+  table.t th { background: var(--accent-soft); color: #9f3a0f; text-align: left; font-weight: 600; padding: 1.8mm 2.2mm; border-bottom: 1px solid #ffd3ad; }
   table.t td { padding: 1.8mm 2.2mm; border-bottom: 1px solid var(--line); vertical-align: top; }
   table.t tr { page-break-inside: avoid; }
   table.t td.nowrap, table.t th.nowrap { white-space: nowrap; }
@@ -63,7 +63,7 @@
 
   .arch { display: grid; gap: 2mm; margin: 2mm 0 4mm; page-break-inside: avoid; }
   .arch .layer { display: grid; grid-template-columns: 34mm 1fr; border: 1px solid var(--line); border-radius: 2mm; overflow: hidden; }
-  .arch .layer b { background: var(--accent-soft); color: #3730a3; padding: 2.5mm 3mm; font-size: 9.5pt; }
+  .arch .layer b { background: var(--accent-soft); color: #9f3a0f; padding: 2.5mm 3mm; font-size: 9.5pt; }
   .arch .layer span { padding: 2.5mm 3mm; font-size: 9.3pt; }
   .arch .down { text-align: center; color: #94a3b8; font-size: 9pt; line-height: 1; }
 
@@ -73,6 +73,10 @@
   .figs { display: block; }
   .figs figure { width: 150mm; margin: 2mm auto 6mm; }
   .figs-mobile { display: grid; grid-template-columns: 1.8fr 1fr; gap: 5mm; align-items: start; }
+  .figs-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; align-items: start; }
+  .figs-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5mm; align-items: start; page-break-inside: avoid; }
+  .figs-3 figure, .figs-2 figure { margin: 0 0 4mm; }
+  .cover .accent { color: #fb8f45; }
 </style>
 </head>
 <body>
@@ -80,7 +84,7 @@
 <!-- KAPAK -->
 <div class="cover">
   <div class="kicker">Yazılım Geliştirme · Proje 1</div>
-  <h1>Etkileşimli Ders<br />Deneyimi Panosu</h1>
+  <h1>Etkileşimli Ders<br /><span class="accent">Deneyimi Panosu</span></h1>
   <p class="sub">Proje Raporu</p>
   <span class="tag">Grup 3 · YG-Proje1-Grup3</span>
   <div class="spacer"></div>
@@ -92,10 +96,10 @@
     <tr><td>Ali Tekçe</td><td>Dokümantasyon / Sunum Sorumlusu + Geliştirici</td></tr>
   </table>
   <div class="meta">
-    <div><b>Canlı demo</b>ders-ogrenci-bilgi-ekip.web.app</div>
+    <div><b>Canlı demo</b>ders.c1h4n.com · ders-ogrenci-bilgi-ekip.web.app</div>
     <div><b>Kaynak kod</b>github.com/selinozbay/YG-Proje1-Grup3</div>
     <div><b>Görev panosu</b>GitHub Projects · teslim tarihi 11 Kasım 2026</div>
-    <div><b>Rapor tarihi / sürüm</b>21 Ekim 2026 · Sürüm 0.2 (ara rapor)</div>
+    <div><b>Rapor tarihi / sürüm</b>4 Kasım 2026 · Sürüm 1.0</div>
   </div>
 </div>
 
@@ -114,28 +118,25 @@
     <li><span>9</span><span>Güvenlik, gizlilik ve KVKK</span></li>
     <li><span>10</span><span>Erişilebilirlik ve responsive tasarım</span></li>
     <li><span>11</span><span>Proje yönetimi ve ekip çalışması</span></li>
-    <li><span>12</span><span>Test yaklaşımı ve test senaryoları</span></li>
+    <li><span>12</span><span>Test yaklaşımı ve test sonuçları</span></li>
     <li><span>13</span><span>Kurulum, çalıştırma ve yayınlama</span></li>
-    <li><span>14</span><span>Bilinen eksikler ve sonraki adımlar</span></li>
+    <li><span>14</span><span>Bilinen eksikler ve kalan işler</span></li>
     <li><span>15</span><span>Yapay zekâ araçlarının kullanımı</span></li>
     <li><span>Ek</span><span>Değerlendirme rubriği ile eşleştirme</span></li>
   </ol>
 
   <div class="note">
-    <b>Bu raporun durumu:</b> Rapor, 4 haftalık proje döneminin 2. haftası sonunda hazırlanmış
-    ara sürümdür. Proje iskeleti, ortak çerçeve, tema, KVKK aydınlatma metni ve canlı yayın
-    tamamlanmıştır. Kayıt, giriş, şifre sıfırlama ve hesap silme akışlarının kodu yazılmış ancak
-    gerçek Firebase hesabıyla henüz denenmediği için tamamlanmış sayılmamıştır. Sayfaların içerik
-    bileşenleri (ders kartları, görev listesi, filtre, arama,
-    ilerleme göstergesi) ekip üyeleri tarafından geliştirilmektedir. Tablolardaki
-    <span class="pill ok">Hazır</span> <span class="pill wip">Geliştiriliyor</span>
-    <span class="pill wait">Bekliyor</span> etiketleri güncel durumu gösterir ve teslimden önce
-    güncellenecektir.
+    <b>Bu raporun durumu:</b> Rapor, 4 Kasım 2026 itibarıyla uygulamanın son hâlini anlatır.
+    Zorunlu işlevlerin tamamı ve ekibin eklediği özellikler <code>main</code> dalına girmiştir;
+    birim, uçtan uca (E2E) ve Firebase emülatör testlerinin hepsi geçmektedir. Tablolardaki
+    <span class="pill ok">Hazır</span> ve <span class="pill ok">Geçti</span> etiketleri bu tarihteki
+    durumu gösterir; teslimden önce kalan işler (kullanıcı dokümanı, sunum, wireframe ve son yayın)
+    Bölüm 14'te listelenmiştir.
   </div>
 </section>
 
 <!-- 1 -->
-<section >
+<section>
   <h2><span class="no">1</span>Proje özeti</h2>
   <p>
     <b>Etkileşimli Ders Deneyimi Panosu</b>, öğrencilerin aldıkları dersleri, her dersin haftalık
@@ -143,22 +144,24 @@
     yerden takip edebildiği, tarayıcıda çalışan bir web uygulamasıdır.
   </p>
   <p>
-    Uygulama Vue 3, TypeScript ve Tailwind CSS ile geliştirilmiştir. Kullanıcılar e-posta ve
-    şifreyle hesap açar; görev durumları Firebase Cloud Firestore'da kullanıcıya özel olarak
-    saklanır ve uygulama Firebase Hosting üzerinden yayınlanır. Firebase bilgileri olmadan da
-    çalışabilmesi için bir <b>demo modu</b> vardır; bu sayede proje, temiz bir ortamda yalnızca
-    README adımlarıyla kurulup denenebilir.
+    Uygulama Vue 3, TypeScript ve Tailwind CSS ile geliştirilmiştir. Kullanıcılar öğrenci
+    e-postası ve güçlü bir şifreyle hesap açar; görev durumları ve kullanıcının kendi eklediği
+    görevler Firebase Cloud Firestore'da kullanıcıya özel olarak saklanır. Kayıt, giriş, şifre
+    sıfırlama ve hesap silme Firebase Authentication ile çalışır ve Firebase emülatörlerinde
+    otomatik olarak test edilir. Şifre sıfırlama e-postaları ekibin alan adından
+    (<code>noreply@ders.c1h4n.com</code>) gönderilir. Uygulama Firebase Hosting üzerinden
+    <b>ders.c1h4n.com</b> adresinde yayındadır.
   </p>
   <p>
-    Projenin teknik odağı, ders kapsamında belirtildiği gibi web arayüzü, istemci tarafı etkileşim,
-    responsive tasarım ve kullanıcı deneyimidir. Uygulama klasik bir "yapılacaklar listesi" olarak
-    değil, ders akışını ve öğrenme ilerlemesini görsel olarak sunan bir ders panosu olarak
-    tasarlanmıştır.
+    Firebase bilgileri olmadan da çalışabilmesi için bir <b>demo modu</b> vardır; bu sayede proje,
+    temiz bir ortamda yalnızca README adımlarıyla kurulup denenebilir. Uygulama klasik bir
+    "yapılacaklar listesi" olarak değil; dönem çizelgesi, ders renkleri, haftalık akış ve ilerleme
+    göstergeleriyle ders deneyimini görsel olarak sunan bir panodur.
   </p>
 </section>
 
 <!-- 2 -->
-<section >
+<section>
   <h2><span class="no">2</span>Problem tanımı ve amaç</h2>
   <h3>Problem</h3>
   <p>
@@ -180,7 +183,7 @@
   <ul>
     <li>Ders içeriği ekleyen bir öğretim elemanı paneli (ders kataloğu uygulamanın içindeki veri dosyalarından gelir).</li>
     <li>Not, sınav veya devam takibi.</li>
-    <li>Bildirim (e-posta / anlık bildirim) gönderimi.</li>
+    <li>Bildirim (e-posta / anlık bildirim) gönderimi; yalnızca şifre sıfırlama e-postası gönderilir.</li>
   </ul>
 </section>
 
@@ -190,32 +193,34 @@
   <h3>3.1 Hedef kullanıcılar</h3>
   <table class="t">
     <tr><th style="width:24%">Kullanıcı / paydaş</th><th>İhtiyaç ve beklenti</th></tr>
-    <tr><td>Öğrenci (birincil kullanıcı)</td><td>Ders haftalarını, görevleri ve ilerlemesini kolayca görmek; tamamlananları işaretlemek; içeriklere hızlı erişmek; telefonda da kullanabilmek.</td></tr>
+    <tr><td>Öğrenci (birincil kullanıcı)</td><td>Ders haftalarını, görevleri ve ilerlemesini kolayca görmek; tamamlananları işaretlemek; kendi görevlerini eklemek; telefonda da kullanabilmek.</td></tr>
     <tr><td>Ders sorumlusu (senaryo paydaşı)</td><td>Ders akışının anlaşılır görünmesi; öğrencinin ne yapacağını kolayca takip edebilmesi.</td></tr>
   </table>
 
   <h3>3.2 Kullanıcı hikâyeleri ve kabul kriterleri</h3>
   <table class="t ids">
-    <tr><th class="nowrap">No</th><th style="width:33%">Kullanıcı hikâyesi</th><th>Kabul kriterleri</th><th class="nowrap">Durum</th></tr>
-    <tr><td>KH-1</td><td>Bir öğrenci olarak e-posta ve şifreyle hesap açıp giriş yapmak istiyorum; böylece ilerlemem bana özel kalsın.</td><td>Kayıt formunda ad soyad, e-posta, şifre (en az 6 karakter) ve KVKK onayı vardır. Hatalı bilgilerde Türkçe hata mesajı gösterilir. Giriş yapmayan kullanıcı uygulama sayfalarına giremez; girişten sonra gitmek istediği sayfaya döner.</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>KH-2</td><td>Şifremi unuttuğumda yeni şifre belirleyebilmek istiyorum.</td><td>"Şifremi unuttum" sayfasından e-posta adresine sıfırlama bağlantısı gönderilir. Hesabın var olup olmadığı açığa çıkarılmaz.</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>KH-3</td><td>Aldığım dersleri kartlar hâlinde görmek istiyorum.</td><td>Derslerim sayfasında her ders için kod, ad, öğretim elemanı, açıklama ve ilerleme çubuğu olan bir kart vardır. Karta tıklayınca dersin haftaları açılır.</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>KH-4</td><td>Bir haftayı seçip o haftanın öğrenme hedeflerini ve görevlerini görmek istiyorum.</td><td>Hafta detayında açıklama, öğrenme hedefleri ve görevler listelenir; önceki/sonraki haftaya geçilebilir.</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>KH-5</td><td>Bir görevi "tamamlandı" olarak işaretlemek istiyorum.</td><td>Görev durumu tek dokunuşla değişir; ilerleme göstergeleri anında güncellenir; sayfa yenilendiğinde durum korunur.</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>KH-6</td><td>Yalnızca belirli durumdaki, dersteki veya haftadaki görevleri görmek istiyorum.</td><td>Görevlerim sayfasında durum, ders ve hafta filtreleri vardır; liste anında güncellenir; sonuç yoksa bilgilendirici mesaj gösterilir.</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>KH-7</td><td>Bir anahtar sözcükle görev aramak istiyorum.</td><td>Arama kutusuna yazıldıkça görev başlığı ve açıklamasında eşleşenler listelenir; filtrelerle birlikte çalışır.</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>KH-8</td><td>Genel ilerlememi tek bakışta görmek istiyorum.</td><td>Ana Sayfa'da tamamlanan / toplam görev oranını gösteren görsel bir gösterge ve ders bazında ilerleme vardır.</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>KH-9</td><td>Uygulamayı karanlık veya aydınlık temada kullanmak istiyorum.</td><td>Tema düğmesiyle tema değişir; seçim hatırlanır; ilk açılışta aydınlık tema gelir.</td><td><span class="pill ok">Hazır</span></td></tr>
-    <tr><td>KH-10</td><td>Uygulamayı telefonumda rahatça kullanmak istiyorum.</td><td>Mobilde menü soldan açılır; içerik yatay kaydırma gerektirmez; tüm kontroller dokunmaya uygun boyuttadır.</td><td><span class="pill ok">Hazır</span> (çerçeve)</td></tr>
-    <tr><td>KH-11</td><td>Kişisel verilerimin nasıl işlendiğini bilmek ve istersem silmek istiyorum.</td><td>Gizlilik ve KVKK sayfası herkese açıktır; Profil'den hesap ve tüm veriler kalıcı olarak silinebilir.</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
+    <tr><th class="nowrap">No</th><th style="width:31%">Kullanıcı hikâyesi</th><th>Kabul kriterleri</th><th class="nowrap">Durum</th></tr>
+    <tr><td>KH-1</td><td>Bir öğrenci olarak e-posta ve şifreyle hesap açıp giriş yapmak istiyorum; böylece ilerlemem bana özel kalsın.</td><td>Kayıt formunda ad soyad, öğrenci e-postası (<code>123456@ogr.ktu.edu.tr</code>), güçlü şifre (şifre gücü göstergesiyle) ve KVKK onayı vardır. Hatalı bilgilerde Türkçe uyarı gösterilir. Giriş yapmayan kullanıcı uygulama sayfalarına giremez; girişten sonra gitmek istediği sayfaya döner.</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>KH-2</td><td>Şifremi unuttuğumda yeni şifre belirleyebilmek istiyorum.</td><td>"Şifremi unuttum" sayfasından ve Profil'den e-posta adresine sıfırlama bağlantısı gönderilir. Hesabın var olup olmadığı açığa çıkarılmaz; Gereksiz klasörüne bakılması hatırlatılır.</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>KH-3</td><td>Aldığım dersleri kartlar hâlinde görmek istiyorum.</td><td>Derslerim sayfasında her ders için kendi rengi, kodu, adı, öğretim elemanı, açıklaması, ilerleme çubuğu ve durum dağılımı olan bir kart vardır; dersler aranabilir ve filtrelenebilir.</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>KH-4</td><td>Bir haftayı seçip o haftanın öğrenme hedeflerini ve görevlerini görmek istiyorum.</td><td>Ders detayında haftaların akışı ve hafta kartları; hafta detayında öğrenme hedefleri, görevler ve ilerleme listelenir; önceki/sonraki haftaya geçilebilir.</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>KH-5</td><td>Bir görevi "tamamlandı" olarak işaretlemek istiyorum.</td><td>Görev durumu tek seçimle değişir; tüm ilerleme göstergeleri anında güncellenir; sayfa yenilendiğinde durum korunur.</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>KH-6</td><td>Yalnızca belirli durumdaki, dersteki veya haftadaki görevleri görmek istiyorum.</td><td>Görevlerim sayfasında durum, ders ve hafta filtreleri vardır; liste anında güncellenir; sonuç yoksa bilgilendirici mesaj gösterilir.</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>KH-7</td><td>Bir anahtar sözcükle görev aramak istiyorum.</td><td>Arama kutusuna yazıldıkça başlık, açıklama ve etikette eşleşen görevler listelenir; küçük yazım hataları ve şapkalı harfler tolere edilir; filtrelerle birlikte çalışır.</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>KH-8</td><td>Genel ilerlememi tek bakışta görmek istiyorum.</td><td>Ana Sayfa'da dönem çizelgesi (ders × hafta), tamamlanan / toplam görev oranı, derslere göre ilerleme, yaklaşan görevler ve bu haftanın dersi vardır.</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>KH-9</td><td>Uygulamayı karanlık veya aydınlık temada kullanmak istiyorum.</td><td>Kenar çubuğundaki düğmeyle ya da Profil'de Aydınlık / Karanlık / Sistem seçimiyle tema değişir; seçim hatırlanır; ilk açılışta aydınlık tema gelir.</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>KH-10</td><td>Uygulamayı telefonumda rahatça kullanmak istiyorum.</td><td>Mobilde menü soldan açılır; içerik yatay kaydırma gerektirmez; tüm kontroller dokunmaya uygun boyuttadır.</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>KH-11</td><td>Kişisel verilerimin nasıl işlendiğini bilmek ve istersem silmek istiyorum.</td><td>Gizlilik ve KVKK sayfası herkese açıktır; Profil'den onay penceresiyle hesap ve tüm veriler kalıcı olarak silinebilir.</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>KH-12</td><td>Ders görevleri dışında kendi görevlerimi de takip etmek istiyorum.</td><td>Görevlerim'de başlık, açıklama, ders ve son tarih girilerek görev eklenir; düzenlenir ve silinir; diğer görevler gibi filtrelenir ve ilerlemeye katılır.</td><td><span class="pill ok">Hazır</span></td></tr>
   </table>
 
   <h3>3.3 Örnek kullanıcı senaryoları</h3>
   <table class="t">
     <tr><th style="width:24%">Senaryo</th><th>Adımlar</th></tr>
-    <tr><td>Haftalık akışı inceleme</td><td>Öğrenci giriş yapar → Derslerim'den bir dersi seçer → haftaları görür → bir haftayı açıp hedefleri ve görevleri inceler.</td></tr>
-    <tr><td>Görev ilerlemesi</td><td>Öğrenci bir görevi "Tamamlandı" yapar → Ana Sayfa'daki ve ders kartındaki ilerleme güncellenir → sayfa yenilendiğinde durum korunur.</td></tr>
+    <tr><td>Haftalık akışı inceleme</td><td>Öğrenci giriş yapar → Derslerim'den bir dersi seçer → haftaların akışını görür → bir haftayı açıp hedefleri ve görevleri inceler.</td></tr>
+    <tr><td>Görev ilerlemesi</td><td>Öğrenci bir görevi "Tamamlandı" yapar → Ana Sayfa'daki çizelge ve ders kartındaki ilerleme güncellenir → sayfa yenilendiğinde durum korunur.</td></tr>
     <tr><td>Filtreleme ve arama</td><td>Öğrenci Görevlerim'de "Devam ediyor" filtresini seçer → arama kutusuna "SQL" yazar → liste anında daralır.</td></tr>
+    <tr><td>Şifre sıfırlama</td><td>Öğrenci "Şifremi unuttum"a öğrenci e-postasını yazar → <code>noreply@ders.c1h4n.com</code>'dan gelen bağlantıyla yeni şifre belirler → yeni şifreyle giriş yapar.</td></tr>
   </table>
 </section>
 
@@ -224,25 +229,29 @@
   <h2><span class="no">4</span>Gereksinimler ve karşılanma durumu</h2>
   <h3>4.1 Zorunlu işlevsel gereksinimler (proje dokümanı, Bölüm 4)</h3>
   <table class="t">
-    <tr><th style="width:38%">Gereksinim</th><th>Uygulamadaki karşılığı</th><th class="nowrap">Durum</th></tr>
-    <tr><td>Haftalık ders/öğrenme kartları</td><td>Derslerim → ders detayı (hafta kartları) → hafta detayı</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>Görev/mini etkinlik listesi; durum değiştirme</td><td>Görevlerim ve hafta detayı; <code>progress.setStatus()</code> hazır</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>Duruma veya haftaya göre filtre</td><td>Görevlerim: durum, ders ve hafta filtresi</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>Arama</td><td>Görevlerim: anlık arama kutusu</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>Genel ilerlemeyi gösteren görsel gösterge</td><td>Ana Sayfa; hesaplama <code>progress.overall</code> hazır</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>Responsive tasarım, kullanılabilir mobil görünüm</td><td>Masaüstünde sabit sol menü, mobilde açılır menü; Tailwind kırılımları</td><td><span class="pill ok">Hazır</span> (çerçeve)</td></tr>
-    <tr><td>Karanlık/aydınlık tema</td><td>Tema düğmesi, tercih kaydı, yanıp sönmeyi önleyen ilk yükleme</td><td><span class="pill ok">Hazır</span></td></tr>
-    <tr><td>Yenilemede verinin korunması</td><td>Firestore (<code>users/{uid}</code>); demo modunda localStorage (demo modunda denendi, Firebase ile test edilecek)</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
+    <tr><th style="width:36%">Gereksinim</th><th>Uygulamadaki karşılığı</th><th class="nowrap">Durum</th></tr>
+    <tr><td>Haftalık ders/öğrenme kartları</td><td>Derslerim → ders detayı (haftaların akışı, hafta kartları) → hafta detayı</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>Görev/mini etkinlik listesi; durum değiştirme</td><td>Görevlerim, hafta detayı ve Ana Sayfa'daki yaklaşan görevler; görev satırındaki durum seçicisi</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>Duruma veya haftaya göre filtre</td><td>Görevlerim: durum, ders ve hafta filtresi; Derslerim: durum filtresi</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>Arama</td><td>Görevlerim ve Derslerim: anlık arama (Fuse.js ile yazım hatasına toleranslı)</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>Genel ilerlemeyi gösteren görsel gösterge</td><td>Ana Sayfa'da dönem çizelgesi ve ilerleme çubukları; Derslerim'de durum grafiği; Görevlerim'de durum dağılımı</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>Responsive tasarım, kullanılabilir mobil görünüm</td><td>Masaüstünde sabit sol menü, mobilde açılır menü; tüm sayfalar 375 px'de denendi</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>Karanlık/aydınlık tema</td><td>Kenar çubuğunda tema düğmesi, Profil'de Aydınlık / Karanlık / Sistem seçimi, tercih kaydı</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>Yenilemede verinin korunması</td><td>Firestore (<code>users/{uid}</code>); demo modunda localStorage; ikisi de otomatik testlerle denendi</td><td><span class="pill ok">Hazır</span></td></tr>
   </table>
 
   <h3>4.2 Ek işlevsel özellikler (ekibin eklediği)</h3>
   <table class="t">
-    <tr><th style="width:38%">Özellik</th><th>Gerekçe</th><th class="nowrap">Durum</th></tr>
-    <tr><td>E-posta/şifre ile kayıt, giriş, şifre sıfırlama</td><td>İlerlemenin kişiye özel olması ve farklı cihazlarda görünmesi</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>Birden fazla ders</td><td>Gerçek kullanımda öğrenci aynı anda birden fazla ders alır</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
+    <tr><th style="width:36%">Özellik</th><th>Gerekçe</th><th class="nowrap">Durum</th></tr>
+    <tr><td>Öğrenci e-postası ve güçlü şifreyle kayıt, giriş, şifre sıfırlama</td><td>İlerlemenin kişiye özel olması, yalnızca öğrencilerin kayıt olması ve hesap güvenliği</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>Birden fazla ders, her derse ayrı renk</td><td>Gerçek kullanımda öğrenci aynı anda birden fazla ders alır; dersler bir bakışta ayırt edilir</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>Kendi görevini ekleme, düzenleme, silme</td><td>Öğrencinin ders dışı işlerini de aynı panoda takip etmesi</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>Profil: hesap kartı, istatistikler, tema seçimi</td><td>Öğrencinin kendi durumunu ve tercihlerini tek yerde görmesi</td><td><span class="pill ok">Hazır</span></td></tr>
     <tr><td>Gizlilik ve KVKK aydınlatma metni</td><td>Kişisel veri (ad, e-posta) toplandığı için yasal yükümlülük</td><td><span class="pill ok">Hazır</span></td></tr>
-    <tr><td>Hesabı ve tüm verileri silme</td><td>KVKK m.11 kapsamındaki silme hakkı</td><td><span class="pill wip">Geliştiriliyor</span></td></tr>
+    <tr><td>Hesabı ve tüm verileri silme (onay penceresiyle)</td><td>KVKK m.11 kapsamındaki silme hakkı</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>Çıkış onayı, menü ve sayfa geçiş efektleri</td><td>Yanlışlıkla çıkışı önlemek; akıcı kullanım</td><td><span class="pill ok">Hazır</span></td></tr>
     <tr><td>Demo modu</td><td>Repo, Firebase anahtarı olmadan temiz ortamda çalışabilsin</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>Kendi alan adı ve e-posta göndericisi (<code>ders.c1h4n.com</code>)</td><td>KTÜ öğrenci postası varsayılan Firebase göndericisinden gelen e-postaları teslim etmiyordu</td><td><span class="pill ok">Hazır</span></td></tr>
     <tr><td>404 sayfası</td><td>Yanlış adreste kullanıcıyı yönlendirmek</td><td><span class="pill ok">Hazır</span></td></tr>
   </table>
 
@@ -250,10 +259,10 @@
   <table class="t">
     <tr><th style="width:24%">Alan</th><th>Gereksinim ve nasıl karşılandığı</th></tr>
     <tr><td>Kullanılabilirlik</td><td>Mobil, tablet ve masaüstünde kullanılabilir arayüz; tüm metinler Türkçe; hata mesajları anlaşılır.</td></tr>
-    <tr><td>Erişilebilirlik</td><td>Anlamlı etiketler, yeterli kontrast, klavyeyle kullanım, görünür odak (Bölüm 10).</td></tr>
-    <tr><td>Performans</td><td>Sayfalar ihtiyaç anında yüklenir (lazy loading); arayüz görev durumu değişince sunucuyu beklemeden güncellenir.</td></tr>
-    <tr><td>Güvenlik</td><td>Firestore kuralları ile her kullanıcı yalnızca kendi verisine erişir; gizli anahtarlar repoda tutulmaz (Bölüm 9).</td></tr>
-    <tr><td>Bakım kolaylığı</td><td>Bileşen tabanlı yapı, TypeScript tip denetimi, ESLint/Oxlint/Prettier ile ortak kod biçimi; veri erişimi servis katmanında toplanmıştır.</td></tr>
+    <tr><td>Erişilebilirlik</td><td>Anlamlı etiketler, yeterli kontrast, klavyeyle kullanım, görünür odak, "hareketi azalt" desteği (Bölüm 10).</td></tr>
+    <tr><td>Performans</td><td>Sayfalar ihtiyaç anında yüklenir (lazy loading); arayüz görev durumu değişince sunucuyu beklemeden güncellenir, kayıt başarısız olursa eski hâline döner.</td></tr>
+    <tr><td>Güvenlik</td><td>Firestore kuralları ile her kullanıcı yalnızca kendi verisine erişir ve belgeye yalnızca beklenen alanlar yazılabilir; gizli anahtarlar repoda tutulmaz (Bölüm 9).</td></tr>
+    <tr><td>Bakım kolaylığı</td><td>Bileşen tabanlı yapı, TypeScript tip denetimi, ESLint/Oxlint/Prettier ile ortak kod biçimi; veri erişimi servis katmanında toplanmıştır; her PR'da otomatik testler çalışır.</td></tr>
     <tr><td>Taşınabilirlik</td><td>Proje README adımlarıyla temiz bir ortamda kurulabilir; Firebase olmadan demo modunda çalışır.</td></tr>
   </table>
 </section>
@@ -262,27 +271,30 @@
 <section>
   <h2><span class="no">5</span>Teknoloji seçimleri ve gerekçeleri</h2>
   <table class="t">
-    <tr><th style="width:22%">Teknoloji</th><th class="nowrap">Sürüm</th><th>Kullanım amacı ve seçilme gerekçesi</th></tr>
-    <tr><td>Vue 3</td><td>3.5</td><td>Arayüzü yeniden kullanılabilir bileşenlere bölmek. Tek dosya bileşenlerinde HTML, CSS ve TypeScript bir arada durur; öğrenmesi görece kolaydır ve ders dokümanında önerilen çatılardandır.</td></tr>
+    <tr><th style="width:24%">Teknoloji</th><th class="nowrap">Sürüm</th><th>Kullanım amacı ve seçilme gerekçesi</th></tr>
+    <tr><td>Vue 3</td><td>3.5</td><td>Arayüzü yeniden kullanılabilir bileşenlere bölmek. Tek dosya bileşenlerinde HTML, CSS ve TypeScript bir arada durur; ders dokümanında önerilen çatılardandır.</td></tr>
     <tr><td>TypeScript</td><td>6.0</td><td>Veri modelinin (ders, hafta, görev) tiplerini tanımlayarak hataları çalıştırmadan yakalamak; dört kişinin aynı veri yapısını tutarlı kullanmasını sağlamak.</td></tr>
-    <tr><td>Vite</td><td>8.3</td><td>Hızlı geliştirme sunucusu ve yayın için derleme. Vue'nun resmî proje şablonu ile gelir.</td></tr>
-    <tr><td>Vue Router</td><td>5.4</td><td>Sayfalar arası geçiş; giriş yapmamış kullanıcının uygulama sayfalarına girmesini engelleme; sekme başlıklarını ayarlama.</td></tr>
-    <tr><td>Pinia</td><td>4.1</td><td>Sayfaların ortak kullandığı durumu (oturum, ders kataloğu, görev durumları, tema) tek yerde tutmak. Bir sayfada görev tamamlanınca diğer sayfalardaki ilerleme kendiliğinden güncellenir.</td></tr>
-    <tr><td>Tailwind CSS</td><td>4.3</td><td>Responsive tasarım ve karanlık temayı hızlı ve tutarlı biçimde uygulamak; ayrı CSS dosyaları arasında dağılan stil kurallarını önlemek.</td></tr>
-    <tr><td>Firebase Authentication</td><td>13.0</td><td>E-posta/şifre ile güvenli kayıt, giriş ve şifre sıfırlama. Şifreler ekip tarafından görülemeyecek biçimde saklanır.</td></tr>
-    <tr><td>Cloud Firestore</td><td>13.0</td><td>Kullanıcıya özel görev durumlarını saklamak; farklı cihazlardan aynı ilerlemeye erişmek. Ayrı bir sunucu yazmadan kalıcı veri sağlar.</td></tr>
-    <tr><td>Firebase Hosting</td><td>—</td><td>Uygulamayı ücretsiz ve HTTPS ile yayınlamak; canlı demo bağlantısı sunmak.</td></tr>
-    <tr><td>ESLint, Oxlint, Prettier</td><td>—</td><td>Kod hatalarını erken yakalamak ve tüm ekibin aynı biçimde kod yazmasını sağlamak.</td></tr>
-    <tr><td>Vitest, Vue Test Utils</td><td>5.0</td><td>Store hesaplarının ve bileşenlerin birim testleri.</td></tr>
+    <tr><td>Vite</td><td>8.3</td><td>Hızlı geliştirme sunucusu ve yayın için derleme.</td></tr>
+    <tr><td>Vue Router</td><td>5.4</td><td>Sayfalar arası geçiş; giriş yapmamış kullanıcının uygulama sayfalarına girmesini engelleme; sekme başlıkları.</td></tr>
+    <tr><td>Pinia</td><td>4.1</td><td>Sayfaların ortak kullandığı durumu (oturum, ders kataloğu, görev durumları, tema) tek yerde tutmak; bir sayfadaki değişiklik diğerlerine anında yansır.</td></tr>
+    <tr><td>Tailwind CSS</td><td>4.3</td><td>Responsive tasarım, karanlık tema ve tutarlı renk paleti (turuncu vurgu, nötr gri).</td></tr>
+    <tr><td>IBM Plex Sans</td><td>5.3</td><td>Türkçe harfleri içeren yazı tipi; uygulamayla birlikte yayınlanır, dış bir sunucuya bağlanmaz.</td></tr>
+    <tr><td>Fuse.js</td><td>7.5</td><td>Görev ve ders aramada küçük yazım hatalarını ve şapkalı harfleri tolere etmek.</td></tr>
+    <tr><td>Firebase Authentication</td><td>13.0</td><td>E-posta/şifre ile kayıt, giriş, şifre sıfırlama ve hesap silme; şifreler ekip tarafından görülemez.</td></tr>
+    <tr><td>Cloud Firestore</td><td>13.0</td><td>Kullanıcıya özel görev durumlarını ve kendi görevlerini saklamak; farklı cihazlardan aynı ilerlemeye erişmek.</td></tr>
+    <tr><td>Firebase Hosting</td><td>—</td><td>Uygulamayı HTTPS ile ve kendi alan adıyla (<code>ders.c1h4n.com</code>) yayınlamak.</td></tr>
+    <tr><td>Vitest, Vue Test Utils</td><td>5.0 / 2.5</td><td>Store, hesaplama, bileşen ve sayfa testleri.</td></tr>
     <tr><td>Playwright</td><td>1.64</td><td>Gerçek tarayıcıda uçtan uca (E2E) testler.</td></tr>
-    <tr><td>Firebase Emulator, rules-unit-testing</td><td>—</td><td>Firestore güvenlik kurallarını gerçek veritabanına dokunmadan test etmek.</td></tr>
-    <tr><td>GitHub Actions</td><td>—</td><td>Her push ve PR'da lint, tip kontrolü, derleme ve testleri otomatik çalıştırmak (CI).</td></tr>
+    <tr><td>Firebase Emulator</td><td>—</td><td>Güvenlik kurallarını, kayıt/giriş akışlarını ve kullanıcı verisini canlı projeye dokunmadan test etmek.</td></tr>
+    <tr><td>ESLint, Oxlint, Prettier</td><td>—</td><td>Kod hatalarını erken yakalamak ve tüm ekibin aynı biçimde kod yazması.</td></tr>
+    <tr><td>GitHub Actions</td><td>—</td><td>Her push ve PR'da lint, tip kontrolü, derleme ve dört test grubunu otomatik çalıştırmak (CI).</td></tr>
     <tr><td>Git, GitHub, GitHub Projects</td><td>—</td><td>Sürüm kontrolü, bireysel katkının kaydı, issue ve pano ile görev takibi (Bölüm 11).</td></tr>
   </table>
   <div class="note">
-    <b>Not:</b> Proje dokümanına göre veri tabanı zorunlu değildir. Firestore, yalnızca kullanıcıya
-    özel ilerlemeyi saklamak için sınırlı biçimde kullanılmıştır; ders kataloğu uygulamanın içinde
-    sabit JSON dosyalarında durur. Böylece projenin odağı istemci tarafı arayüz ve etkileşimde kalır.
+    <b>Not:</b> Proje dokümanına göre veri tabanı zorunlu değildir. Firestore yalnızca kullanıcıya
+    özel ilerlemeyi ve kendi görevlerini saklamak için kullanılmıştır; ders kataloğu uygulamanın
+    içinde sabit JSON dosyalarında durur. Böylece projenin odağı istemci tarafı arayüz ve
+    etkileşimde kalır.
   </div>
 </section>
 
@@ -294,11 +306,15 @@
     göre katmanlara ayrılmıştır; sayfalar veriye doğrudan değil, store'lar üzerinden erişir.
   </p>
   <div class="arch">
-    <div class="layer"><b>Sayfalar (views)</b><span>Ana Sayfa, Derslerim, Ders ve Hafta detayı, Görevlerim, Profil, Giriş/Kayıt, Gizlilik, 404</span></div>
+    <div class="layer"><b>Çerçeveler (layouts)</b><span>AppLayout (kenar çubuklu uygulama), AuthLayout (giriş, kayıt, şifremi unuttum: iki bölümlü), PublicLayout (Gizlilik, 404)</span></div>
     <div class="down">▼</div>
-    <div class="layer"><b>Bileşenler</b><span>Kenar çubuğu, logo, tema düğmesi, form alanları, ders ve görev kartları</span></div>
+    <div class="layer"><b>Sayfalar (views)</b><span>Ana Sayfa, Derslerim, Ders ve Hafta detayı, Görevlerim, Profil, Giriş/Kayıt/Şifremi unuttum, Gizlilik, 404</span></div>
     <div class="down">▼</div>
-    <div class="layer"><b>Store'lar (Pinia)</b><span><code>auth</code> oturum · <code>catalog</code> ders kataloğu · <code>progress</code> görev durumları ve ilerleme · <code>preferences</code> tema</span></div>
+    <div class="layer"><b>Bileşenler</b><span>home/ (çizelge, yaklaşan görevler), lessons/ (ders ve hafta kartları, ders renkleri), tasks/ (görev satırı, filtre, form), profile/, auth/, layout/, common/</span></div>
+    <div class="down">▼</div>
+    <div class="layer"><b>Composable'lar</b><span>useDashboard, useCourseProgress, useTaskFilters, useCourseFilters, useCustomTaskForm, useTaskStatusChange, useLayoutTransition, useMediaQuery</span></div>
+    <div class="down">▼</div>
+    <div class="layer"><b>Store'lar (Pinia)</b><span><code>auth</code> oturum · <code>catalog</code> ders kataloğu · <code>progress</code> görev durumları, kendi görevler, ilerleme · <code>preferences</code> tema</span></div>
     <div class="down">▼</div>
     <div class="layer"><b>Servisler</b><span>Ortak arayüz + iki uygulama: Firebase (Authentication, Firestore) ya da demo modu (localStorage)</span></div>
     <div class="down">▼</div>
@@ -314,30 +330,13 @@
     sayfalar ve store'lar iki modda da aynı çalışır. Canlı site her zaman Firebase'e bağlıdır.
   </p>
 
-  <h3>6.2 Klasör yapısı</h3>
-<pre>src/
-├── assets/        Genel CSS (Tailwind, karanlık tema, odak stili)
-├── components/    Tekrar kullanılan bileşenler (auth, common, layout, lessons, tasks)
-├── composables/   Tekrar kullanılan mantık (useMediaQuery)
-├── data/          Ders kataloğu: courses.json, weeks.json, tasks.json
-├── firebase/      Firebase bağlantısı ve demo modu kararı
-├── layouts/       Sayfa çerçeveleri (AppLayout, PublicLayout)
-├── router/        Sayfa adresleri ve giriş kontrolü
-├── services/      Veri okuma/yazma: auth/ ve userData/ (Firebase + demo)
-├── stores/        Pinia store'ları: auth, catalog, progress, preferences
-├── types/         TypeScript tipleri: Course, Week, Task, AppUser…
-├── views/         Sayfalar
-├── App.vue        Kök bileşen
-├── config.ts      Ortak sabitler
-└── main.ts        Uygulamanın başlangıç noktası</pre>
-
-  <h3>6.3 Uygulamanın açılış akışı</h3>
+  <h3>6.2 Uygulamanın açılış akışı</h3>
   <ol>
     <li><code>index.html</code>, sayfa çizilmeden önce kayıtlı temayı uygular (beyaz ekran yanıp sönmez).</li>
     <li><code>main.ts</code> Pinia'yı kurar ve oturum dinlemeyi başlatır.</li>
     <li>Router, oturum durumu netleşene kadar bekler; giriş yapılmamışsa kullanıcıyı giriş sayfasına yönlendirir.</li>
-    <li>Oturum açıldığında kullanıcının görev durumları Firestore'dan (veya demo modunda localStorage'dan) yüklenir.</li>
-    <li>İlk sayfa hazır olunca uygulama ekrana basılır.</li>
+    <li>Oturum açıldığında kullanıcının görev durumları ve kendi görevleri Firestore'dan (veya demo modunda localStorage'dan) yüklenir.</li>
+    <li>İlk sayfa hazır olunca uygulama ekrana basılır; sonraki sayfa geçişlerinde yeni sayfa en üstten ve hafif bir geçiş animasyonuyla açılır.</li>
   </ol>
 </section>
 
@@ -346,31 +345,32 @@
   <h2><span class="no">7</span>Veri modeli</h2>
   <p>
     Veri iki bölümden oluşur: herkes için aynı olan <b>ders kataloğu</b> ve kullanıcıya özel
-    <b>görev durumları</b>. İlerleme saklanmaz; her seferinde tamamlanan / toplam görev olarak
-    hesaplanır.
+    <b>görev durumları ve kendi görevleri</b>. İlerleme saklanmaz; her seferinde tamamlanan / toplam
+    görev olarak hesaplanır.
   </p>
   <h3>7.1 Ders kataloğu (src/data)</h3>
   <table class="t">
-    <tr><th style="width:14%">Varlık</th><th style="width:30%">Alanlar</th><th>Açıklama</th></tr>
-    <tr><td>Ders (Course)</td><td><code>id</code>, <code>code</code>, <code>title</code>, <code>instructor</code>, <code>description</code></td><td>Derslerim sayfasındaki her kart bir derstir.</td></tr>
+    <tr><th style="width:14%">Varlık</th><th style="width:32%">Alanlar</th><th>Açıklama</th></tr>
+    <tr><td>Ders (Course)</td><td><code>id</code>, <code>code</code>, <code>title</code>, <code>instructor</code>, <code>description</code></td><td>Derslerim sayfasındaki her kart bir derstir; her derse katalogdaki sırasına göre bir renk atanır.</td></tr>
     <tr><td>Hafta (Week)</td><td><code>id</code>, <code>courseId</code>, <code>weekNo</code>, <code>title</code>, <code>description</code>, <code>learningGoals[]</code></td><td>Bir dersin haftalık içeriği ve öğrenme hedefleri.</td></tr>
-    <tr><td>Görev (Task)</td><td><code>id</code>, <code>courseId</code>, <code>weekNo</code>, <code>title</code>, <code>description</code>, <code>dueDate?</code>, <code>tags[]</code></td><td>Bir haftaya bağlı görev veya mini etkinlik.</td></tr>
+    <tr><td>Görev (Task)</td><td><code>id</code>, <code>courseId</code>, <code>weekNo</code>, <code>title</code>, <code>description</code>, <code>dueDate?</code>, <code>tags[]</code></td><td>Bir haftaya bağlı görev; haftanın tarihi görevlerin son tarihinden çıkarılır ("bu hafta").</td></tr>
   </table>
-  <p>İlişkiler: bir dersin birden çok haftası, bir haftanın birden çok görevi vardır. Örnek katalogda 3 ders, 9 hafta ve 18 görev bulunur.</p>
+  <p>Örnek katalogda 3 ders, 12 hafta ve 24 görev bulunur; verinin tutarlılığı (her görevin var olan bir derse ve haftaya bağlı olması) bir birim testiyle denetlenir.</p>
 
   <h3>7.2 Kullanıcıya özel veri (Cloud Firestore)</h3>
 <pre>users/{uid}
   taskStatuses: { "yg-w1-t1": "done", "wp-w2-t1": "in-progress", ... }
+  customTasks:  { "custom-…": { id, title, description, courseId, dueDate, createdAt } }  (en fazla 100)
   updatedAt:    sunucu zamanı</pre>
   <table class="t">
-    <tr><th style="width:22%">Görev durumu</th><th>Arayüzdeki adı</th></tr>
-    <tr><td><code>todo</code></td><td>Yapılacak (durumu kaydedilmemiş her görev bu kabul edilir)</td></tr>
-    <tr><td><code>in-progress</code></td><td>Devam ediyor</td></tr>
-    <tr><td><code>done</code></td><td>Tamamlandı</td></tr>
+    <tr><th style="width:22%">Görev durumu</th><th>Arayüzdeki adı ve rengi</th></tr>
+    <tr><td><code>todo</code></td><td>Yapılacak · gri (durumu kaydedilmemiş her görev bu kabul edilir)</td></tr>
+    <tr><td><code>in-progress</code></td><td>Devam ediyor · turuncu</td></tr>
+    <tr><td><code>done</code></td><td>Tamamlandı · yeşil</td></tr>
   </table>
   <p>
-    Her kullanıcı için tek belge tutulması, sorgu ve okuma sayısını en aza indirir. Durum
-    değişikliğinde yalnızca ilgili görev alanı güncellenir (<code>merge</code>).
+    Her kullanıcı için tek belge tutulması okuma sayısını en aza indirir. Durum değişikliğinde
+    yalnızca ilgili alan güncellenir; kendi görevi silinince durumu da birlikte silinir.
   </p>
 
   <h3>7.3 Tarayıcıda tutulan veri</h3>
@@ -378,7 +378,7 @@
     <tr><th style="width:36%">Anahtar</th><th>İçerik</th></tr>
     <tr><td><code>ders-panosu:theme</code></td><td>Tema tercihi (light / dark / system)</td></tr>
     <tr><td><code>ders-panosu:demo-user</code></td><td>Yalnızca demo modunda: oturum açan kullanıcı</td></tr>
-    <tr><td><code>ders-panosu:user-data:{uid}</code></td><td>Yalnızca demo modunda: görev durumları</td></tr>
+    <tr><td><code>ders-panosu:user-data:{uid}</code></td><td>Yalnızca demo modunda: görev durumları ve kendi görevler</td></tr>
   </table>
 </section>
 
@@ -387,101 +387,123 @@
   <h2><span class="no">8</span>Arayüz tasarımı ve sayfalar</h2>
   <h3>8.1 Sayfa haritası</h3>
   <table class="t">
-    <tr><th style="width:20%">Sayfa</th><th style="width:30%">Adres</th><th>İçerik</th></tr>
-    <tr><td>Ana Sayfa</td><td><code>/</code></td><td>Genel ilerleme, yaklaşan görevler, bu haftanın dersi</td></tr>
-    <tr><td>Derslerim</td><td><code>/derslerim</code></td><td>Ders kartları</td></tr>
-    <tr><td>Ders detayı</td><td><code>/derslerim/:dersId</code></td><td>Dersin haftaları</td></tr>
-    <tr><td>Hafta detayı</td><td><code>/derslerim/:dersId/hafta/:no</code></td><td>Öğrenme hedefleri ve görevler</td></tr>
-    <tr><td>Görevlerim</td><td><code>/gorevlerim</code></td><td>Tüm görevler, filtre ve arama</td></tr>
-    <tr><td>Profil</td><td><code>/profil</code></td><td>Hesap bilgileri, tercihler, hesap silme</td></tr>
+    <tr><th style="width:18%">Sayfa</th><th style="width:30%">Adres</th><th>İçerik</th></tr>
+    <tr><td>Ana Sayfa</td><td><code>/</code></td><td>Dönem çizelgesi (ders × hafta), genel ilerleme, güne göre yaklaşan görevler, derslerin bu haftası</td></tr>
+    <tr><td>Derslerim</td><td><code>/derslerim</code></td><td>Ders kartları, derslere göre görev durumu grafiği, arama ve filtre</td></tr>
+    <tr><td>Ders detayı</td><td><code>/derslerim/:dersId</code></td><td>Dersin kapağı ve ilerlemesi, haftaların akışı, hafta kartları</td></tr>
+    <tr><td>Hafta detayı</td><td><code>/derslerim/:dersId/hafta/:no</code></td><td>Görevler, haftanın ilerlemesi, öğrenme hedefleri, önceki/sonraki hafta</td></tr>
+    <tr><td>Görevlerim</td><td><code>/gorevlerim</code></td><td>Tüm görevler, durum dağılımı, filtre, arama, kendi görevini ekleme</td></tr>
+    <tr><td>Profil</td><td><code>/profil</code></td><td>Hesap kartı, şifre sıfırlama bağlantısı, tema seçimi, istatistikler, hesabı silme</td></tr>
     <tr><td>Giriş / Kayıt</td><td><code>/giris</code>, <code>/kayit</code>, <code>/sifremi-unuttum</code></td><td>Hesap işlemleri (giriş yapmadan erişilir)</td></tr>
-    <tr><td>Gizlilik ve KVKK</td><td><code>/gizlilik</code></td><td>Aydınlatma metni (herkese açık)</td></tr>
+    <tr><td>Gizlilik ve KVKK</td><td><code>/gizlilik</code></td><td>Aydınlatma metni; giriş yapmışsa menüyle birlikte açılır</td></tr>
   </table>
 
   <h3>8.2 Tasarım kararları</h3>
   <ul>
-    <li><b>Kenar çubuğu düzeni:</b> Masaüstünde menü solda sabit durur; ikonlar ve seçili sayfa vurgusu ile kullanıcı nerede olduğunu her an görür. Kullanıcı kartı, tema düğmesi ve çıkış menünün altında toplanmıştır.</li>
+    <li><b>Renk:</b> Uygulamanın tek vurgu rengi <b>turuncudur</b>: bağlantılar, düğmeler, odak çizgisi, seçili menü, "bu hafta" ve "Devam ediyor" durumu bu renktedir. Yazılar, çizgiler ve zeminler hafif mavimsi nötr grilerden gelir. Yeşil "Tamamlandı", kırmızı geciken görev ve hata için ayrılmıştır.</li>
+    <li><b>Ders renkleri:</b> Her derse kendi rengi verilir (Yazılım Geliştirme mor, Web Programlama mavi, Veri Tabanı pembe); renk dersin kartında, kod rozetinde, çizelgede ve ilerleme çubuklarında aynıdır. Turuncu, yeşil ve kırmızı durumlara ayrıldığı için ders renklerinde kullanılmaz.</li>
+    <li><b>Yazı tipi:</b> IBM Plex Sans; başlıklar ve büyük sayılar aynı yazı tipinin dar (condensed) hâliyle yazılır. Sayılar alt alta hizalı durur.</li>
+    <li><b>Kenar çubuğu temayı izler:</b> Aydınlık temada beyaz, karanlık temada koyu zemindedir. Seçili menünün arka planı yeni menüye kayarak geçer; altında kullanıcı kartı, tema düğmesi, Gizlilik ve KVKK bağlantısı ve onay pencereli "Çıkış yap" vardır.</li>
     <li><b>Mobil:</b> Aynı menü, üst bardaki düğmeyle soldan kayarak açılır; arka plana tıklama, Esc tuşu veya sayfa değişimiyle kapanır.</li>
-    <li><b>Renk:</b> Ana renk indigo; durumlar için yeşil (tamamlandı), sarı (devam ediyor) ve gri (yapılacak) kullanılacaktır.</li>
-    <li><b>Tema:</b> İlk açılışta aydınlık; tercih tarayıcıda saklanır.</li>
-    <li><b>"To-do list" görünümünden kaçınma:</b> Görevler ders ve hafta bağlamında, öğrenme hedefleriyle birlikte ve ilerleme göstergeleriyle sunulur.</li>
+    <li><b>Giriş ekranları:</b> Geniş ekranda iki bölümlüdür: solda uygulamayı tanıtan panel, sağda form. Dar ekranda yalnızca form görünür.</li>
+    <li><b>"To-do list" görünümünden kaçınma:</b> Görevler ders ve hafta bağlamında, öğrenme hedefleriyle, ders renkleriyle ve dönem çizelgesiyle birlikte sunulur.</li>
   </ul>
+</section>
 
-  <h3>8.3 Ekran görüntüleri</h3>
-  <p style="font-size:9.3pt;color:#475569">Görüntüler 2. hafta sonundaki iskelet sürümünden, demo modunda örnek bir kullanıcıyla alınmıştır. Kesik çizgili "Geliştirilecek" kutuları, ilgili sayfada yapılacak işleri gösteren geçici alanlardır.</p>
-  <div class="figs">
-    <figure><img src="img/giris.jpg" alt="Giriş sayfası" /><figcaption>Şekil 1 — Giriş sayfası</figcaption></figure>
-    <figure><img src="img/anasayfa.jpg" alt="Ana Sayfa" /><figcaption>Şekil 2 — Ana Sayfa ve sol kenar çubuğu</figcaption></figure>
-    <figure><img src="img/hafta.jpg" alt="Hafta detayı" /><figcaption>Şekil 3 — Hafta detayı: öğrenme hedefleri ve görevler</figcaption></figure>
-    <figure><img src="img/profil-karanlik.jpg" alt="Profil, karanlık tema" /><figcaption>Şekil 4 — Profil sayfası, karanlık tema</figcaption></figure>
+<!-- 8.3 Ekran görüntüleri -->
+<section class="newpage">
+  <h3 style="margin-top:0">8.3 Ekran görüntüleri</h3>
+  <p style="font-size:9.3pt;color:#475569">Görüntüler 4 Kasım 2026'daki <code>main</code> sürümünden, demo modunda örnek bir öğrenciyle (24 görevin 9'u tamamlanmış) alınmıştır. Bütün sayfaların masaüstü ve mobil görüntüleri <code>docs/screenshots/</code> klasöründedir.</p>
+  <div class="figs-2">
+    <figure><img src="../screenshots/masaustu-01-giris.png" alt="Giriş" /><figcaption>Şekil 1 — Giriş ekranı</figcaption></figure>
+    <figure><img src="../screenshots/masaustu-02-kayit.png" alt="Kayıt" /><figcaption>Şekil 2 — Kayıt: öğrenci e-postası ve şifre gücü göstergesi</figcaption></figure>
   </div>
-  <div class="figs-mobile">
-    <div>
-      <h3 style="margin-top:0">Mobil görünüm</h3>
-      <p>Mobil ekranlarda kenar çubuğu gizlenir ve üst bardaki menü düğmesiyle açılır (Şekil 5). Menü açıkken arkadaki sayfa kaymaz, klavye odağı menüye taşınır; kapatıldığında odak menü düğmesine döner.</p>
-    </div>
-    <figure><img src="img/mobil-menu.jpg" alt="Mobil menü" /><figcaption>Şekil 5 — Mobil menü</figcaption></figure>
+  <figure><img src="../screenshots/masaustu-04-ana-sayfa.png" alt="Ana Sayfa" /><figcaption>Şekil 3 — Ana Sayfa: dönem çizelgesi, yaklaşan görevler ve derslerin bu haftası</figcaption></figure>
+</section>
+<section class="newpage">
+  <figure><img src="../screenshots/masaustu-05-derslerim.png" alt="Derslerim" /><figcaption>Şekil 4 — Derslerim: derslere göre görev durumu, arama, filtre ve ders kartları</figcaption></figure>
+  <figure><img src="../screenshots/masaustu-06-ders-detayi.png" alt="Ders detayı" /><figcaption>Şekil 5 — Ders detayı: dersin kapağı, haftaların akışı ve hafta kartları</figcaption></figure>
+</section>
+<section class="newpage">
+  <figure><img src="../screenshots/masaustu-07-hafta-detayi.png" alt="Hafta detayı" /><figcaption>Şekil 6 — Hafta detayı: görevler, haftanın ilerlemesi ve öğrenme hedefleri</figcaption></figure>
+  <figure><img src="../screenshots/masaustu-08-gorevlerim.png" alt="Görevlerim" /><figcaption>Şekil 7 — Görevlerim: durum dağılımı, arama ve filtreler, görev listesi</figcaption></figure>
+</section>
+<section class="newpage">
+  <figure><img src="../screenshots/masaustu-09-profil.png" alt="Profil" /><figcaption>Şekil 8 — Profil: hesap kartı, tema seçimi, istatistikler ve hesabı silme</figcaption></figure>
+  <div class="figs-2">
+    <figure><img src="../screenshots/masaustu-12-cikis-onayi.png" alt="Çıkış onayı" /><figcaption>Şekil 9 — Çıkış onay penceresi</figcaption></figure>
+    <figure><img src="../screenshots/masaustu-10-gizlilik.png" alt="Gizlilik" /><figcaption>Şekil 10 — Gizlilik ve KVKK sayfası</figcaption></figure>
+  </div>
+</section>
+<section class="newpage">
+  <h3 style="margin-top:0">Karanlık tema</h3>
+  <div class="figs-2">
+    <figure><img src="../screenshots/karanlik-01-ana-sayfa.png" alt="Ana Sayfa karanlık" /><figcaption>Şekil 11 — Ana Sayfa, karanlık tema</figcaption></figure>
+    <figure><img src="../screenshots/karanlik-02-gorevlerim.png" alt="Görevlerim karanlık" /><figcaption>Şekil 12 — Görevlerim, karanlık tema</figcaption></figure>
+  </div>
+  <h3>Mobil görünüm (390 px)</h3>
+  <div class="figs-3">
+    <figure><img src="../screenshots/mobil-01-giris.png" alt="Mobil giriş" /><figcaption>Şekil 13 — Giriş</figcaption></figure>
+    <figure><img src="../screenshots/mobil-12-menu.png" alt="Mobil menü" /><figcaption>Şekil 14 — Açılan menü</figcaption></figure>
+    <figure><img src="../screenshots/mobil-08-gorevlerim.png" alt="Mobil Görevlerim" /><figcaption>Şekil 15 — Görevlerim</figcaption></figure>
   </div>
 </section>
 
 <!-- 9 -->
-<section>
+<section class="newpage">
   <h2><span class="no">9</span>Güvenlik, gizlilik ve KVKK</h2>
   <h3>9.1 Güvenlik önlemleri</h3>
   <table class="t">
     <tr><th style="width:28%">Önlem</th><th>Açıklama</th></tr>
-    <tr><td>Firestore güvenlik kuralları</td><td>Bir kullanıcı yalnızca kendi <code>users/{uid}</code> belgesini okuyup yazabilir; diğer tüm yollar kapalıdır. Giriş yapmadan yapılan okuma isteğinin reddedildiği (HTTP 403) test edilmiştir.</td></tr>
-    <tr><td>Gizli bilgilerin repoda olmaması</td><td>Firebase ayarları <code>.env.local</code> dosyasındadır ve <code>.gitignore</code> ile git dışında tutulur; repoda yalnızca boş şablon (<code>.env.example</code>) bulunur.</td></tr>
+    <tr><td>Firestore güvenlik kuralları</td><td>Bir kullanıcı yalnızca kendi <code>users/{uid}</code> belgesini okuyup yazabilir; belgeye yalnızca beklenen alanlar yazılabilir ve kendi görev sayısı 100 ile sınırlıdır; diğer tüm yollar kapalıdır. Kurallar emülatörde 9 testle denenir.</td></tr>
+    <tr><td>Kayıt kuralları</td><td>Yalnızca öğrenci e-postası (<code>123456@ogr.ktu.edu.tr</code> biçimi) ve güçlü şifre (en az 10 karakter; küçük-büyük harf, rakam ve simgeden en az üçü) kabul edilir.</td></tr>
+    <tr><td>Gizli bilgilerin repoda olmaması</td><td>Firebase ayarları <code>.env.local</code> dosyasındadır ve git dışında tutulur; repoda yalnızca boş şablon (<code>.env.example</code>) bulunur.</td></tr>
     <tr><td>Şifre güvenliği</td><td>Şifreler Firebase Authentication tarafından geri çözülemeyecek biçimde saklanır; uygulama ve ekip şifreleri göremez.</td></tr>
     <tr><td>Güvenli yönlendirme</td><td>Girişten sonra yalnızca uygulama içi adreslere dönülür; dış bir siteye yönlendirme yapılamaz.</td></tr>
-    <tr><td>Hesap bilgisi sızdırmama</td><td>Şifre sıfırlamada, e-postanın kayıtlı olup olmadığı kullanıcıya söylenmez.</td></tr>
+    <tr><td>Hesap bilgisi sızdırmama</td><td>Giriş hatalarında hangi bilginin yanlış olduğu, şifre sıfırlamada e-postanın kayıtlı olup olmadığı söylenmez.</td></tr>
+    <tr><td>E-posta güvenilirliği</td><td>Şifre sıfırlama e-postaları ekibin doğrulanmış alan adından gönderilir; alan adında SPF, DKIM ve DMARC kayıtları vardır.</td></tr>
     <tr><td>HTTPS</td><td>Canlı site Firebase Hosting üzerinden yalnızca HTTPS ile sunulur.</td></tr>
   </table>
 
   <h3>9.2 KVKK uyumu</h3>
   <ul>
-    <li><b>Aydınlatma metni:</b> 6698 sayılı Kanun'un 10. maddesine göre hazırlanan metin <code>/gizlilik</code> sayfasında herkese açıktır; veri sorumlusu, işlenen veriler, amaçlar, hukuki sebep, saklama yeri ve süresi ile 11. maddedeki haklar açıklanır.</li>
+    <li><b>Aydınlatma metni:</b> 6698 sayılı Kanun'un 10. maddesine göre hazırlanan metin <code>/gizlilik</code> sayfasında herkese açıktır; veri sorumlusu, işlenen veriler, amaçlar, hukuki sebep, saklama yeri ve süresi, 11. maddedeki haklar ve başvuru yolu açıklanır.</li>
     <li><b>Onay:</b> Kayıt formunda kullanıcı aydınlatma metnini okuduğunu onaylamadan hesap açılamaz.</li>
-    <li><b>Veri minimizasyonu:</b> Yalnızca ad soyad, e-posta ve görev durumları tutulur. Analitik, reklam veya izleme çerezi kullanılmaz.</li>
-    <li><b>Saklama yeri:</b> Firestore veritabanı Avrupa bölgesindedir (<code>eur3</code>); metinde verilerin yurt dışındaki sunucularda tutulduğu belirtilmiştir.</li>
-    <li><b>Silme hakkı:</b> Profil sayfasındaki "Hesabımı ve verilerimi sil" ile önce kullanıcının Firestore verisi, ardından hesabı kalıcı olarak silinir.</li>
+    <li><b>Veri minimizasyonu:</b> Yalnızca ad soyad, e-posta, görev durumları ve kullanıcının kendi eklediği görevler tutulur. Analitik, reklam veya izleme çerezi kullanılmaz.</li>
+    <li><b>Saklama yeri ve aktarım:</b> Firestore veritabanı Avrupa bölgesindedir (<code>eur3</code>). Şifre sıfırlama e-postaları Firebase (Google) üzerinden <code>noreply@ders.c1h4n.com</code> adresinden gider.</li>
+    <li><b>Saklama süresi:</b> Proje dönemi bitince, en geç 31 Ocak 2027'de kalan tüm hesaplar ve veriler silinir.</li>
+    <li><b>Silme hakkı:</b> Profil'deki "Hesabımı ve verilerimi sil" ile, onay penceresinden sonra önce kullanıcının Firestore verisi, ardından hesabı kalıcı olarak silinir.</li>
+    <li><b>Başvuru:</b> Haklarla ilgili talepler <code>projemeil@gmail.com</code> adresine yapılır ve KVKK m.13 uyarınca en geç 30 gün içinde ücretsiz yanıtlanır.</li>
   </ul>
-  <div class="note"><b>Not:</b> Aydınlatma metni bir ders projesi için hazırlanmış şablondur ve hukuki görüş yerine geçmez. Metindeki iletişim e-postası teslimden önce eklenecektir.</div>
+  <div class="note"><b>Not:</b> Aydınlatma metni bir ders projesi için hazırlanmıştır ve hukuki görüş yerine geçmez.</div>
 </section>
 
 <!-- 10 -->
-<section >
+<section>
   <h2><span class="no">10</span>Erişilebilirlik ve responsive tasarım</h2>
   <table class="t">
-    <tr><th style="width:30%">İlke</th><th>Uygulamadaki karşılığı</th></tr>
-    <tr><td>Anlamlı etiketler</td><td>Her form alanının bağlı bir etiketi vardır; ikon düğmelerinde ekran okuyucu için açıklama (<code>aria-label</code>) bulunur; sayfa dili Türkçe olarak tanımlıdır.</td></tr>
-    <tr><td>Klavyeyle kullanım</td><td>Tüm kontroller Tab ile erişilebilir; odaklanan öğe belirgin bir çerçeveyle gösterilir; "İçeriğe geç" bağlantısı menüyü atlatır; mobil menü Esc ile kapanır.</td></tr>
-    <tr><td>Durum bildirimi</td><td>Seçili menü öğesi <code>aria-current</code> ile, hata mesajları <code>role="alert"</code> ile duyurulur.</td></tr>
-    <tr><td>Kontrast</td><td>Metin ve arka plan renkleri aydınlık ve karanlık temada okunaklı olacak şekilde seçilmiştir.</td></tr>
-    <tr><td>Responsive</td><td>768 px altında mobil düzen (açılır menü), üstünde masaüstü düzen (sabit kenar çubuğu); içerik yatay kaydırma gerektirmez.</td></tr>
+    <tr><th style="width:28%">İlke</th><th>Uygulamadaki karşılığı</th></tr>
+    <tr><td>Anlamlı etiketler</td><td>Her form alanının bağlı bir etiketi ve gerektiğinde açıklaması vardır; ikon düğmelerinde ekran okuyucu için açıklama (<code>aria-label</code>) bulunur; sayfa dili Türkçe olarak tanımlıdır.</td></tr>
+    <tr><td>Klavyeyle kullanım</td><td>Tüm kontroller Tab ile erişilebilir; odaklanan öğe belirgin bir çerçeveyle gösterilir; "İçeriğe geç" bağlantısı menüyü atlatır; mobil menü ve onay pencereleri Esc ile kapanır, onay penceresinde ilk odak "Hayır/Vazgeç"tedir.</td></tr>
+    <tr><td>Durum bildirimi</td><td>Seçili menü öğesi <code>aria-current</code> ile, hata mesajları <code>role="alert"</code> ile, ekleme/silme sonuçları ve şifre gücü canlı bölgelerle duyurulur.</td></tr>
+    <tr><td>Kontrast</td><td>Turuncu vurgu renginin koyu tonları beyaz yazıyla en az 4.5:1 kontrast verir; renkler aydınlık ve karanlık temada ayrı ayrı seçilmiştir. Durumlar yalnızca renkle değil simgeyle de gösterilir.</td></tr>
+    <tr><td>Hareketi azalt</td><td>İşletim sisteminde "hareketi azalt" açıksa menü, sayfa ve pencere animasyonları kapanır.</td></tr>
+    <tr><td>Responsive</td><td>768 px altında mobil düzen (açılır menü), üstünde masaüstü düzen (sabit kenar çubuğu); tüm sayfalar 375 px'de yatay kaydırma olmadan denenmiştir.</td></tr>
   </table>
 </section>
 
 <!-- 11 -->
 <section class="newpage">
   <h2><span class="no">11</span>Proje yönetimi ve ekip çalışması</h2>
-  <h3>11.1 Roller</h3>
+  <h3>11.1 Roller ve katkılar</h3>
   <table class="t">
-    <tr><th style="width:24%">Üye</th><th style="width:30%">Rol</th><th>Temel sorumluluklar</th></tr>
-    <tr><td>Selin Özbay</td><td>Lider + Geliştirici</td><td>Koordinasyon, görev paylaşımı, GitHub ve görev panosu düzeni, teslim kontrolü</td></tr>
-    <tr><td>Cihan Bayram</td><td>Analist + Geliştirici</td><td>İhtiyaç analizi, kullanıcı hikâyeleri, kabul kriterleri, kapsam yönetimi</td></tr>
-    <tr><td>Tahir Taş</td><td>Test / Kalite + Geliştirici</td><td>Test senaryoları, hata takibi, kalite kontrol</td></tr>
-    <tr><td>Ali Tekçe</td><td>Dokümantasyon / Sunum + Geliştirici</td><td>README, proje raporu, kullanıcı dokümanı, sunum ve teslim paketi</td></tr>
+    <tr><th style="width:17%">Üye</th><th style="width:20%">Rol</th><th>Başlıca katkılar</th></tr>
+    <tr><td>Selin Özbay</td><td>Lider + Geliştirici</td><td>Depo ve pano kurulumu, görev dağılımı; Ana Sayfa (dönem çizelgesi, yaklaşan görevler, bu hafta); Derslerim (ders kartları, durum grafiği, arama, filtre); ortak tasarım (yazı tipi, renkler, kenar çubuğu); ekip katkı tablosu; e-posta/alan adı ayarlarının belgelenmesi; PR incelemeleri ve birleştirmeler</td></tr>
+    <tr><td>Cihan Bayram</td><td>Analist + Geliştirici</td><td>Gereksinimler; Jira'dan GitHub Projects'e geçiş ve pano otomasyonları; örnek veri; Görevlerim (kartlar, durum, filtre, arama); hafta detayı; kendi görevini ekleme; giriş/şifre sıfırlama/senkron testleri; arayüzün yeni görünümü ve turuncu tema; <code>ders.c1h4n.com</code> alan adı ve DNS kayıtları</td></tr>
+    <tr><td>Tahir Taş</td><td>Test / Kalite + Geliştirici</td><td>Birim, bileşen ve E2E test altyapısı ve CI; test senaryosu tablosu ve hata kaydı; kayıt kuralları (öğrenci e-postası, şifre gücü); ders detayı; Profil; testte bulunan hataların düzeltilmesi (#71, #72, #78, #98, #99, #101)</td></tr>
+    <tr><td>Ali Tekçe</td><td>Dokümantasyon / Sunum + Geliştirici</td><td>Proje iskeleti, giriş/kayıt/şifre sıfırlama altyapısı, ilk README ve ilk yayın; kenar çubuğu (KVKK bağlantısı, menü geçişleri, çıkış onayı); giriş ekranlarının iki bölümlü tasarımı ve sayfa geçişi hatasının düzeltilmesi; KVKK metni; proje raporu ve ekran görüntüleri</td></tr>
   </table>
-  <p>Tüm ekip üyeleri aynı zamanda geliştiricidir. Geliştirme işi, her biri bir GitHub issue'su olan iş paketlerine bölünmüştür:</p>
-  <table class="t">
-    <tr><th style="width:30%">İş paketi</th><th>Kapsam</th></tr>
-    <tr><td>Proje iskeleti ve ortak çerçeve</td><td>Kurulum, yönlendirme, kenar çubuğu, tema, KVKK metni, canlı yayın — <span class="pill ok">Hazır</span><br />Kayıt, giriş, şifre sıfırlama, hesap silme — <span class="pill wip">Geliştiriliyor</span></td></tr>
-    <tr><td>Ana Sayfa</td><td>Genel ilerleme göstergesi, derslere göre ilerleme, yaklaşan görevler</td></tr>
-    <tr><td>Derslerim ve hafta detayı</td><td>Ders kartları, hafta kartları, öğrenme hedefleri, haftalar arası geçiş</td></tr>
-    <tr><td>Görevlerim</td><td>Görev kartları, durum değiştirme, filtre, arama, boş durum mesajı</td></tr>
-    <tr><td>Profil ve kalite</td><td>Tema seçimi, kişisel istatistikler, mobil görünüm ve erişilebilirlik kontrolü</td></tr>
-  </table>
+  <p>Ayrıntılı ve bağlantılı katkı listesi: <code>docs/katki-tablosu.md</code> ve README → "Kim ne yaptı?".</p>
 
   <h3>11.2 Görev takibi ve sürüm kontrolü</h3>
   <p>
@@ -490,10 +512,10 @@
     GitHub issue'larına aktarılmıştır.
   </p>
   <ul>
-    <li><b>Issue ve pano:</b> Her iş bir GitHub issue'sudur (<code>#12</code> gibi) ve bir ekip üyesine atanır. Panodaki sütunlar: Yapılacaklar → Yapılıyor → İnceleme → Test → Yapıldı. Her issue'da öncelik ve kabul kriterleri bulunur; büyük işler alt görevlere bölünür.</li>
-    <li><b>Milestone:</b> Teslime kadar yapılacak işler "Teslim (11 Kasım 2026)" milestone'una bağlıdır; tamamlanma yüzdesi buradan izlenir.</li>
-    <li><b>Dal ve PR:</b> Her üye kendi hesabıyla commit atar. İş, <code>main</code> dalından açılan <code>feature/12-kisa-aciklama</code> biçimindeki dallarda yapılır. PR açıklamasındaki <code>Closes #12</code> satırı PR'ı issue'ya bağlar; en az bir ekip arkadaşı incelemeden ve otomatik kontroller geçmeden PR birleştirilmez.</li>
-    <li><b>Otomasyonlar:</b> Yeni issue panoya kendiliğinden eklenir; PR bağlanınca kart "İnceleme"ye, PR birleşince "Yapıldı"ya geçer.</li>
+    <li><b>Issue ve pano:</b> Her iş bir GitHub issue'sudur ve bir ekip üyesine atanır. Panodaki sütunlar: Yapılacaklar → Yapılıyor → İnceleme → Test → Yapıldı. Her issue'da öncelik ve kabul kriterleri bulunur; büyük işler alt görevlere bölünür.</li>
+    <li><b>Milestone:</b> Teslime kadar yapılacak işler "Teslim (11 Kasım 2026)" milestone'una bağlıdır.</li>
+    <li><b>Dal ve PR:</b> Her üye kendi hesabıyla commit atar. İş, <code>main</code>'den açılan dallarda yapılır; PR açıklamasındaki <code>Closes #12</code> PR'ı issue'ya bağlar; en az bir ekip arkadaşı incelemeden ve dört otomatik kontrol geçmeden PR birleştirilmez. PR'lar "Create a merge commit" ile birleştirilir; böylece her commit geçmişte ayrı görünür.</li>
+    <li><b>Çakışmalar:</b> Aynı dosyalara dokunan dallar <code>main</code> güncellenerek birleştirildi; örneğin #80'de giriş ekranlarının yeni tasarımı <code>main</code>'deki kayıt kurallarıyla birleştirildi.</li>
     <li><b>Commit mesajları:</b> tür, açıklama ve issue numarası içerir:</li>
   </ul>
 <pre>feat: görevlere durum filtresi ekle (#12)
@@ -502,85 +524,101 @@
 
 - Görevlerim sayfasına Yapılacak / Devam ediyor / Tamamlandı filtresi eklendi
 - Sonuç yoksa "Bu durumda görev yok" mesajı gösteriliyor</pre>
-  <p>Türler: <code>feat</code> (özellik), <code>fix</code> (hata), <code>style</code> (görünüm), <code>refactor</code>, <code>docs</code>, <code>test</code>, <code>chore</code>.</p>
 
-  <h3>11.3 Çalışma planı</h3>
+  <h3>11.3 Çalışma planı ve gerçekleşen</h3>
   <table class="t">
-    <tr><th class="nowrap">Hafta</th><th style="width:38%">Plan</th><th>Gerçekleşen</th><th class="nowrap">Durum</th></tr>
-    <tr><td>1</td><td>İhtiyaç analizi, kullanıcı hikâyeleri, repository ve görev planı</td><td>Ders dokümanları incelendi; menüler, teknolojiler ve kapsam belirlendi; GitHub reposu ve Jira panosu açıldı.</td><td><span class="pill ok">Tamamlandı</span></td></tr>
-    <tr><td>2</td><td>Arayüz/teknik tasarım; temel yapı ve ana işlevler</td><td>Proje iskeleti, veri modeli, kenar çubuğu, tema, KVKK sayfası, Firestore kuralları ve canlı yayın tamamlandı; README yazıldı. Görev takibi GitHub Projects'e taşındı; birim, E2E ve Firestore kural testleri ile GitHub Actions kuruldu. Giriş sisteminin kodu yazıldı, gerçek Firebase hesabıyla testi 3. haftaya kaldı.</td><td><span class="pill ok">Tamamlandı</span></td></tr>
-    <tr><td>3</td><td>Ana işlevlerin tamamlanması, entegrasyon, test, hata düzeltme</td><td>Sayfa içerikleri (ders kartları, görev listesi, filtre, arama, ilerleme göstergesi) geliştirilecek; test senaryoları çalıştırılacak.</td><td><span class="pill wip">Devam ediyor</span></td></tr>
-    <tr><td>4</td><td>Kalite kontrol, dokümantasyon, demo, sunum ve teslim</td><td>Kullanıcı dokümanı, raporun son hâli, sunum ve demo senaryolarının provası.</td><td><span class="pill wait">Bekliyor</span></td></tr>
+    <tr><th class="nowrap">Hafta</th><th style="width:30%">Plan</th><th>Gerçekleşen</th><th class="nowrap">Durum</th></tr>
+    <tr><td>1</td><td>İhtiyaç analizi, kullanıcı hikâyeleri, repository ve görev planı</td><td>Ders dokümanları incelendi; menüler, teknolojiler ve kapsam belirlendi; GitHub reposu ve görev panosu açıldı; proje iskeleti ve ilk yayın yapıldı.</td><td><span class="pill ok">Tamamlandı</span></td></tr>
+    <tr><td>2</td><td>Arayüz/teknik tasarım; temel yapı ve ana işlevler</td><td>Veri modeli, kenar çubuğu, tema, KVKK sayfası, Firestore kuralları; GitHub Projects'e geçiş; birim/E2E/kural testleri ve CI kuruldu; ara rapor hazırlandı.</td><td><span class="pill ok">Tamamlandı</span></td></tr>
+    <tr><td>3</td><td>Ana işlevlerin tamamlanması, entegrasyon, test, hata düzeltme</td><td>Görevlerim, hafta ve ders detayı, kendi görevim, kayıt kuralları, Profil, Ana Sayfa ve Derslerim tamamlandı; ilk test turu (47 senaryo) yapıldı, bulunan hatalar düzeltildi; alan adı ve e-posta gönderimi kuruldu.</td><td><span class="pill ok">Tamamlandı</span></td></tr>
+    <tr><td>4</td><td>Kalite kontrol, dokümantasyon, demo, sunum ve teslim</td><td>Yeni görünüm ve turuncu tema; giriş ekranları; ikinci test turu (70 senaryo geçti); README ve rapor son hâli, ekran görüntüleri. Kalan: kullanıcı dokümanı, sunum, wireframe ve son yayın (Bölüm 14).</td><td><span class="pill wip">Devam ediyor</span></td></tr>
   </table>
 </section>
 
 <!-- 12 -->
-<section>
-  <h2><span class="no">12</span>Test yaklaşımı ve test senaryoları</h2>
+<section class="newpage">
+  <h2><span class="no">12</span>Test yaklaşımı ve test sonuçları</h2>
   <h3>12.1 Yaklaşım</h3>
   <table class="t">
-    <tr><th style="width:24%">Test türü</th><th>Kapsam</th><th style="width:22%">Komut</th></tr>
-    <tr><td>Statik denetim</td><td>ESLint + Oxlint ile kod hataları, TypeScript tip kontrolü, yayın derlemesi</td><td><code>npm run lint</code>, <code>npm run type-check</code>, <code>npm run build</code></td></tr>
-    <tr><td>Birim ve bileşen testleri (Vitest)</td><td>Ders kataloğu ve ilerleme store'larının hesapları, <code>AppIcon</code> bileşeni. Testler her zaman demo modunda çalışır, gerçek Firebase'e bağlanmaz. Rapor tarihinde 3 dosyada 10 testin tamamı geçmektedir.</td><td><code>npm test</code></td></tr>
-    <tr><td>Uçtan uca testler (Playwright)</td><td>Giriş yapmayanın giriş sayfasına yönlenmesi, demo modunda giriş ve menüden sayfa geçişleri; gerçek tarayıcıda</td><td><code>npm run test:e2e</code></td></tr>
-    <tr><td>Firestore kural testleri</td><td>Giriş yapmayanın hiçbir belgeye, giriş yapanın yalnızca kendi belgesine erişebildiği; Firestore emülatöründe</td><td><code>npm run test:rules</code></td></tr>
-    <tr><td>Manuel senaryo testleri</td><td>Aşağıdaki senaryolar; masaüstü (1280 px) ve mobil (375 px), aydınlık ve karanlık tema</td><td>—</td></tr>
+    <tr><th style="width:22%">Test türü</th><th>Kapsam</th><th class="nowrap">Sayı</th><th style="width:19%">Komut</th></tr>
+    <tr><td>Statik denetim</td><td>ESLint + Oxlint ile kod hataları, TypeScript tip kontrolü, yayın derlemesi</td><td>—</td><td><code>npm run lint</code>, <code>npm run type-check</code>, <code>npm run build</code></td></tr>
+    <tr><td>Birim ve bileşen (Vitest)</td><td>Store'lar, ilerleme ve çizelge hesapları, filtre ve arama, bileşenler ve sayfalar; her zaman demo modunda</td><td>209</td><td><code>npm test</code></td></tr>
+    <tr><td>Uçtan uca (Playwright)</td><td>Kayıt, giriş, şifremi unuttum, menü ve sayfa geçişi, Ana Sayfa, Derslerim, ders ve hafta detayı, Görevlerim, kendi görevim, Profil, Gizlilik</td><td>41</td><td><code>npm run test:e2e</code></td></tr>
+    <tr><td>Firebase emülatörü</td><td>Firestore güvenlik kuralları (9); gerçek kayıt, giriş, şifre sıfırlama, kullanıcı verisi ve hesap silme (14)</td><td>23</td><td><code>npm run test:firebase</code></td></tr>
+    <tr><td>Elle senaryo testleri</td><td><code>docs/test-senaryolari.md</code>: masaüstü 1024–1280 px ve mobil 375 px, aydınlık ve karanlık tema</td><td>71</td><td>—</td></tr>
   </table>
   <p>
-    <b>Sürekli entegrasyon (CI):</b> <code>main</code> dalına yapılan her push'ta ve açılan her PR'da
-    GitHub Actions dört kontrol çalıştırır: lint + tip kontrolü + derleme, birim testleri, E2E
-    testleri ve kural testleri. Kontrollerden biri başarısızsa PR birleştirilmeden önce düzeltilir.
+    <b>Sonuç (4 Kasım 2026, <code>main</code>):</b> 209 birim, 41 E2E ve 23 Firebase emülatör testinin
+    tamamı geçmektedir. <b>Sürekli entegrasyon:</b> <code>main</code>'e yapılan her push'ta ve açılan
+    her PR'da GitHub Actions bu dört kontrolü çalıştırır; kırmızı bir kontrol varken PR birleştirilmez.
+    Elle yapılan iki test turunda (31 Ekim ve 3 Kasım) 71 senaryonun 70'i geçmiş, bulunan 7 hata
+    düzeltilmiş ve her biri için tekrar etmemesi adına bir E2E testi eklenmiştir.
   </p>
-  <h3>12.2 Test senaryoları</h3>
+
+  <h3>12.2 Rapordaki test senaryoları</h3>
   <table class="t ids">
-    <tr><th class="nowrap">No</th><th style="width:44%">Senaryo</th><th>Beklenen sonuç</th><th class="nowrap">Sonuç</th></tr>
-    <tr><td>T-1</td><td>Demo modunda kayıt formu doldurulup KVKK onayıyla kayıt olunur.</td><td>Kullanıcı Ana Sayfa'ya yönlendirilir; adı görünür.</td><td><span class="pill ok">Geçti</span></td></tr>
+    <tr><th class="nowrap">No</th><th style="width:42%">Senaryo</th><th>Beklenen sonuç</th><th class="nowrap">Sonuç</th></tr>
+    <tr><td>T-1</td><td>Kayıt formu öğrenci e-postası, güçlü şifre ve KVKK onayıyla doldurulup kayıt olunur.</td><td>Kullanıcı Ana Sayfa'ya yönlendirilir; adı görünür. Kural dışı e-posta veya zayıf şifrede Türkçe uyarı çıkar.</td><td><span class="pill ok">Geçti</span></td></tr>
     <tr><td>T-2</td><td>Giriş yapmadan <code>/derslerim</code> adresine gidilir.</td><td>Giriş sayfasına yönlendirilir; girişten sonra Derslerim açılır.</td><td><span class="pill ok">Geçti</span></td></tr>
-    <tr><td>T-3</td><td>Bir görev "Tamamlandı" yapılıp sayfa yenilenir.</td><td>Durum ve ilerleme (ör. 1/18, %6) korunur.</td><td><span class="pill ok">Geçti</span></td></tr>
-    <tr><td>T-4</td><td>Tema düğmesine basılıp sayfa yenilenir.</td><td>Seçilen tema korunur; kayıtlı tercih yoksa aydınlık tema açılır.</td><td><span class="pill ok">Geçti</span></td></tr>
+    <tr><td>T-3</td><td>Bir görev "Tamamlandı" yapılıp sayfa yenilenir.</td><td>Durum ve tüm ilerleme göstergeleri korunur.</td><td><span class="pill ok">Geçti</span></td></tr>
+    <tr><td>T-4</td><td>Tema değiştirilip sayfa yenilenir; Profil'de "Sistem" seçilir.</td><td>Seçilen tema korunur; "Sistem"de cihazın teması izlenir; kayıtlı tercih yoksa aydınlık açılır.</td><td><span class="pill ok">Geçti</span></td></tr>
     <tr><td>T-5</td><td>Mobil genişlikte menü açılır; Esc'e basılır; menüden bir sayfa seçilir.</td><td>Menü açılır/kapanır; odak doğru yere geçer; sayfa değişince menü kapanır.</td><td><span class="pill ok">Geçti</span></td></tr>
-    <tr><td>T-6</td><td>Var olmayan bir adres açılır.</td><td>404 sayfası gösterilir.</td><td><span class="pill ok">Geçti</span></td></tr>
-    <tr><td>T-7</td><td>Giriş yapmadan Firestore'daki bir kullanıcı belgesi okunmaya çalışılır.</td><td>İstek reddedilir (PERMISSION_DENIED, HTTP 403).</td><td><span class="pill ok">Geçti</span></td></tr>
+    <tr><td>T-6</td><td>Var olmayan bir adres ve geçersiz hafta numarası açılır.</td><td>404 sayfası veya "Hafta bulunamadı" gösterilir.</td><td><span class="pill ok">Geçti</span></td></tr>
+    <tr><td>T-7</td><td>Giriş yapmadan ya da başka kullanıcının Firestore belgesi okunup yazılmaya çalışılır.</td><td>İstek reddedilir (PERMISSION_DENIED).</td><td><span class="pill ok">Geçti</span></td></tr>
     <tr><td>T-8</td><td>Canlı sitede doğrudan <code>/gizlilik</code> adresi açılır.</td><td>Sayfa açılır; demo modu uyarısı görünmez; konsolda hata yoktur.</td><td><span class="pill ok">Geçti</span></td></tr>
-    <tr><td>T-9</td><td>Canlı sitede gerçek e-postayla kayıt, çıkış, tekrar giriş ve şifre sıfırlama.</td><td>Tüm adımlar hatasız çalışır; sıfırlama e-postası Türkçe gelir.</td><td><span class="pill wait">Bekliyor</span></td></tr>
-    <tr><td>T-10</td><td>Profil'den hesap silinir.</td><td>Kullanıcı ve Firestore verisi silinir; giriş sayfasına dönülür.</td><td><span class="pill wait">Bekliyor</span></td></tr>
-    <tr><td>T-11</td><td>Görevler durum, ders ve hafta filtresiyle süzülür; arama yapılır.</td><td>Liste anında güncellenir; sonuç yoksa mesaj gösterilir.</td><td><span class="pill wait">Bekliyor</span></td></tr>
-    <tr><td>T-12</td><td>Ders ve hafta kartlarındaki ilerleme göstergeleri kontrol edilir.</td><td>Görev durumu değişince tüm göstergeler aynı anda güncellenir.</td><td><span class="pill wait">Bekliyor</span></td></tr>
+    <tr><td>T-9</td><td>Firebase ile kayıt, çıkış, tekrar giriş ve şifre sıfırlama.</td><td>Tüm adımlar hatasız çalışır; sıfırlama e-postası Türkçe ve <code>noreply@ders.c1h4n.com</code>'dan gelir.</td><td><span class="pill ok">Geçti</span></td></tr>
+    <tr><td>T-10</td><td>Profil'den onay penceresiyle hesap silinir.</td><td>Kullanıcı ve Firestore verisi silinir; giriş sayfasına dönülür.</td><td><span class="pill ok">Geçti</span></td></tr>
+    <tr><td>T-11</td><td>Görevler durum, ders ve hafta filtresiyle süzülür; arama yapılır.</td><td>Liste anında güncellenir; sonuç yoksa mesaj ve "Filtreleri temizle" gösterilir.</td><td><span class="pill ok">Geçti</span></td></tr>
+    <tr><td>T-12</td><td>Ders, hafta ve Ana Sayfa'daki ilerleme göstergeleri kontrol edilir.</td><td>Görev durumu değişince tüm göstergeler aynı anda güncellenir.</td><td><span class="pill ok">Geçti</span></td></tr>
   </table>
+  <p style="font-size:9.3pt;color:#475569">
+    T-9 ve T-10, Firebase Authentication ve Firestore emülatörlerinde otomatik olarak, şifre sıfırlama
+    e-postasının teslimi ise ekip tarafından gerçek hesaplarla denenmiştir. Ekip test belgesindeki
+    T-43 (canlı sitede tek bir hesapla bütün akışların uçtan uca denenmesi) teslimden önce son
+    yayınla birlikte yapılacaktır.
+  </p>
 </section>
 
 <!-- 13 -->
 <section>
   <h2><span class="no">13</span>Kurulum, çalıştırma ve yayınlama</h2>
-  <p><b>Gereksinimler:</b> Node.js 22.18 veya üstü (önerilen 24 LTS), npm, Git. Yayınlamak için Firebase CLI.</p>
+  <p><b>Gereksinimler:</b> Node.js 22.18 veya üstü (önerilen 24 LTS), npm, Git. Yayınlamak ve Firebase testleri için Firebase CLI ve Java 21+.</p>
 <pre>git clone https://github.com/selinozbay/YG-Proje1-Grup3.git
 cd YG-Proje1-Grup3
 npm install
 npm run dev          # http://localhost:5173</pre>
   <ul>
-    <li><b>Firebase ile çalıştırmak için</b> <code>.env.example</code> dosyası <code>.env.local</code> adıyla kopyalanıp ekipten alınan değerlerle doldurulur. Bu adım atlanırsa uygulama demo modunda açılır.</li>
-    <li><code>npm run dev:demo</code> uygulamayı her zaman demo modunda başlatır.</li>
-    <li><code>npm run lint</code> ve <code>npm run type-check</code> kodu denetler; <code>npm test</code>, <code>npm run test:e2e</code> ve <code>npm run test:rules</code> testleri çalıştırır; <code>npm run build</code> yayın dosyalarını üretir.</li>
-    <li><code>npm run deploy</code> uygulamayı derleyip Firebase Hosting'e yayınlar ve Firestore kurallarını yükler. Canlı adres: <b>https://ders-ogrenci-bilgi-ekip.web.app</b></li>
+    <li><b>Firebase ile çalıştırmak için</b> <code>.env.example</code> dosyası <code>.env.local</code> adıyla kopyalanıp ekipten alınan değerlerle doldurulur. Bu adım atlanırsa uygulama demo modunda açılır; <code>npm run dev:demo</code> her zaman demo modunda başlatır.</li>
+    <li><code>npm test</code>, <code>npm run test:e2e</code> ve <code>npm run test:firebase</code> testleri çalıştırır; E2E'den önce açık bir <code>npm run dev</code> varsa kapatılmalıdır.</li>
+    <li><code>npm run deploy</code> uygulamayı derleyip Firebase Hosting'e yayınlar. Canlı adres: <b>https://ders.c1h4n.com</b> (aynı site: ders-ogrenci-bilgi-ekip.web.app).</li>
   </ul>
-  <p>Ayrıntılı kurulum, komutlar ve dosya dosya açıklamalar repodaki <code>README.md</code> dosyasındadır.</p>
+  <p>Ayrıntılı kurulum, komutlar, alan adı ve e-posta ayarları ile dosya dosya açıklamalar repodaki <code>README.md</code> dosyasındadır.</p>
 </section>
 
 <!-- 14 -->
-<section >
-  <h2><span class="no">14</span>Bilinen eksikler ve sonraki adımlar</h2>
+<section>
+  <h2><span class="no">14</span>Bilinen eksikler ve kalan işler</h2>
+  <h3>14.1 Bilinen eksikler</h3>
   <table class="t">
-    <tr><th style="width:45%">Eksik</th><th>Plan</th></tr>
-    <tr><td>Ana Sayfa, Derslerim, Görevlerim ve Profil sayfalarının içerik bileşenleri</td><td>3. haftada ilgili iş paketleri (Bölüm 11.1) tamamlanacak.</td></tr>
-    <tr><td>Kayıt, giriş, şifre sıfırlama ve hesap silme akışlarının gerçek Firebase hesabıyla denenmesi (T-9, T-10)</td><td>Test sorumlusu tarafından 3. haftada yapılacak; sorunsuz çalışırsa "Hazır" olarak işaretlenecek.</td></tr>
-    <tr><td>Gizlilik sayfasındaki iletişim e-postası</td><td>Ekip iletişim adresi belirlenince eklenecek.</td></tr>
-    <tr><td>Kullanıcı dokümanı ve sunum</td><td>Sayfalar tamamlandıktan sonra ekran görüntüleriyle hazırlanacak.</td></tr>
-    <tr><td>Demo modunda şifre kontrolü yok</td><td>Bilinçli tercih: demo modu yalnızca denemek içindir; gerçek kullanım Firebase modundadır.</td></tr>
+    <tr><th style="width:42%">Eksik</th><th>Açıklama</th></tr>
+    <tr><td>KTÜ adreslerinde şifre sıfırlama e-postası Gereksiz klasörüne düşebilir</td><td>Alan adı yeni olduğu için; kullanıcıya Gereksiz klasörüne bakması hatırlatılır. Sorun sürerse KTÜ Bilgi İşlem'den gönderici izin listesine ekleme istenebilir.</td></tr>
+    <tr><td>E-postadaki bağlantı <code>firebaseapp.com</code> adresinde kaldı</td><td>Firebase ücretsiz (Spark) planda e-posta şablonunun değiştirilmesine izin vermiyor; ders projesi için ücretli plana geçilmedi.</td></tr>
+    <tr><td>Demo modunda şifre kontrol edilmez</td><td>Bilinçli tercih: demo modu yalnızca denemek içindir; gerçek kullanım Firebase modundadır.</td></tr>
+  </table>
+  <h3>14.2 Teslime kadar kalan işler</h3>
+  <table class="t">
+    <tr><th style="width:34%">İş</th><th>Issue</th><th class="nowrap">Durum</th></tr>
+    <tr><td>Kullanıcı dokümanı (<code>docs/kullanici-dokumani.pdf</code>)</td><td>#55</td><td><span class="pill wait">Bekliyor</span></td></tr>
+    <tr><td>Sunum dosyası (<code>presentation/</code>)</td><td>#56</td><td><span class="pill wait">Bekliyor</span></td></tr>
+    <tr><td>Wireframe'ler</td><td>#64</td><td><span class="pill wait">Bekliyor</span></td></tr>
+    <tr><td>Ekran görüntüleri (<code>docs/screenshots/</code>)</td><td>#57</td><td><span class="pill ok">Hazır</span></td></tr>
+    <tr><td>Son sürümün yayınlanması ve <code>v1.0.0</code> etiketi; canlı sitede uçtan uca deneme (T-43)</td><td>#59, #60</td><td><span class="pill wait">Bekliyor</span></td></tr>
+    <tr><td>Ekip katkı tablosunun son hâli</td><td>#65</td><td><span class="pill wip">Devam ediyor</span></td></tr>
   </table>
 </section>
 
 <!-- 15 -->
-<section >
+<section style="page-break-inside: avoid">
   <h2><span class="no">15</span>Yapay zekâ araçlarının kullanımı</h2>
   <p>
     Ders kuralları gereği yapay zekâ çıktıları anlaşılmadan projeye eklenmemelidir. Bu projede
@@ -589,13 +627,13 @@ npm run dev          # http://localhost:5173</pre>
   <ul>
     <li>Ders dokümanlarının incelenip gereksinimlerin listelenmesi,</li>
     <li>Proje iskeletinin (klasör yapısı, yönlendirme, giriş sistemi, veri katmanı, kenar çubuğu) oluşturulması,</li>
-    <li>README ve bu raporun ilk taslağının hazırlanması.</li>
+    <li>Giriş ekranlarının tasarımı, PR çakışmalarının çözümü ve kararsız bir E2E testinin nedeninin bulunması,</li>
+    <li>README'nin ilk sürümü, bu rapor ve ekran görüntülerinin alınması.</li>
   </ul>
   <p>
-    Üretilen kod, ekip tarafından okunmuş ve açıklanabilir olması için önemli yerlerine Türkçe
-    açıklamalar eklenmiştir. Yapay zekâ desteğiyle yapılan commitlerde bu durum commit mesajında
-    (<code>Co-Authored-By</code>) belirtilmiştir. Sayfaların içerik bileşenleri ekip üyeleri
-    tarafından geliştirilmektedir.
+    Üretilen kod ekip tarafından okunmuş, önemli yerlerine Türkçe açıklamalar eklenmiş ve her
+    değişiklik testlerden ve PR incelemesinden geçmiştir. Yapay zekâ desteğiyle yapılan commitlerde
+    bu durum commit mesajında (<code>Co-Authored-By</code>) belirtilmiştir.
   </p>
 </section>
 
@@ -603,14 +641,14 @@ npm run dev          # http://localhost:5173</pre>
 <section class="newpage">
   <h2><span class="no">Ek</span>Değerlendirme rubriği ile eşleştirme</h2>
   <table class="t">
-    <tr><th style="width:36%">Rubrik kriteri (puan)</th><th>Projedeki karşılığı</th><th class="nowrap">Bölüm</th></tr>
-    <tr><td>Temel işlevlerin çalışması (15)</td><td>Ders/hafta kartları, görev durumu, filtre, arama, ilerleme göstergesi</td><td>4.1</td></tr>
-    <tr><td>Web arayüzü ve kullanıcı etkileşimi (12)</td><td>Kenar çubuğu düzeni, anlık güncellenen ilerleme, tema, formlar ve hata mesajları</td><td>8</td></tr>
-    <tr><td>Responsive tasarım ve kullanılabilirlik (8)</td><td>Masaüstü/mobil düzen, erişilebilirlik ilkeleri</td><td>8.2, 10</td></tr>
-    <tr><td>İhtiyaç analizi / kullanıcı senaryoları (7)</td><td>Hedef kullanıcılar, 11 kullanıcı hikâyesi ve kabul kriterleri, senaryolar</td><td>3</td></tr>
-    <tr><td>Kod ve repository düzeni (6)</td><td>Katmanlı mimari, TypeScript, lint/format kuralları, otomatik testler ve CI, README, PR şablonu, GitHub Projects, commit kuralları</td><td>6, 11.2</td></tr>
-    <tr><td>Rapor ve kullanıcı dokümanı (7)</td><td>Bu rapor; kullanıcı dokümanı 4. haftada</td><td>—</td></tr>
-    <tr><td>Sunum ve demo (5)</td><td>Canlı demo: ders-ogrenci-bilgi-ekip.web.app; senaryolar Bölüm 3.3</td><td>3.3, 13</td></tr>
+    <tr><th style="width:34%">Rubrik kriteri (puan)</th><th>Projedeki karşılığı</th><th class="nowrap">Bölüm</th></tr>
+    <tr><td>Temel işlevlerin çalışması (15)</td><td>Ders ve hafta kartları, görev durumu, filtre, arama, ilerleme göstergeleri, kendi görevim, kayıt/giriş/şifre sıfırlama, hesap silme; hepsi otomatik testlerle korunur</td><td>4, 12</td></tr>
+    <tr><td>Web arayüzü ve kullanıcı etkileşimi (12)</td><td>Dönem çizelgesi, ders renkleri, temayı izleyen kenar çubuğu, geçiş efektleri, onay pencereleri, anlık güncellenen ilerleme</td><td>8</td></tr>
+    <tr><td>Responsive tasarım ve kullanılabilirlik (8)</td><td>Masaüstü/mobil düzen, karanlık tema, erişilebilirlik ilkeleri; tüm sayfaların mobil ekran görüntüleri</td><td>8.3, 10</td></tr>
+    <tr><td>İhtiyaç analizi / kullanıcı senaryoları (7)</td><td>Hedef kullanıcılar, 12 kullanıcı hikâyesi ve kabul kriterleri, senaryolar; test belgesindeki senaryolar hikâyelere bağlı</td><td>3</td></tr>
+    <tr><td>Kod ve repository düzeni (6)</td><td>Katmanlı mimari, TypeScript, lint/format kuralları, 273 otomatik test ve CI, README, PR şablonu, GitHub Projects, commit kuralları</td><td>6, 11, 12</td></tr>
+    <tr><td>Rapor ve kullanıcı dokümanı (7)</td><td>Bu rapor; kullanıcı dokümanı #55 ile hazırlanıyor</td><td>14</td></tr>
+    <tr><td>Sunum ve demo (5)</td><td>Canlı demo: ders.c1h4n.com; senaryolar Bölüm 3.3; sunum #56 ile hazırlanıyor</td><td>3.3, 13</td></tr>
   </table>
 </section>
 
