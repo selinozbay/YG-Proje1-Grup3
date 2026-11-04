@@ -5,7 +5,7 @@
 Öğrencilerin aldıkları dersleri, haftalık ders içeriklerini, öğrenme hedeflerini, görevlerini ve
 kendi ilerlemelerini tek bir yerden, etkileşimli bir web arayüzüyle takip edebildiği uygulama.
 
-- **Canlı demo:** https://ders.c1h4n.com (aynı site: https://ders-ogrenci-bilgi-ekip.web.app)
+- **Canlı demo:** https://ders-ogrenci-bilgi-ekip.web.app
 - **Görev panosu (GitHub Projects):** https://github.com/users/selinozbay/projects/1
 - **Teslim tarihi:** 11 Kasım 2026
   ([Teslim milestone'u](https://github.com/selinozbay/YG-Proje1-Grup3/milestone/1))
@@ -86,7 +86,7 @@ içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
 
 **Cihan Bayram (Analist + Geliştirici)**
 
-- Gereksinimler (#31). Jira görevlerini GitHub'a aktardı; panonun sütunlarını, etiketlerini ve
+- Gereksinimler (#31). Görevleri GitHub Issues olarak açtı; panonun sütunlarını, etiketlerini ve
   otomasyonlarını kurdu (20 Ekim).
 - Örnek ders, hafta ve görev verisi ve tutarlılık testi ([#66](https://github.com/selinozbay/YG-Proje1-Grup3/pull/66); #62).
 - Görev kartları ve tek liste ([#67](https://github.com/selinozbay/YG-Proje1-Grup3/pull/67); #22).
@@ -122,7 +122,8 @@ içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
   sıfırlama altyapısı; sayfa yönlendirmesi; ilk README ve ilk canlı yayın (#1).
 - Haftalık ders kartlarının ilk tasarımı (#1).
 - Kenar çubuğu: KVKK bağlantısı, menü geçiş efektleri, çıkış onayı ([#75](https://github.com/selinozbay/YG-Proje1-Grup3/pull/75); #33–#36).
-- Proje raporunun ara sürümü (`docs/proje-raporu.pdf`; #54).
+- Proje raporu (`docs/proje-raporu.pdf`; #54), ekran görüntüleri (`docs/screenshots/`; #57) ve
+  kullanıcı dokümanı (`docs/kullanici-dokumani.pdf`; #55).
 - Birleştirmeler: #61, #66–#70, #73, #74.
 - Giriş, kayıt ve şifremi unuttum ekranlarının iki bölümlü tasarımı; sayfa geçişinde ara sıra
   kırılan "Şifremi unuttum" E2E testinin düzeltilmesi ([#80](https://github.com/selinozbay/YG-Proje1-Grup3/pull/80); #2, #3).
@@ -318,8 +319,7 @@ birleştirilmeden önce düzeltilir.
    npm run deploy
    ```
 
-Site https://ders.c1h4n.com ve https://ders-ogrenci-bilgi-ekip.web.app adreslerinde yayınlanır
-(ikisi aynı sitedir).
+Site https://ders-ogrenci-bilgi-ekip.web.app adresinde yayınlanır.
 
 ### Alan adı ve e-posta gönderimi
 
@@ -591,8 +591,6 @@ kriterleri** başlığı altında yazar.
 
 - Her kartın bir issue numarası (`#12`), bir **Öncelik** alanı (En yüksek / Yüksek / Orta / Düşük)
   ve bir etiketi vardır: `enhancement` (özellik), `bug` (hata), `documentation` (doküman).
-- Eski Jira görevleri (`KAN-…`) 20 Ekim'de GitHub'a aktarıldı; her issue'nun altında Jira anahtarı
-  ve görevi açan kişi yazar.
 
 ### Görev akışı
 
@@ -718,9 +716,18 @@ feat: görevlere durum filtresi ekle (#12)
 
 ## Ekran görüntüleri
 
-Bütün sayfaların mobil ve masaüstü ekran görüntüleri (hocanın P1-08 maddesi) son tasarımla
-`docs/screenshots/` klasörüne eklenecek
-([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57)).
+Bütün sayfaların masaüstü (1366 px) ve mobil (390 px) ekran görüntüleri, 4 Kasım 2026'daki `main`
+sürümünden demo modunda alındı ve [`docs/screenshots/`](docs/screenshots/) klasöründedir
+([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57)):
+
+- `masaustu-01`…`masaustu-12`: giriş, kayıt, şifremi unuttum, Ana Sayfa, Derslerim, ders ve hafta
+  detayı, Görevlerim, Profil, Gizlilik, 404 ve çıkış onayı
+- `mobil-01`…`mobil-12`: aynı sayfalar ve açılan menü
+- `karanlik-01`, `karanlik-02`: Ana Sayfa ve Görevlerim, karanlık tema
+
+| Ana Sayfa                                                | Mobil menü                                        |
+| -------------------------------------------------------- | ------------------------------------------------- |
+| ![Ana Sayfa](docs/screenshots/masaustu-04-ana-sayfa.png) | ![Mobil menü](docs/screenshots/mobil-12-menu.png) |
 
 ## Bilinen eksikler
 
@@ -733,13 +740,13 @@ Bütün sayfaların mobil ve masaüstü ekran görüntüleri (hocanın P1-08 mad
 
 ## Teslim dosyaları
 
-3 Kasım 2026 itibarıyla durumları:
+4 Kasım 2026 itibarıyla durumları:
 
 | Dosya                         | İçerik                                                                                          | Durum                                                                                     |
 | ----------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))                   | 31 Ekim ara sürümü; son hâli hazırlanacak                                                 |
-| `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55))             | Henüz yok                                                                                 |
+| `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))                   | 4 Kasım son hâli: tüm bölümler, test sonuçları ve yeni ekran görüntüleri                  |
+| `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55))             | 4 Kasım: adım adım kullanım, ekran görüntüleri, sık sorulan sorular (17 sayfa)            |
 | `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))                  | Henüz yok                                                                                 |
-| `docs/screenshots/`           | Ekran görüntüleri ([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57))              | Henüz yok                                                                                 |
+| `docs/screenshots/`           | Ekran görüntüleri ([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57))              | 4 Kasım: bütün sayfalar, masaüstü ve mobil (26 görüntü)                                   |
 | `docs/test-senaryolari.md`    | Test senaryoları ve hata kaydı ([#60](https://github.com/selinozbay/YG-Proje1-Grup3/issues/60)) | 3 Kasım'da güncellendi: 70 senaryo geçti, 1 bekliyor (canlı sitede gerçek hesapla deneme) |
 | `docs/katki-tablosu.md`       | Ekip katkı tablosu ([#65](https://github.com/selinozbay/YG-Proje1-Grup3/issues/65))             | 3 Kasım'da güncellendi; son hâli teslimden önce                                           |
