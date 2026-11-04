@@ -5,7 +5,7 @@
 Öğrencilerin aldıkları dersleri, haftalık ders içeriklerini, öğrenme hedeflerini, görevlerini ve
 kendi ilerlemelerini tek bir yerden, etkileşimli bir web arayüzüyle takip edebildiği uygulama.
 
-- **Canlı demo:** https://ders.c1h4n.com (aynı site: https://ders-ogrenci-bilgi-ekip.web.app)
+- **Canlı demo:** https://ders-ogrenci-bilgi-ekip.web.app
 - **Görev panosu (GitHub Projects):** https://github.com/users/selinozbay/projects/1
 - **Teslim tarihi:** 11 Kasım 2026
   ([Teslim milestone'u](https://github.com/selinozbay/YG-Proje1-Grup3/milestone/1))
@@ -319,8 +319,7 @@ birleştirilmeden önce düzeltilir.
    npm run deploy
    ```
 
-Site https://ders.c1h4n.com ve https://ders-ogrenci-bilgi-ekip.web.app adreslerinde yayınlanır
-(ikisi aynı sitedir).
+Site https://ders-ogrenci-bilgi-ekip.web.app adresinde yayınlanır.
 
 ### Alan adı ve e-posta gönderimi
 
