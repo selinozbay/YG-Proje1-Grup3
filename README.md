@@ -86,7 +86,7 @@ içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
 
 **Cihan Bayram (Analist + Geliştirici)**
 
-- Gereksinimler (#31). Görevleri GitHub Issues olarak açtı; panonun sütunlarını, etiketlerini ve
+- Gereksinimler (#31). Jira görevlerini GitHub'a aktardı; panonun sütunlarını, etiketlerini ve
   otomasyonlarını kurdu (20 Ekim).
 - Örnek ders, hafta ve görev verisi ve tutarlılık testi ([#66](https://github.com/selinozbay/YG-Proje1-Grup3/pull/66); #62).
 - Görev kartları ve tek liste ([#67](https://github.com/selinozbay/YG-Proje1-Grup3/pull/67); #22).
@@ -591,6 +591,9 @@ kriterleri** başlığı altında yazar.
 
 - Her kartın bir issue numarası (`#12`), bir **Öncelik** alanı (En yüksek / Yüksek / Orta / Düşük)
   ve bir etiketi vardır: `enhancement` (özellik), `bug` (hata), `documentation` (doküman).
+- Görev takibi ilk günlerde Jira'da başladı. Jira görevleri (`KAN-…`) 20 Ekim'de #1–#36 olarak
+  GitHub'a aktarıldı; her issue'nun altında Jira anahtarı ve görevi açan kişi yazar. O tarihten bu
+  yana bütün takip GitHub'dadır.
 
 ### Görev akışı
 
