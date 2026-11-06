@@ -123,7 +123,8 @@ içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
 - Haftalık ders kartlarının ilk tasarımı (#1).
 - Kenar çubuğu: KVKK bağlantısı, menü geçiş efektleri, çıkış onayı ([#75](https://github.com/selinozbay/YG-Proje1-Grup3/pull/75); #33–#36).
 - Proje raporu (`docs/proje-raporu.pdf`; #54), ekran görüntüleri (`docs/screenshots/`; #57) ve
-  kullanıcı dokümanı (`docs/kullanici-dokumani.pdf`; #55).
+  kullanıcı dokümanı (`docs/kullanici-dokumani.pdf`; #55) ile sayfa akış şeması ve mobil/masaüstü
+  wireframe'ler (`docs/wireframes/`; #64).
 - Birleştirmeler: #61, #66–#70, #73, #74.
 - Giriş, kayıt ve şifremi unuttum ekranlarının iki bölümlü tasarımı; sayfa geçişinde ara sıra
   kırılan "Şifremi unuttum" E2E testinin düzeltilmesi ([#80](https://github.com/selinozbay/YG-Proje1-Grup3/pull/80); #2, #3).
@@ -361,7 +362,7 @@ etmiyordu.
 YG-Proje1-Grup3/
 ├── .github/            PR şablonu ve CI ayarı (workflows/test.yml)
 ├── .vscode/            Ortak VS Code ayarları
-├── docs/               Proje raporu, kullanıcı dokümanı, ekran görüntüleri
+├── docs/               Proje raporu, kullanıcı dokümanı, ekran görüntüleri, wireframe'ler
 ├── e2e/                Uçtan uca (Playwright) testler
 ├── presentation/       Sunum dosyası
 ├── public/             Olduğu gibi yayınlanan dosyalar (favicon)
@@ -745,11 +746,12 @@ sürümünden demo modunda alındı ve [`docs/screenshots/`](docs/screenshots/) 
 
 4 Kasım 2026 itibarıyla durumları:
 
-| Dosya                         | İçerik                                                                                          | Durum                                                                                     |
-| ----------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))                   | 4 Kasım son hâli: tüm bölümler, test sonuçları ve yeni ekran görüntüleri                  |
-| `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55))             | 4 Kasım: adım adım kullanım, ekran görüntüleri, sık sorulan sorular (17 sayfa)            |
-| `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))                  | Henüz yok                                                                                 |
-| `docs/screenshots/`           | Ekran görüntüleri ([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57))              | 4 Kasım: bütün sayfalar, masaüstü ve mobil (26 görüntü)                                   |
-| `docs/test-senaryolari.md`    | Test senaryoları ve hata kaydı ([#60](https://github.com/selinozbay/YG-Proje1-Grup3/issues/60)) | 3 Kasım'da güncellendi: 70 senaryo geçti, 1 bekliyor (canlı sitede gerçek hesapla deneme) |
-| `docs/katki-tablosu.md`       | Ekip katkı tablosu ([#65](https://github.com/selinozbay/YG-Proje1-Grup3/issues/65))             | 3 Kasım'da güncellendi; son hâli teslimden önce                                           |
+| Dosya                         | İçerik                                                                                              | Durum                                                                                     |
+| ----------------------------- | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))                       | 4 Kasım son hâli: tüm bölümler, test sonuçları ve yeni ekran görüntüleri                  |
+| `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55))                 | 4 Kasım: adım adım kullanım, ekran görüntüleri, sık sorulan sorular (17 sayfa)            |
+| `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))                      | Henüz yok                                                                                 |
+| `docs/wireframes/`            | Sayfa akış şeması ve wireframe'ler ([#64](https://github.com/selinozbay/YG-Proje1-Grup3/issues/64)) | 6 Kasım: akış şeması, 5 masaüstü ve 6 mobil taslak (PNG ve SVG)                           |
+| `docs/screenshots/`           | Ekran görüntüleri ([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57))                  | 4 Kasım: bütün sayfalar, masaüstü ve mobil (26 görüntü)                                   |
+| `docs/test-senaryolari.md`    | Test senaryoları ve hata kaydı ([#60](https://github.com/selinozbay/YG-Proje1-Grup3/issues/60))     | 3 Kasım'da güncellendi: 70 senaryo geçti, 1 bekliyor (canlı sitede gerçek hesapla deneme) |
+| `docs/katki-tablosu.md`       | Ekip katkı tablosu ([#65](https://github.com/selinozbay/YG-Proje1-Grup3/issues/65))                 | 3 Kasım'da güncellendi; son hâli teslimden önce                                           |
