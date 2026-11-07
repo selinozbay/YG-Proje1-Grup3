@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 822" width="1120" height="822" font-family="'Segoe UI', 'IBM Plex Sans', Arial, sans-serif">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8a959e"/></marker></defs>
+<rect width="1120" height="822" fill="#fff"/>
+<rect x="0" y="0" width="1120" height="700" rx="0" fill="#eceff1" stroke="#8a959e" stroke-width="1.5"/>
+<rect x="0" y="0" width="200" height="700" rx="0" fill="#ffffff" stroke="#8a959e" stroke-width="1.2"/>
+<rect x="16" y="16" width="30" height="30" rx="7" fill="#4a535b" stroke="#4a535b" stroke-width="1.2"/>
+<text x="54" y="29" font-size="14" font-weight="bold" fill="#2b3137" text-anchor="start">Ders Panosu</text>
+<text x="54" y="43" font-size="10" font-weight="normal" fill="#68737d" text-anchor="start">Proje 1 · Grup 3</text>
+<rect x="26" y="80" width="14" height="14" rx="3" fill="none" stroke="#68737d" stroke-width="1.4"/>
+<text x="52" y="92" font-size="13" font-weight="normal" fill="#68737d" text-anchor="start">Ana Sayfa</text>
+<rect x="10" y="112" width="180" height="34" rx="8" fill="#dde2e6" stroke="#dde2e6" stroke-width="1.2"/>
+<rect x="10" y="118" width="3.5" height="22" rx="2" fill="#2b3137" stroke="#2b3137" stroke-width="1.2"/>
+<rect x="26" y="122" width="14" height="14" rx="3" fill="none" stroke="#2b3137" stroke-width="1.4"/>
+<text x="52" y="134" font-size="13" font-weight="bold" fill="#2b3137" text-anchor="start">Derslerim</text>
+<rect x="26" y="164" width="14" height="14" rx="3" fill="none" stroke="#68737d" stroke-width="1.4"/>
+<text x="52" y="176" font-size="13" font-weight="normal" fill="#68737d" text-anchor="start">Görevlerim</text>
+<rect x="26" y="206" width="14" height="14" rx="3" fill="none" stroke="#68737d" stroke-width="1.4"/>
+<text x="52" y="218" font-size="13" font-weight="normal" fill="#68737d" text-anchor="start">Profil</text>
+<line x1="0" y1="588" x2="200" y2="588" stroke="#cfd6db" stroke-width="1.2"/>
+<circle cx="34" cy="618" r="15" fill="#dde2e6" stroke="#8a959e"/>
+<text x="34" y="622" font-size="10" font-weight="bold" fill="#2b3137" text-anchor="middle">AS</text>
+<text x="58" y="615" font-size="12" font-weight="bold" fill="#2b3137" text-anchor="start">Ad Soyad</text>
+<text x="58" y="629" font-size="8.5" font-weight="normal" fill="#68737d" text-anchor="start">ogrenci-no@ogr.ktu.edu.tr</text>
+<path d="M178 612 a6 6 0 1 0 6 8 a5 5 0 0 1 -6 -8z" fill="none" stroke="#68737d" stroke-width="1.3"/>
+<text x="26" y="654" font-size="10.5" font-weight="normal" fill="#68737d" text-anchor="start">Gizlilik ve KVKK</text>
+<text x="26" y="678" font-size="12" font-weight="normal" fill="#2b3137" text-anchor="start">Çıkış yap</text>
+<text x="232" y="52" font-size="12" font-weight="bold" fill="#68737d" text-anchor="start">‹  Derslerim</text>
+<rect x="220" y="68" width="880" height="220" rx="10" fill="#4a535b" stroke="#4a535b" stroke-width="1.2"/>
+<text x="244" y="118" font-size="28" font-weight="bold" fill="#fff" text-anchor="start">Ders adı</text>
+<rect x="244" y="138" width="560" height="4" rx="2" fill="#cfd6db"/>
+<rect x="244" y="150" width="336" height="4" rx="2" fill="#cfd6db"/>
+<text x="244" y="190" font-size="11.5" font-weight="normal" fill="#fff" text-anchor="start">Kod: XX</text>
+<text x="330" y="190" font-size="11.5" font-weight="normal" fill="#fff" text-anchor="start">Öğretim elemanı: ad soyad</text>
+<text x="244" y="228" font-size="12" font-weight="bold" fill="#fff" text-anchor="start">Dersin ilerlemesi: 4 / 8 görev</text>
+<rect x="244" y="240" width="400" height="9" rx="4.5" fill="#8f9aa3"/><rect x="244" y="240" width="200" height="9" rx="4.5" fill="#fff"/>
+<text x="660" y="249" font-size="12" font-weight="bold" fill="#fff" text-anchor="start">%50</text>
+<text x="1070" y="270" font-size="90" font-weight="bold" fill="#5d6770" text-anchor="end">XX</text>
+<circle cx="228" cy="72" r="11" fill="#2b3137" stroke="#fff" stroke-width="2"/>
+<text x="228" y="76.5" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">1</text>
+<circle cx="700" cy="244" r="11" fill="#2b3137" stroke="#fff" stroke-width="2"/>
+<text x="700" y="248.5" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">2</text>
+<text x="220" y="326" font-size="17" font-weight="bold" fill="#2b3137" text-anchor="start">Haftaların akışı</text>
+<line x1="300" y1="372" x2="1000" y2="372" stroke="#cfd6db" stroke-width="3"/>
+<line x1="300" y1="372" x2="650" y2="372" stroke="#4a535b" stroke-width="3"/>
+<circle cx="300" cy="372" r="15" fill="#4a535b"/>
+<text x="300" y="377" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">✓</text>
+<text x="300" y="408" font-size="12" font-weight="bold" fill="#2b3137" text-anchor="middle">1. Hafta</text>
+<text x="300" y="424" font-size="11" font-weight="normal" fill="#68737d" text-anchor="middle">hafta başlığı</text>
+<text x="300" y="440" font-size="10" font-weight="bold" fill="#68737d" text-anchor="middle">Tamamlandı</text>
+<circle cx="533" cy="372" r="15" fill="#4a535b"/>
+<text x="533" y="377" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">✓</text>
+<text x="533" y="408" font-size="12" font-weight="bold" fill="#2b3137" text-anchor="middle">2. Hafta</text>
+<text x="533" y="424" font-size="11" font-weight="normal" fill="#68737d" text-anchor="middle">hafta başlığı</text>
+<text x="533" y="440" font-size="10" font-weight="bold" fill="#68737d" text-anchor="middle">Tamamlandı</text>
+<circle cx="766" cy="372" r="16" fill="#2b3137" stroke="#dde2e6" stroke-width="5"/>
+<text x="766" y="377" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">3</text>
+<text x="766" y="408" font-size="12" font-weight="bold" fill="#2b3137" text-anchor="middle">3. Hafta</text>
+<text x="766" y="424" font-size="11" font-weight="normal" fill="#68737d" text-anchor="middle">hafta başlığı</text>
+<text x="766" y="440" font-size="10" font-weight="bold" fill="#68737d" text-anchor="middle">Şu anki hafta</text>
+<circle cx="999" cy="372" r="15" fill="#fff" stroke="#8a959e" stroke-width="1.5"/>
+<text x="999" y="377" font-size="13" font-weight="normal" fill="#68737d" text-anchor="middle">4</text>
+<text x="999" y="408" font-size="12" font-weight="bold" fill="#2b3137" text-anchor="middle">4. Hafta</text>
+<text x="999" y="424" font-size="11" font-weight="normal" fill="#68737d" text-anchor="middle">hafta başlığı</text>
+<text x="999" y="440" font-size="10" font-weight="bold" fill="#68737d" text-anchor="middle">Sırada</text>
+<circle cx="258" cy="372" r="11" fill="#2b3137" stroke="#fff" stroke-width="2"/>
+<text x="258" y="376.5" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">3</text>
+<text x="220" y="486" font-size="17" font-weight="bold" fill="#2b3137" text-anchor="start">Haftalar</text>
+<rect x="220" y="500" width="435" height="88" rx="9" fill="#ffffff" stroke="#8a959e" stroke-width="1.2"/>
+<text x="240" y="552" font-size="34" font-weight="bold" fill="#2b3137" text-anchor="start">1</text>
+<text x="286" y="524" font-size="11" font-weight="normal" fill="#68737d" text-anchor="start">1. Hafta</text>
+<text x="286" y="542" font-size="14" font-weight="bold" fill="#2b3137" text-anchor="start">Hafta başlığı</text>
+<rect x="286" y="552" width="150" height="4" rx="2" fill="#cfd6db"/>
+<text x="286" y="574" font-size="9.5" font-weight="normal" fill="#68737d" text-anchor="start">2 / 2 görev tamamlandı</text>
+<rect x="420" y="568" width="180" height="6" rx="3.0" fill="#cfd6db"/>
+<rect x="420" y="568" width="180" height="6" rx="3.0" fill="#4a535b"/>
+<rect x="560" y="510" width="84" height="17" rx="8.5" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="602.0" y="522" font-size="10" font-weight="bold" fill="#2b3137" text-anchor="middle">Tamamlandı</text>
+<rect x="665" y="500" width="435" height="88" rx="9" fill="#ffffff" stroke="#8a959e" stroke-width="1.2"/>
+<text x="685" y="552" font-size="34" font-weight="bold" fill="#2b3137" text-anchor="start">2</text>
+<text x="731" y="524" font-size="11" font-weight="normal" fill="#68737d" text-anchor="start">2. Hafta</text>
+<text x="731" y="542" font-size="14" font-weight="bold" fill="#2b3137" text-anchor="start">Hafta başlığı</text>
+<rect x="731" y="552" width="150" height="4" rx="2" fill="#cfd6db"/>
+<text x="731" y="574" font-size="9.5" font-weight="normal" fill="#68737d" text-anchor="start">2 / 2 görev tamamlandı</text>
+<rect x="865" y="568" width="180" height="6" rx="3.0" fill="#cfd6db"/>
+<rect x="865" y="568" width="180" height="6" rx="3.0" fill="#4a535b"/>
+<rect x="1005" y="510" width="84" height="17" rx="8.5" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="1047.0" y="522" font-size="10" font-weight="bold" fill="#2b3137" text-anchor="middle">Tamamlandı</text>
+<rect x="220" y="598" width="435" height="88" rx="9" fill="#ffffff" stroke="#2b3137" stroke-width="2"/>
+<text x="240" y="650" font-size="34" font-weight="bold" fill="#2b3137" text-anchor="start">3</text>
+<text x="286" y="622" font-size="11" font-weight="normal" fill="#68737d" text-anchor="start">3. Hafta</text>
+<text x="286" y="640" font-size="14" font-weight="bold" fill="#2b3137" text-anchor="start">Hafta başlığı</text>
+<rect x="286" y="650" width="150" height="4" rx="2" fill="#cfd6db"/>
+<text x="286" y="672" font-size="9.5" font-weight="normal" fill="#68737d" text-anchor="start">0 / 2 görev tamamlandı</text>
+<rect x="420" y="666" width="180" height="6" rx="3.0" fill="#cfd6db"/>
+<rect x="560" y="608" width="84" height="17" rx="8.5" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="602.0" y="620" font-size="10" font-weight="bold" fill="#2b3137" text-anchor="middle">Şu anki hafta</text>
+<rect x="665" y="598" width="435" height="88" rx="9" fill="#ffffff" stroke="#8a959e" stroke-width="1.2"/>
+<text x="685" y="650" font-size="34" font-weight="bold" fill="#68737d" text-anchor="start">4</text>
+<text x="731" y="622" font-size="11" font-weight="normal" fill="#68737d" text-anchor="start">4. Hafta</text>
+<text x="731" y="640" font-size="14" font-weight="bold" fill="#2b3137" text-anchor="start">Hafta başlığı</text>
+<rect x="731" y="650" width="150" height="4" rx="2" fill="#cfd6db"/>
+<text x="731" y="672" font-size="9.5" font-weight="normal" fill="#68737d" text-anchor="start">0 / 2 görev tamamlandı</text>
+<rect x="865" y="666" width="180" height="6" rx="3.0" fill="#cfd6db"/>
+<rect x="1005" y="608" width="84" height="17" rx="8.5" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="1047.0" y="620" font-size="10" font-weight="bold" fill="#2b3137" text-anchor="middle">Sırada</text>
+<circle cx="228" cy="502" r="11" fill="#2b3137" stroke="#fff" stroke-width="2"/>
+<text x="228" y="506.5" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">4</text>
+<line x1="16" y1="708" x2="1104" y2="708" stroke="#cfd6db"/>
+<circle cx="28" cy="722" r="9" fill="#2b3137"/>
+<text x="28" y="725.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">1</text>
+<text x="46" y="726" font-size="12" fill="#2b3137">Geri bağlantısı ve ders kapağı: ders adı, açıklama, kod, öğretim elemanı</text>
+<circle cx="28" cy="744" r="9" fill="#2b3137"/>
+<text x="28" y="747.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">2</text>
+<text x="46" y="748" font-size="12" fill="#2b3137">Dersin genel ilerleme çubuğu</text>
+<circle cx="28" cy="766" r="9" fill="#2b3137"/>
+<text x="28" y="769.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">3</text>
+<text x="46" y="770" font-size="12" fill="#2b3137">Haftaların akışı: her hafta için durum (Tamamlandı, Şu anki hafta, Sırada)</text>
+<circle cx="28" cy="788" r="9" fill="#2b3137"/>
+<text x="28" y="791.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">4</text>
+<text x="46" y="792" font-size="12" fill="#2b3137">Hafta kartı: hafta numarası, başlığı, açıklaması ve hafta ilerlemesi; karta basınca hafta detayı açılır</text>
+</svg>

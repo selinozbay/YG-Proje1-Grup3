@@ -130,7 +130,7 @@
     Zorunlu işlevlerin tamamı ve ekibin eklediği özellikler <code>main</code> dalına girmiştir;
     birim, uçtan uca (E2E) ve Firebase emülatör testlerinin hepsi geçmektedir. Tablolardaki
     <span class="pill ok">Hazır</span> ve <span class="pill ok">Geçti</span> etiketleri bu tarihteki
-    durumu gösterir; teslimden önce kalan işler (kullanıcı dokümanı, sunum, wireframe ve son yayın)
+    durumu gösterir; teslimden önce kalan işler (sunum ve son yayın)
     Bölüm 14'te listelenmiştir.
   </div>
 </section>
@@ -410,9 +410,56 @@
   </ul>
 </section>
 
-<!-- 8.3 Ekran görüntüleri -->
+<!-- 8.3 Wireframe -->
 <section class="newpage">
-  <h3 style="margin-top:0">8.3 Ekran görüntüleri</h3>
+  <h3 style="margin-top:0">8.3 Kullanıcı akışı ve ekran taslakları (wireframe)</h3>
+  <p>
+    Aşağıdaki çizimler ekranların <b>kaba taslağıdır</b>: renk ve süs olmadan, hangi bloğun nerede
+    durduğunu ve kullanıcının sayfalar arasında nasıl dolaştığını gösterir. Taslaklar uygulamanın
+    gerçek düzeninden çıkarılmıştır; kart, görev ve ilerleme göstergeleri numaralarla işaretlenmiş
+    ve her çizimin altında açıklanmıştır. Aynı dosyalar (PNG ve düzenlenebilir SVG)
+    <code>docs/wireframes/</code> klasöründedir.
+  </p>
+  <p>
+    <b>Dersin rengi:</b> Gerçek ekranda her dersin kendi rengi vardır (kart başlığı, kod rozeti,
+    ilerleme çubuğu); taslaklarda bu yerler koyu gri ile gösterilmiştir.
+    <b>Görev durumu simgeleri:</b> boş daire = Yapılacak, yarım dolu = Devam ediyor,
+    dolu ve tikli = Tamamlandı, kalın çember = son tarihi geçti.
+  </p>
+  <figure><img src="../wireframes/akis-semasi.png" alt="Sayfa akış şeması" /><figcaption>Taslak 1 — Kullanıcı akışı: hangi sayfadan hangisine geçilir</figcaption></figure>
+</section>
+<section class="newpage">
+  <h3 style="margin-top:0">Masaüstü taslakları (1120 px)</h3>
+  <figure style="width:128mm;margin:0 auto 4mm"><img src="../wireframes/masaustu-01-ana-sayfa.png" alt="Ana Sayfa taslağı" /><figcaption>Taslak 2 — Ana Sayfa: dönem çizelgesi, yaklaşan görevler, derslerim paneli</figcaption></figure>
+  <figure style="width:128mm;margin:0 auto 4mm"><img src="../wireframes/masaustu-02-derslerim.png" alt="Derslerim taslağı" /><figcaption>Taslak 3 — Derslerim: durum grafiği, arama, süzgeçler ve ders kartları</figcaption></figure>
+</section>
+<section class="newpage">
+  <figure style="width:128mm;margin:0 auto 4mm"><img src="../wireframes/masaustu-03-ders-detayi.png" alt="Ders detayı taslağı" /><figcaption>Taslak 4 — Ders detayı: kapak, haftaların akışı ve hafta kartları</figcaption></figure>
+  <figure style="width:128mm;margin:0 auto 4mm"><img src="../wireframes/masaustu-04-hafta-detayi.png" alt="Hafta detayı taslağı" /><figcaption>Taslak 5 — Hafta detayı: görevler, ilerleme, öğrenme hedefleri, önceki/sonraki hafta</figcaption></figure>
+</section>
+<section class="newpage">
+  <figure style="width:128mm;margin:0 auto 4mm"><img src="../wireframes/masaustu-05-gorevlerim.png" alt="Görevlerim taslağı" /><figcaption>Taslak 6 — Görevlerim: genel ilerleme, süzgeçler ve görev kartları</figcaption></figure>
+</section>
+<section class="newpage">
+  <h3 style="margin-top:0">Mobil taslaklar (360 px)</h3>
+  <p style="font-size:9.3pt;color:#475569">Dar ekranda kenar çubuğu gizlenir; menü üst çubuktaki düğmeyle soldan kayarak açılır. Bloklar tek sütunda alt alta dizilir.</p>
+  <div class="figs-3">
+    <figure><img src="../wireframes/mobil-01-ana-sayfa.png" alt="Mobil Ana Sayfa" /><figcaption>Taslak 7 — Ana Sayfa</figcaption></figure>
+    <figure><img src="../wireframes/mobil-02-derslerim.png" alt="Mobil Derslerim" /><figcaption>Taslak 8 — Derslerim</figcaption></figure>
+    <figure><img src="../wireframes/mobil-05-gorevlerim.png" alt="Mobil Görevlerim" /><figcaption>Taslak 9 — Görevlerim</figcaption></figure>
+  </div>
+</section>
+<section class="newpage">
+  <div class="figs-3">
+    <figure><img src="../wireframes/mobil-03-ders-detayi.png" alt="Mobil ders detayı" /><figcaption>Taslak 10 — Ders detayı</figcaption></figure>
+    <figure><img src="../wireframes/mobil-04-hafta-detayi.png" alt="Mobil hafta detayı" /><figcaption>Taslak 11 — Hafta detayı</figcaption></figure>
+    <figure><img src="../wireframes/mobil-06-menu.png" alt="Mobil menü" /><figcaption>Taslak 12 — Açılan menü</figcaption></figure>
+  </div>
+</section>
+
+<!-- 8.4 Ekran görüntüleri -->
+<section class="newpage">
+  <h3 style="margin-top:0">8.4 Ekran görüntüleri</h3>
   <p style="font-size:9.3pt;color:#475569">Görüntüler 4 Kasım 2026'daki <code>main</code> sürümünden, demo modunda örnek bir öğrenciyle (24 görevin 9'u tamamlanmış) alınmıştır. Bütün sayfaların masaüstü ve mobil görüntüleri <code>docs/screenshots/</code> klasöründedir.</p>
   <div class="figs-2">
     <figure><img src="../screenshots/masaustu-01-giris.png" alt="Giriş" /><figcaption>Şekil 1 — Giriş ekranı</figcaption></figure>
@@ -612,7 +659,7 @@ npm run dev          # http://localhost:5173</pre>
     <tr><th style="width:34%">İş</th><th>Issue</th><th class="nowrap">Durum</th></tr>
     <tr><td>Kullanıcı dokümanı (<code>docs/kullanici-dokumani.pdf</code>)</td><td>#55</td><td><span class="pill ok">Hazır</span></td></tr>
     <tr><td>Sunum dosyası (<code>presentation/</code>)</td><td>#56</td><td><span class="pill wait">Bekliyor</span></td></tr>
-    <tr><td>Wireframe'ler</td><td>#64</td><td><span class="pill wait">Bekliyor</span></td></tr>
+    <tr><td>Wireframe'ler (<code>docs/wireframes/</code>)</td><td>#64</td><td><span class="pill ok">Hazır</span></td></tr>
     <tr><td>Ekran görüntüleri (<code>docs/screenshots/</code>)</td><td>#57</td><td><span class="pill ok">Hazır</span></td></tr>
     <tr><td>Son sürümün yayınlanması ve <code>v1.0.0</code> etiketi; canlı sitede uçtan uca deneme (T-43)</td><td>#59, #60</td><td><span class="pill wait">Bekliyor</span></td></tr>
     <tr><td>Ekip katkı tablosunun son hâli</td><td>#65</td><td><span class="pill wip">Devam ediyor</span></td></tr>
@@ -646,7 +693,7 @@ npm run dev          # http://localhost:5173</pre>
     <tr><th style="width:34%">Rubrik kriteri (puan)</th><th>Projedeki karşılığı</th><th class="nowrap">Bölüm</th></tr>
     <tr><td>Temel işlevlerin çalışması (15)</td><td>Ders ve hafta kartları, görev durumu, filtre, arama, ilerleme göstergeleri, kendi görevim, kayıt/giriş/şifre sıfırlama, hesap silme; hepsi otomatik testlerle korunur</td><td>4, 12</td></tr>
     <tr><td>Web arayüzü ve kullanıcı etkileşimi (12)</td><td>Dönem çizelgesi, ders renkleri, temayı izleyen kenar çubuğu, geçiş efektleri, onay pencereleri, anlık güncellenen ilerleme</td><td>8</td></tr>
-    <tr><td>Responsive tasarım ve kullanılabilirlik (8)</td><td>Masaüstü/mobil düzen, karanlık tema, erişilebilirlik ilkeleri; tüm sayfaların mobil ekran görüntüleri</td><td>8.3, 10</td></tr>
+    <tr><td>Responsive tasarım ve kullanılabilirlik (8)</td><td>Masaüstü/mobil düzen, karanlık tema, erişilebilirlik ilkeleri; tüm sayfaların mobil ekran görüntüleri</td><td>8.3, 8.4, 10</td></tr>
     <tr><td>İhtiyaç analizi / kullanıcı senaryoları (7)</td><td>Hedef kullanıcılar, 12 kullanıcı hikâyesi ve kabul kriterleri, senaryolar; test belgesindeki senaryolar hikâyelere bağlı</td><td>3</td></tr>
     <tr><td>Kod ve repository düzeni (6)</td><td>Katmanlı mimari, TypeScript, lint/format kuralları, 273 otomatik test ve CI, README, PR şablonu, GitHub Projects, commit kuralları</td><td>6, 11, 12</td></tr>
     <tr><td>Rapor ve kullanıcı dokümanı (7)</td><td>Bu rapor ve kullanıcı dokümanı (<code>docs/kullanici-dokumani.pdf</code>)</td><td>14</td></tr>

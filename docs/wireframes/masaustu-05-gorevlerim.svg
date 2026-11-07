@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 934" width="1120" height="934" font-family="'Segoe UI', 'IBM Plex Sans', Arial, sans-serif">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8a959e"/></marker></defs>
+<rect width="1120" height="934" fill="#fff"/>
+<rect x="0" y="0" width="1120" height="790" rx="0" fill="#eceff1" stroke="#8a959e" stroke-width="1.5"/>
+<rect x="0" y="0" width="200" height="790" rx="0" fill="#ffffff" stroke="#8a959e" stroke-width="1.2"/>
+<rect x="16" y="16" width="30" height="30" rx="7" fill="#4a535b" stroke="#4a535b" stroke-width="1.2"/>
+<text x="54" y="29" font-size="14" font-weight="bold" fill="#2b3137" text-anchor="start">Ders Panosu</text>
+<text x="54" y="43" font-size="10" font-weight="normal" fill="#68737d" text-anchor="start">Proje 1 · Grup 3</text>
+<rect x="26" y="80" width="14" height="14" rx="3" fill="none" stroke="#68737d" stroke-width="1.4"/>
+<text x="52" y="92" font-size="13" font-weight="normal" fill="#68737d" text-anchor="start">Ana Sayfa</text>
+<rect x="26" y="122" width="14" height="14" rx="3" fill="none" stroke="#68737d" stroke-width="1.4"/>
+<text x="52" y="134" font-size="13" font-weight="normal" fill="#68737d" text-anchor="start">Derslerim</text>
+<rect x="10" y="154" width="180" height="34" rx="8" fill="#dde2e6" stroke="#dde2e6" stroke-width="1.2"/>
+<rect x="10" y="160" width="3.5" height="22" rx="2" fill="#2b3137" stroke="#2b3137" stroke-width="1.2"/>
+<rect x="26" y="164" width="14" height="14" rx="3" fill="none" stroke="#2b3137" stroke-width="1.4"/>
+<text x="52" y="176" font-size="13" font-weight="bold" fill="#2b3137" text-anchor="start">Görevlerim</text>
+<rect x="26" y="206" width="14" height="14" rx="3" fill="none" stroke="#68737d" stroke-width="1.4"/>
+<text x="52" y="218" font-size="13" font-weight="normal" fill="#68737d" text-anchor="start">Profil</text>
+<line x1="0" y1="678" x2="200" y2="678" stroke="#cfd6db" stroke-width="1.2"/>
+<circle cx="34" cy="708" r="15" fill="#dde2e6" stroke="#8a959e"/>
+<text x="34" y="712" font-size="10" font-weight="bold" fill="#2b3137" text-anchor="middle">AS</text>
+<text x="58" y="705" font-size="12" font-weight="bold" fill="#2b3137" text-anchor="start">Ad Soyad</text>
+<text x="58" y="719" font-size="8.5" font-weight="normal" fill="#68737d" text-anchor="start">ogrenci-no@ogr.ktu.edu.tr</text>
+<path d="M178 702 a6 6 0 1 0 6 8 a5 5 0 0 1 -6 -8z" fill="none" stroke="#68737d" stroke-width="1.3"/>
+<text x="26" y="744" font-size="10.5" font-weight="normal" fill="#68737d" text-anchor="start">Gizlilik ve KVKK</text>
+<text x="26" y="768" font-size="12" font-weight="normal" fill="#2b3137" text-anchor="start">Çıkış yap</text>
+<text x="232" y="62" font-size="26" font-weight="bold" fill="#2b3137" text-anchor="start">Görevlerim</text>
+<text x="232" y="84" font-size="12" font-weight="normal" fill="#68737d" text-anchor="start">Tüm derslerindeki görevler tek listede.</text>
+<rect x="962" y="44" width="138" height="38" rx="7" fill="#2b3137" stroke="#2b3137" stroke-width="1.2"/>
+<text x="1031.0" y="67.5" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">+ Görev ekle</text>
+<circle cx="956" cy="46" r="11" fill="#2b3137" stroke="#fff" stroke-width="2"/>
+<text x="956" y="50.5" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">1</text>
+<rect x="220" y="108" width="880" height="76" rx="6" fill="#ffffff" stroke="#8a959e" stroke-width="1.2"/>
+<text x="240" y="154" font-size="24" font-weight="bold" fill="#2b3137" text-anchor="start">9 / 24</text>
+<text x="318" y="154" font-size="11" font-weight="normal" fill="#68737d" text-anchor="start">görev tamamlandı</text>
+<rect x="450" y="140" width="630" height="12" rx="6" fill="#cfd6db"/><rect x="450" y="140" width="250" height="12" rx="6" fill="#4a535b"/><rect x="703" y="140" width="60" height="12" rx="6" fill="#8a959e"/>
+<circle cx="228" cy="110" r="11" fill="#2b3137" stroke="#fff" stroke-width="2"/>
+<text x="228" y="114.5" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">2</text>
+<rect x="220" y="204" width="880" height="160" rx="6" fill="#ffffff" stroke="#8a959e" stroke-width="1.2"/>
+<text x="240" y="232" font-size="12" font-weight="bold" fill="#2b3137" text-anchor="start">Görev ara</text>
+<text x="700" y="232" font-size="12" font-weight="bold" fill="#2b3137" text-anchor="start">Ders</text>
+<text x="910" y="232" font-size="12" font-weight="bold" fill="#2b3137" text-anchor="start">Hafta</text>
+<rect x="240" y="240" width="440" height="38" rx="7" fill="#fff" stroke="#8a959e" stroke-width="1.2"/>
+<text x="252" y="263.0" font-size="12" font-weight="normal" fill="#68737d" text-anchor="start">Başlık, açıklama ya da etiket yaz</text>
+<rect x="700" y="240" width="190" height="38" rx="7" fill="#fff" stroke="#8a959e" stroke-width="1.2"/>
+<text x="712" y="263.0" font-size="12" font-weight="normal" fill="#68737d" text-anchor="start">Tüm dersler  ▾</text>
+<rect x="910" y="240" width="170" height="38" rx="7" fill="#fff" stroke="#8a959e" stroke-width="1.2"/>
+<text x="922" y="263.0" font-size="12" font-weight="normal" fill="#68737d" text-anchor="start">Tüm haftalar  ▾</text>
+<rect x="240" y="306" width="78" height="28" rx="14.0" fill="#2b3137" stroke="#2b3137" stroke-width="1"/>
+<text x="279.0" y="324.1666666666667" font-size="11" font-weight="bold" fill="#fff" text-anchor="middle">Tümü 24</text>
+<rect x="330" y="306" width="104" height="28" rx="14.0" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="382.0" y="324.1666666666667" font-size="11" font-weight="normal" fill="#2b3137" text-anchor="middle">Yapılacak 12</text>
+<rect x="442" y="306" width="118" height="28" rx="14.0" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="501.0" y="324.1666666666667" font-size="11" font-weight="normal" fill="#2b3137" text-anchor="middle">Devam ediyor 3</text>
+<rect x="570" y="306" width="108" height="28" rx="14.0" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="624.0" y="324.1666666666667" font-size="11" font-weight="normal" fill="#2b3137" text-anchor="middle">Tamamlandı 9</text>
+<circle cx="228" cy="206" r="11" fill="#2b3137" stroke="#fff" stroke-width="2"/>
+<text x="228" y="210.5" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">3</text>
+<text x="220" y="394" font-size="11.5" font-weight="normal" fill="#68737d" text-anchor="start">24 görev gösteriliyor</text>
+<rect x="220" y="406" width="880" height="360" rx="6" fill="#ffffff" stroke="#8a959e" stroke-width="1.2"/>
+<line x1="221" y1="412" x2="221" y2="520" stroke="#4a535b" stroke-width="4"/>
+<text x="240" y="438" font-size="14" font-weight="bold" fill="#2b3137" text-anchor="start">Görev başlığı</text>
+<text x="240" y="455" font-size="10.5" font-weight="normal" fill="#68737d" text-anchor="start">Ders adı · N. hafta</text>
+<rect x="240" y="471" width="560" height="4" rx="2" fill="#cfd6db"/>
+<rect x="240" y="483" width="336" height="4" rx="2" fill="#cfd6db"/>
+<text x="240" y="508" font-size="10.5" font-weight="normal" fill="#68737d" text-anchor="start">▢ Son tarih</text>
+<rect x="334" y="496" width="56" height="17" rx="8.5" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="362.0" y="508" font-size="10" font-weight="bold" fill="#2b3137" text-anchor="middle">#etiket</text>
+<rect x="396" y="496" width="56" height="17" rx="8.5" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="424.0" y="508" font-size="10" font-weight="bold" fill="#2b3137" text-anchor="middle">#etiket</text>
+<rect x="962" y="422" width="118" height="26" rx="13" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="974" y="439" font-size="11" font-weight="normal" fill="#2b3137" text-anchor="start">Tamamlandı  ▾</text>
+<line x1="220" y1="526" x2="1100" y2="526" stroke="#cfd6db" stroke-width="1.2"/>
+<line x1="221" y1="532" x2="221" y2="640" stroke="#4a535b" stroke-width="4"/>
+<text x="240" y="558" font-size="14" font-weight="bold" fill="#2b3137" text-anchor="start">Görev başlığı</text>
+<text x="240" y="575" font-size="10.5" font-weight="normal" fill="#68737d" text-anchor="start">Ders adı · N. hafta</text>
+<rect x="240" y="591" width="560" height="4" rx="2" fill="#cfd6db"/>
+<rect x="240" y="603" width="336" height="4" rx="2" fill="#cfd6db"/>
+<text x="240" y="628" font-size="10.5" font-weight="normal" fill="#68737d" text-anchor="start">▢ Son tarih</text>
+<rect x="334" y="616" width="56" height="17" rx="8.5" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="362.0" y="628" font-size="10" font-weight="bold" fill="#2b3137" text-anchor="middle">#etiket</text>
+<rect x="396" y="616" width="56" height="17" rx="8.5" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="424.0" y="628" font-size="10" font-weight="bold" fill="#2b3137" text-anchor="middle">#etiket</text>
+<rect x="962" y="542" width="118" height="26" rx="13" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="974" y="559" font-size="11" font-weight="normal" fill="#2b3137" text-anchor="start">Devam ediyor  ▾</text>
+<line x1="220" y1="646" x2="1100" y2="646" stroke="#cfd6db" stroke-width="1.2"/>
+<line x1="221" y1="652" x2="221" y2="760" stroke="#4a535b" stroke-width="4"/>
+<text x="240" y="678" font-size="14" font-weight="bold" fill="#2b3137" text-anchor="start">Görev başlığı</text>
+<text x="240" y="695" font-size="10.5" font-weight="normal" fill="#68737d" text-anchor="start">Ders adı · N. hafta</text>
+<rect x="240" y="711" width="560" height="4" rx="2" fill="#cfd6db"/>
+<rect x="240" y="723" width="336" height="4" rx="2" fill="#cfd6db"/>
+<text x="240" y="748" font-size="10.5" font-weight="normal" fill="#68737d" text-anchor="start">▢ Son tarih</text>
+<rect x="334" y="736" width="56" height="17" rx="8.5" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="362.0" y="748" font-size="10" font-weight="bold" fill="#2b3137" text-anchor="middle">#etiket</text>
+<rect x="396" y="736" width="56" height="17" rx="8.5" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="424.0" y="748" font-size="10" font-weight="bold" fill="#2b3137" text-anchor="middle">#etiket</text>
+<rect x="962" y="662" width="118" height="26" rx="13" fill="#dde2e6" stroke="#8a959e" stroke-width="1"/>
+<text x="974" y="679" font-size="11" font-weight="normal" fill="#2b3137" text-anchor="start">Yapılacak  ▾</text>
+<circle cx="228" cy="410" r="11" fill="#2b3137" stroke="#fff" stroke-width="2"/>
+<text x="228" y="414.5" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">4</text>
+<circle cx="956" cy="420" r="11" fill="#2b3137" stroke="#fff" stroke-width="2"/>
+<text x="956" y="424.5" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">5</text>
+<line x1="16" y1="798" x2="1104" y2="798" stroke="#cfd6db"/>
+<circle cx="28" cy="812" r="9" fill="#2b3137"/>
+<text x="28" y="815.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">1</text>
+<text x="46" y="816" font-size="12" fill="#2b3137">Yeni (kendi) görev ekleme düğmesi</text>
+<circle cx="28" cy="834" r="9" fill="#2b3137"/>
+<text x="28" y="837.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">2</text>
+<text x="46" y="838" font-size="12" fill="#2b3137">Genel ilerleme göstergesi: tamamlanan, devam eden ve kalan görevler tek çubukta</text>
+<circle cx="28" cy="856" r="9" fill="#2b3137"/>
+<text x="28" y="859.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">3</text>
+<text x="46" y="860" font-size="12" fill="#2b3137">Arama kutusu; ders ve hafta seçicileri; durum süzgeçleri ve görev sayıları</text>
+<circle cx="28" cy="878" r="9" fill="#2b3137"/>
+<text x="28" y="881.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">4</text>
+<text x="46" y="882" font-size="12" fill="#2b3137">Görev kartı: ders rengi çizgisi, başlık, açıklama, son tarih, etiketler</text>
+<circle cx="28" cy="900" r="9" fill="#2b3137"/>
+<text x="28" y="903.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">5</text>
+<text x="46" y="904" font-size="12" fill="#2b3137">Durum seçicisi: Yapılacak / Devam ediyor / Tamamlandı (anında kaydedilir)</text>
+</svg>
