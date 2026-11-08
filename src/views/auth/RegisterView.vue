@@ -98,12 +98,7 @@ async function submit() {
 
     <!-- KVKK: kullanıcı, verisi işlenmeden önce aydınlatma metnini okuduğunu onaylar. -->
     <label class="flex cursor-pointer items-start gap-3 text-sm">
-      <input
-        v-model="acceptedPrivacy"
-        type="checkbox"
-        class="mt-0.5 size-4 shrink-0 rounded accent-indigo-600"
-        required
-      />
+      <input v-model="acceptedPrivacy" type="checkbox" class="checkbox mt-px" required />
       <span>
         <RouterLink
           to="/gizlilik"

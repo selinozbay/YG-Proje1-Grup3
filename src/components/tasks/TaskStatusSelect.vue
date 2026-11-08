@@ -35,7 +35,7 @@ const options = Object.entries(TASK_STATUS_LABELS) as [TaskStatus, string][]
     </svg>
     <select
       v-model="status"
-      class="absolute inset-0 cursor-pointer appearance-none rounded-full bg-white text-slate-900 opacity-0 dark:bg-slate-900 dark:text-slate-100"
+      class="status-select absolute inset-0 cursor-pointer appearance-none rounded-full bg-white text-slate-900 opacity-0 dark:bg-slate-900 dark:text-slate-100"
       data-test="status-select"
     >
       <option
@@ -44,6 +44,7 @@ const options = Object.entries(TASK_STATUS_LABELS) as [TaskStatus, string][]
         :value="value"
         class="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100"
       >
+        <StatusIcon :status="value" class="size-4 shrink-0" />
         {{ text }}
       </option>
     </select>
