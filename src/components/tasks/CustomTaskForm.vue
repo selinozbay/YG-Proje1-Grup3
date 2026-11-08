@@ -8,6 +8,7 @@ import {
   type CustomTaskErrors,
 } from '@/composables/useCustomTaskForm'
 import type { CustomTaskInput } from '@/types/task'
+import DateField from '@/components/common/DateField.vue'
 
 /** Kullanıcının kendi görevini ekleme / düzenleme formu (#23). */
 const props = withDefaults(
@@ -50,15 +51,13 @@ async function submit() {
   emit('submit', { ...form, title: form.title.trim(), description: form.description.trim() })
 }
 
-const fieldClass =
-  'w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 focus:outline-none aria-invalid:border-red-500 aria-invalid:ring-2 aria-invalid:ring-red-500/20 dark:border-slate-700 dark:bg-slate-950'
 const labelClass = 'mb-1.5 block text-sm font-semibold'
 </script>
 
 <template>
   <form
     ref="formEl"
-    class="mb-6 overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800"
+    class="mb-6 rounded-2xl bg-white ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800"
     :aria-labelledby="headingId"
     novalidate
     data-test="custom-task-form"
@@ -66,7 +65,7 @@ const labelClass = 'mb-1.5 block text-sm font-semibold'
   >
     <!-- Formun başlığı vurgu renginin açık tonunda bir şeritte: sayfada o an doldurulan şey bu. -->
     <div
-      class="flex items-center gap-3 border-b border-indigo-100 bg-indigo-50 px-4 py-3 text-indigo-900 sm:px-6 dark:border-indigo-400/15 dark:bg-indigo-400/[0.08] dark:text-indigo-100"
+      class="flex items-center gap-3 rounded-t-2xl border-b border-indigo-100 bg-indigo-50 px-4 py-3 text-indigo-900 sm:px-6 dark:border-indigo-400/15 dark:bg-indigo-400/[0.08] dark:text-indigo-100"
     >
       <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5 shrink-0">
         <path
@@ -97,7 +96,7 @@ const labelClass = 'mb-1.5 block text-sm font-semibold'
           autocomplete="off"
           :aria-invalid="errors.title ? 'true' : undefined"
           :aria-describedby="errors.title ? errorId('title') : undefined"
-          :class="fieldClass"
+          class="field"
         />
         <p
           v-if="errors.title"
@@ -119,7 +118,7 @@ const labelClass = 'mb-1.5 block text-sm font-semibold'
           rows="3"
           :aria-invalid="errors.description ? 'true' : undefined"
           :aria-describedby="errors.description ? errorId('description') : undefined"
-          :class="fieldClass"
+          class="field min-h-[5.5rem] resize-y"
         />
         <p
           v-if="errors.description"
@@ -140,7 +139,7 @@ const labelClass = 'mb-1.5 block text-sm font-semibold'
           v-model="form.courseId"
           :aria-invalid="errors.courseId ? 'true' : undefined"
           :aria-describedby="errors.courseId ? errorId('courseId') : undefined"
-          :class="fieldClass"
+          class="field"
         >
           <option value="">Derse bağlı değil</option>
           <option v-for="course in courses" :key="course.id" :value="course.id">
@@ -158,13 +157,11 @@ const labelClass = 'mb-1.5 block text-sm font-semibold'
 
       <div>
         <label :for="ids.dueDate" :class="labelClass">Son tarih</label>
-        <input
+        <DateField
           :id="ids.dueDate"
           v-model="form.dueDate"
-          type="date"
-          :aria-invalid="errors.dueDate ? 'true' : undefined"
-          :aria-describedby="errors.dueDate ? errorId('dueDate') : undefined"
-          :class="fieldClass"
+          :invalid="!!errors.dueDate"
+          :describedby="errors.dueDate ? errorId('dueDate') : undefined"
         />
         <p
           v-if="errors.dueDate"
@@ -185,7 +182,7 @@ const labelClass = 'mb-1.5 block text-sm font-semibold'
     </p>
 
     <div
-      class="flex flex-wrap justify-end gap-3 border-t border-slate-200 bg-slate-50 px-4 py-3 sm:px-6 dark:border-slate-800 dark:bg-slate-950/40"
+      class="flex flex-wrap justify-end gap-3 rounded-b-2xl border-t border-slate-200 bg-slate-50 px-4 py-3 sm:px-6 dark:border-slate-800 dark:bg-slate-950/40"
     >
       <button
         type="button"

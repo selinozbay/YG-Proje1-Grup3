@@ -106,4 +106,44 @@ test.describe('E2E: Kendi görevim (#23)', () => {
     await expect(page.locator('article').first()).toBeVisible()
     await expect(taskCard(page, 'Sunum provası')).toHaveCount(0)
   })
+
+  test('son tarih uygulamanın takviminden klavyeyle ve fareyle seçilir (#110)', async ({
+    page,
+  }) => {
+    await page.clock.setFixedTime(new Date('2026-11-08T10:00:00'))
+    await login(page)
+    await page.goto('/gorevlerim')
+    await page.getByRole('button', { name: '+ Görev ekle' }).click()
+    await page.getByLabel('Başlık').fill('Takvimle eklenen görev')
+
+    const toggle = page.getByRole('button', { name: 'Takvimden seç' })
+    await toggle.click()
+    const calendar = page.getByRole('dialog', { name: 'Kasım 2026' })
+    await expect(calendar).toBeVisible()
+    // Boşken bugünde açılır; odak bugünde.
+    await expect(calendar.getByRole('button', { name: '8 Kasım 2026 Pazar' })).toBeFocused()
+
+    // Klavye: iki gün ileri, Enter ile seç.
+    await page.keyboard.press('ArrowRight')
+    await page.keyboard.press('ArrowRight')
+    await page.keyboard.press('Enter')
+    await expect(calendar).toBeHidden()
+    await expect(page.getByLabel('Son tarih')).toHaveValue('2026-11-10')
+    await expect(toggle).toBeFocused()
+
+    // Fare: sonraki aya geç, bir güne bas.
+    await toggle.click()
+    await page.getByRole('button', { name: 'Sonraki ay' }).click()
+    await page.getByRole('button', { name: '4 Aralık 2026 Cuma' }).click()
+    await expect(page.getByLabel('Son tarih')).toHaveValue('2026-12-04')
+
+    // Esc ile kapanır, tarih değişmez.
+    await toggle.click()
+    await page.keyboard.press('Escape')
+    await expect(page.getByRole('dialog')).toHaveCount(0)
+    await expect(page.getByLabel('Son tarih')).toHaveValue('2026-12-04')
+
+    await page.getByRole('button', { name: 'Görevi ekle' }).click()
+    await expect(taskCard(page, 'Takvimle eklenen görev')).toContainText('Son tarih: 4 Aralık 2026')
+  })
 })

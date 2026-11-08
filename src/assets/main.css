@@ -77,6 +77,185 @@
 }
 
 /*
+ * Form alanları (#110). Metin kutusu, açıklama, açılır liste ve tarih alanı aynı görünür:
+ * açık gri zemin, odakta beyaz zemin ve turuncu halka, hatalı alanda kırmızı çerçeve.
+ * Giriş/kayıt ekranındaki TextField ile aynı aileden.
+ */
+@layer components {
+  .field {
+    @apply block w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-900 transition-[border-color,background-color,box-shadow] placeholder:text-slate-400 hover:border-slate-300 focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/15 focus:outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500 dark:hover:border-slate-700 dark:focus:border-indigo-400 dark:focus:ring-indigo-400/20;
+  }
+  .field[aria-invalid='true'] {
+    @apply border-red-400 focus:border-red-500 focus:ring-red-500/15 dark:border-red-500/70;
+  }
+
+  /* Arama kutusundaki "temizle" düğmesi tarayıcının mavisi yerine gri çarpı. */
+  .field[type='search']::-webkit-search-cancel-button {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    background-color: var(--color-slate-400);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+  }
+  .field[type='search']::-webkit-search-cancel-button:hover {
+    background-color: var(--color-slate-600);
+  }
+
+  /*
+   * Tarih alanı (DateField.vue): tarayıcının takvim simgesi gizlenir, yerine uygulamanın
+   * takvim düğmesi gelir. Gün/ay/yıl parçası seçilince mavi yerine turuncu vurgu.
+   */
+  .field[type='date']::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+  .field[type='date'].is-empty::-webkit-datetime-edit {
+    color: var(--color-slate-400);
+  }
+  .field[type='date']::-webkit-datetime-edit-day-field:focus,
+  .field[type='date']::-webkit-datetime-edit-month-field:focus,
+  .field[type='date']::-webkit-datetime-edit-year-field:focus {
+    border-radius: 0.25rem;
+    background-color: var(--color-indigo-100);
+    color: var(--color-indigo-900);
+  }
+  .dark .field[type='date']::-webkit-datetime-edit-day-field:focus,
+  .dark .field[type='date']::-webkit-datetime-edit-month-field:focus,
+  .dark .field[type='date']::-webkit-datetime-edit-year-field:focus {
+    background-color: rgb(251 143 69 / 0.25);
+    color: var(--color-indigo-100);
+  }
+
+  /*
+   * Açılır liste. Destekleyen tarayıcıda (appearance: base-select) açılan liste de sitenin
+   * renkleriyle çizilir; desteklemeyende tarayıcının listesi açılır, kutu yine aynı görünür.
+   * Gerçek <select> olarak kaldığı için klavye ve ekran okuyucu davranışı tarayıcınınkidir.
+   */
+  select.field {
+    @apply cursor-pointer pr-10;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%239aa3b5'%3E%3Cpath d='M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.06l3.71-3.83a.75.75 0 1 1 1.08 1.04l-4.25 4.39a.75.75 0 0 1-1.08 0L5.21 8.27a.75.75 0 0 1 .02-1.06z'/%3E%3C/svg%3E");
+    background-position: right 0.85rem center;
+    background-repeat: no-repeat;
+    background-size: 1.1rem;
+  }
+
+  /* Onay kutusu: turuncu zemin, beyaz tik. */
+  .checkbox {
+    @apply size-5 shrink-0 cursor-pointer rounded-md border border-slate-300 bg-white transition-colors hover:border-slate-400 dark:border-slate-600 dark:bg-slate-950 dark:hover:border-slate-500;
+    appearance: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 0.85rem;
+  }
+  .checkbox:checked {
+    @apply border-indigo-600 bg-indigo-600 dark:border-indigo-400 dark:bg-indigo-400;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+  }
+  .dark .checkbox:checked {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230e121b' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+  }
+}
+
+@supports (appearance: base-select) {
+  select.field,
+  select.field::picker(select),
+  select.status-select,
+  select.status-select::picker(select) {
+    appearance: base-select;
+  }
+  select.field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-right: 0.85rem;
+    background-image: none;
+  }
+  select.field::picker-icon {
+    content: '';
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-inline-start: auto;
+    background-color: var(--color-slate-400);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.06l3.71-3.83a.75.75 0 1 1 1.08 1.04l-4.25 4.39a.75.75 0 0 1-1.08 0L5.21 8.27a.75.75 0 0 1 .02-1.06z'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+    transition: rotate 150ms ease;
+  }
+  select.field:open::picker-icon {
+    rotate: 180deg;
+  }
+
+  /* Açılan liste: kartlarla aynı köşe ve gölge; seçili satır turuncu, sağında tik. */
+  select.field::picker(select),
+  select.status-select::picker(select) {
+    margin-block: 0.375rem;
+    padding: 0.375rem;
+    max-height: 18rem;
+    overflow-y: auto;
+    border: 1px solid var(--color-slate-200);
+    border-radius: 0.875rem;
+    background-color: #fff;
+    color: var(--color-slate-900);
+    box-shadow:
+      0 16px 32px -12px rgb(14 18 27 / 0.22),
+      0 2px 6px rgb(14 18 27 / 0.06);
+  }
+  .dark select.field::picker(select),
+  .dark select.status-select::picker(select) {
+    border-color: var(--color-slate-700);
+    background-color: var(--color-slate-900);
+    color: var(--color-slate-100);
+    box-shadow: 0 16px 32px -12px rgb(0 0 0 / 0.6);
+  }
+  select.field option,
+  select.status-select option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  select.field option:hover,
+  select.field option:focus-visible,
+  select.status-select option:hover,
+  select.status-select option:focus-visible {
+    outline: none;
+    background-color: var(--color-slate-100);
+  }
+  .dark select.field option:hover,
+  .dark select.field option:focus-visible,
+  .dark select.status-select option:hover,
+  .dark select.status-select option:focus-visible {
+    background-color: var(--color-slate-800);
+  }
+  select.field option:checked,
+  select.status-select option:checked {
+    background-color: var(--color-indigo-50);
+    color: var(--color-indigo-800);
+    font-weight: 600;
+  }
+  .dark select.field option:checked,
+  .dark select.status-select option:checked {
+    background-color: rgb(251 143 69 / 0.15);
+    color: var(--color-indigo-200);
+  }
+  select.field option::checkmark,
+  select.status-select option::checkmark {
+    order: 1;
+    margin-inline-start: auto;
+    color: var(--color-indigo-600);
+  }
+  .dark select.field option::checkmark,
+  .dark select.status-select option::checkmark {
+    color: var(--color-indigo-300);
+  }
+}
+
+/*
  * Sayfa geçişi (#34): yeni sayfa eklendiği anda hafifçe belirir (App.vue → .page-in).
  * Eski sayfa beklemeden kaldırılır; böylece geçiş sırasında iki sayfa aynı anda bulunmaz
  * ve yazılanlar yanlışlıkla eski sayfanın kutularına gitmez.

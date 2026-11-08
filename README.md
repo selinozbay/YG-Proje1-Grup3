@@ -99,7 +99,8 @@ içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
 - Arayüzün yeni görünümü: derslere ve haftalara bölünmüş dönem çizelgesi, ders renkleri ve
   kapakları, durum simgeleri, hesap silmede onay penceresi ([#92](https://github.com/selinozbay/YG-Proje1-Grup3/pull/92); #91); turuncu vurgu
   rengi ve temayı izleyen kenar çubuğu ([#94](https://github.com/selinozbay/YG-Proje1-Grup3/pull/94); #93); giriş ekranlarının temaya uyumu ve
-  README'nin son duruma getirilmesi (#95).
+  README'nin son duruma getirilmesi (#95); form alanları, açılır listeler ve uygulamanın kendi
+  takvimi (#110).
 - `ders.c1h4n.com` alan adını ve DNS kayıtlarını sağladı. Birleştirmeler: #63, #75, #76, #79–#82.
 
 **Tahir Taş (Test / Kalite + Geliştirici)**
@@ -148,6 +149,7 @@ içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
 | Görev listesi ve durum değiştirme                                                           | Görevlerim, hafta detayı | Hazır |
 | Duruma, derse ve haftaya göre filtre; arama                                                 | Görevlerim               | Hazır |
 | Kendi görevini ekleme, düzenleme ve silme                                                   | Görevlerim               | Hazır |
+| Sitenin renklerinde form alanları ve açılır listeler; son tarih için Türkçe takvim          | Görevlerim, Kayıt        | Hazır |
 | Dönem çizelgesi (ders × hafta), genel ve ders bazında ilerleme, yaklaşan görevler, bu hafta | Ana Sayfa                | Hazır |
 | Hesap bilgileri, şifre sıfırlama bağlantısı, istatistikler                                  | Profil                   | Hazır |
 
@@ -291,7 +293,7 @@ bittiğinden emin olun.
 | Uçtan uca (E2E)     | `e2e/`              | Kayıt, giriş, şifremi unuttum, menü, sayfa geçişi, Ana Sayfa, Derslerim, ders ve hafta detayı, Görevlerim, Profil, Gizlilik | `npm run test:e2e`      |
 | Firebase (emülatör) | `test/`             | Firestore güvenlik kuralları, gerçek giriş ve kayıt, kullanıcı verisi, hesap silme                                          | `npm run test:firebase` |
 
-- 3 Kasım 2026 itibarıyla 209 birim ve bileşen testi, 41 E2E testi ve 23 Firebase emülatör testi
+- 8 Kasım 2026 itibarıyla 218 birim ve bileşen testi, 42 E2E testi ve 23 Firebase emülatör testi
   vardır; hepsi CI'da geçer.
 - Birim testleri ve E2E her zaman demo modunda çalışır; `.env.local` dolu olsa bile gerçek
   Firebase'e bağlanmaz.
@@ -448,14 +450,14 @@ Birim testleri, test ettikleri dosyanın yanındaki `__tests__/` klasöründe du
 
 ### `src/components/` — bileşenler
 
-| Klasör     | İçindekiler                                                                                                                                                  |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `layout/`  | Kenar çubuğu (`AppSidebar`), mobil üst bar, logo, alt bilgi, tema düğmesi, demo uyarısı, "İçeriğe geç" bağlantısı                                            |
-| `common/`  | Ortak parçalar: ikonlar (`AppIcon`), durum simgesi (`StatusIcon`), sayfa başlığı, metin kutusu, onay penceresi, geri bağlantısı, ilerleme ve durum çubukları |
-| `auth/`    | Giriş, kayıt ve şifre sıfırlama ekranlarının tanıtım paneli (`AuthBrandPanel`), form başlığı ve kartı, gönder düğmesi, şifre gücü göstergesi                 |
-| `home/`    | Ana Sayfa: `TermOverview` (dönem çizelgesi), `UpcomingTasks` (güne göre yaklaşan görevler), `HomeCourses` (ders ilerlemesi ve bu haftanın konusu)            |
-| `lessons/` | Ders kartı, ders grafiği ve filtresi (Derslerim); hafta kartı ve zaman çizelgesi (Ders detayı); ders renkleri                                                |
-| `tasks/`   | Görev kartı, durum seçici, görev filtresi, kendi görevini ekleme formu; görev durumlarının renkleri                                                          |
+| Klasör     | İçindekiler                                                                                                                                                                                       |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `layout/`  | Kenar çubuğu (`AppSidebar`), mobil üst bar, logo, alt bilgi, tema düğmesi, demo uyarısı, "İçeriğe geç" bağlantısı                                                                                 |
+| `common/`  | Ortak parçalar: ikonlar (`AppIcon`), durum simgesi (`StatusIcon`), sayfa başlığı, metin kutusu, tarih alanı ve takvim (`DateField`), onay penceresi, geri bağlantısı, ilerleme ve durum çubukları |
+| `auth/`    | Giriş, kayıt ve şifre sıfırlama ekranlarının tanıtım paneli (`AuthBrandPanel`), form başlığı ve kartı, gönder düğmesi, şifre gücü göstergesi                                                      |
+| `home/`    | Ana Sayfa: `TermOverview` (dönem çizelgesi), `UpcomingTasks` (güne göre yaklaşan görevler), `HomeCourses` (ders ilerlemesi ve bu haftanın konusu)                                                 |
+| `lessons/` | Ders kartı, ders grafiği ve filtresi (Derslerim); hafta kartı ve zaman çizelgesi (Ders detayı); ders renkleri                                                                                     |
+| `tasks/`   | Görev kartı, durum seçici, görev filtresi, kendi görevini ekleme formu; görev durumlarının renkleri                                                                                               |
 
 ### `src/composables/` — tekrar kullanılan mantık
 

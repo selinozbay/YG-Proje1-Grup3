@@ -25,8 +25,6 @@ const courseSelectId = useId()
 const weekSelectId = useId()
 
 const labelClass = 'mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-300'
-const fieldClass =
-  'w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 focus:outline-none dark:border-slate-700 dark:bg-slate-950'
 </script>
 
 <!-- Görevlerim'de arama, ders, hafta ve duruma göre filtre (#20–#22). -->
@@ -57,13 +55,13 @@ const fieldClass =
             type="search"
             placeholder="Başlık, açıklama ya da etiket yaz"
             autocomplete="off"
-            :class="[fieldClass, 'pl-9 placeholder:text-slate-400']"
+            class="field pl-9"
           />
         </div>
       </div>
       <div>
         <label :for="courseSelectId" :class="labelClass">Ders</label>
-        <select :id="courseSelectId" v-model="courseId" :class="fieldClass">
+        <select :id="courseSelectId" v-model="courseId" class="field">
           <option value="all">Tüm dersler</option>
           <option v-for="course in courses" :key="course.id" :value="course.id">
             {{ course.title }}
@@ -72,7 +70,7 @@ const fieldClass =
       </div>
       <div>
         <label :for="weekSelectId" :class="labelClass">Hafta</label>
-        <select :id="weekSelectId" v-model="weekNo" :class="fieldClass">
+        <select :id="weekSelectId" v-model="weekNo" class="field">
           <option value="all">Tüm haftalar</option>
           <option v-for="no in weekNos" :key="no" :value="no">{{ no }}. hafta</option>
         </select>

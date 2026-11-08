@@ -54,7 +54,7 @@ const searchId = useId()
           type="search"
           placeholder="Ders kodu, adı ya da öğretim elemanı yaz"
           autocomplete="off"
-          class="w-full rounded-xl border border-slate-300 bg-white py-2.5 pr-3 pl-9 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 focus:outline-none dark:border-slate-700 dark:bg-slate-900"
+          class="field pl-9"
         />
       </div>
     </div>
