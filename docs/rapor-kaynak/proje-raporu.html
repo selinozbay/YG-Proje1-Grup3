@@ -130,7 +130,7 @@
     Zorunlu işlevlerin tamamı ve ekibin eklediği özellikler <code>main</code> dalına girmiştir;
     birim, uçtan uca (E2E) ve Firebase emülatör testlerinin hepsi geçmektedir. Tablolardaki
     <span class="pill ok">Hazır</span> ve <span class="pill ok">Geçti</span> etiketleri bu tarihteki
-    durumu gösterir; teslimden önce kalan işler (sunum ve son yayın)
+    durumu gösterir; teslimden önce kalan işler (son yayın ve canlı sitede deneme)
     Bölüm 14'te listelenmiştir.
   </div>
 </section>
@@ -460,7 +460,7 @@
 <!-- 8.4 Ekran görüntüleri -->
 <section class="newpage">
   <h3 style="margin-top:0">8.4 Ekran görüntüleri</h3>
-  <p style="font-size:9.3pt;color:#475569">Görüntüler 4 Kasım 2026'daki <code>main</code> sürümünden, demo modunda örnek bir öğrenciyle (24 görevin 9'u tamamlanmış) alınmıştır. Bütün sayfaların masaüstü ve mobil görüntüleri <code>docs/screenshots/</code> klasöründedir.</p>
+  <p style="font-size:9.3pt;color:#475569">Görüntüler 4 Kasım 2026'daki <code>main</code> sürümünden, demo modunda örnek bir öğrenciyle (24 görevin 9'u tamamlanmış) alınmıştır; Görevlerim sayfasının görüntüleri 10 Kasım 2026'daki yeni form alanlarıyla yenilenmiştir. Bütün sayfaların masaüstü ve mobil görüntüleri <code>docs/screenshots/</code> klasöründedir.</p>
   <div class="figs-2">
     <figure><img src="../screenshots/masaustu-01-giris.png" alt="Giriş" /><figcaption>Şekil 1 — Giriş ekranı</figcaption></figure>
     <figure><img src="../screenshots/masaustu-02-kayit.png" alt="Kayıt" /><figcaption>Şekil 2 — Kayıt: öğrenci e-postası ve şifre gücü göstergesi</figcaption></figure>
@@ -580,7 +580,7 @@
     <tr><td>1</td><td>İhtiyaç analizi, kullanıcı hikâyeleri, repository ve görev planı</td><td>Ders dokümanları incelendi; menüler, teknolojiler ve kapsam belirlendi; GitHub reposu ve görev panosu açıldı; proje iskeleti ve ilk yayın yapıldı.</td><td><span class="pill ok">Tamamlandı</span></td></tr>
     <tr><td>2</td><td>Arayüz/teknik tasarım; temel yapı ve ana işlevler</td><td>Veri modeli, kenar çubuğu, tema, KVKK sayfası, Firestore kuralları; GitHub Projects'e geçiş; birim/E2E/kural testleri ve CI kuruldu; ara rapor hazırlandı.</td><td><span class="pill ok">Tamamlandı</span></td></tr>
     <tr><td>3</td><td>Ana işlevlerin tamamlanması, entegrasyon, test, hata düzeltme</td><td>Görevlerim, hafta ve ders detayı, kendi görevim, kayıt kuralları, Profil, Ana Sayfa ve Derslerim tamamlandı; ilk test turu (47 senaryo) yapıldı, bulunan hatalar düzeltildi; alan adı ve e-posta gönderimi kuruldu.</td><td><span class="pill ok">Tamamlandı</span></td></tr>
-    <tr><td>4</td><td>Kalite kontrol, dokümantasyon, demo, sunum ve teslim</td><td>Yeni görünüm ve turuncu tema; giriş ekranları; ikinci test turu (70 senaryo geçti); README ve rapor son hâli, ekran görüntüleri. Kalan: kullanıcı dokümanı, sunum, wireframe ve son yayın (Bölüm 14).</td><td><span class="pill wip">Devam ediyor</span></td></tr>
+    <tr><td>4</td><td>Kalite kontrol, dokümantasyon, demo ve teslim</td><td>Yeni görünüm ve turuncu tema; giriş ekranları; form alanları ve takvim; ikinci test turu ve 10 Kasım ek kontrolü (72 senaryonun 71'i geçti); README, rapor, kullanıcı dokümanı, wireframe ve ekran görüntüleri. Kalan: son yayın ve canlı sitede deneme (Bölüm 14).</td><td><span class="pill wip">Devam ediyor</span></td></tr>
   </table>
 </section>
 
@@ -591,16 +591,16 @@
   <table class="t">
     <tr><th style="width:22%">Test türü</th><th>Kapsam</th><th class="nowrap">Sayı</th><th style="width:19%">Komut</th></tr>
     <tr><td>Statik denetim</td><td>ESLint + Oxlint ile kod hataları, TypeScript tip kontrolü, yayın derlemesi</td><td>—</td><td><code>npm run lint</code>, <code>npm run type-check</code>, <code>npm run build</code></td></tr>
-    <tr><td>Birim ve bileşen (Vitest)</td><td>Store'lar, ilerleme ve çizelge hesapları, filtre ve arama, bileşenler ve sayfalar; her zaman demo modunda</td><td>209</td><td><code>npm test</code></td></tr>
-    <tr><td>Uçtan uca (Playwright)</td><td>Kayıt, giriş, şifremi unuttum, menü ve sayfa geçişi, Ana Sayfa, Derslerim, ders ve hafta detayı, Görevlerim, kendi görevim, Profil, Gizlilik</td><td>41</td><td><code>npm run test:e2e</code></td></tr>
+    <tr><td>Birim ve bileşen (Vitest)</td><td>Store'lar, ilerleme ve çizelge hesapları, filtre ve arama, bileşenler ve sayfalar; her zaman demo modunda</td><td>218</td><td><code>npm test</code></td></tr>
+    <tr><td>Uçtan uca (Playwright)</td><td>Kayıt, giriş, şifremi unuttum, menü ve sayfa geçişi, Ana Sayfa, Derslerim, ders ve hafta detayı, Görevlerim, kendi görevim, takvim ve form alanları, Profil, Gizlilik</td><td>45</td><td><code>npm run test:e2e</code></td></tr>
     <tr><td>Firebase emülatörü</td><td>Firestore güvenlik kuralları (9); gerçek kayıt, giriş, şifre sıfırlama, kullanıcı verisi ve hesap silme (14)</td><td>23</td><td><code>npm run test:firebase</code></td></tr>
-    <tr><td>Elle senaryo testleri</td><td><code>docs/test-senaryolari.md</code>: masaüstü 1024–1280 px ve mobil 375 px, aydınlık ve karanlık tema</td><td>71</td><td>—</td></tr>
+    <tr><td>Elle senaryo testleri</td><td><code>docs/test-senaryolari.md</code>: masaüstü 1024–1280 px ve mobil 375 px, aydınlık ve karanlık tema</td><td>72</td><td>—</td></tr>
   </table>
   <p>
-    <b>Sonuç (4 Kasım 2026, <code>main</code>):</b> 209 birim, 41 E2E ve 23 Firebase emülatör testinin
+    <b>Sonuç (10 Kasım 2026, <code>main</code>):</b> 218 birim, 45 E2E ve 23 Firebase emülatör testinin
     tamamı geçmektedir. <b>Sürekli entegrasyon:</b> <code>main</code>'e yapılan her push'ta ve açılan
     her PR'da GitHub Actions bu dört kontrolü çalıştırır; kırmızı bir kontrol varken PR birleştirilmez.
-    Elle yapılan iki test turunda (31 Ekim ve 3 Kasım) 71 senaryonun 70'i geçmiş, bulunan 7 hata
+    Elle yapılan test turlarında (31 Ekim, 3 Kasım ve 10 Kasım ek kontrolü) 72 senaryonun 71'i geçmiş, bulunan 8 hata
     düzeltilmiş ve her biri için tekrar etmemesi adına bir E2E testi eklenmiştir.
   </p>
 
@@ -658,7 +658,7 @@ npm run dev          # http://localhost:5173</pre>
   <table class="t">
     <tr><th style="width:34%">İş</th><th>Issue</th><th class="nowrap">Durum</th></tr>
     <tr><td>Kullanıcı dokümanı (<code>docs/kullanici-dokumani.pdf</code>)</td><td>#55</td><td><span class="pill ok">Hazır</span></td></tr>
-    <tr><td>Sunum dosyası (<code>presentation/</code>)</td><td>#56</td><td><span class="pill wait">Bekliyor</span></td></tr>
+    <tr><td>Sunum dosyası (<code>presentation/</code>)</td><td>#56</td><td><span class="pill wait">İptal edildi</span></td></tr>
     <tr><td>Wireframe'ler (<code>docs/wireframes/</code>)</td><td>#64</td><td><span class="pill ok">Hazır</span></td></tr>
     <tr><td>Ekran görüntüleri (<code>docs/screenshots/</code>)</td><td>#57</td><td><span class="pill ok">Hazır</span></td></tr>
     <tr><td>Son sürümün yayınlanması ve <code>v1.0.0</code> etiketi; canlı sitede uçtan uca deneme (T-43)</td><td>#59, #60</td><td><span class="pill wait">Bekliyor</span></td></tr>
@@ -695,9 +695,9 @@ npm run dev          # http://localhost:5173</pre>
     <tr><td>Web arayüzü ve kullanıcı etkileşimi (12)</td><td>Dönem çizelgesi, ders renkleri, temayı izleyen kenar çubuğu, geçiş efektleri, onay pencereleri, anlık güncellenen ilerleme</td><td>8</td></tr>
     <tr><td>Responsive tasarım ve kullanılabilirlik (8)</td><td>Masaüstü/mobil düzen, karanlık tema, erişilebilirlik ilkeleri; tüm sayfaların mobil ekran görüntüleri</td><td>8.3, 8.4, 10</td></tr>
     <tr><td>İhtiyaç analizi / kullanıcı senaryoları (7)</td><td>Hedef kullanıcılar, 12 kullanıcı hikâyesi ve kabul kriterleri, senaryolar; test belgesindeki senaryolar hikâyelere bağlı</td><td>3</td></tr>
-    <tr><td>Kod ve repository düzeni (6)</td><td>Katmanlı mimari, TypeScript, lint/format kuralları, 273 otomatik test ve CI, README, PR şablonu, GitHub Projects, commit kuralları</td><td>6, 11, 12</td></tr>
+    <tr><td>Kod ve repository düzeni (6)</td><td>Katmanlı mimari, TypeScript, lint/format kuralları, 286 otomatik test ve CI, README, PR şablonu, GitHub Projects, commit kuralları</td><td>6, 11, 12</td></tr>
     <tr><td>Rapor ve kullanıcı dokümanı (7)</td><td>Bu rapor ve kullanıcı dokümanı (<code>docs/kullanici-dokumani.pdf</code>)</td><td>14</td></tr>
-    <tr><td>Sunum ve demo (5)</td><td>Canlı demo: ders-ogrenci-bilgi-ekip.web.app; senaryolar Bölüm 3.3; sunum #56 ile hazırlanıyor</td><td>3.3, 13</td></tr>
+    <tr><td>Demo (5)</td><td>Canlı demo: ders-ogrenci-bilgi-ekip.web.app; senaryolar Bölüm 3.3</td><td>3.3, 13</td></tr>
   </table>
 </section>
 
