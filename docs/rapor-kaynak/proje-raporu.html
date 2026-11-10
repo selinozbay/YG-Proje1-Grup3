@@ -591,13 +591,13 @@
   <table class="t">
     <tr><th style="width:22%">Test türü</th><th>Kapsam</th><th class="nowrap">Sayı</th><th style="width:19%">Komut</th></tr>
     <tr><td>Statik denetim</td><td>ESLint + Oxlint ile kod hataları, TypeScript tip kontrolü, yayın derlemesi</td><td>—</td><td><code>npm run lint</code>, <code>npm run type-check</code>, <code>npm run build</code></td></tr>
-    <tr><td>Birim ve bileşen (Vitest)</td><td>Store'lar, ilerleme ve çizelge hesapları, filtre ve arama, bileşenler ve sayfalar; her zaman demo modunda</td><td>218</td><td><code>npm test</code></td></tr>
-    <tr><td>Uçtan uca (Playwright)</td><td>Kayıt, giriş, şifremi unuttum, menü ve sayfa geçişi, Ana Sayfa, Derslerim, ders ve hafta detayı, Görevlerim, kendi görevim, takvim ve form alanları, Profil, Gizlilik</td><td>45</td><td><code>npm run test:e2e</code></td></tr>
+    <tr><td>Birim ve bileşen (Vitest)</td><td>Store'lar, ilerleme ve çizelge hesapları, filtre ve arama, bileşenler ve sayfalar; her zaman demo modunda</td><td>223</td><td><code>npm test</code></td></tr>
+    <tr><td>Uçtan uca (Playwright)</td><td>Kayıt, giriş, şifremi unuttum, menü ve sayfa geçişi, Ana Sayfa, Derslerim, ders ve hafta detayı, Görevlerim, kendi görevim, takvim ve form alanları, Profil, Gizlilik</td><td>51</td><td><code>npm run test:e2e</code></td></tr>
     <tr><td>Firebase emülatörü</td><td>Firestore güvenlik kuralları (9); gerçek kayıt, giriş, şifre sıfırlama, kullanıcı verisi ve hesap silme (14)</td><td>23</td><td><code>npm run test:firebase</code></td></tr>
     <tr><td>Elle senaryo testleri</td><td><code>docs/test-senaryolari.md</code>: masaüstü 1024–1280 px ve mobil 375 px, aydınlık ve karanlık tema</td><td>72</td><td>—</td></tr>
   </table>
   <p>
-    <b>Sonuç (10 Kasım 2026, <code>main</code>):</b> 218 birim, 45 E2E ve 23 Firebase emülatör testinin
+    <b>Sonuç (10 Kasım 2026, <code>main</code>):</b> 223 birim, 51 E2E ve 23 Firebase emülatör testinin
     tamamı geçmektedir. <b>Sürekli entegrasyon:</b> <code>main</code>'e yapılan her push'ta ve açılan
     her PR'da GitHub Actions bu dört kontrolü çalıştırır; kırmızı bir kontrol varken PR birleştirilmez.
     Elle yapılan test turlarında (31 Ekim, 3 Kasım ve 10 Kasım ek kontrolü) 72 senaryonun 71'i geçmiş, bulunan 8 hata
@@ -697,7 +697,7 @@ npm run dev          # http://localhost:5173</pre>
     <tr><td>Web arayüzü ve kullanıcı etkileşimi (12)</td><td>Dönem çizelgesi, ders renkleri, temayı izleyen kenar çubuğu, geçiş efektleri, onay pencereleri, anlık güncellenen ilerleme</td><td>8</td></tr>
     <tr><td>Responsive tasarım ve kullanılabilirlik (8)</td><td>Masaüstü/mobil düzen, karanlık tema, erişilebilirlik ilkeleri; tüm sayfaların mobil ekran görüntüleri</td><td>8.3, 8.4, 10</td></tr>
     <tr><td>İhtiyaç analizi / kullanıcı senaryoları (7)</td><td>Hedef kullanıcılar, 12 kullanıcı hikâyesi ve kabul kriterleri, senaryolar; test belgesindeki senaryolar hikâyelere bağlı</td><td>3</td></tr>
-    <tr><td>Kod ve repository düzeni (6)</td><td>Katmanlı mimari, TypeScript, lint/format kuralları, 286 otomatik test ve CI, README, PR şablonu, GitHub Projects, commit kuralları</td><td>6, 11, 12</td></tr>
+    <tr><td>Kod ve repository düzeni (6)</td><td>Katmanlı mimari, TypeScript, lint/format kuralları, 297 otomatik test ve CI, README, PR şablonu, GitHub Projects, commit kuralları</td><td>6, 11, 12</td></tr>
     <tr><td>Rapor ve kullanıcı dokümanı (7)</td><td>Bu rapor ve kullanıcı dokümanı (<code>docs/kullanici-dokumani.pdf</code>)</td><td>14</td></tr>
     <tr><td>Demo (5)</td><td>Canlı demo: ders-ogrenci-bilgi-ekip.web.app; senaryolar Bölüm 3.3</td><td>3.3, 13</td></tr>
   </table>
