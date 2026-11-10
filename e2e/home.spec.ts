@@ -43,22 +43,35 @@ test.describe('E2E: Ana Sayfa', () => {
     await expect(page).toHaveURL('/derslerim/yazilim-gelistirme/hafta/3')
   })
 
-  test('gün cetvelinde bugün işaretlidir; çizgi dairelere değmez, etiket kartta kalır (#116)', async ({
+  test('gün cetvelinde her gün için çentik var; dönem bitince bugün işareti gizlenir (#116)', async ({
     page,
   }) => {
-    // Çizgi açılışta aşağı doğru çizildiği için ölçüm animasyonsuz yapılır.
-    await page.emulateMedia({ reducedMotion: 'reduce' })
     await login(page)
-    const card = page.locator('section', { has: page.locator('[data-test="term-week"]') })
-    const line = page.locator('[data-test="today-marker"]')
-    const label = page.locator('[data-test="today-label"]')
-    await expect(page.locator('[data-test="term-week"] a > svg')).toHaveCount(24)
-
     // Dönem 28 gün; her günün ortasında bir çentik.
     await expect(page.locator('[data-test="day-tick"]')).toHaveCount(28)
+    await expect(page.locator('[data-test="today-marker"]')).toHaveCount(1)
 
-    for (const width of [375, 768, 1024, 1280]) {
+    await page.clock.setFixedTime(new Date('2026-11-12T10:00:00'))
+    await page.reload()
+    await expect(page.locator('[data-test="day-tick"]').first()).toBeVisible()
+    await expect(page.locator('[data-test="today-marker"]')).toHaveCount(0)
+    await expect(page.locator('[data-test="today-label"]')).toHaveCount(0)
+  })
+
+  // Her genişlik ayrı test: tarih başına sayfa yeniden yüklenir, tek testte süre sınırını aşıyordu.
+  for (const width of [375, 768, 1024, 1280]) {
+    test(`${width} px: bugün çizgisi dairelere değmez, etiket kartta ve boşluklu durur (#116)`, async ({
+      page,
+    }) => {
+      // Çizgi açılışta aşağı doğru çizildiği için ölçüm animasyonsuz yapılır.
+      await page.emulateMedia({ reducedMotion: 'reduce' })
       await page.setViewportSize({ width, height: 900 })
+      await login(page)
+      const card = page.locator('section', { has: page.locator('[data-test="term-week"]') })
+      const line = page.locator('[data-test="today-marker"]')
+      const label = page.locator('[data-test="today-label"]')
+      await expect(page.locator('[data-test="term-week"] a > svg')).toHaveCount(24)
+
       // Dönem: 15 Ekim – 11 Kasım. İlk gün etiket çizginin sağına, ortada ortalı, sona doğru ve
       // teslim günü soluna açılır. 16 ve 24 Ekim'de çizgi, dairelerin hizasına düşen günlerdir.
       for (const [time, anchor] of [
@@ -107,13 +120,6 @@ test.describe('E2E: Ana Sayfa', () => {
         expect(m.gapAbove, `${width} px, ${time}: etiketin üstü`).toBeGreaterThanOrEqual(16)
         expect(m.gapBelow, `${width} px, ${time}: etiketin altı`).toBeGreaterThanOrEqual(8)
       }
-    }
-
-    // Dönem bittikten sonra cetvel kalır, bugün işareti görünmez.
-    await page.clock.setFixedTime(new Date('2026-11-12T10:00:00'))
-    await page.reload()
-    await expect(page.locator('[data-test="day-tick"]').first()).toBeVisible()
-    await expect(line).toHaveCount(0)
-    await expect(label).toHaveCount(0)
-  })
+    })
+  }
 })
