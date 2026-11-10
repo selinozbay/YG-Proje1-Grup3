@@ -65,7 +65,7 @@ Tüm ekip üyeleri aynı zamanda geliştiricidir.
 
 ### Kim ne yaptı?
 
-3 Kasım 2026 itibarıyla. Görevler 28–29 Ekim'de lider Selin Özbay tarafından dağıtıldı; herkes
+10 Kasım 2026 itibarıyla. Görevler 28–29 Ekim'de lider Selin Özbay tarafından dağıtıldı; herkes
 kendi işlerini bu dağılıma göre panoda kendine atadı. Numaralar PR ve issue'lardır; her PR'ın
 içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
 [`docs/katki-tablosu.md`](docs/katki-tablosu.md)'de.
@@ -78,7 +78,7 @@ içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
 - Derslerim: ders kartları, durum grafiği, arama ve filtre ([#83](https://github.com/selinozbay/YG-Proje1-Grup3/pull/83); #14–#19).
 - Uygulamanın ortak tasarımı: yazı tipi, renkler, kenar çubuğu, görev listeleri ([#86](https://github.com/selinozbay/YG-Proje1-Grup3/pull/86)).
 - Ekip katkı tablosu ve onu GitHub'dan üreten betik ([#85](https://github.com/selinozbay/YG-Proje1-Grup3/pull/85); P1-19);
-  1 ve 3 Kasım'da ara güncellemeleri ([#90](https://github.com/selinozbay/YG-Proje1-Grup3/pull/90), [#97](https://github.com/selinozbay/YG-Proje1-Grup3/pull/97); #65).
+  1 ve 3 Kasım'da ara güncellemeleri ([#90](https://github.com/selinozbay/YG-Proje1-Grup3/pull/90), [#97](https://github.com/selinozbay/YG-Proje1-Grup3/pull/97)), 10 Kasım'da son hâli ([#122](https://github.com/selinozbay/YG-Proje1-Grup3/pull/122); #65).
 - Şifre sıfırlama e-postasının KTÜ adreslerine ulaşması: Firebase e-posta ve alan adı ayarları
   (Cihan'la birlikte), belgelenmesi ve Gereksiz klasörü uyarısı ([#87](https://github.com/selinozbay/YG-Proje1-Grup3/pull/87), [#88](https://github.com/selinozbay/YG-Proje1-Grup3/pull/88)).
 - PR incelemeleri ve onayları (#77, #79, #81), birleştirmeler (#77, #83–#90, #92, #94, #96, #97,
