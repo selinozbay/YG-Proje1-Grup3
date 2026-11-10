@@ -108,6 +108,10 @@ içindeki commitler o kişiye aittir. Bütün bağlantılar ve sayılar
 - Birim, bileşen ve E2E test altyapısı ve CI ([#37](https://github.com/selinozbay/YG-Proje1-Grup3/pull/37); #38).
 - Test senaryosu tablosu ve hata kaydı: [`docs/test-senaryolari.md`](docs/test-senaryolari.md)
   ([#73](https://github.com/selinozbay/YG-Proje1-Grup3/pull/73); P1-15); 3 Kasım'daki ikinci tur: 70 senaryo geçti ([#100](https://github.com/selinozbay/YG-Proje1-Grup3/pull/100)).
+- Son test turu ve canlı deneme (10 Kasım): 81 senaryonun hepsi geçti, gereksinim–test eşleştirmesi
+  (P1-16; #60). Bu turda bulunan hataların düzeltilmesi: karanlık temada form alanları, Firefox'ta
+  tarih kutusu, Ana Sayfa gün cetveli ([#113](https://github.com/selinozbay/YG-Proje1-Grup3/pull/113),
+  [#115](https://github.com/selinozbay/YG-Proje1-Grup3/pull/115), [#118](https://github.com/selinozbay/YG-Proje1-Grup3/pull/118); #112, #114, #116).
 - Testte bulduğu hataların düzeltilmesi: boş adla kayıt, hafta adresi ([#74](https://github.com/selinozbay/YG-Proje1-Grup3/pull/74); #71, #72).
 - Kayıt kuralları: öğrenci e-postası ve şifre gücü göstergesi ([#76](https://github.com/selinozbay/YG-Proje1-Grup3/pull/76); #6, #7).
 - Ders detayı: hafta kartları, ilerleme, zaman çizelgesi ([#77](https://github.com/selinozbay/YG-Proje1-Grup3/pull/77); #39–#42).
@@ -755,5 +759,5 @@ sürümünden demo modunda alındı (Görevlerim sayfasının görüntüleri 10 
 | `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))                      | İptal edildi                                                                                    |
 | `docs/wireframes/`            | Sayfa akış şeması ve wireframe'ler ([#64](https://github.com/selinozbay/YG-Proje1-Grup3/issues/64)) | 6 Kasım: akış şeması, 5 masaüstü ve 6 mobil taslak (PNG ve SVG)                                 |
 | `docs/screenshots/`           | Ekran görüntüleri ([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57))                  | 4 Kasım: bütün sayfalar, masaüstü ve mobil (26 görüntü)                                         |
-| `docs/test-senaryolari.md`    | Test senaryoları ve hata kaydı ([#60](https://github.com/selinozbay/YG-Proje1-Grup3/issues/60))     | 10 Kasım'da güncellendi: 71 senaryo geçti, 1 bekliyor (canlı sitede gerçek hesapla deneme)      |
+| `docs/test-senaryolari.md`    | Test senaryoları ve hata kaydı ([#60](https://github.com/selinozbay/YG-Proje1-Grup3/issues/60))     | 10 Kasım son hâli: 81 senaryonun hepsi geçti (canlı deneme dahil), gereksinim–test eşleştirmesi |
 | `docs/katki-tablosu.md`       | Ekip katkı tablosu ([#65](https://github.com/selinozbay/YG-Proje1-Grup3/issues/65))                 | 10 Kasım'da güncellendi; son hâli teslimden önce                                                |
