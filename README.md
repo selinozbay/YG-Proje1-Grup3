@@ -741,8 +741,6 @@ sürümünden demo modunda alındı (Görevlerim sayfasının görüntüleri 10 
 
 ## Bilinen eksikler
 
-- Canlı demo teslimden önce son sürümle yeniden yayınlanacak ve `v1.0.0` sürüm etiketi verilecek
-  ([#59](https://github.com/selinozbay/YG-Proje1-Grup3/issues/59)).
 - Şifre sıfırlama e-postası KTÜ öğrenci adreslerinde Gereksiz klasörüne düşebilir; e-postadaki
   bağlantı, Firebase ücretsiz planda izin vermediği için `firebaseapp.com` adresinde kaldı (bkz.
   [Alan adı ve e-posta gönderimi](#alan-adı-ve-e-posta-gönderimi)).
