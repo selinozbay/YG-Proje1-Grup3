@@ -104,30 +104,6 @@
   }
 
   /*
-   * Tarih alanı (DateField.vue): tarayıcının takvim simgesi gizlenir, yerine uygulamanın
-   * takvim düğmesi gelir. Gün/ay/yıl parçası seçilince mavi yerine turuncu vurgu.
-   */
-  .field[type='date']::-webkit-calendar-picker-indicator {
-    display: none;
-  }
-  .field[type='date'].is-empty::-webkit-datetime-edit {
-    color: var(--color-slate-400);
-  }
-  .field[type='date']::-webkit-datetime-edit-day-field:focus,
-  .field[type='date']::-webkit-datetime-edit-month-field:focus,
-  .field[type='date']::-webkit-datetime-edit-year-field:focus {
-    border-radius: 0.25rem;
-    background-color: var(--color-indigo-100);
-    color: var(--color-indigo-900);
-  }
-  .dark .field[type='date']::-webkit-datetime-edit-day-field:focus,
-  .dark .field[type='date']::-webkit-datetime-edit-month-field:focus,
-  .dark .field[type='date']::-webkit-datetime-edit-year-field:focus {
-    background-color: rgb(251 143 69 / 0.25);
-    color: var(--color-indigo-100);
-  }
-
-  /*
    * Açılır liste. Destekleyen tarayıcıda (appearance: base-select) açılan liste de sitenin
    * renkleriyle çizilir; desteklemeyende tarayıcının listesi açılır, kutu yine aynı görünür.
    * Gerçek <select> olarak kaldığı için klavye ve ekran okuyucu davranışı tarayıcınınkidir.
