@@ -750,7 +750,7 @@ sürümünden demo modunda alındı (Görevlerim sayfasının görüntüleri 10 
 
 | Dosya                         | İçerik                                                                                              | Durum                                                                                      |
 | ----------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))                       | 4 Kasım son hâli: tüm bölümler, test sonuçları ve yeni ekran görüntüleri                   |
+| `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))                       | 10 Kasım son hâli: tüm bölümler, test sonuçları ve yeni ekran görüntüleri                  |
 | `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55))                 | 4 Kasım: adım adım kullanım, ekran görüntüleri, sık sorulan sorular (17 sayfa)             |
 | `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))                      | İptal edildi                                                                               |
 | `docs/wireframes/`            | Sayfa akış şeması ve wireframe'ler ([#64](https://github.com/selinozbay/YG-Proje1-Grup3/issues/64)) | 6 Kasım: akış şeması, 5 masaüstü ve 6 mobil taslak (PNG ve SVG)                            |
