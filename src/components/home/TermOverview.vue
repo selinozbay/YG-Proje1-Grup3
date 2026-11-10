@@ -57,7 +57,47 @@ function cellLabel(course: { title: string }, weekNo: number, tasks: TaskWithSta
 const isLate = (task: TaskWithStatus) =>
   !!props.today && task.status !== 'done' && !!task.dueDate && task.dueDate < props.today
 
-const showToday = computed(() => props.elapsedPercent > 0 && props.elapsedPercent < 100)
+const DAY_MS = 24 * 60 * 60 * 1000
+/** İki tarih arasındaki gün farkı ("2026-10-15" → "2026-10-17" = 2). */
+const daysFrom = (from: string, to: string) =>
+  Math.round((new Date(`${to}T00:00:00`).getTime() - new Date(`${from}T00:00:00`).getTime()) / DAY_MS)
+
+/**
+ * Gün cetveli (#116): hafta başlıklarının altında soluk bir çizgi, üzerinde dönemin her günü
+ * için soluk bir çentik. Çentikler günlerin ortasındadır; böylece ilk ve son gün kartın
+ * kenarına değil, yarım gün içeride durur ve her haftanın 7 günü kendi sütununa düşer.
+ * Bugün, kendi gününün çentiğinden aşağı inen kısa turuncu çizgi ve "Bugün" etiketiyle
+ * işaretlenir; çizgi ders satırlarına inmez, görev daireleriyle kesişmez. Dönem dışındaysa
+ * (öncesi ya da teslim gününden sonrası) yalnızca cetvel görünür.
+ */
+const ruler = computed(() => {
+  if (!first.value || !last.value) return null
+  const start = first.value.start
+  const days = daysFrom(start, last.value.end) + 1
+  const at = (day: number) => ((day + 0.5) / days) * 100
+  const index = props.today ? daysFrom(start, props.today) : -1
+  return {
+    ticks: Array.from({ length: days }, (_, day) => at(day)),
+    from: at(0),
+    to: at(days - 1),
+    today: index >= 0 && index < days ? at(index) : null,
+  }
+})
+
+/**
+ * "Bugün" etiketinin çizgiye bağlandığı yer: dönemin başında etiket çizginin sağında (çizgi sol
+ * üst köşeye iner), sonunda solunda (sağ üst köşeye iner), arada ortasından. Böylece etiket
+ * kartın kenarında kesilmez.
+ */
+const todayAnchor = computed(() => {
+  const at = ruler.value?.today ?? 50
+  return at <= 10 ? 'start' : at >= 90 ? 'end' : 'center'
+})
+const TODAY_ANCHOR_CLASS = {
+  start: '-translate-x-px rounded-tl-none',
+  center: '-translate-x-1/2',
+  end: 'translate-x-[calc(-100%+1px)] rounded-tr-none',
+}
 </script>
 
 <template>
@@ -138,6 +178,7 @@ const showToday = computed(() => props.elapsedPercent > 0 && props.elapsedPercen
       <!-- Satır adları: ders kodları. Hücrelerin bağlantı adlarında dersin adı yazdığı için gizli. -->
       <div v-if="courses.length" class="w-11 shrink-0 sm:w-16" aria-hidden="true">
         <div class="h-[4.5rem] sm:h-[4.25rem]" />
+        <div class="h-14" />
         <div
           v-for="course in courses"
           :key="course.id"
@@ -178,7 +219,7 @@ const showToday = computed(() => props.elapsedPercent > 0 && props.elapsedPercen
                 >
                 <span
                   v-if="week.state === 'current'"
-                  class="rounded px-1.5 py-px text-[0.6875rem] font-semibold max-sm:sr-only bg-indigo-600 text-white dark:bg-indigo-400 dark:text-slate-950"
+                  class="rounded px-1.5 py-px text-[0.6875rem] font-semibold max-xl:sr-only bg-indigo-600 text-white dark:bg-indigo-400 dark:text-slate-950"
                   >Bu hafta</span
                 >
               </p>
@@ -188,6 +229,9 @@ const showToday = computed(() => props.elapsedPercent > 0 && props.elapsedPercen
                 {{ rangeText(week) }}
               </p>
             </div>
+
+            <!-- Gün cetveli ve "Bugün" etiketi için yer (aşağıda bütün haftaların üstüne çizilir). -->
+            <div class="h-14" aria-hidden="true" />
 
             <RouterLink
               v-for="course in courses"
@@ -206,9 +250,7 @@ const showToday = computed(() => props.elapsedPercent > 0 && props.elapsedPercen
               />
             </RouterLink>
 
-            <div class="h-7" aria-hidden="true" />
-
-            <div class="mt-auto px-2 pb-4 sm:px-4">
+            <div class="mt-auto px-2 pt-3 pb-4 sm:px-4">
               <p class="text-xs sm:text-sm">
                 <span class="font-bold">{{ week.done }}</span
                 ><span class="text-slate-500 dark:text-slate-400"> / {{ week.total }} görev</span>
@@ -238,24 +280,42 @@ const showToday = computed(() => props.elapsedPercent > 0 && props.elapsedPercen
         </ol>
 
         <!--
-          "Bugün" çizgisi: haftalar eşit uzunlukta olduğu için geçen süre yüzdesi sütunlarla hizalanır.
-          Yalnızca görsel; aynı bilgi yukarıda "Geçen süre" olarak yazılı.
+          Gün cetveli: haftalar eşit uzunlukta olduğu için günler sütunlarla hizalanır. Yalnızca
+          görsel; aynı bilgi yukarıda "Geçen süre" olarak yazılı. Bant 3,5rem: taban çizgisi 0,75rem'de,
+          bugün çizgisi 0,375rem'den etiketin üstüne (1,5rem) iner; etiketle tablo arasında boşluk kalır.
         -->
         <div
-          v-if="showToday && first"
-          class="pointer-events-none absolute top-[4.5rem] bottom-0 sm:top-[4.25rem]"
-          :style="{ left: `${elapsedPercent}%` }"
+          v-if="ruler"
+          class="pointer-events-none absolute inset-x-0 top-[4.5rem] sm:top-[4.25rem]"
           aria-hidden="true"
+          data-test="day-ruler"
         >
           <span
-            class="today-line absolute top-0 -left-px block w-0.5 bg-indigo-500 dark:bg-indigo-400"
-            :style="{ height: `${courses.length * 2.75}rem` }"
+            class="absolute top-3 h-px bg-slate-200 dark:bg-slate-700/70"
+            :style="{ left: `${ruler.from}%`, right: `${100 - ruler.to}%` }"
           />
           <span
-            class="absolute -translate-x-1/2 rounded-full px-2 py-0.5 text-[0.6875rem] font-semibold whitespace-nowrap bg-indigo-600 text-white dark:bg-indigo-400 dark:text-slate-950"
-            :style="{ top: `${courses.length * 2.75 + 0.2}rem` }"
-            >Bugün</span
-          >
+            v-for="tick in ruler.ticks"
+            :key="tick"
+            class="absolute top-[0.5625rem] h-1.5 w-px -translate-x-1/2 bg-slate-300 dark:bg-slate-600"
+            :style="{ left: `${tick}%` }"
+            data-test="day-tick"
+          />
+          <template v-if="ruler.today !== null">
+            <span
+              class="today-line absolute top-1.5 h-[1.125rem] w-0.5 -translate-x-1/2 bg-indigo-500 dark:bg-indigo-400"
+              :style="{ left: `${ruler.today}%` }"
+              data-test="today-marker"
+            />
+            <span
+              data-test="today-label"
+              :data-anchor="todayAnchor"
+              class="absolute top-6 rounded-full px-2 py-0.5 text-[0.6875rem] font-semibold whitespace-nowrap bg-indigo-600 text-white dark:bg-indigo-400 dark:text-slate-950"
+              :class="TODAY_ANCHOR_CLASS[todayAnchor]"
+              :style="{ left: `${ruler.today}%` }"
+              >Bugün</span
+            >
+          </template>
         </div>
       </div>
     </div>
