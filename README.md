@@ -293,7 +293,7 @@ bittiğinden emin olun.
 | Uçtan uca (E2E)     | `e2e/`              | Kayıt, giriş, şifremi unuttum, menü, sayfa geçişi, Ana Sayfa, Derslerim, ders ve hafta detayı, Görevlerim, Profil, Gizlilik | `npm run test:e2e`      |
 | Firebase (emülatör) | `test/`             | Firestore güvenlik kuralları, gerçek giriş ve kayıt, kullanıcı verisi, hesap silme                                          | `npm run test:firebase` |
 
-- 8 Kasım 2026 itibarıyla 218 birim ve bileşen testi, 42 E2E testi ve 23 Firebase emülatör testi
+- 10 Kasım 2026 itibarıyla 223 birim ve bileşen testi, 51 E2E testi ve 23 Firebase emülatör testi
   vardır; hepsi CI'da geçer.
 - Birim testleri ve E2E her zaman demo modunda çalışır; `.env.local` dolu olsa bile gerçek
   Firebase'e bağlanmaz.
@@ -746,14 +746,14 @@ sürümünden demo modunda alındı (Görevlerim sayfasının görüntüleri 10 
 
 ## Teslim dosyaları
 
-4 Kasım 2026 itibarıyla durumları:
+10 Kasım 2026 itibarıyla durumları:
 
-| Dosya                         | İçerik                                                                                              | Durum                                                                                      |
-| ----------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))                       | 10 Kasım son hâli: tüm bölümler, test sonuçları ve yeni ekran görüntüleri                  |
-| `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55))                 | 4 Kasım: adım adım kullanım, ekran görüntüleri, sık sorulan sorular (17 sayfa)             |
-| `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))                      | İptal edildi                                                                               |
-| `docs/wireframes/`            | Sayfa akış şeması ve wireframe'ler ([#64](https://github.com/selinozbay/YG-Proje1-Grup3/issues/64)) | 6 Kasım: akış şeması, 5 masaüstü ve 6 mobil taslak (PNG ve SVG)                            |
-| `docs/screenshots/`           | Ekran görüntüleri ([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57))                  | 4 Kasım: bütün sayfalar, masaüstü ve mobil (26 görüntü)                                    |
-| `docs/test-senaryolari.md`    | Test senaryoları ve hata kaydı ([#60](https://github.com/selinozbay/YG-Proje1-Grup3/issues/60))     | 10 Kasım'da güncellendi: 71 senaryo geçti, 1 bekliyor (canlı sitede gerçek hesapla deneme) |
-| `docs/katki-tablosu.md`       | Ekip katkı tablosu ([#65](https://github.com/selinozbay/YG-Proje1-Grup3/issues/65))                 | 3 Kasım'da güncellendi; son hâli teslimden önce                                            |
+| Dosya                         | İçerik                                                                                              | Durum                                                                                           |
+| ----------------------------- | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `docs/proje-raporu.pdf`       | Proje raporu ([#54](https://github.com/selinozbay/YG-Proje1-Grup3/issues/54))                       | 10 Kasım son hâli: tüm bölümler, test sonuçları ve yeni ekran görüntüleri                       |
+| `docs/kullanici-dokumani.pdf` | Kullanıcı dokümanı ([#55](https://github.com/selinozbay/YG-Proje1-Grup3/issues/55))                 | 10 Kasım (sürüm 1.1): adım adım kullanım, takvimden tarih seçme, sık sorulan sorular (17 sayfa) |
+| `presentation/`               | Sunum dosyası ([#56](https://github.com/selinozbay/YG-Proje1-Grup3/issues/56))                      | İptal edildi                                                                                    |
+| `docs/wireframes/`            | Sayfa akış şeması ve wireframe'ler ([#64](https://github.com/selinozbay/YG-Proje1-Grup3/issues/64)) | 6 Kasım: akış şeması, 5 masaüstü ve 6 mobil taslak (PNG ve SVG)                                 |
+| `docs/screenshots/`           | Ekran görüntüleri ([#57](https://github.com/selinozbay/YG-Proje1-Grup3/issues/57))                  | 4 Kasım: bütün sayfalar, masaüstü ve mobil (26 görüntü)                                         |
+| `docs/test-senaryolari.md`    | Test senaryoları ve hata kaydı ([#60](https://github.com/selinozbay/YG-Proje1-Grup3/issues/60))     | 10 Kasım'da güncellendi: 71 senaryo geçti, 1 bekliyor (canlı sitede gerçek hesapla deneme)      |
+| `docs/katki-tablosu.md`       | Ekip katkı tablosu ([#65](https://github.com/selinozbay/YG-Proje1-Grup3/issues/65))                 | 10 Kasım'da güncellendi; son hâli teslimden önce                                                |
