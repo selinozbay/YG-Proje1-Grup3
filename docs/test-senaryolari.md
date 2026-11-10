@@ -11,8 +11,8 @@ Bölüm 3.2) bağlanmıştır.
 
 | Alan              | Değer                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| Test tarihi       | 31 Ekim 2026 (ilk tur), 3 Kasım 2026 (ikinci tur)                                         |
-| Sürüm             | `main` dalı, commit `c364147` (3 Kasım 2026); ilk tur `aab8786`                           |
+| Test tarihi       | 31 Ekim 2026 (ilk tur), 3 Kasım 2026 (ikinci tur), 10 Kasım 2026 (ek kontrol)             |
+| Sürüm             | `main` dalı, commit `c364147` (3 Kasım 2026); ilk tur `aab8786`; ek kontrol `b8ed93b`     |
 | Test eden         | Tahir Taş (Test / Kalite)                                                                 |
 | Uygulama modu     | Demo modu (`npm run dev:demo`), veriler tarayıcıda saklanır                               |
 | Tarayıcı          | Chromium (Playwright ve elle deneme)                                                      |
@@ -23,7 +23,7 @@ Bölüm 3.2) bağlanmıştır.
 
 | Sonuç       | Sayı | Anlamı                                               |
 | ----------- | ---: | ---------------------------------------------------- |
-| ✅ Geçti    |   70 | Beklenen sonuç alındı                                |
+| ✅ Geçti    |   71 | Beklenen sonuç alındı                                |
 | ❌ Kaldı    |    0 | Beklenen sonuç alınmadı, hata kaydı açıldı           |
 | ⚠️ Kısmen   |    0 | Çalışıyor ama beklenenden küçük bir sapma var        |
 | ⏳ Bekliyor |    1 | Henüz denenmedi (canlı sitede gerçek hesapla deneme) |
@@ -39,6 +39,10 @@ bekliyor. Yeni özellikler için 13 senaryo eklendi (T-59…T-71): kendi görevi
 Bu turda üç yeni hata bulundu (B-05 → #98, B-06 → #99, B-07 → #101); üçü de düzeltildi, yeniden test
 edildi ve E2E testiyle korunuyor. #80'de düzeltilen kararsız test de kayda geçti (B-04).
 Ayrıntılar için [Hata listesi](#hata-listesi).
+
+**Ek kontrol (10 Kasım):** Form alanlarının yeni görünümü (#110) birleştikten sonra karanlık tema
+yeniden denendi. Odaktaki arama kutuları ve Ders/Hafta seçicileri beyaza dönüyor, yazı okunmuyordu
+(B-08 → #112, T-72). Hata düzeltildi, yeniden test edildi ve E2E testiyle korunuyor.
 
 **Test yöntemleri:** _E2E_ = Playwright (`e2e/`), _Birim_ = Vitest (`src/**/__tests__/`),
 _Emülatör_ = Firebase emülatör testleri (`test/`), _Elle_ = tarayıcıda elle deneme,
@@ -117,14 +121,15 @@ _CI_ = GitHub Actions.
 
 ### Tema (KH-9)
 
-| No   | Senaryo                                        | Adımlar                                                                  | Beklenen sonuç                                                                    | Gerçek sonuç                                                                                                                                      | Yöntem      | Sonuç             |
-| ---- | ---------------------------------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------- |
-| T-32 | Tema düğmesiyle tema değiştirme                | Üst çubuktaki "Karanlık temaya geç" düğmesine bas                        | Karanlık tema açılır                                                              | Karanlık tema açıldı                                                                                                                              | Elle        | ✅                |
-| T-33 | Temanın yenilemede korunması                   | Karanlık temaya geç, sayfayı yeniden yükle                               | Karanlık tema korunur                                                             | Karanlık tema korundu                                                                                                                             | Elle        | ✅                |
-| T-34 | İlk açılışta tema                              | Tema tercihi kayıtlı değilken, sistem karanlık temadayken uygulamayı aç  | Aydınlık tema açılır                                                              | Aydınlık tema açıldı                                                                                                                              | Elle        | ✅                |
-| T-54 | Karanlık temada durum seçicisinin seçenekleri  | Karanlık temada bir görevi "Tamamlandı" yap, seçiciyi tekrar aç          | Açılan listedeki üç seçenek okunaklı                                              | İlk denemede seçenekler açık yeşil yazıyla okunmuyordu ([B-03](#hata-listesi)). Düzeltmeden sonra koyu zemin, açık yazı; kapalı rozet yeşil kaldı | Elle, Birim | ✅ (yeniden test) |
-| T-55 | Profilde tema seçimi ve kalıcılık (#52, P1-13) | Profil'de "Karanlık"ı seç, sayfayı yenile; sonra "Aydınlık"ı seç, yenile | Seçilen tema hemen uygulanır ve yenilemede korunur; seçili seçenek işaretli gelir | Beklendiği gibi; yenilemeden sonra "Karanlık" seçili ve tema karanlık                                                                             | Birim, E2E  | ✅                |
-| T-56 | "Sistem" teması (#52)                          | Cihaz karanlık temadayken "Sistem"i seç, ardından cihazı aydınlığa al    | Uygulama cihazın temasını izler                                                   | Karanlık → aydınlık geçişi sayfa yenilenmeden izlendi                                                                                             | E2E         | ✅                |
+| No   | Senaryo                                        | Adımlar                                                                                                                            | Beklenen sonuç                                                                         | Gerçek sonuç                                                                                                                                                                                                                                                      | Yöntem      | Sonuç             |
+| ---- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------- |
+| T-32 | Tema düğmesiyle tema değiştirme                | Üst çubuktaki "Karanlık temaya geç" düğmesine bas                                                                                  | Karanlık tema açılır                                                                   | Karanlık tema açıldı                                                                                                                                                                                                                                              | Elle        | ✅                |
+| T-33 | Temanın yenilemede korunması                   | Karanlık temaya geç, sayfayı yeniden yükle                                                                                         | Karanlık tema korunur                                                                  | Karanlık tema korundu                                                                                                                                                                                                                                             | Elle        | ✅                |
+| T-34 | İlk açılışta tema                              | Tema tercihi kayıtlı değilken, sistem karanlık temadayken uygulamayı aç                                                            | Aydınlık tema açılır                                                                   | Aydınlık tema açıldı                                                                                                                                                                                                                                              | Elle        | ✅                |
+| T-54 | Karanlık temada durum seçicisinin seçenekleri  | Karanlık temada bir görevi "Tamamlandı" yap, seçiciyi tekrar aç                                                                    | Açılan listedeki üç seçenek okunaklı                                                   | İlk denemede seçenekler açık yeşil yazıyla okunmuyordu ([B-03](#hata-listesi)). Düzeltmeden sonra koyu zemin, açık yazı; kapalı rozet yeşil kaldı                                                                                                                 | Elle, Birim | ✅ (yeniden test) |
+| T-55 | Profilde tema seçimi ve kalıcılık (#52, P1-13) | Profil'de "Karanlık"ı seç, sayfayı yenile; sonra "Aydınlık"ı seç, yenile                                                           | Seçilen tema hemen uygulanır ve yenilemede korunur; seçili seçenek işaretli gelir      | Beklendiği gibi; yenilemeden sonra "Karanlık" seçili ve tema karanlık                                                                                                                                                                                             | Birim, E2E  | ✅                |
+| T-56 | "Sistem" teması (#52)                          | Cihaz karanlık temadayken "Sistem"i seç, ardından cihazı aydınlığa al                                                              | Uygulama cihazın temasını izler                                                        | Karanlık → aydınlık geçişi sayfa yenilenmeden izlendi                                                                                                                                                                                                             | E2E         | ✅                |
+| T-72 | Karanlık temada odaktaki form alanları (#112)  | Karanlık temada Görevlerim'de arama kutusuna yaz; Ders ve Hafta seçicilerini açıp birer seçim yap; Derslerim'de arama kutusuna yaz | Odaktaki alan koyu kalır, yazılan metin ve seçilen değer okunur (kontrast en az 4.5:1) | İlk denemede alan odaklanınca beyaza dönüyor, açık renkli yazı okunmuyordu; kontrast 1.13:1 ([B-08](#hata-listesi)). Seçicilerde liste açıkken sorun yoktu, seçim yapılıp liste kapanınca çıkıyordu. Düzeltmeden sonra dört alanda da zemin koyu, kontrast 16.5:1 | Elle, E2E   | ✅ (yeniden test) |
 
 ### Mobil görünüm ve erişilebilirlik (KH-10)
 
@@ -164,15 +169,16 @@ _CI_ = GitHub Actions.
 
 ## Hata listesi
 
-| No   | Senaryo | Hata                                                                                                                                                                                                                                                                                                                      | Önem  | Durum      | Issue |
-| ---- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ---------- | ----- |
-| B-01 | T-11    | Ad soyad alanına yalnızca boşluk yazılınca kayıt kabul ediliyor, kullanıcının adı boş kaydediliyor. Alan `required` olduğu hâlde boşluklar tarayıcı denetimini geçiyor; kod adı kırptıktan sonra boş olup olmadığına bakmıyor (`src/views/auth/RegisterView.vue`).                                                        | Orta  | Düzeltildi | #71   |
-| B-02 | T-20    | Hafta numarası `2.0` gibi ondalıklı yazılınca 2. hafta açılıyor; adres düzeltilmiyor. Kullanıcıyı engellemiyor.                                                                                                                                                                                                           | Düşük | Düzeltildi | #72   |
-| B-03 | T-54    | Durum seçicisinde açılan seçenekler seçili durumun rozet rengini alıyor; karanlık temada "Tamamlandı" seçiliyken açık yeşil yazılar okunmuyor (`src/components/tasks/TaskStatusSelect.vue`).                                                                                                                              | Orta  | Düzeltildi | #78   |
-| B-04 | T-12    | "Şifremi unuttum" E2E testi ara sıra kalıyordu: sayfa geçişinde eski sayfa (giriş ekranı) bir kare daha ekranda kaldığı için e-posta eski sayfanın kutusuna yazılıyordu. Hızlı yazan bir kullanıcı da aynı durumla karşılaşabilirdi.                                                                                      | Orta  | Düzeltildi | #80   |
-| B-05 | T-70    | Sayfa geçişinde yeni sayfa en üstten değil, önceki sayfanın kaydırma konumundan açılıyor; ders detayında aşağıdaki bir hafta kartına tıklayınca hafta başlığı ve geri bağlantısı ekran dışında kalıyor. Router'da `scrollBehavior` tanımlı değil (`src/router/index.ts`).                                                 | Orta  | Düzeltildi | #98   |
-| B-06 | T-69    | Profil sayfasında 1024 px genişlikte (iki sütunlu düzenin en dar hâli) tema kartları 64 px'e daralıyor, açıklama yazıları kelime kelime 4 satıra bölünüyor; istatistiklerdeki "0 / 24" sayısı da ikiye bölünüyor (`ThemeSelector.vue`, `ProfileStats.vue`). 1280 px ve üstünde sorun yok.                                 | Düşük | Düzeltildi | #99   |
-| B-07 | T-71    | Derslerim'de bir dersin görevleri açılınca aynı satırdaki diğer kartlar da uzuyor; onların ilerleme çubuğu ve "Sıradaki görev" kutusu kartın en altına kayıyor. Izgara aynı satırdaki kartları eşit boya getiriyor, görev listesi de kartın içinde (`CoursesView.vue`, `CourseCard.vue`). Ekip arkadaşı demoda fark etti. | Düşük | Düzeltildi | #101  |
+| No   | Senaryo | Hata                                                                                                                                                                                                                                                                                                                                        | Önem  | Durum      | Issue |
+| ---- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ---------- | ----- |
+| B-01 | T-11    | Ad soyad alanına yalnızca boşluk yazılınca kayıt kabul ediliyor, kullanıcının adı boş kaydediliyor. Alan `required` olduğu hâlde boşluklar tarayıcı denetimini geçiyor; kod adı kırptıktan sonra boş olup olmadığına bakmıyor (`src/views/auth/RegisterView.vue`).                                                                          | Orta  | Düzeltildi | #71   |
+| B-02 | T-20    | Hafta numarası `2.0` gibi ondalıklı yazılınca 2. hafta açılıyor; adres düzeltilmiyor. Kullanıcıyı engellemiyor.                                                                                                                                                                                                                             | Düşük | Düzeltildi | #72   |
+| B-03 | T-54    | Durum seçicisinde açılan seçenekler seçili durumun rozet rengini alıyor; karanlık temada "Tamamlandı" seçiliyken açık yeşil yazılar okunmuyor (`src/components/tasks/TaskStatusSelect.vue`).                                                                                                                                                | Orta  | Düzeltildi | #78   |
+| B-04 | T-12    | "Şifremi unuttum" E2E testi ara sıra kalıyordu: sayfa geçişinde eski sayfa (giriş ekranı) bir kare daha ekranda kaldığı için e-posta eski sayfanın kutusuna yazılıyordu. Hızlı yazan bir kullanıcı da aynı durumla karşılaşabilirdi.                                                                                                        | Orta  | Düzeltildi | #80   |
+| B-05 | T-70    | Sayfa geçişinde yeni sayfa en üstten değil, önceki sayfanın kaydırma konumundan açılıyor; ders detayında aşağıdaki bir hafta kartına tıklayınca hafta başlığı ve geri bağlantısı ekran dışında kalıyor. Router'da `scrollBehavior` tanımlı değil (`src/router/index.ts`).                                                                   | Orta  | Düzeltildi | #98   |
+| B-06 | T-69    | Profil sayfasında 1024 px genişlikte (iki sütunlu düzenin en dar hâli) tema kartları 64 px'e daralıyor, açıklama yazıları kelime kelime 4 satıra bölünüyor; istatistiklerdeki "0 / 24" sayısı da ikiye bölünüyor (`ThemeSelector.vue`, `ProfileStats.vue`). 1280 px ve üstünde sorun yok.                                                   | Düşük | Düzeltildi | #99   |
+| B-07 | T-71    | Derslerim'de bir dersin görevleri açılınca aynı satırdaki diğer kartlar da uzuyor; onların ilerleme çubuğu ve "Sıradaki görev" kutusu kartın en altına kayıyor. Izgara aynı satırdaki kartları eşit boya getiriyor, görev listesi de kartın içinde (`CoursesView.vue`, `CourseCard.vue`). Ekip arkadaşı demoda fark etti.                   | Düşük | Düzeltildi | #101  |
+| B-08 | T-72    | Karanlık temada Görevlerim ve Derslerim'deki arama kutuları ile Ders/Hafta seçicileri (seçim yapıldıktan sonra) odaklanınca zemini beyaza dönüyor, yazı açık renkte kaldığı için okunmuyor (kontrast 1.13:1). Ortak `.field` kuralında odak için `focus:bg-white` var, karanlık tema karşılığı yok (`src/assets/main.css`). #110 ile geldi. | Orta  | Düzeltildi | #112  |
 
 ### Düzeltme kaydı
 
@@ -185,10 +191,12 @@ _CI_ = GitHub Actions.
 | B-05 | `router/index.ts`: `scrollBehavior` eklendi; yeni sayfa en üstten açılıyor, tarayıcının geri/ileri düğmesinde eski konum korunuyor                                                                                                   | `e2e/scroll.spec.ts`: "aşağıdaki karta tıklayınca yeni sayfa en üstten açılır", "geri düğmesiyle dönünce önceki konum korunur" | ✅ Geçti            |
 | B-06 | `ThemeSelector.vue`, `ProfileStats.vue`: düzen ekran genişliğine değil kutunun genişliğine göre seçiliyor (container query); dar sütunda tema kartları alt alta, sayı tek satırda                                                    | `e2e/profile.spec.ts`: "1024 px genişlikte tema kartları sıkışmaz"                                                             | ✅ Geçti            |
 | B-07 | `CoursesView.vue`, `CourseCard.vue`: her kart iki satırlık bir alt ızgaraya (subgrid) yerleşiyor; üst kısım satırdaki kartlarla eşit boyda kalıyor, görev listesi yalnızca kendi kartının altına ekleniyor                           | `e2e/courses.spec.ts`: "görevleri açılan kart uzar, yanındaki kart olduğu gibi kalır"                                          | ✅ Geçti            |
+| B-08 | `main.css`: `.field` kuralına `dark:focus:bg-slate-900` eklendi; karanlık temada odaktaki alan koyu kalıyor                                                                                                                          | `e2e/dark-fields.spec.ts`: karanlık temada iki arama kutusu ve Ders/Hafta seçicileri odaktayken kontrast en az 4.5:1           | ✅ Geçti            |
 
-B-01…B-03 ve B-05…B-07 için eklenen testler düzeltme geri alınınca kalıyor, düzeltmeyle geçiyor;
+B-01…B-03 ve B-05…B-08 için eklenen testler düzeltme geri alınınca kalıyor, düzeltmeyle geçiyor;
 yani hata geri gelirse CI bunu yakalar. B-05…B-07 düzeltmesinden sonra lint, tip kontrolü,
-Vitest (209/209) ve Playwright (41/41, 4 yeni test) hatasız.
+Vitest (209/209) ve Playwright (41/41, 4 yeni test) hatasız. B-08 düzeltmesinden sonra lint, tip
+kontrolü, Vitest (218/218) ve Playwright (45/45, 3 yeni test) hatasız.
 
 ## Denenip uygulanmayan işler
 
@@ -201,11 +209,12 @@ senaryo tablosunda yer almazlar.
 
 ## Otomatik test sayıları
 
-`main` dalı, commit `c364147` (3 Kasım 2026). Hepsi geçti.
+`fix/112-karanlik-odak-kontrast` dalı, commit `313f89b` (10 Kasım 2026). Hepsi geçti. Firebase emülatör
+testleri en son CI'da `c364147` üzerinde çalıştı; o tarihten sonra Firebase koduna dokunulmadı.
 
 | Tür               | Araç                                 | Dosya |                    Test | Nerede çalıştı        |
 | ----------------- | ------------------------------------ | ----: | ----------------------: | --------------------- |
-| Birim ve bileşen  | Vitest                               |    29 |                     209 | Yerelde ve CI'da      |
-| Uçtan uca (E2E)   | Playwright, Chromium                 |    10 |                      37 | Yerelde ve CI'da      |
+| Birim ve bileşen  | Vitest                               |    30 |                     218 | Yerelde ve CI'da      |
+| Uçtan uca (E2E)   | Playwright, Chromium                 |    12 |                      45 | Yerelde ve CI'da      |
 | Firebase emülatör | Vitest + Auth/Firestore emülatörleri |     2 | 23 (9 kural, 14 servis) | CI'da (`41629212612`) |
 | Kod denetimi      | Oxlint, ESLint, vue-tsc, derleme     |     — |                       — | Yerelde ve CI'da      |
