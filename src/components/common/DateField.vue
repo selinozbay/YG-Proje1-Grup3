@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, ref, useId, useTemplateRef } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref, useId, useTemplateRef, watch } from 'vue'
 import { toISODate } from '@/utils/date'
 
 /**
- * Tarih alanı (#110). Tarih kutuya elle yazılabilir (tarayıcının tarih kutusu) ya da sağdaki
+ * Tarih alanı (#110). Tarih kutuya "gg.aa.yyyy" biçiminde elle yazılabilir ya da sağdaki
  * düğmeyle açılan uygulamanın takviminden seçilebilir. Değer görevlerdeki biçimdedir:
- * "2026-11-10"; boşsa "".
+ * "2026-11-10"; boşsa "". Yazılan metin geçerli bir tarih değilse olduğu gibi iletilir,
+ * böylece form "Geçerli bir tarih seçin." uyarısını gösterir.
+ *
+ * Tarayıcının tarih kutusu (type="date") kullanılmaz (#114): Firefox ona kendi takvim
+ * simgesini ve takvimini ekliyor, tarihi de kendi diline göre (ör. 11/10/2026) yazıyordu.
  */
 const props = withDefaults(
   defineProps<{
@@ -60,6 +64,62 @@ const focused = ref('')
 const isValidISO = (value: string) =>
   /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value))
 const parse = (iso: string) => new Date(`${iso}T00:00:00`)
+
+/** "2026-11-10" → "10.11.2026". */
+const toTurkish = (iso: string) => iso.split('-').reverse().join('.')
+
+/**
+ * Kutuya yazılan metni "2026-11-10" biçimine çevirir; boşsa "", tarih değilse null.
+ * "10.11.2026", "1.2.2026", "10/11/2026", "10-11-2026" ve "10112026" kabul edilir;
+ * 31.02.2026 gibi takvimde olmayan günler kabul edilmez.
+ */
+function fromTurkish(text: string): string | null {
+  const value = text.trim()
+  if (!value) return ''
+  const match =
+    /^(\d{1,2})[./-](\d{1,2})[./-](\d{4})$/.exec(value) ?? /^(\d{2})(\d{2})(\d{4})$/.exec(value)
+  if (!match) return null
+  const [day, month, year] = match.slice(1).map(Number) as [number, number, number]
+  const date = new Date(year, month - 1, day)
+  const valid =
+    date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day
+  return valid ? toISODate(date) : null
+}
+
+/** Kutuda görünen metin. Değer dışarıdan değişince (takvim, "Temizle", düzenleme) güncellenir. */
+const text = ref(isValidISO(model.value) ? toTurkish(model.value) : model.value)
+
+watch(model, (value) => {
+  if (value === '') text.value = ''
+  else if (isValidISO(value) && fromTurkish(text.value) !== value) text.value = toTurkish(value)
+})
+
+/**
+ * Kutuya yalnızca rakam ve ayraç (. / -) girilebilir. Harf yazılınca ya da yapıştırılınca
+ * hemen silinir; imleç yerinde kalır. "input" olayıyla yapıldığı için Chrome, Firefox ve
+ * mobil klavyelerde aynı çalışır.
+ */
+const onlyDateChars = (value: string) => value.replace(/[^\d./-]/g, '')
+
+function onInput(event: Event) {
+  const input = event.target as HTMLInputElement
+  const allowed = onlyDateChars(input.value)
+  if (allowed !== input.value) {
+    // İmleç, önündeki silinen harf sayısı kadar geri alınır.
+    const caret = onlyDateChars(input.value.slice(0, input.selectionStart ?? 0)).length
+    input.value = allowed
+    input.setSelectionRange(caret, caret)
+  }
+  text.value = allowed
+  const iso = fromTurkish(text.value)
+  model.value = iso ?? text.value
+}
+
+/** Kutudan çıkınca geçerli tarih tek biçime getirilir: "1.2.2026" → "01.02.2026". */
+function onBlur() {
+  const iso = fromTurkish(text.value)
+  if (iso) text.value = toTurkish(iso)
+}
 
 const title = computed(() => `${MONTHS[view.value.month]} ${view.value.year}`)
 
@@ -192,12 +252,17 @@ const navButtonClass =
   <div ref="root" class="relative" @focusout="onFocusOut">
     <input
       :id="id"
-      v-model="model"
-      type="date"
+      :value="text"
+      type="text"
+      inputmode="numeric"
+      autocomplete="off"
+      maxlength="10"
+      placeholder="gg.aa.yyyy"
       class="field pr-12"
-      :class="{ 'is-empty': !model }"
       :aria-invalid="invalid ? 'true' : undefined"
       :aria-describedby="describedby"
+      @input="onInput"
+      @blur="onBlur"
       @keydown.alt.down.prevent="open"
     />
     <button

@@ -23,19 +23,85 @@ const toggle = (w: VueWrapper) => w.find('[data-test="date-picker-toggle"]')
 const picker = (w: VueWrapper) => w.find('[data-test="date-picker"]')
 const day = (w: VueWrapper, iso: string) => w.find(`[data-date="${iso}"]`)
 const emitted = (w: VueWrapper) => w.emitted<[string]>('update:modelValue')?.map(([v]) => v)
+const last = (w: VueWrapper) => emitted(w)?.slice(-1)[0]
 
 afterEach(() => wrapper?.unmount())
 
 describe('DateField (#110)', () => {
-  it('tarih kutuya elle de yazılabilir; kutu etiketin id’sini taşır', async () => {
+  it('tarih kutuya gg.aa.yyyy biçiminde elle yazılabilir; kutu etiketin id’sini taşır', async () => {
     const w = field()
-    const input = w.find('input[type="date"]')
+    const input = w.find('input')
     expect(input.attributes('id')).toBe('son-tarih')
-    expect(input.classes()).toContain('is-empty')
+    // Tarayıcının tarih kutusu değil (#114): Firefox ona kendi takvimini ekliyordu.
+    expect(input.attributes('type')).toBe('text')
+    expect(input.attributes('placeholder')).toBe('gg.aa.yyyy')
 
-    await input.setValue('2026-11-10')
+    await input.setValue('10.11.2026')
     expect(emitted(w)).toEqual(['2026-11-10'])
-    expect(w.find('input').classes()).not.toContain('is-empty')
+  })
+
+  it('farklı yazımlar kabul edilir; kutudan çıkınca tek biçime getirilir (#114)', async () => {
+    const w = field()
+    const input = w.find('input')
+    for (const [typed, iso] of [
+      ['1.2.2026', '2026-02-01'],
+      ['10/11/2026', '2026-11-10'],
+      ['10-11-2026', '2026-11-10'],
+      ['10112026', '2026-11-10'],
+      [' 29.02.2028 ', '2028-02-29'], // artık yıl
+    ]) {
+      await input.setValue(typed)
+      expect(last(w)).toBe(iso)
+    }
+
+    await input.setValue('1.2.2026')
+    await input.trigger('blur')
+    expect((input.element as HTMLInputElement).value).toBe('01.02.2026')
+  })
+
+  it('geçersiz tarih olduğu gibi iletilir, form uyarı gösterebilsin (#114)', async () => {
+    const w = field()
+    const input = w.find('input')
+    for (const typed of ['31.02.2026', '29.02.2026', '10.13.2026', '10.11', '10..2026']) {
+      await input.setValue(typed)
+      expect(last(w)).toBe(typed)
+      // Kutudaki yazı silinmez, kullanıcı düzeltebilir.
+      await input.trigger('blur')
+      expect((input.element as HTMLInputElement).value).toBe(typed)
+    }
+    await input.setValue('')
+    expect(last(w)).toBe('')
+  })
+
+  it('harf ve diğer işaretler kutuya girmez; imleç yerinde kalır (#114)', async () => {
+    const w = field()
+    const input = w.find('input')
+    const el = input.element as HTMLInputElement
+
+    await input.setValue('yarın')
+    expect(el.value).toBe('')
+    expect(emitted(w)).toBeUndefined() // değer boş kaldı, değişmedi
+
+    // Yapıştırılan metindeki harfler atılır, tarih kalır.
+    await input.setValue('Tarih: 10.11.2026!')
+    expect(el.value).toBe('10.11.2026')
+    expect(last(w)).toBe('2026-11-10')
+
+    // "10.1a" yazılırken imleç sondaysa harf silinir, imleç yine sonda kalır.
+    el.value = '10.1a'
+    el.setSelectionRange(5, 5)
+    await input.trigger('input')
+    expect(el.value).toBe('10.1')
+    expect(el.selectionStart).toBe(4)
+  })
+
+  it('değer dışarıdan gelince kutuda gg.aa.yyyy görünür (düzenleme formu)', async () => {
+    const w = field('2026-12-04')
+    expect((w.find('input').element as HTMLInputElement).value).toBe('04.12.2026')
+    await w.setProps({ modelValue: '2027-01-15' })
+    expect((w.find('input').element as HTMLInputElement).value).toBe('15.01.2027')
+    await w.setProps({ modelValue: '' })
+    expect((w.find('input').element as HTMLInputElement).value).toBe('')
   })
 
   it('takvim seçili tarihin ayında açılır; seçili gün ve bugün işaretlidir', async () => {
@@ -74,6 +140,7 @@ describe('DateField (#110)', () => {
     await day(w, '2026-11-20').trigger('click')
 
     expect(emitted(w)).toEqual(['2026-11-20'])
+    expect((w.find('input').element as HTMLInputElement).value).toBe('20.11.2026')
     expect(picker(w).exists()).toBe(false)
     expect(document.activeElement).toBe(toggle(w).element)
   })

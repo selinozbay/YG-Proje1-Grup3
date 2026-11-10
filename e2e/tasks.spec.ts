@@ -79,7 +79,7 @@ test.describe('E2E: Kendi görevim (#23)', () => {
     await expect(page.getByText('Görev başlığı boş olamaz.')).toBeVisible()
 
     await page.getByLabel('Başlık').fill('Sunuma hazırlan')
-    await page.getByLabel('Son tarih').fill('2026-11-10')
+    await page.getByLabel('Son tarih').fill('10.11.2026')
     await page.getByRole('button', { name: 'Görevi ekle' }).click()
 
     const card = taskCard(page, 'Sunuma hazırlan')
@@ -128,22 +128,57 @@ test.describe('E2E: Kendi görevim (#23)', () => {
     await page.keyboard.press('ArrowRight')
     await page.keyboard.press('Enter')
     await expect(calendar).toBeHidden()
-    await expect(page.getByLabel('Son tarih')).toHaveValue('2026-11-10')
+    await expect(page.getByLabel('Son tarih')).toHaveValue('10.11.2026')
     await expect(toggle).toBeFocused()
 
     // Fare: sonraki aya geç, bir güne bas.
     await toggle.click()
     await page.getByRole('button', { name: 'Sonraki ay' }).click()
     await page.getByRole('button', { name: '4 Aralık 2026 Cuma' }).click()
-    await expect(page.getByLabel('Son tarih')).toHaveValue('2026-12-04')
+    await expect(page.getByLabel('Son tarih')).toHaveValue('04.12.2026')
 
     // Esc ile kapanır, tarih değişmez.
     await toggle.click()
     await page.keyboard.press('Escape')
     await expect(page.getByRole('dialog')).toHaveCount(0)
-    await expect(page.getByLabel('Son tarih')).toHaveValue('2026-12-04')
+    await expect(page.getByLabel('Son tarih')).toHaveValue('04.12.2026')
 
     await page.getByRole('button', { name: 'Görevi ekle' }).click()
     await expect(taskCard(page, 'Takvimle eklenen görev')).toContainText('Son tarih: 4 Aralık 2026')
+  })
+
+  test('son tarih gg.aa.yyyy olarak yazılır; hatalı tarihte uyarı çıkar (#114)', async ({
+    page,
+  }) => {
+    await login(page)
+    await page.goto('/gorevlerim')
+    await page.getByRole('button', { name: '+ Görev ekle' }).click()
+    await page.getByLabel('Başlık').fill('Elle tarihli görev')
+
+    // Tarayıcının tarih kutusu değil; tarih her tarayıcıda aynı biçimde görünür.
+    const date = page.getByLabel('Son tarih')
+    await expect(date).toHaveAttribute('type', 'text')
+    await expect(date).toHaveAttribute('placeholder', 'gg.aa.yyyy')
+
+    // Harfler kutuya girmez; araya yazılan harf silinir, tarih bozulmaz.
+    await date.pressSequentially('1a0.b1x1.2026y')
+    await expect(date).toHaveValue('10.11.2026')
+
+    await date.fill('31.02.2026')
+    await page.getByRole('button', { name: 'Görevi ekle' }).click()
+    await expect(page.getByText('Geçerli bir tarih seçin.')).toBeVisible()
+    await expect(date).toBeFocused()
+
+    // Kısa yazım kutudan çıkınca tek biçime getirilir.
+    await date.fill('5.1.2027')
+    await date.blur()
+    await expect(date).toHaveValue('05.01.2027')
+    await page.getByRole('button', { name: 'Görevi ekle' }).click()
+    const card = taskCard(page, 'Elle tarihli görev')
+    await expect(card).toContainText('Son tarih: 5 Ocak 2027')
+
+    // Düzenleme formu kayıtlı tarihi aynı biçimde gösterir.
+    await card.getByRole('button', { name: 'Elle tarihli görev görevini düzenle' }).click()
+    await expect(page.getByLabel('Son tarih')).toHaveValue('05.01.2027')
   })
 })

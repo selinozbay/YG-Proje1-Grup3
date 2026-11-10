@@ -36,7 +36,7 @@ describe('CustomTaskForm (#23)', () => {
     await wrapper.find('input[type="text"]').setValue('  Sunuma hazırlan ')
     await wrapper.find('textarea').setValue('Slaytları bitir')
     await wrapper.find('select').setValue('veri-tabani')
-    await wrapper.find('input[type="date"]').setValue('2026-11-10')
+    await wrapper.find('input[placeholder="gg.aa.yyyy"]').setValue('10.11.2026')
     await wrapper.find('form').trigger('submit')
 
     expect(wrapper.emitted('submit')).toEqual([
@@ -49,6 +49,18 @@ describe('CustomTaskForm (#23)', () => {
         },
       ],
     ])
+  })
+
+  it('takvimde olmayan bir tarih yazılınca gönderilmez, uyarı çıkar (#114)', async () => {
+    const wrapper = mountForm()
+    await wrapper.find('input[type="text"]').setValue('Sunuma hazırlan')
+    const date = wrapper.find('input[placeholder="gg.aa.yyyy"]')
+    await date.setValue('31.02.2026')
+    await wrapper.find('form').trigger('submit')
+
+    expect(wrapper.emitted('submit')).toBeUndefined()
+    expect(wrapper.text()).toContain('Geçerli bir tarih seçin.')
+    expect(date.attributes('aria-invalid')).toBe('true')
   })
 
   it('düzenlemede mevcut bilgilerle açılır', () => {
